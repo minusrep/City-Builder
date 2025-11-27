@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony.GameResources;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens

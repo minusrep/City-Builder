@@ -12,5 +12,4 @@ namespace Runtime.Colony.Citizens
         
         public float StartMoveSpeed;
     }
-
 }
