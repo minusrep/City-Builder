@@ -11,8 +11,6 @@ namespace Runtime.Colony.Citizens
 
         public string Name;
 
-        public Dictionary<string, ResourceModel> Needs;
-
         public Vector2 Position;
 
         public float MoveSpeed;
