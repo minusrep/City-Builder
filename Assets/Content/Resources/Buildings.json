@@ -1,0 +1,36 @@
+{
+  "buildings": {
+    "sawmill": {
+      "type": "production",
+      "name": "Лесопилка",
+      "production_time": 300,
+      "production_resource": "wood",
+      "max_resource_amount": 5
+    },
+    "shelter": {
+      "type": "service",
+      "name": "Дом",
+      "max_time_service": 60,
+      "max_queue": 5,
+      "max_citizen_amount": 5,
+      "service_resource": "energy"
+    },
+    "tavern": {
+      "type": "service",
+      "name": "Столовая",
+      "max_time_service": 86400,
+      "max_queue": 5,
+      "max_citizen_amount": 5,
+      "service_resource": "hunger"
+    },
+    "warehouse": {
+      "type": "storage",
+      "name": "Склад",
+      "max_resource_amount": 100
+    },
+    "lantern": {
+      "name": "Фонарь",
+      "type": "decor"
+    }
+  }
+}
