@@ -14,7 +14,7 @@ namespace Runtime.Colony.Buildings.Production
         public bool IsActive { get; private set; }
         public int ProducedAmount { get; private set; }
         
-        public InventoryModel Inventory { get; set; }
+        public InventoryModel Inventory { get; }
 
         private ProductionBuildingDescription Description { get; }
         
