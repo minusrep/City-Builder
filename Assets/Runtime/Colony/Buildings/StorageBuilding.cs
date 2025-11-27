@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mono.Cecil;
 using Runtime.Colony.Buildings.Descriptions;
+using Runtime.Colony.GameResources;
 
 namespace Runtime.Colony.Buildings
 {
@@ -10,7 +10,7 @@ namespace Runtime.Colony.Buildings
     {
         public StorageBuildingDescription Description;
 
-        public Dictionary<string, Resource> Resources = new();
+        public Dictionary<string, ResourceModel> Resources = new();
 
         public StorageBuilding(StorageBuildingDescription desc)
         {
