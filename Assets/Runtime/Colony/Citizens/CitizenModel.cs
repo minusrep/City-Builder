@@ -13,6 +13,8 @@ namespace Runtime.Colony.Citizens
 
         public Vector2 Position;
 
+        public Dictionary<string, ResourceModel> Needs;
+
         public float MoveSpeed;
 
         private CitizenStateMachine _stateMachine;

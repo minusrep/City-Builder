@@ -8,6 +8,9 @@ namespace Runtime.Colony.Citizens
     {
         public string[] Names;
 
+        public Dictionary<string, ResourceRange> ThresholdNeeds;
+        
         public float StartMoveSpeed;
     }
+
 }
