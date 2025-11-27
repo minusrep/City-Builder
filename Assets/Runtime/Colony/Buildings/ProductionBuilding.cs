@@ -1,7 +1,7 @@
-﻿using System;
-using Mono.Cecil;
-using Runtime.Colony.Buildings.Descriptions;
+﻿using Runtime.Colony.Buildings.Descriptions;
 using Runtime.Colony.Orders;
+using System;
+using Runtime.Colony.GameResources;
 
 namespace Runtime.Colony.Buildings
 {
@@ -13,7 +13,7 @@ namespace Runtime.Colony.Buildings
         public ColonyOrdersPool OrderPool;
         public bool IsActive;
         public long CompleteProductionTime;
-        public Resource Resource;
+        public ResourceModel Resource;
 
         public ProductionBuilding(ProductionBuildingDescription description)
         {
