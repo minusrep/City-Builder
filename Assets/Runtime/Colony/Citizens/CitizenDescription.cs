@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Runtime.Colony.Citizens
 {
@@ -8,9 +7,8 @@ namespace Runtime.Colony.Citizens
     {
         public string[] Names;
 
-        public Dictionary<string, ResourceRange> ThresholdNeeds;
+        /*public Dictionary<string, ResourceRange> ThresholdNeeds;*/
         
         public float StartMoveSpeed;
     }
-
 }

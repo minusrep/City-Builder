@@ -2,15 +2,15 @@ using System.Collections.Generic;
 
 namespace Runtime.Colony.Orders
 {
-    public class ColonyOrdersPoolModel
+    public class ColonyOrdersPool
     {
         public Dictionary<string, ColonyOrder> AvailableOrders { get; private set; }
         public Dictionary<string, ColonyOrder> ClaimedOrders { get; private set; }
-        public ColonyOrderDescriptionCollection ColonyOrderDescriptionCollections;
+        public ColonyOrderDescriptionCollection ColonyOrderDescriptionCollections { get; private set; }
 
         public void AddOrder(ColonyOrder order)
         {
-            /*AvailableOrders.Add();*/
+
         }
     }
 }

@@ -8,7 +8,5 @@ namespace Runtime.Colony.Orders
         public int ToBuildingId;
         public int FromBuildingId;
         public List<int> CitizensId;
-        
-        
     }
 }

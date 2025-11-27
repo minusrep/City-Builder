@@ -6,7 +6,7 @@ namespace Runtime.Colony
     {
         public ColonyDescription Description;
         public ColonyPopulationModel Population;
-        public ColonyBuildingsModel Buildings;
-        public ColonyOrdersPoolModel OrdersPoolModel;
+        public ColonyBuildingsModel BuildingsModel;
+        public ColonyOrdersPool OrdersPool;
     }
 }
