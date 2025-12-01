@@ -10,7 +10,7 @@ namespace Runtime.Colony.Buildings
     {
         public ProductionBuildingDescription Description;
         
-        public ColonyOrdersPool OrderPool;
+        public ColonyOrdersManager OrderManager;
         public bool IsActive;
         public long CompleteProductionTime;
         public Resource Resource;

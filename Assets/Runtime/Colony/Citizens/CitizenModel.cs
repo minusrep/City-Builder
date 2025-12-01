@@ -1,28 +1,28 @@
-using System;
 using System.Collections.Generic;
-using Runtime.Colony.GameResources;
+using Runtime.Colony.Citizens.StateMachine;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens
 {
-    [Serializable]
-    public class CitizenModel
+    public class CitizenModel : ISerializeModel
     {
-        public int Id;
-
-        public string Name;
-
-        public Vector2 Position;
-
-        public Dictionary<string, ResourceModel> Needs;
-
-        public float MoveSpeed;
-
-        private CitizenStateMachine _stateMachine;
-
-        public CitizenModel(Dictionary<string, CitizenStateDescription> stateDescriptions)
+        public int Id { get; }
+        public string Name { get; }
+        public CitizenDescription Description { get; }
+        public Vector2 Position { get; set; }
+        
+        public CitizenModel(int id, CitizenDescription description, string name)
         {
-            _stateMachine = new CitizenStateMachine(stateDescriptions);
+            Id = id;
+            Description = description;
+            Name = name;
         }
+
+        public Dictionary<string, object> Serialize() =>
+            new()
+            {
+                { "position", new[] { Position.x, Position.y } },
+                { "name", Name }
+            };
     }
 }

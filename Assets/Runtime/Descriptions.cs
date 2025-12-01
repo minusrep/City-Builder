@@ -7,7 +7,7 @@ namespace Runtime
     [Serializable]
     public sealed class Descriptions
     {
-        public BuildingsDescriptionCollection BuildingDescriptionCollection { get; }
+        public BuildingDescriptionCollection BuildingDescriptionCollection { get; }
         
         public Descriptions(DescriptionFactory factory)    
         {

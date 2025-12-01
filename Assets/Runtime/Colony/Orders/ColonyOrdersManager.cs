@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Runtime.Colony.Orders
 {
-    public class ColonyOrdersPool
+    public class ColonyOrdersManager
     {
         public Dictionary<string, ColonyOrder> AvailableOrders { get; private set; }
         public Dictionary<string, ColonyOrder> ClaimedOrders { get; private set; }
@@ -11,6 +11,11 @@ namespace Runtime.Colony.Orders
         public void AddOrder(ColonyOrder order)
         {
 
+        }
+
+        public void RemoveOrder(ColonyOrder order)
+        {
+            
         }
     }
 }

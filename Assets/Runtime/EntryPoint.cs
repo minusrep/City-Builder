@@ -14,7 +14,7 @@ namespace Runtime
             factory.Register("service", typeof(ServiceBuildingDescription));
             factory.Register("storage", typeof(StorageBuildingDescription));
             var json = Resources.Load<TextAsset>("Buildings");
-            var buildingDescriptions = new BuildingsDescriptionCollection();
+            var buildingDescriptions = new BuildingDescriptionCollection();
             JsonConvert.PopulateObject(json.text, buildingDescriptions);
             Debug.Log(buildingDescriptions);
         }

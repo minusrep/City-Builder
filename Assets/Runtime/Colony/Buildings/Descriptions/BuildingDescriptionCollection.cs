@@ -5,7 +5,7 @@ using Unity.Plastic.Newtonsoft.Json;
 namespace Runtime.Colony.Buildings.Descriptions
 {
     [Serializable]
-    public sealed class BuildingsDescriptionCollection
+    public sealed class BuildingDescriptionCollection
     {
         [JsonProperty("buildings")]
         public Dictionary<string, BuildingDescription> Descriptions;

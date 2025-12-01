@@ -1,0 +1,13 @@
+using System.Collections.Generic;
+
+namespace Runtime.Colony.Citizens.StateMachine
+{
+    public class CitizenStateDescriptionCollection
+    {
+        public Dictionary<string, CitizenStateDescription> StateDescriptions { get; }
+        public CitizenStateDescriptionCollection(Dictionary<string, CitizenStateDescription> stateDescriptions)
+        {
+            StateDescriptions = stateDescriptions;
+        }
+    }
+}
