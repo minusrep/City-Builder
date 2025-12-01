@@ -1,29 +1,28 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.Citizens.StateMachine;
 
 namespace Runtime.Colony
 {
-    public abstract class ModelCollection<T> : ISerializeModel where T : ISerializeModel
+    public abstract class ModelCollection<T> : ISerializeModel, IDeserializeModel where T : ISerializeModel, IDeserializeModel
     {
-        public Dictionary<int, T> Models { get; } = new();
+        public Dictionary<int, T> Models { get; private set; } = new();
         public event Action<T> OnCreateModel;
         public event Action<T> OnDeleteModel;
-
-        private int _index;
+        public int Index { get; set; }
 
         public void Create()
         {
             var newModel = CreateModel();
 
-            Models.Add(_index, newModel);
+            Models.Add(Index, newModel);
 
-            _index++;
+            Index++;
 
             OnCreateModel?.Invoke(newModel);
         }
 
         protected abstract T CreateModel();
+        protected abstract T CreateModelFromData(Dictionary<string, object> data);
 
         public void Delete(int modelId)
         {
@@ -36,7 +35,7 @@ namespace Runtime.Colony
 
         public Dictionary<string, object> Serialize()
         {
-            var data = new Dictionary<string, object> { { "index", _index } };
+            var data = new Dictionary<string, object> { { "index", Index } };
 
             var models = new Dictionary<string, object>();
 
@@ -49,6 +48,24 @@ namespace Runtime.Colony
             data.Add("models", models);
 
             return data;
+        }
+
+        public void Deserialize(Dictionary<string, object> data)
+        {
+            var models = new Dictionary<int, T>();
+            
+            foreach (var model in (Dictionary<string, object>)data["models"])
+            {
+                var modelData = (Dictionary<string, object>)model.Value;
+            
+                var modelInstance = CreateModelFromData(modelData);
+                
+                models.Add(Convert.ToInt32(model.Key), modelInstance);
+            }
+            
+            Index = Convert.ToInt32(data["index"]);
+
+            Models = models;
         }
 
         public T Find(int id)
