@@ -37,14 +37,15 @@ namespace Tests.Buildings
             });
         }
         
-        private ProductionBuildingModel CreateModel()
+        private ProductionBuildingModel CreateModel(int producedAmount = 0)
         {
             return new ProductionBuildingModel(
                 id: 1,
                 position: new Vector2(0, 0),
                 description: _description,  
                 orderPool: _orders,
-                resource: _resource
+                resource: _resource,
+                producedAmount: producedAmount
             );
         }
         
@@ -62,9 +63,7 @@ namespace Tests.Buildings
         [Test]
         public void StartProduction_WhenNoCapacity_DoesNotStart()
         {
-            var model = CreateModel();
-
-            SetPrivate(model, "_producedAmount", _description.MaxResource);
+            var model = CreateModel(_description.MaxResource);
 
             model.StartProduction(DateTime.UtcNow.Ticks);
 
@@ -82,7 +81,7 @@ namespace Tests.Buildings
 
             model.Update(start + 10);
 
-            var produced = GetPrivate<int>(model, "_producedAmount");
+            var produced = model.ProducedAmount;
             Assert.AreEqual(1, produced);
 
             Assert.AreEqual(1, _orders.AvailableOrders.Count);
@@ -99,7 +98,7 @@ namespace Tests.Buildings
 
             model.Update(start + 30);
 
-            var produced = GetPrivate<int>(model, "_producedAmount");
+            var produced = model.ProducedAmount;
             Assert.AreEqual(3, produced);
             Assert.AreEqual(3, _orders.AvailableOrders.Count);
         }
@@ -113,10 +112,10 @@ namespace Tests.Buildings
 
             model.Update(40);
 
-            Assert.AreEqual(3, GetPrivate<int>(model, "_producedAmount"));
+            Assert.AreEqual(3, model.ProducedAmount);
             Assert.AreEqual(3, _orders.AvailableOrders.Count);
 
-            var active = GetPrivate<bool>(model, "_isActive");
+            var active = model.IsActive;
             Assert.IsFalse(active);
         }
         
@@ -130,7 +129,7 @@ namespace Tests.Buildings
             model.StartProduction(0);
             model.Update(0);
 
-            Assert.AreEqual(1, GetPrivate<int>(model, "_producedAmount"));
+            Assert.AreEqual(1, model.ProducedAmount);
             Assert.AreEqual(1, _orders.AvailableOrders.Count);
 
             var active = model.IsActive;
@@ -147,20 +146,6 @@ namespace Tests.Buildings
 
             var active = model.IsActive;
             Assert.IsFalse(active);
-        }
-        
-        private T GetPrivate<T>(object obj, string field)
-        {
-            var f = obj.GetType()
-                .GetField(field, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            return (T)f?.GetValue(obj);
-        }
-
-        private void SetPrivate(object obj, string field, object value)
-        {
-            var f = obj.GetType()
-                .GetField(field, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            f?.SetValue(obj, value);
         }
     }
 }
