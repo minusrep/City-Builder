@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Tests.Buildings
 {
+    [TestFixture]
+    [TestOf(typeof(ServiceBuildingModel))]
     public sealed class ServiceBuildingTest
     {
         private ServiceBuildingDescription _description;
