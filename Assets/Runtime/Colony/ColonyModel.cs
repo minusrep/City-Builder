@@ -2,6 +2,7 @@ using Runtime.Colony.Buildings;
 using Runtime.Colony.Citizens;
 using Runtime.Colony.Citizens.StateMachine;
 using Runtime.Colony.Orders;
+using Runtime.Descriptions.Colony;
 
 namespace Runtime.Colony
 {

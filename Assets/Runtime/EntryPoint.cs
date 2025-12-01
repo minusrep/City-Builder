@@ -1,5 +1,5 @@
-﻿using Runtime.Colony.Buildings.Descriptions;
-using Runtime.Factories;
+﻿using Runtime.Descriptions;
+using Runtime.Descriptions.Buildings;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 
