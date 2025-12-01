@@ -1,54 +1,55 @@
-﻿using System;
-using Runtime.Descriptions.Buildings;
+﻿using Runtime.Descriptions.Buildings;
 using Runtime.Colony.GameResources;
 using Runtime.Colony.Orders;
 using UnityEngine;
+using System;
 
 namespace Runtime.Colony.Buildings
 {
     public class ProductionBuildingModel : BuildingModel
     {
-        public bool IsActive => _isActive;
-        
+        public bool IsActive { get; private set; }
+
+        public int ProducedAmount { get; private set; }
+
         private ProductionBuildingDescription Description { get; }
         private ColonyOrdersPool OrderPool { get; }
         private ResourceModel Resource { get; }
         
-        private int _producedAmount;
         private long _completeProductionTime;
-        private bool _isActive;
 
         public ProductionBuildingModel(int id,
             Vector2 position,
             ProductionBuildingDescription description,
             ColonyOrdersPool orderPool,
-            ResourceModel resource) : base(id, position)
+            ResourceModel resource, int producedAmount) : base(id, position)
         {
             Description = description;
             OrderPool = orderPool;
             Resource = resource;
+            ProducedAmount = producedAmount;
 
-            _isActive = false;
+            IsActive = false;
         }
         
         public void StartProduction(long currentTime)
         {
-            if (!_isActive && CapacityLeft() > 0)
+            if (!IsActive && CapacityLeft() > 0)
             {
-                _isActive = true;
+                IsActive = true;
                 _completeProductionTime = currentTime + Description.ProductionTime;
             }
         }
 
         public void StopProduction()
         {
-            _isActive = false;
+            IsActive = false;
             _completeProductionTime = 0;
         }
         
         public void Update(long currentTime)
         {
-            if (_isActive)
+            if (IsActive)
             {
                 var productionTime = Description.ProductionTime;
 
@@ -79,7 +80,7 @@ namespace Runtime.Colony.Buildings
             if (CapacityLeft() > 0)
             {
                 var canAdd = Math.Min(CapacityLeft(), Description.ProductionAmount);
-                _producedAmount += canAdd;
+                ProducedAmount += canAdd;
 
                 CreateDeliveryOrder();
                 return true;
@@ -96,7 +97,7 @@ namespace Runtime.Colony.Buildings
         
         private int CapacityLeft()
         {
-            return Description.MaxResource - _producedAmount;
+            return Description.MaxResource - ProducedAmount;
         }
     }
 }

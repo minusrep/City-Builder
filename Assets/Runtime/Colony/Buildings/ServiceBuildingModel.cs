@@ -7,17 +7,21 @@ namespace Runtime.Colony.Buildings
 {
     public class ServiceBuildingModel : BuildingModel
     {
+        public IReadOnlyDictionary<int, long> InService => _inService;
+        public Queue<int> WaitingQueue { get; } = new();
+        public ICitizenNeedService NeedService { get; }
+
         private readonly ServiceBuildingDescription _description;
-        private readonly Queue<int> _waitingQueue = new();
         private readonly Dictionary<int, long> _inService = new();
         
         private bool _isActive;
         
-        public ServiceBuildingModel(int id, Vector2 position, ServiceBuildingDescription description) : base(id, position)
+        public ServiceBuildingModel(int id, Vector2 position, ServiceBuildingDescription description, ICitizenNeedService needService) : base(id, position)
         {
             _description = description;
+            NeedService = needService;
         }
-        
+
         public bool TryEnter(int citizenId)
         {
             if (_inService.Count < _description.MaxCitizenAmount)
@@ -26,16 +30,16 @@ namespace Runtime.Colony.Buildings
                 return true;
             }
 
-            if (_waitingQueue.Count < _description.MaxQueue)
+            if (WaitingQueue.Count < _description.MaxQueue)
             {
-                _waitingQueue.Enqueue(citizenId);
+                WaitingQueue.Enqueue(citizenId);
                 return true;
             }
 
             return false;
         }
 
-        public void Update(long currentTime, ICitizenNeedService  needService)
+        public void Update(long currentTime)
         {
             var finished = new List<int>();
 
@@ -56,11 +60,11 @@ namespace Runtime.Colony.Buildings
             foreach (var citizenId in finished)
             {
                 _inService.Remove(citizenId);
-                needService.RestoreNeed(citizenId, _description.ServiceResource);
+                NeedService.RestoreNeed(citizenId, _description.ServiceResource);
 
-                if (_waitingQueue.Count > 0)
+                if (WaitingQueue.Count > 0)
                 {
-                    var nextCitizen = _waitingQueue.Dequeue();
+                    var nextCitizen = WaitingQueue.Dequeue();
                     _inService[nextCitizen] = _description.ServiceTime;
                 }
             }
