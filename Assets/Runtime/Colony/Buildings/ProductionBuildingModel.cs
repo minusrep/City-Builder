@@ -14,8 +14,7 @@ namespace Runtime.Colony.Buildings
 
         private ProductionBuildingDescription Description { get; }
         private ColonyOrdersPool OrderPool { get; }
-        private ResourceModel Resource { get; }
-        
+
         private long _completeProductionTime;
 
         public ProductionBuildingModel(int id,
@@ -26,7 +25,6 @@ namespace Runtime.Colony.Buildings
         {
             Description = description;
             OrderPool = orderPool;
-            Resource = resource;
             ProducedAmount = producedAmount;
 
             IsActive = false;
