@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Colony.Citizens;
 using Runtime.Colony.GameResources;
+using Runtime.Descriptions.Citizens;
 
 namespace Tests
 {
@@ -25,8 +26,8 @@ namespace Tests
         {
             return new Dictionary<string, ResourceModel>
             {
-                {"hunger", new ResourceModel() },
-                {"energy", new ResourceModel() },
+                /*{"hunger", new ResourceModel() },
+                {"energy", new ResourceModel() },*/
             };
         }
 

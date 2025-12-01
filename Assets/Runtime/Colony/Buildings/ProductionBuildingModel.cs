@@ -13,14 +13,14 @@ namespace Runtime.Colony.Buildings
         public int ProducedAmount { get; private set; }
 
         private ProductionBuildingDescription Description { get; }
-        private ColonyOrdersPool OrderPool { get; }
+        private ColonyOrdersManager OrderPool { get; }
 
         private long _completeProductionTime;
 
         public ProductionBuildingModel(int id,
             Vector2 position,
             ProductionBuildingDescription description,
-            ColonyOrdersPool orderPool,
+            ColonyOrdersManager orderPool,
             ResourceModel resource, int producedAmount) : base(id, position)
         {
             Description = description;

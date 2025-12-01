@@ -4,9 +4,9 @@ using Runtime.Colony.GameResources;
 using Runtime.Colony.Orders;
 using Runtime.Colony.Buildings;
 using NUnit.Framework;
-using System.Linq;
 using UnityEngine;
 using System;
+using System.Linq;
 
 namespace Tests.Buildings
 {
@@ -15,7 +15,7 @@ namespace Tests.Buildings
     public class ProductionBuildingTest
     {
         private ProductionBuildingDescription _description;
-        private ColonyOrdersPool _orders;
+        private ColonyOrdersManager _orders;
         private ResourceModel _resource;
 
         [SetUp]
@@ -29,7 +29,7 @@ namespace Tests.Buildings
                 ProductionResource = "wood"
             };
             
-            _orders = new ColonyOrdersPool();
+            _orders = new ColonyOrdersManager();
             _resource = new ResourceModel(new ResourceDescription
             {
                 Type = "wood",

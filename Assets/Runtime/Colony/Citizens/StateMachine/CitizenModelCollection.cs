@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using Runtime.Descriptions.Citizens;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens.StateMachine
 {
     public class CitizenModelCollection : ModelCollection<CitizenModel>
     {
-        private readonly CitizenDescription _description;
+        private readonly CitizensDescription _description;
 
         private int _id;
 
-        public CitizenModelCollection(CitizenDescription description)
+        public CitizenModelCollection(CitizensDescription description)
         {
             _description = description;
         }
