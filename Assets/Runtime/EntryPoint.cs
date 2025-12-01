@@ -16,7 +16,6 @@ namespace Runtime
             var json = Resources.Load<TextAsset>("Buildings");
             var buildingDescriptions = new BuildingDescriptionCollection();
             JsonConvert.PopulateObject(json.text, buildingDescriptions);
-            Debug.Log(buildingDescriptions);
         }
     }
 }
