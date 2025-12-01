@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Runtime.Colony.Citizens.StateMachine
+namespace Runtime.Colony
 {
     public interface ISerializeModel
     {

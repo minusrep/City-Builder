@@ -1,15 +1,14 @@
 using System.Collections.Generic;
-using Runtime.Colony.Citizens.StateMachine;
 using Runtime.Descriptions.Citizens;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens
 {
-    public class CitizenModel : ISerializeModel
+    public class CitizenModel : ISerializeModel, IDeserializeModel
     {
-        public int Id { get; }
-        public string Name { get; }
+        public int Id { get; set; }
         public CitizensDescription Description { get; }
+        public string Name { get; private set; }
         public Vector2 Position { get; set; }
 
         public CitizenModel(int id, CitizensDescription description, string name)
@@ -25,5 +24,11 @@ namespace Runtime.Colony.Citizens
                 { "position", new[] { Position.x, Position.y } },
                 { "name", Name }
             };
+
+        public void Deserialize(Dictionary<string, object> data)
+        {
+            Name = (string)data["name"];
+            Position = (Vector2)data["position"];
+        }
     }
 }
