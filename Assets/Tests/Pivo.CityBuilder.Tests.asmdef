@@ -1,22 +1,10 @@
 {
     "name": "Pivo.CityBuilder.Tests",
-    "rootNamespace": "",
-    "references": [
-        "Pivo.CityBuilder.Runtime",
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+    "optionalUnityReferences": [
+        "TestAssemblies"
     ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll"
+    "includePlatforms": [
+        "Editor"
     ],
-    "autoReferenced": false,
-    "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
-    ],
-    "versionDefines": [],
-    "noEngineReferences": false
+    "references":[ "GUID:667189efeabf56b49abfe8ce367173de" ]
 }
