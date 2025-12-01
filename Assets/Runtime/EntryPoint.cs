@@ -1,5 +1,5 @@
-﻿using Runtime.Colony.Buildings.Descriptions;
-using Runtime.Factories;
+﻿using Runtime.Descriptions;
+using Runtime.Descriptions.Buildings;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 
@@ -16,7 +16,6 @@ namespace Runtime
             var json = Resources.Load<TextAsset>("Buildings");
             var buildingDescriptions = new BuildingsDescriptionCollection();
             JsonConvert.PopulateObject(json.text, buildingDescriptions);
-            Debug.Log(buildingDescriptions);
         }
     }
 }

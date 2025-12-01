@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Runtime.Descriptions.Citizens;
 
-namespace Runtime.Colony.Citizens
+namespace Runtime.Colony.Citizens.StateMachine
 {
     [Serializable]
     public class CitizenStateMachine 

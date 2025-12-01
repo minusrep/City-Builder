@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony.Citizens.StateMachine;
 using Runtime.Colony.GameResources;
+using Runtime.Descriptions.Citizens;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens

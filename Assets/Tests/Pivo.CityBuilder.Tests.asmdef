@@ -1,0 +1,10 @@
+{
+    "name": "Pivo.CityBuilder.Tests",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "references":[ "GUID:667189efeabf56b49abfe8ce367173de" ]
+}
