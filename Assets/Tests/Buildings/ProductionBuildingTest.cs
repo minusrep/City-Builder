@@ -10,6 +10,8 @@ using System;
 
 namespace Tests.Buildings
 {
+    [TestFixture]
+    [TestOf(typeof(ProductionBuildingModel))]
     public class ProductionBuildingTest
     {
         private ProductionBuildingDescription _description;
@@ -31,7 +33,6 @@ namespace Tests.Buildings
             _resource = new ResourceModel(new ResourceDescription
             {
                 Type = "wood",
-                Name = "Дерево",
                 ReductionTime = 0,
                 ReductionAmount = 0
             });
