@@ -1,6 +1,7 @@
 using System;
+using Runtime.Descriptions.Citizens;
 
-namespace Runtime.Colony.Citizens
+namespace Runtime.Colony.Citizens.StateMachine
 {
     [Serializable]
     public class CitizenState
