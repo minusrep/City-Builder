@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.miniit.fastjson": {
+      "version": "https://github.com/Mini-IT/fastJSON-unity-package.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a4f0bb05cc3a4e6ed3eb6c35534e63073dac63a7"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.9",
       "depth": 0,
