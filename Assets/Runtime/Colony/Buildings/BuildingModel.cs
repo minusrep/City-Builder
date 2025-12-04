@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Colony.ModelCollections;
 using Runtime.Descriptions.Buildings;
+using Runtime.Utilities;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings
@@ -23,7 +24,7 @@ namespace Runtime.Colony.Buildings
             return new Dictionary<string, object>
             {
                 { "description", Description.Id },
-                { "position", new[] { Position.x, Position.y } }
+                { "position", Position.ToList() }
             };
         }
     }
