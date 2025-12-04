@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using fastJSON;
-using Runtime.Colony.Citizens.StateMachine.Descriptions;
+using Runtime.Descriptions.Citizens;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens.StateMachine

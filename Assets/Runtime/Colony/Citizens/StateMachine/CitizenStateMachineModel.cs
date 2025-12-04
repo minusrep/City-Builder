@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Runtime.Colony.Citizens.StateMachine.Descriptions;
+using Runtime.Descriptions.Citizens;
 
 namespace Runtime.Colony.Citizens.StateMachine
 {

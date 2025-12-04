@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony.Citizens.StateMachine;
 using UnityEngine;
 
-namespace Runtime.Colony.Citizens.StateMachine.Descriptions.Conditions
+namespace Runtime.Descriptions.Citizens
 {
     public class CitizenCompareConditionDescription : CitizenTransitionConditionDescription
     {

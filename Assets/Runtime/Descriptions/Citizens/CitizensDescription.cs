@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Runtime.Colony.Citizens
+namespace Runtime.Descriptions.Citizens
 {
     [Serializable]
     public class CitizensDescription

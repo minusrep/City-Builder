@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Runtime.Colony.Citizens.StateMachine;
 
-namespace Runtime.Colony.Citizens.StateMachine.Descriptions.Conditions
+namespace Runtime.Descriptions.Citizens
 {
     public class CitizenFlagConditionDescription : CitizenTransitionConditionDescription
     {

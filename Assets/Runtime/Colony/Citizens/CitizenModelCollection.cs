@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Descriptions.Citizens;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
