@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Runtime.Colony.Citizens.StateMachine.Temp
 {
     public class CitizenTransitionDescription : IDeserializeModel
     {
-
+        private const string CompareTypeValue = "Compare";
+        private const string FlagTypeValue = "Flag";
+        
+        private const string TypeKey = "type";
         private const string ToStateKey = "toState";
         private const string ConditionsKey = "conditions";
 
@@ -31,7 +35,14 @@ namespace Runtime.Colony.Citizens.StateMachine.Temp
                     throw new Exception("Conditions list doesn't contain conditions");
                 }
                 
-                var newCondition = new CitizenTransitionConditionDescription(); 
+                var conditionType = condition[TypeKey] as string;
+                
+                CitizenTransitionConditionDescription newCondition = conditionType switch
+                {
+                    CompareTypeValue => new CitizenCompareConditionDescription(),
+                    FlagTypeValue => new CitizenFlagConditionDescription(),
+                    _ => throw new NotSupportedException("Unknown condition type")
+                };
                 
                 newCondition.Deserialize(condition);
                 
