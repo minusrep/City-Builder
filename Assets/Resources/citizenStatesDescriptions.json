@@ -1,0 +1,20 @@
+{
+    "states": [
+        {
+            "name": "Idle",
+            "transitions": [
+                {
+                    "toState": "Work",
+                    "conditions": [
+                        {
+                            "type": "Is"
+                        },
+                        {
+                            "type": "Is"
+                        }
+                    ]
+                }
+            ] 
+        }
+    ]
+}

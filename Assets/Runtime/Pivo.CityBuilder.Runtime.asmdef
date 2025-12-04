@@ -1,3 +1,16 @@
 {
-	"name": "Pivo.CityBuilder.Runtime"
+    "name": "Pivo.CityBuilder.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c19d80a018416d84e81aa66550f38117"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

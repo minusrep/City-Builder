@@ -8,8 +8,6 @@ namespace Runtime.Descriptions.Citizens
     {
         public List<string> Names;
 
-        /*public Dictionary<string, ResourceRange> ThresholdNeeds;*/
-        
         public float StartMoveSpeed;
     }
 }

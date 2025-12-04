@@ -1,14 +1,33 @@
 using System.Collections.Generic;
-using Runtime.Descriptions.Citizens;
+using Runtime.Colony.Citizens.StateMachine.Temp;
 
 namespace Runtime.Colony.Citizens.StateMachine
 {
-    public class CitizenStateDescriptionCollection
+    public class CitizenStateDescriptionCollection : IDeserializeModel
     {
-        public Dictionary<string, CitizenStateDescription> StateDescriptions { get; }
-        public CitizenStateDescriptionCollection(Dictionary<string, CitizenStateDescription> stateDescriptions)
+        private const string StatesKey = "states";
+        public Dictionary<string, CitizenStateDescription> StateDescriptions { get; private set; } = new();
+
+        public void Deserialize(Dictionary<string, object> data)
         {
-            StateDescriptions = stateDescriptions;
+            if (data[StatesKey] is not List<object> stateObjects)
+            {
+                throw new System.Exception("Invalid states dictionary");
+            }
+            
+            foreach (var stateObject in stateObjects)
+            {
+                if (stateObject is not Dictionary<string, object> state)
+                {
+                    throw new System.Exception("Invalid state");
+                }
+                
+                var stateDescription = new CitizenStateDescription();
+                
+                stateDescription.Deserialize(state);
+                
+                StateDescriptions.Add(stateDescription.Name, stateDescription);
+            }
         }
     }
 }
