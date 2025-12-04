@@ -4,7 +4,7 @@ namespace Runtime.Descriptions.Buildings
 {
     public class DecorBuildingDescription : BuildingDescription
     {
-        public DecorBuildingDescription(Dictionary<string, object> data) : base(data)
+        public DecorBuildingDescription(string id, Dictionary<string, object> data) : base(id, data)
         {
         }
     }

@@ -13,7 +13,7 @@ namespace Runtime.Descriptions.Buildings
             foreach (var description in descriptions)
             {
                 Descriptions.Add(description.Key,
-                    factory.Create<BuildingDescription>((Dictionary<string, object>)descriptions[description.Key]));
+                    factory.Create<BuildingDescription>(description.Key ,(Dictionary<string, object>)descriptions[description.Key]));
             }
         }
     }

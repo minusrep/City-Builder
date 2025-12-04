@@ -24,12 +24,12 @@ namespace Runtime.Colony.Citizens
             return model;
         }
 
-        protected override CitizenModel CreateModelFromData(Dictionary<string, object> data)
+        protected override CitizenModel CreateModelFromData(int id, Dictionary<string, object> data)
         {
             var name = (string)data["name"];
             var position = (Vector2)data["position"];
     
-            return new CitizenModel(Index++, _description, name)
+            return new CitizenModel(id, _description, name)
             {
                 Position = position
             };

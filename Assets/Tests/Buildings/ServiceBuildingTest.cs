@@ -15,7 +15,7 @@ namespace Tests.Buildings
         [SetUp]
         public void Setup()
         {
-            _description = new ServiceBuildingDescription(new Dictionary<string, object>
+            _description = new ServiceBuildingDescription("0", new Dictionary<string, object>
             {
                 { "max_citizen_amount", 2 },
                 { "max_queue", 2 },

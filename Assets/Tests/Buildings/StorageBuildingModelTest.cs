@@ -18,7 +18,7 @@ namespace Tests.Buildings
         [SetUp]
         public void SetUp()
         {
-            _description = new StorageBuildingDescription(new Dictionary<string, object>
+            _description = new StorageBuildingDescription("0", new Dictionary<string, object>
             {
                 { "max_resource_amount", 100 },
             });
