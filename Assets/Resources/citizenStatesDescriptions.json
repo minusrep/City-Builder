@@ -1,20 +1,35 @@
 {
     "states": [
         {
-            "name": "Idle",
+            "name": "WaitState",
             "transitions": [
                 {
-                    "toState": "Work",
+                    "toState": "WalkToState",
                     "conditions": [
                         {
-                            "type": "Is"
-                        },
-                        {
-                            "type": "Is"
+                            "type": "Compare",
+                            "counterName": "Hungry", 
+                            "value": 10.0,
+                            "operationName": "Greater"
                         }
                     ]
                 }
             ] 
+        },
+        {
+            "name": "WalkToState",
+            "transitions": [
+                {
+                    "toState": "WaitState",
+                    "conditions": [
+                        {
+                            "type": "Flag",
+                            "flagName": "HasJob", 
+                            "flagStatus": false
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
