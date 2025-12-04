@@ -1,4 +1,5 @@
-﻿using Runtime.Descriptions.Buildings;
+﻿using System.Collections.Generic;
+using Runtime.Descriptions.Buildings;
 using Runtime.Colony.Buildings;
 using NUnit.Framework;
 using UnityEngine;
@@ -14,13 +15,13 @@ namespace Tests.Buildings
         [SetUp]
         public void Setup()
         {
-            _description = new ServiceBuildingDescription
+            _description = new ServiceBuildingDescription(new Dictionary<string, object>
             {
-                MaxCitizenAmount = 2,
-                MaxQueue = 2,
-                ServiceTime = 10,
-                ServiceResource = "food"
-            };
+                { "max_citizen_amount", 2 },
+                { "max_queue", 2 },
+                { "service_time", 10 },
+                { "service_resource", "food" }
+            });
         }
 
         private ServiceBuildingModel CreateModel()

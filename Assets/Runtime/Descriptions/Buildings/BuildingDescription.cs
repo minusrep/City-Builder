@@ -1,10 +1,14 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace Runtime.Descriptions.Buildings
 {
-    public class BuildingDescription
+    public abstract class BuildingDescription
     {
-        public string Type;
-        public string Name;
+        public string Type { get; }
+
+        protected BuildingDescription(Dictionary<string, object> data)
+        {
+            Type = (string)data["type"];
+        }
     }
 }

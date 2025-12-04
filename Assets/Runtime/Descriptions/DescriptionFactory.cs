@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 
 namespace Runtime.Descriptions
 {
@@ -7,12 +7,12 @@ namespace Runtime.Descriptions
     {
         private readonly Dictionary<string, Type> _entityTypes = new ();
     
-        public void Register(string type, Type obj)
+        public void Register<T>(string type) where T : class
         {
-            _entityTypes.Add(type, obj);
+            _entityTypes.Add(type, typeof(T));
         }
     
-        public T Create<T>(Dictionary<string, object> dictionary)
+        public T Create<T>(Dictionary<string, object> dictionary) where T : class
         {
             return (T)Activator.CreateInstance(_entityTypes[dictionary["type"].ToString()], dictionary);
         }

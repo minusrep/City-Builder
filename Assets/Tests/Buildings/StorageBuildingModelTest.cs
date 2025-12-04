@@ -18,26 +18,26 @@ namespace Tests.Buildings
         [SetUp]
         public void SetUp()
         {
-            _description = new StorageBuildingDescription
+            _description = new StorageBuildingDescription(new Dictionary<string, object>
             {
-                MaxResourceAmount = 100
-            };
+                { "max_resource_amount", 100 },
+            });
 
             _resources = new Dictionary<string, ResourceModel>
             {
                 {
                     "wood",
-                    new ResourceModel(new ResourceDescription
+                    new ResourceModel(new ResourceDescription(new Dictionary<string, object>
                     {
-                        Type = "wood"
-                    })
+                        { "type", "wood" }
+                    }))
                 },
                 {
                     "iron",
-                    new ResourceModel(new ResourceDescription
+                    new ResourceModel(new ResourceDescription(new Dictionary<string, object>
                     {
-                        Type = "iron"
-                    })
+                        { "type", "iron" }
+                    }))
                 }
             };
         }
@@ -57,7 +57,10 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
 
-            var resource = new ResourceModel(new ResourceDescription { Type = "wood" });
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
+            {
+                { "type", "wood" }
+            }));
             resource.IncreaseAmount(30);
 
             var result = model.TryAddResource("wood", resource);
@@ -73,7 +76,10 @@ namespace Tests.Buildings
             
             _resources["wood"].IncreaseAmount(90);
             
-            var wood = new ResourceModel(new ResourceDescription { Type = "wood" });
+            var wood = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
+            {
+                { "type", "wood" }
+            }));
             wood.IncreaseAmount(20);
 
             var result = model.TryAddResource("wood", wood);
@@ -87,7 +93,10 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
 
-            var stone = new ResourceModel(new ResourceDescription { Type = "stone" });
+            var stone = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
+            {
+                { "type", "wood" }
+            }));
             stone.IncreaseAmount(10);
 
             var result = model.TryAddResource("stone", stone);

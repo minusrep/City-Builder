@@ -8,7 +8,7 @@ namespace Runtime.Colony
         public Dictionary<int, T> Models { get; private set; } = new();
         public event Action<T> OnCreateModel;
         public event Action<T> OnDeleteModel;
-        public int Index { get; set; }
+        public int Index { get; protected set; }
 
         public void Create()
         {
@@ -17,10 +17,10 @@ namespace Runtime.Colony
             Models.Add(Index, newModel);
 
             Index++;
-
+            
             OnCreateModel?.Invoke(newModel);
         }
-
+        
         protected abstract T CreateModel();
         protected abstract T CreateModelFromData(Dictionary<string, object> data);
 
