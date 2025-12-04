@@ -1,12 +1,13 @@
 ﻿namespace Runtime.Colony.ModelCollections
 {
     public abstract class DescribedModelCollection<T> : ModelCollectionBase<T>
-        where T : ISerializeModel, IDeserializeModel
+        where T : ISerializeModel
     {
         public void Create(string descriptionKey)
         {
             var model = CreateModel(descriptionKey);
             Models.Add(Index++, model);
+            
             InvokeOnCreateModel(model);
         }
 

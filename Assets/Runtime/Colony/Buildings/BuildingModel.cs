@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Runtime.Colony.Buildings
 {
-    public abstract class BuildingModel : ISerializeModel, IDeserializeModel
+    public abstract class BuildingModel : ISerializeModel
     {
         protected int Id { get; }
         private Vector2 Position { get; set; }
@@ -25,11 +25,6 @@ namespace Runtime.Colony.Buildings
                 { "description", Description.Type },
                 { "position", new[] { Position.x, Position.y } }
             };
-        }
-
-        public virtual void Deserialize(Dictionary<string, object> data)
-        {
-            Position = (Vector2)data["position"];
         }
     }
 }
