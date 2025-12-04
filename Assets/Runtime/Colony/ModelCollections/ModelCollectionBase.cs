@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using Runtime.Utilities;
 
 namespace Runtime.Colony.ModelCollections
 {
@@ -37,16 +38,16 @@ namespace Runtime.Colony.ModelCollections
                 models.Add(model.Key.ToString(), model.Value.Serialize());
             }
 
-            data["models"] = models;
+            data.Set("models", models);
             return data;
         }
 
         public void Deserialize(Dictionary<string, object> data)
         {
-            Index = Convert.ToInt32(data["index"]);
+            Index = data.GetInt("index");
             Models = new Dictionary<int, T>();
 
-            var models = (Dictionary<string, object>)data["models"];
+            var models = data.GetDict("models");
             foreach (var pair in models)
             {
                 var modelData = (Dictionary<string, object>)pair.Value;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using Runtime.Utilities;
 
 namespace Runtime.Descriptions
 {
@@ -14,7 +15,7 @@ namespace Runtime.Descriptions
     
         public T Create<T>(string id, Dictionary<string, object> dictionary) where T : class
         {
-            return (T)Activator.CreateInstance(_entityTypes[dictionary["type"].ToString()], id, dictionary);
+            return (T)Activator.CreateInstance(_entityTypes[dictionary.GetString("type")], id, dictionary);
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Runtime.Utilities;
 
 namespace Runtime.Descriptions.Buildings
 {
@@ -12,10 +12,10 @@ namespace Runtime.Descriptions.Buildings
 
         public ServiceBuildingDescription(string id, Dictionary<string, object> data) : base(id, data)
         {
-            ServiceTime = (long)data["max_time_service"];
-            MaxQueue = Convert.ToInt32(data["max_queue"]);
-            MaxCitizenAmount = Convert.ToInt32(data["max_citizen_amount"]);
-            ServiceResource = (string)data["service_resource"];
+            ServiceTime = data.GetLong("max_time_service");
+            MaxQueue = data.GetInt("max_queue");
+            MaxCitizenAmount = data.GetInt("max_citizen_amount");
+            ServiceResource = data.GetString("service_resource");
         }
     }
 }

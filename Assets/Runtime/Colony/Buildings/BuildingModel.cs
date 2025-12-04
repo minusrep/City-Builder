@@ -20,7 +20,7 @@ namespace Runtime.Colony.Buildings
 
         public virtual Dictionary<string, object> Serialize()
         {
-            return new Dictionary<string, object>()
+            return new Dictionary<string, object>
             {
                 { "description", Description.Id },
                 { "position", new[] { Position.x, Position.y } }

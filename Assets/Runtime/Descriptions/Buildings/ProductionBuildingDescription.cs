@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Runtime.Utilities;
 
 namespace Runtime.Descriptions.Buildings
 {
@@ -12,10 +12,10 @@ namespace Runtime.Descriptions.Buildings
 
         public ProductionBuildingDescription(string id, Dictionary<string, object> data) : base(id, data)
         {
-            ProductionTime = (long)data["production_time"];
-            ProductionResource = (string)data["production_resource"];
-            ProductionAmount = Convert.ToInt32(data["production_amount"]);
-            MaxResource = Convert.ToInt32(data["max_resource"]);
+            ProductionTime = data.GetLong("production_time");
+            ProductionResource = data.GetString("production_resource");
+            ProductionAmount = data.GetInt("production_amount");
+            MaxResource = data.GetInt("max_resource");
         }
     }
 }

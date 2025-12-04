@@ -2,7 +2,7 @@
 using Runtime.Descriptions.Buildings;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using Runtime.Utilities;
 
 namespace Runtime.Colony.Buildings
 {
@@ -25,13 +25,9 @@ namespace Runtime.Colony.Buildings
 
         protected override BuildingModel CreateModelFromData(int id, Dictionary<string, object> data)
         {
-            var posArray = (List<object>)data["position"];
-            var position = new Vector2(
-                Convert.ToSingle(posArray[0]), 
-                Convert.ToSingle(posArray[1])
-            );
+            var position = data.GetVector2("position");
 
-            var descriptionId = data["description"].ToString();
+            var descriptionId = data.GetString("description");
             
             var description = _descriptions.Descriptions[descriptionId];
 

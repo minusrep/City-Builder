@@ -2,6 +2,7 @@ using Runtime.Descriptions.GameResources;
 using Runtime.Colony.ModelCollections;
 using System.Collections.Generic;
 using System;
+using Runtime.Utilities;
 
 namespace Runtime.Colony.GameResources
 {
@@ -44,7 +45,7 @@ namespace Runtime.Colony.GameResources
 
         public void Deserialize(Dictionary<string, object> data)
         {
-            Amount = Convert.ToInt32(data["amount"]);
+            Amount = data.GetInt("amount");
         }
     }
 }

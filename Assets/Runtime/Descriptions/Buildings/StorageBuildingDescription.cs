@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Runtime.Utilities;
 
 namespace Runtime.Descriptions.Buildings
 {
@@ -10,11 +10,11 @@ namespace Runtime.Descriptions.Buildings
 
         public StorageBuildingDescription(string id, Dictionary<string, object> data) : base(id, data)
         {
-            MaxResourceAmount = Convert.ToInt32(data["max_resource_amount"]);
+            MaxResourceAmount = data.GetInt("max_resource_amount");
             
             StoredResources = new List<string>();
             
-            foreach (var obj in (List<object>)data["stored_resources"])
+            foreach (var obj in data.GetList("stored_resources"))
             {
                 StoredResources.Add((string)obj);
             }

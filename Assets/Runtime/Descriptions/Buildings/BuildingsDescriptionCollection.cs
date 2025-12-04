@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Runtime.Utilities;
 
 namespace Runtime.Descriptions.Buildings
 {
@@ -13,7 +14,7 @@ namespace Runtime.Descriptions.Buildings
             foreach (var description in descriptions)
             {
                 Descriptions.Add(description.Key,
-                    factory.Create<BuildingDescription>(description.Key ,(Dictionary<string, object>)descriptions[description.Key]));
+                    factory.Create<BuildingDescription>(description.Key ,descriptions.GetDict(description.Key)));
             }
         }
     }

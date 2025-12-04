@@ -2,6 +2,7 @@
 using Runtime.Descriptions.Buildings;
 using System.Collections.Generic;
 using Runtime.Colony.Citizens;
+using Runtime.Utilities;
 
 namespace Runtime.Descriptions
 {
@@ -24,8 +25,8 @@ namespace Runtime.Descriptions
             Factory.Register<StorageBuildingDescription>("storage");
             
             
-            BuildingDescriptionCollection = new BuildingsDescriptionCollection((Dictionary<string, object>)data["buildings"], Factory);
-            ResourceDescriptionCollection = new ResourceDescriptionCollection((Dictionary<string, object>)data["resources"]);
+            BuildingDescriptionCollection = new BuildingsDescriptionCollection(data.GetDict("buildings"), Factory);
+            ResourceDescriptionCollection = new ResourceDescriptionCollection(data.GetDict("resources"));
             CitizensDescription = new CitizensDescription();
         }
     }
