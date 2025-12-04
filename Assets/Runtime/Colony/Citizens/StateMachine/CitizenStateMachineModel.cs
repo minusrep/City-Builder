@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,54 +9,40 @@ namespace Runtime.Colony.Citizens.StateMachine.Temp
         private const string CurrentStateKey = "currentState";
         
         private const string StatesKey = "states";
-        
-        private readonly List<CitizenStateDescription> _states;
 
-        private CitizenStateDescription _currentStateDescription;
-        
-        public CitizenStateMachineModel(List<CitizenStateDescription> states)
+        public event Action OnChangeState;
+
+        public CitizenStateDescription CurrentStateDescription { get; private set; }
+
+        private readonly Dictionary<string, CitizenStateDescription> _states;
+
+        public CitizenStateMachineModel(Dictionary<string, CitizenStateDescription> stateDescriptions)
         {
-            _states = states;
+            _states = stateDescriptions;
+            
+            CurrentStateDescription = _states.Values.First();
         }
-        
-        public void Update()
-        {
-            foreach (var transition in _currentStateDescription.Transitions)
-            {
-                var canTransit = true;
-                
-                foreach (var condition in transition.Conditions)
-                {
-                    if (condition.Check())
-                    {
-                        continue;
-                    }
-                    
-                    canTransit = false;
-                    
-                    break;
-                }
 
-                if (canTransit)
-                {
-                    _currentStateDescription = _states.First(state => state.Name == transition.ToState);
-                }
-            }
+        public void Enter(string stateName)
+        {
+            CurrentStateDescription = _states[stateName];
+            
+            OnChangeState?.Invoke();
         }
 
         public Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>()
             {
-                {CurrentStateKey, _states.IndexOf(_currentStateDescription)}
+                {CurrentStateKey, CurrentStateDescription.Name}
             };
         }
 
         public void Deserialize(Dictionary<string, object> data)
         {
-            var currentStateIndex = (int) data[CurrentStateKey];
+            var currentState = data[CurrentStateKey] as string;
             
-            _currentStateDescription = _states[currentStateIndex];
+            CurrentStateDescription = _states[currentState];
         }
     }
 }
