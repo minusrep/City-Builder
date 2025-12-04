@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Runtime.Colony.Citizens.StateMachine.Temp;
+using Runtime.Colony;
 
-namespace Runtime.Colony.Citizens.StateMachine
+namespace Runtime.Descriptions.Citizens
 {
     public class CitizenStateDescriptionCollection : IDeserializeModel
     {
