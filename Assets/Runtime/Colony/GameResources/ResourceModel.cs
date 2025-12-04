@@ -1,14 +1,16 @@
-using System;
 using Runtime.Descriptions.GameResources;
+using Runtime.Colony.ModelCollections;
+using System.Collections.Generic;
+using System;
 
 namespace Runtime.Colony.GameResources
 {
-    public class ResourceModel
+    public class ResourceModel : ISerializeModel, IDeserializeModel
     {
-        public ResourceDescription Description;
+        private ResourceDescription Description { get; }
 
         public int Amount { get; private set; }
-        
+
         public ResourceModel(ResourceDescription description)
         {
             Description = description;
@@ -29,6 +31,20 @@ namespace Runtime.Colony.GameResources
                 var taken = Math.Min(Amount, amount);
                 Amount -= taken;
             }
+        }
+
+        public Dictionary<string, object> Serialize()
+        {
+            return new Dictionary<string, object>
+            {
+                { "amount", Amount },
+                { "description", Description.Type }
+            };
+        }
+
+        public void Deserialize(Dictionary<string, object> data)
+        {
+            Amount = Convert.ToInt32(data["amount"]);
         }
     }
 }
