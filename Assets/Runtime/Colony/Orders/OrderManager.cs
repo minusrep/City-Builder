@@ -3,28 +3,20 @@ using System.Linq;
 
 namespace Runtime.Colony.Orders
 {
-    public class ColonyOrdersManager
+    public class OrderManager
     {
-        public int AvailableCount => AvailableOrders.Count;
+        public Dictionary<int, OrderModel> AvailableOrders { get; } = new();
+        private Dictionary<int, OrderModel> ClaimedOrders { get; } = new();
         
-        public int ClaimedCount => ClaimedOrders.Count;
+        private int _index;
 
-        public Dictionary<int, ColonyOrder> AvailableOrders { get; } = new();
-        private Dictionary<int, ColonyOrder> ClaimedOrders { get; } = new();
-        
-        private int _nextOrderId = 1;
-
-        public int AddOrder(ColonyOrder order)
+        public int AddOrder(OrderModel orderModel)
         {
-            if (order.Id == 0)
-            {
-                order.Id = GetNextOrderId();
-            }
-
-            var key = order.Id;
-            AvailableOrders[key] = order;
-            return order.Id;
-
+            AvailableOrders.Add(_index, orderModel);
+            
+            _index++;
+            
+            return orderModel.Id;
         }
 
         public bool TryClaimOrder(int orderId, int citizenId)
@@ -39,15 +31,15 @@ namespace Runtime.Colony.Orders
             return false;
         }
 
-        public bool TryDequeueAnyAvailable(out ColonyOrder order)
+        public bool TryDequeueAnyAvailable(out OrderModel orderModel)
         {
-            order = null;
+            orderModel = null;
             if (AvailableOrders.Count != 0)
             {
                 var firstKey = AvailableOrders.Keys.First();
-                order = AvailableOrders[firstKey];
+                orderModel = AvailableOrders[firstKey];
                 AvailableOrders.Remove(firstKey);
-                ClaimedOrders[firstKey] = order;
+                ClaimedOrders[firstKey] = orderModel;
                 return true;
             }
 
@@ -64,16 +56,16 @@ namespace Runtime.Colony.Orders
             return AvailableOrders.Remove(orderId) || ClaimedOrders.Remove(orderId);
         }
 
-        public List<ColonyOrder> GetAvailableOrdersSnapshot()
+        public List<OrderModel> GetAvailableOrdersSnapshot()
         {
             return AvailableOrders.Values.ToList();
         }
 
-        public bool TryGetOrder(int orderId, out ColonyOrder order)
+        public bool TryGetOrder(int orderId, out OrderModel orderModel)
         {
-            if (!ClaimedOrders.TryGetValue(orderId, out order))
+            if (!ClaimedOrders.TryGetValue(orderId, out orderModel))
             {
-                if (!AvailableOrders.TryGetValue(orderId, out order))
+                if (!AvailableOrders.TryGetValue(orderId, out orderModel))
                 {
                     return false;
                 }
@@ -81,13 +73,8 @@ namespace Runtime.Colony.Orders
 
             return true;
         }
-        
-        private int GetNextOrderId()
-        {
-            return _nextOrderId++;
-        }
 
-        public void RemoveOrder(ColonyOrder order)
+        public void RemoveOrder(OrderModel orderModel)
         {
             
         }

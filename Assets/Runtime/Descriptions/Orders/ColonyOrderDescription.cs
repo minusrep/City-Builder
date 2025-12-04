@@ -4,5 +4,11 @@ namespace Runtime.Descriptions.Orders
     {
         public string Name;
         public string Description;
+
+        public ColonyOrderDescription(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
     }
 }
