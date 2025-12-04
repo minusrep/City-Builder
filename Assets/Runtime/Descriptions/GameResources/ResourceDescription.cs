@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System;
+using Runtime.Utilities;
 
 namespace Runtime.Descriptions.GameResources
 {
@@ -11,9 +11,9 @@ namespace Runtime.Descriptions.GameResources
 
         public ResourceDescription(Dictionary<string, object> data)
         {
-            Type = (string)data["type"];
-            ReductionTime = Convert.ToSingle(data["reduction_time"]);
-            ReductionAmount = Convert.ToSingle(data["reduction_amount"]);
+            Type = data.GetString("type");
+            ReductionTime = data.GetLong("reduction_time");
+            ReductionAmount = data.GetFloat("reduction_amount");
         }
     }
 }

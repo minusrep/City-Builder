@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Runtime.Utilities;
 
 namespace Runtime.Descriptions.Buildings
 {
@@ -10,7 +11,7 @@ namespace Runtime.Descriptions.Buildings
         protected BuildingDescription(string id, Dictionary<string, object> data)
         {
             Id = id;
-            Type = (string)data["type"];
+            Type = data.GetString("type");
         }
     }
 }

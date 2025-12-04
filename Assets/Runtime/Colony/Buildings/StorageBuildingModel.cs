@@ -1,6 +1,7 @@
 ﻿using Runtime.Descriptions.Buildings;
 using Runtime.Colony.GameResources;
 using System.Collections.Generic;
+using Runtime.Utilities;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings
@@ -58,7 +59,7 @@ namespace Runtime.Colony.Buildings
                 serializedResources[kvp.Key] = kvp.Value.Serialize();
             }
 
-            dictionary["resources"] = serializedResources;
+            dictionary.Set("resources", serializedResources);
             return dictionary;
         }
     }
