@@ -1,12 +1,13 @@
-using Runtime.Descriptions.GameResources;
 using Runtime.Descriptions.Buildings;
-using Runtime.Colony.GameResources;
-using Runtime.Colony.Orders;
+using System.Collections.Generic;
 using Runtime.Colony.Buildings;
+using Runtime.Colony.Orders;
 using NUnit.Framework;
 using UnityEngine;
-using System;
 using System.Linq;
+using System;
+using Runtime.Colony.GameResources;
+using Runtime.Descriptions.GameResources;
 
 namespace Tests.Buildings
 {
@@ -16,26 +17,19 @@ namespace Tests.Buildings
     {
         private ProductionBuildingDescription _description;
         private ColonyOrdersManager _orders;
-        private ResourceModel _resource;
 
         [SetUp]
         public void Setup()
         {
-            _description = new ProductionBuildingDescription
+            _description = new ProductionBuildingDescription(new Dictionary<string, object>
             {
-                ProductionAmount = 1,
-                ProductionTime = 10,
-                MaxResource = 3,
-                ProductionResource = "wood"
-            };
+                { "production_amount", 1 },
+                { "production_time", 10 },
+                { "max_resource", 3 },
+                { "production_resource", "wood" }
+            });
             
             _orders = new ColonyOrdersManager();
-            _resource = new ResourceModel(new ResourceDescription
-            {
-                Type = "wood",
-                ReductionTime = 0,
-                ReductionAmount = 0
-            });
         }
         
         private ProductionBuildingModel CreateModel(int producedAmount = 0)
@@ -43,11 +37,16 @@ namespace Tests.Buildings
             return new ProductionBuildingModel(
                 id: 1,
                 position: new Vector2(0, 0),
-                description: _description,  
+                description: _description,
                 orderPool: _orders,
-                resource: _resource,
-                producedAmount: producedAmount
-            );
+                producedAmount: producedAmount,
+                resource: new ResourceModel(new ResourceDescription(new Dictionary<string, object>
+                    {
+                        { "type", "wood" },
+                        {"reduction_time", 0},
+                        {"reduction_amount", 0}
+                    })
+                ));
         }
         
         [Test]
@@ -123,7 +122,13 @@ namespace Tests.Buildings
         [Test]
         public void Update_WhenProductionTimeZero_ProduceOnceAndStop()
         {
-            _description.ProductionTime = 0;
+            _description = new ProductionBuildingDescription(new Dictionary<string, object>
+            {
+                { "production_amount", 1 },
+                { "production_time", 0 },
+                { "max_resource", 3 },
+                { "production_resource", "wood" }
+            });
 
             var model = CreateModel();
 
