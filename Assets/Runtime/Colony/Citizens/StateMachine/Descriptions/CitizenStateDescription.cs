@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Runtime.Colony;
 
-namespace Runtime.Descriptions.Citizens
+namespace Runtime.Colony.Citizens.StateMachine.Descriptions
 {
     public class CitizenStateDescription : IDeserializeModel
     {

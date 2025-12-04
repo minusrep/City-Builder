@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Descriptions.Citizens;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Runtime.Colony.Citizens.StateMachine
+namespace Runtime.Colony.Citizens
 {
     public class CitizenModelCollection : ModelCollection<CitizenModel>
     {
