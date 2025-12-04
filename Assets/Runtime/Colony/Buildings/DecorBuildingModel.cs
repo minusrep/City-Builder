@@ -5,15 +5,12 @@ namespace Runtime.Colony.Buildings
 {
     public class DecorBuildingModel : BuildingModel
     {
-        public DecorBuildingDescription Description;
-
         public DecorBuildingModel(int id,
             Vector2 position,
             DecorBuildingDescription description) : base(id,
             position,
             description)
         {
-            Description = description;
         }
     }
 }
