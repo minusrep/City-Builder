@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Runtime.Colony.Citizens.StateMachine.Descriptions;
 
-namespace Runtime.Colony.Citizens.StateMachine.Temp
+namespace Runtime.Colony.Citizens.StateMachine
 {
     public class CitizenStateMachineModel : ISerializeModel, IDeserializeModel
     {

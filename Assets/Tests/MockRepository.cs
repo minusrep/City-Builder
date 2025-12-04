@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.Citizens.StateMachine.Temp;
 using Runtime.Colony.GameResources;
-using Runtime.Descriptions.Citizens;
 
 namespace Tests
 {

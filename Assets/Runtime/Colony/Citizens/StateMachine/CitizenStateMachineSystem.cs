@@ -1,6 +1,4 @@
-using System.Runtime.Serialization;
-
-namespace Runtime.Colony.Citizens.StateMachine.Temp
+namespace Runtime.Colony.Citizens.StateMachine
 {
     public class CitizenStateMachineSystem
     {

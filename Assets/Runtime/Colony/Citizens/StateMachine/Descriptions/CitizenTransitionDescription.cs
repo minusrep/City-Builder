@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Runtime.Colony.Citizens.StateMachine.Descriptions.Conditions;
 
-namespace Runtime.Colony.Citizens.StateMachine.Temp
+namespace Runtime.Colony.Citizens.StateMachine.Descriptions
 {
     public class CitizenTransitionDescription : IDeserializeModel
     {

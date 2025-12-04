@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 
-namespace Runtime.Colony.Citizens.StateMachine.Temp
+namespace Runtime.Colony.Citizens.StateMachine.Descriptions.Conditions
 {
     public abstract class CitizenTransitionConditionDescription : IDeserializeModel
     {

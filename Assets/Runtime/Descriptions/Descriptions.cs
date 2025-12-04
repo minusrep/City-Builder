@@ -1,5 +1,5 @@
-﻿using Runtime.Descriptions.Buildings;
-using Runtime.Descriptions.Citizens;
+﻿using Runtime.Colony.Citizens;
+using Runtime.Descriptions.Buildings;
 using Runtime.Descriptions.Colony;
 using Runtime.Descriptions.GameResources;
 

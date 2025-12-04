@@ -1,4 +1,4 @@
-namespace Runtime.Colony.Citizens.StateMachine.Temp
+namespace Runtime.Colony.Citizens.StateMachine.States
 {
     public class CitizenWalkToStatePresenter :  CitizenStatePresenter
     {

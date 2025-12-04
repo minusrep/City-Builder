@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Runtime.Colony.Citizens.StateMachine.States;
 using UnityEngine;
 
-namespace Runtime.Colony.Citizens.StateMachine.Temp
+namespace Runtime.Colony.Citizens.StateMachine
 {
     public class CitizenStateMachinePresenter
     {

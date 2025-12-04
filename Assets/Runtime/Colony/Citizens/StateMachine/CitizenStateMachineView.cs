@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Runtime.Colony.Citizens.StateMachine.Temp
+namespace Runtime.Colony.Citizens.StateMachine
 {
     public class CitizenStateMachineView : MonoBehaviour
     {
