@@ -6,8 +6,6 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Linq;
 using System;
-using Runtime.Colony.GameResources;
-using Runtime.Descriptions.GameResources;
 
 namespace Tests.Buildings
 {
@@ -38,15 +36,8 @@ namespace Tests.Buildings
                 id: 1,
                 position: new Vector2(0, 0),
                 description: _description,
-                orderPool: _orders,
-                producedAmount: producedAmount,
-                resource: new ResourceModel(new ResourceDescription(new Dictionary<string, object>
-                    {
-                        { "type", "wood" },
-                        {"reduction_time", 0},
-                        {"reduction_amount", 0}
-                    })
-                ));
+                orders: _orders,
+                producedAmount: producedAmount);
         }
         
         [Test]

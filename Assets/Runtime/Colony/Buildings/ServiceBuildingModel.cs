@@ -1,73 +1,89 @@
-﻿using Runtime.Descriptions.Buildings;
-using System.Collections.Generic;
-using Runtime.Colony.Citizens;
-using UnityEngine;
+﻿    using Runtime.Descriptions.Buildings;
+    using System.Collections.Generic;
+    using Runtime.Colony.Citizens;
+    using UnityEngine;
 
-namespace Runtime.Colony.Buildings
-{
-    public class ServiceBuildingModel : BuildingModel
+    namespace Runtime.Colony.Buildings
     {
-        public IReadOnlyDictionary<int, long> InService => _inService;
-        public Queue<int> WaitingQueue { get; } = new();
-        public ICitizenNeedService NeedService { get; }
-
-        private readonly ServiceBuildingDescription _description;
-        private readonly Dictionary<int, long> _inService = new();
-        
-        private bool _isActive;
-        
-        public ServiceBuildingModel(int id, Vector2 position, ServiceBuildingDescription description, ICitizenNeedService needService) : base(id, position)
+        public class ServiceBuildingModel : BuildingModel
         {
-            _description = description;
-            NeedService = needService;
-        }
+            public IReadOnlyDictionary<int, long> InService => _inService;
+            public Queue<int> WaitingQueue { get; } = new();
+            public ICitizenNeedService NeedService { get; }
 
-        public bool TryEnter(int citizenId)
-        {
-            if (_inService.Count < _description.MaxCitizenAmount)
+            private readonly ServiceBuildingDescription _description;
+            private readonly Dictionary<int, long> _inService = new();
+            
+            private bool _isActive;
+            
+            public ServiceBuildingModel(int id,
+                Vector2 position,
+                ServiceBuildingDescription description,
+                ICitizenNeedService needService) : base(id,
+                position,
+                description)
             {
-                _inService[citizenId] = _description.ServiceTime;
-                return true;
+                _description = description;
+                NeedService = needService;
             }
 
-            if (WaitingQueue.Count < _description.MaxQueue)
+            public bool TryEnter(int citizenId)
             {
-                WaitingQueue.Enqueue(citizenId);
-                return true;
+                if (_inService.Count < _description.MaxCitizenAmount)
+                {
+                    _inService[citizenId] = _description.ServiceTime;
+                    return true;
+                }
+
+                if (WaitingQueue.Count < _description.MaxQueue)
+                {
+                    WaitingQueue.Enqueue(citizenId);
+                    return true;
+                }
+
+                return false;
             }
 
-            return false;
-        }
-
-        public void Update(long currentTime)
-        {
-            var finished = new List<int>();
-
-            foreach (var key in _inService.Keys)
+            public void Update(long currentTime)
             {
-                var remaining = _inService[key] - currentTime;
+                var finished = new List<int>();
 
-                if (remaining <= 0)
+                foreach (var key in _inService.Keys)
                 {
-                    finished.Add(key);
+                    var remaining = _inService[key] - currentTime;
+
+                    if (remaining <= 0)
+                    {
+                        finished.Add(key);
+                    }
+                    else
+                    {
+                        _inService[key] = remaining;
+                    }
                 }
-                else
+
+                foreach (var citizenId in finished)
                 {
-                    _inService[key] = remaining;
+                    _inService.Remove(citizenId);
+                    NeedService.RestoreNeed(citizenId, _description.ServiceResource);
+
+                    if (WaitingQueue.Count > 0)
+                    {
+                        var nextCitizen = WaitingQueue.Dequeue();
+                        _inService[nextCitizen] = _description.ServiceTime;
+                    }
                 }
             }
 
-            foreach (var citizenId in finished)
+            public override Dictionary<string, object> Serialize()
             {
-                _inService.Remove(citizenId);
-                NeedService.RestoreNeed(citizenId, _description.ServiceResource);
-
-                if (WaitingQueue.Count > 0)
+                var dictionary = new Dictionary<string, object>(base.Serialize())
                 {
-                    var nextCitizen = WaitingQueue.Dequeue();
-                    _inService[nextCitizen] = _description.ServiceTime;
-                }
+                    { "is_active", _isActive },
+                    { "in_service", _inService },
+                    { "waiting_queue", WaitingQueue },
+                };
+                return dictionary;
             }
         }
     }
-}

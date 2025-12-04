@@ -10,7 +10,12 @@ namespace Runtime.Colony.Buildings
         private readonly StorageBuildingDescription _description;
         private readonly Dictionary<string, ResourceModel> _resources;
 
-        public StorageBuildingModel(int id, Vector2 position, StorageBuildingDescription description, Dictionary<string, ResourceModel> resources) : base(id, position)
+        public StorageBuildingModel(int id,
+            Vector2 position,
+            StorageBuildingDescription description,
+            Dictionary<string, ResourceModel> resources) : base(id,
+            position,
+            description)
         {
             _description = description;
             _resources = resources;
@@ -42,6 +47,15 @@ namespace Runtime.Colony.Buildings
             }
 
             return false;
+        }
+
+        public override Dictionary<string, object> Serialize()
+        {
+            var dictionary = new Dictionary<string, object>(base.Serialize())
+            {
+                { "resources", _resources }
+            };
+            return dictionary;
         }
     }
 }

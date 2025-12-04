@@ -1,8 +1,8 @@
 ﻿using Runtime.Descriptions.Buildings;
-using Runtime.Colony.GameResources;
 using Runtime.Colony.Orders;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace Runtime.Colony.Buildings
 {
@@ -13,18 +13,17 @@ namespace Runtime.Colony.Buildings
         public int ProducedAmount { get; private set; }
 
         private ProductionBuildingDescription Description { get; }
-        private ColonyOrdersManager OrderPool { get; }
+        private ColonyOrdersManager Orders { get; }
 
         private long _completeProductionTime;
 
         public ProductionBuildingModel(int id,
             Vector2 position,
             ProductionBuildingDescription description,
-            ColonyOrdersManager orderPool,
-            ResourceModel resource, int producedAmount) : base(id, position)
+            ColonyOrdersManager orders, int producedAmount) : base(id, position, description)
         {
             Description = description;
-            OrderPool = orderPool;
+            Orders = orders;
             ProducedAmount = producedAmount;
 
             IsActive = false;
@@ -72,7 +71,18 @@ namespace Runtime.Colony.Buildings
                 }
             }
         }
-        
+
+        public override Dictionary<string, object> Serialize()
+        {
+            var dictionary = new Dictionary<string, object>(base.Serialize())
+            {
+                { "is_active", IsActive },
+                { "produced_amount", ProducedAmount },
+                { "complete_production_time", _completeProductionTime }
+            };
+            return dictionary;
+        }
+
         private bool ProduceOnceAndQueue()
         {
             if (CapacityLeft() > 0)
@@ -90,7 +100,7 @@ namespace Runtime.Colony.Buildings
         private void CreateDeliveryOrder()
         {
             var order = new DeliveryOrder(0, Id, Description.ProductionResource);
-            OrderPool.AddOrder(order);
+            Orders.AddOrder(order);
         }
         
         private int CapacityLeft()
