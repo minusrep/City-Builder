@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.Colony.ModelCollections;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens

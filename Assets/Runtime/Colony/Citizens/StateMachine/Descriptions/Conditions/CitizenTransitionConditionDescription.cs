@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.Colony.ModelCollections;
 
 namespace Runtime.Colony.Citizens.StateMachine.Descriptions.Conditions
 {

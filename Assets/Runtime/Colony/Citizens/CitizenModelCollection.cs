@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
+using Runtime.Colony.ModelCollections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Runtime.Colony.Citizens
 {
-    public class CitizenModelCollection : ModelCollection<CitizenModel>
+    public class CitizenModelCollection : UniformModelCollection<CitizenModel>
     {
         private readonly CitizensDescription _description;
 
@@ -27,11 +27,7 @@ namespace Runtime.Colony.Citizens
         protected override CitizenModel CreateModelFromData(Dictionary<string, object> data)
         {
             var name = (string)data["name"];
-            var posArray = (List<object>)data["position"];
-            var position = new Vector2(
-                Convert.ToSingle(posArray[0]), 
-                Convert.ToSingle(posArray[1])
-            );
+            var position = (Vector2)data["position"];
     
             return new CitizenModel(Index++, _description, name)
             {
