@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Runtime.Colony.Citizens.StateMachine.Descriptions.Conditions;
+using Runtime.Colony.ModelCollections;
 
 namespace Runtime.Colony.Citizens.StateMachine.Descriptions
 {
