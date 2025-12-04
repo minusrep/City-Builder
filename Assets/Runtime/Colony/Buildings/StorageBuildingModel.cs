@@ -51,10 +51,14 @@ namespace Runtime.Colony.Buildings
 
         public override Dictionary<string, object> Serialize()
         {
-            var dictionary = new Dictionary<string, object>(base.Serialize())
+            var dictionary = new Dictionary<string, object>(base.Serialize());
+            var serializedResources = new Dictionary<string, object>();
+            foreach (var kvp in _resources)
             {
-                { "resources", _resources }
-            };
+                serializedResources[kvp.Key] = kvp.Value.Serialize();
+            }
+
+            dictionary["resources"] = serializedResources;
             return dictionary;
         }
     }

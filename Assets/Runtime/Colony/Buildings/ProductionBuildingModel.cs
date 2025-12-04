@@ -9,11 +9,10 @@ namespace Runtime.Colony.Buildings
     public class ProductionBuildingModel : BuildingModel
     {
         public bool IsActive { get; private set; }
-
         public int ProducedAmount { get; private set; }
-
-        private ProductionBuildingDescription Description { get; }
         private ColonyOrdersManager Orders { get; }
+        
+        private readonly ProductionBuildingDescription _description;
 
         private long _completeProductionTime;
 
@@ -22,7 +21,7 @@ namespace Runtime.Colony.Buildings
             ProductionBuildingDescription description,
             ColonyOrdersManager orders, int producedAmount) : base(id, position, description)
         {
-            Description = description;
+            _description = description;
             Orders = orders;
             ProducedAmount = producedAmount;
 
@@ -34,7 +33,7 @@ namespace Runtime.Colony.Buildings
             if (!IsActive && CapacityLeft() > 0)
             {
                 IsActive = true;
-                _completeProductionTime = currentTime + Description.ProductionTime;
+                _completeProductionTime = currentTime + _description.ProductionTime;
             }
         }
 
@@ -48,7 +47,7 @@ namespace Runtime.Colony.Buildings
         {
             if (IsActive)
             {
-                var productionTime = Description.ProductionTime;
+                var productionTime = _description.ProductionTime;
 
                 if (productionTime <= 0)
                 {
@@ -87,7 +86,7 @@ namespace Runtime.Colony.Buildings
         {
             if (CapacityLeft() > 0)
             {
-                var canAdd = Math.Min(CapacityLeft(), Description.ProductionAmount);
+                var canAdd = Math.Min(CapacityLeft(), _description.ProductionAmount);
                 ProducedAmount += canAdd;
 
                 CreateDeliveryOrder();
@@ -99,13 +98,13 @@ namespace Runtime.Colony.Buildings
 
         private void CreateDeliveryOrder()
         {
-            var order = new DeliveryOrder(0, Id, Description.ProductionResource);
+            var order = new DeliveryOrder(0, Id, _description.ProductionResource);
             Orders.AddOrder(order);
         }
         
         private int CapacityLeft()
         {
-            return Description.MaxResource - ProducedAmount;
+            return _description.MaxResource - ProducedAmount;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Runtime.Colony.Buildings
     {
         protected int Id { get; }
         private Vector2 Position { get; set; }
-        private BuildingDescription Description { get; }
+        public BuildingDescription Description { get; }
 
         protected BuildingModel(int id, Vector2 position, BuildingDescription description)
         {
@@ -22,7 +22,7 @@ namespace Runtime.Colony.Buildings
         {
             return new Dictionary<string, object>()
             {
-                { "description", Description.Type },
+                { "description", Description.Id },
                 { "position", new[] { Position.x, Position.y } }
             };
         }
