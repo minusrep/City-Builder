@@ -12,9 +12,9 @@ namespace Runtime.Descriptions
             _entityTypes.Add(type, typeof(T));
         }
     
-        public T Create<T>(Dictionary<string, object> dictionary) where T : class
+        public T Create<T>(string id, Dictionary<string, object> dictionary) where T : class
         {
-            return (T)Activator.CreateInstance(_entityTypes[dictionary["type"].ToString()], dictionary);
+            return (T)Activator.CreateInstance(_entityTypes[dictionary["type"].ToString()], id, dictionary);
         }
     }
 }

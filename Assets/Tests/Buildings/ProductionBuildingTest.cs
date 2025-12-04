@@ -19,7 +19,7 @@ namespace Tests.Buildings
         [SetUp]
         public void Setup()
         {
-            _description = new ProductionBuildingDescription(new Dictionary<string, object>
+            _description = new ProductionBuildingDescription("0",new Dictionary<string, object>
             {
                 { "production_amount", 1 },
                 { "production_time", 10 },
@@ -113,7 +113,7 @@ namespace Tests.Buildings
         [Test]
         public void Update_WhenProductionTimeZero_ProduceOnceAndStop()
         {
-            _description = new ProductionBuildingDescription(new Dictionary<string, object>
+            _description = new ProductionBuildingDescription("0", new Dictionary<string, object>
             {
                 { "production_amount", 1 },
                 { "production_time", 0 },

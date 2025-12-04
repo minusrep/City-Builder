@@ -10,7 +10,7 @@ namespace Runtime.Descriptions.Buildings
         public int ProductionAmount { get; }
         public int MaxResource { get; }
 
-        public ProductionBuildingDescription(Dictionary<string, object> data) : base(data)
+        public ProductionBuildingDescription(string id, Dictionary<string, object> data) : base(id, data)
         {
             ProductionTime = (long)data["production_time"];
             ProductionResource = (string)data["production_resource"];

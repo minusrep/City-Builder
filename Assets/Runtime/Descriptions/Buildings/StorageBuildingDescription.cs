@@ -8,7 +8,7 @@ namespace Runtime.Descriptions.Buildings
         public int MaxResourceAmount { get; }
         public List<string> StoredResources { get; }
 
-        public StorageBuildingDescription(Dictionary<string, object> data) : base(data)
+        public StorageBuildingDescription(string id, Dictionary<string, object> data) : base(id, data)
         {
             MaxResourceAmount = Convert.ToInt32(data["max_resource_amount"]);
             

@@ -10,7 +10,7 @@ namespace Runtime.Descriptions.Buildings
         public int MaxCitizenAmount { get; }
         public string ServiceResource { get; }
 
-        public ServiceBuildingDescription(Dictionary<string, object> data) : base(data)
+        public ServiceBuildingDescription(string id, Dictionary<string, object> data) : base(id, data)
         {
             ServiceTime = (long)data["max_time_service"];
             MaxQueue = Convert.ToInt32(data["max_queue"]);
