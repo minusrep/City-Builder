@@ -3,7 +3,7 @@ using System;
 
 namespace Runtime.Colony.ModelCollections
 {
-    public abstract class ModelCollectionBase<T> : IModelCollection<T> where T : ISerializeModel, IDeserializeModel
+    public abstract class ModelCollectionBase<T> : IModelCollection<T> where T : ISerializeModel
     {
         public event Action<T> OnCreateModel;
         public event Action<T> OnDeleteModel;
@@ -50,12 +50,12 @@ namespace Runtime.Colony.ModelCollections
             foreach (var pair in models)
             {
                 var modelData = (Dictionary<string, object>)pair.Value;
-                var model = CreateModelFromData(modelData);
+                var model = CreateModelFromData(Convert.ToInt32(pair.Key), modelData);
                 Models.Add(Convert.ToInt32(pair.Key), model);
             }
         }
 
-        protected abstract T CreateModelFromData(Dictionary<string, object> data);
+        protected abstract T CreateModelFromData(int id, Dictionary<string, object> data);
         
         protected void InvokeOnCreateModel(T model)
         {
