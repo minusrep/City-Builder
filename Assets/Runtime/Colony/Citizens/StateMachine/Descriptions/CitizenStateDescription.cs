@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony;
 
 namespace Runtime.Colony.Citizens.StateMachine.Descriptions
 {
