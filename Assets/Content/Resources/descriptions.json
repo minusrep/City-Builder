@@ -5,7 +5,8 @@
       "name": "Лесопилка",
       "production_time": 300,
       "production_resource": "wood",
-      "max_resource_amount": 5
+      "production_amount": 1,
+      "max_resource": 5
     },
     "shelter": {
       "type": "service",
@@ -25,12 +26,31 @@
     },
     "warehouse": {
       "type": "storage",
-      "name": "Склад",
-      "max_resource_amount": 100
+      "max_resource_amount": 100,
+      "stored_resources": ["wood"]
     },
     "lantern": {
-      "name": "Фонарь",
       "type": "decor"
+    }
+  },
+  "resources": {
+    "wood": {
+      "type": "resource",
+      "name": "дерево",
+      "reduction_time": 0,
+      "reduction_amount": 0
+    },
+    "hunger": {
+      "type": "need",
+      "name": "голод",
+      "reduction_time": 60,
+      "reduction_amount": 1
+    },
+    "energy": {
+      "type": "need",
+      "name": "энергия",
+      "reduction_time": 30,
+      "reduction_amount": 1
     }
   }
 }
