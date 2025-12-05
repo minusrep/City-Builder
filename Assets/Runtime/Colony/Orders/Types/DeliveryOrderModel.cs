@@ -1,12 +1,11 @@
-using Runtime.Descriptions.Orders;
-
 namespace Runtime.Colony.Orders.Types
 {
     public class DeliveryOrderModel : OrderModel
     {
-        public DeliveryOrderModel(ColonyOrderDescription description, int fromBuildingId) : base(description, fromBuildingId)
+        public override string Type { get; } = OrderConstants.OrderTypes.Delivery;
+
+        public DeliveryOrderModel(int fromBuildingId) : base(fromBuildingId)
         {
-            
         }
     }
 }

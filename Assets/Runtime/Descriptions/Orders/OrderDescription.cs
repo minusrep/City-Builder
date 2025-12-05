@@ -1,11 +1,11 @@
 namespace Runtime.Descriptions.Orders
 {
-    public class ColonyOrderDescription
+    public class OrderDescription
     {
         public string Name;
         public string Description;
 
-        public ColonyOrderDescription(string name, string description)
+        public OrderDescription(string name, string description)
         {
             Name = name;
             Description = description;

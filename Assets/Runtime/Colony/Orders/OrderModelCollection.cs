@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Runtime.Colony.Orders.Types;
 using Runtime.Descriptions.Orders;
@@ -14,29 +13,27 @@ namespace Runtime.Colony.Orders
         public Dictionary<int, OrderModel> AvailableOrders { get; private set; } = new();
         public Dictionary<int, OrderModel> ClaimedOrders { get; private set; } = new();
 
-        private ColonyOrderDescriptionCollection _description;
+        private OrderDescriptionCollection _descriptions;
         private int _index;
 
-        public OrderModelCollection(ColonyOrderDescriptionCollection description)
+        public OrderModelCollection(OrderDescriptionCollection descriptions)
         {
-            _description = description;
+            _descriptions = descriptions;
         }
 
-        public void CreateDeliveryOrder(int fromId)
+        public void Create(OrderModel order)
         {
-            var description = _description.OrderDescriptions["delivery"];
+            var description = _descriptions.OrderDescriptions[order.Type];
 
-            var order = new DeliveryOrderModel(description, fromId)
-            {
-                Id = _index++
-            };
+            order.Id = _index++;
+            order.Description = description;
 
             AvailableOrders.Add(order.Id, order);
 
             OnCreateOrder?.Invoke(order);
         }
 
-        public void ClaimOrder(int orderId, int toId, List<int> citizensId)
+        public void Claim(int orderId, int toId, List<int> citizensId)
         {
             var order = AvailableOrders[orderId];
             AvailableOrders.Remove(orderId);
@@ -113,38 +110,34 @@ namespace Runtime.Colony.Orders
             {
                 var orderData = (Dictionary<string, object>)order.Value;
 
-                int orderId = Convert.ToInt32(order.Key);
-                
+                var orderId = Convert.ToInt32(order.Key);
+
                 var orderInstance = CreateModelFromData(orderData, orderId);
-                
+
                 orders.Add(Convert.ToInt32(orderId), orderInstance);
             }
         }
 
         private OrderModel CreateModelFromData(Dictionary<string, object> data, int orderId)
         {
-            var description = _description.OrderDescriptions["delivery"];
+            var orderType = data["type"].ToString();
+            var description = _descriptions.OrderDescriptions[orderType];
 
-            var fromBuildingId = Convert.ToInt32(data["from_building_id"]);
-            var toBuildingId = Convert.ToInt32(data["to_building_id"]);
-
-            var raw = data["citizens_id"] as IEnumerable ?? Array.Empty<object>();
-
-            var citizensIds = new List<int>();
-
-            foreach (var id in raw)
+            switch (orderType)
             {
-                citizensIds.Add(Convert.ToInt32(id));
+                case OrderConstants.OrderTypes.Delivery:
+                {
+                    var fromBuildingId = Convert.ToInt32(data["from_building_id"]);
+                    var order = new DeliveryOrderModel(fromBuildingId);
+                    order.Deserialize(data);
+                    order.Description = description;
+                    order.Id = orderId;
+
+                    return order;
+                }
             }
-            
-            var order = new DeliveryOrderModel(description, fromBuildingId)
-            {
-                ToBuildingId = toBuildingId,
-                CitizensId = citizensIds,
-                Id = orderId
-            };
 
-            return order;
+            return null;
         }
     }
 }
