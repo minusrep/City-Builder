@@ -3,6 +3,7 @@ using Runtime.Colony.Orders;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Runtime.Colony.Orders.Types;
 
 namespace Runtime.Colony.Buildings
 {
@@ -10,7 +11,7 @@ namespace Runtime.Colony.Buildings
     {
         public bool IsActive { get; private set; }
         public int ProducedAmount { get; private set; }
-        private ColonyOrdersManager Orders { get; }
+        private OrderManager Orders { get; }
         
         private readonly ProductionBuildingDescription _description;
 
@@ -19,7 +20,7 @@ namespace Runtime.Colony.Buildings
         public ProductionBuildingModel(int id,
             Vector2 position,
             ProductionBuildingDescription description,
-            ColonyOrdersManager orders, int producedAmount) : base(id, position, description)
+            OrderManager orders, int producedAmount) : base(id, position, description)
         {
             _description = description;
             Orders = orders;
@@ -98,7 +99,7 @@ namespace Runtime.Colony.Buildings
 
         private void CreateDeliveryOrder()
         {
-            var order = new DeliveryOrder(0, Id, _description.ProductionResource);
+            var order = new DeliveryOrderModel(0);
             Orders.AddOrder(order);
         }
         

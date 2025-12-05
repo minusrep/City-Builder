@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Runtime.Colony.ModelCollections;
 using Runtime.Descriptions.Orders;
 
 namespace Runtime.Colony.Orders

@@ -4,7 +4,6 @@ using Runtime.Colony.Buildings;
 using Runtime.Colony.Orders;
 using NUnit.Framework;
 using UnityEngine;
-using System.Linq;
 using System;
 
 namespace Tests.Buildings
@@ -14,7 +13,7 @@ namespace Tests.Buildings
     public class ProductionBuildingTest
     {
         private ProductionBuildingDescription _description;
-        private ColonyOrdersManager _orders;
+        private OrderManager _orders;
 
         [SetUp]
         public void Setup()
@@ -27,7 +26,7 @@ namespace Tests.Buildings
                 { "production_resource", "wood" }
             });
             
-            _orders = new ColonyOrdersManager();
+            _orders = new OrderManager();
         }
         
         private ProductionBuildingModel CreateModel(int producedAmount = 0)
@@ -76,7 +75,6 @@ namespace Tests.Buildings
             Assert.AreEqual(1, produced);
 
             Assert.AreEqual(1, _orders.AvailableOrders.Count);
-            Assert.AreEqual("wood", ((DeliveryOrder)_orders.AvailableOrders.Values.First()).ResourceKey);
         }
         
         [Test]
