@@ -41,11 +41,21 @@ namespace Runtime.Colony.ModelCollections
         
         protected int GetCurrentId(string key)
         {
+            if (string.IsNullOrEmpty(DescriptionKey))
+            {
+                return Convert.ToInt32(key);
+            }
+            
             return Convert.ToInt32(key.Split('_')[1]);
         }
 
         protected string GetCurrentKey()
         {
+            if (string.IsNullOrEmpty(DescriptionKey))
+            {
+                return Index++.ToString();
+            }
+            
             return DescriptionKey + "_" + Index++;
         }
     }

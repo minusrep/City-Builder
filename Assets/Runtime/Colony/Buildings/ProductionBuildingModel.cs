@@ -3,7 +3,6 @@ using Runtime.Colony.Orders;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.Orders.Types;
 
 namespace Runtime.Colony.Buildings
 {
@@ -99,8 +98,6 @@ namespace Runtime.Colony.Buildings
 
         private void CreateDeliveryOrder()
         {
-            var order = new DeliveryOrderModel(0);
-            Orders.AddOrder(order);
         }
         
         private int CapacityLeft()
