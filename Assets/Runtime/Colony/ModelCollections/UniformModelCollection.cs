@@ -1,12 +1,16 @@
 ﻿namespace Runtime.Colony.ModelCollections
 {
-    public abstract class UniformModelCollection<T> : ModelCollectionBase<T>
-        where T : ISerializeModel, IDeserializeModel
+    public abstract class UniformModelCollection<T> : SerializeModelCollection<T> where T : ISerializeModel
     {
+        protected UniformModelCollection(string descriptionKey)
+        {
+            DescriptionKey = descriptionKey;
+        }
+
         public void Create()
         {
             var model = CreateModel();
-            Models.Add(Index++, model);
+            Models.Add(GetCurrentKey(), model);
             InvokeOnCreateModel(model);
         }
 
