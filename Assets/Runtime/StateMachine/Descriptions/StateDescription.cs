@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Runtime.Colony.ModelCollections;
 
-namespace Runtime.StateMachine
+namespace Runtime.StateMachine.Descriptions
 {
     public class StateDescription : IDeserializeModel
     {

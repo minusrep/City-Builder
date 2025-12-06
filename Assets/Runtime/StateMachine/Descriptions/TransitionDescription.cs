@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Runtime.Colony.ModelCollections;
+using Runtime.StateMachine.Descriptions.Conditions;
 
-namespace Runtime.StateMachine
+namespace Runtime.StateMachine.Descriptions
 {
     public class TransitionDescription : IDeserializeModel
     {

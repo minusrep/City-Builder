@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Runtime.StateMachine
+namespace Runtime.StateMachine.Descriptions.Conditions
 {
     public static class ConditionExtensions
     {

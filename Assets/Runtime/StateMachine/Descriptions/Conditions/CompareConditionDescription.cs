@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runtime.StateMachine
+namespace Runtime.StateMachine.Descriptions.Conditions
 {
     public class CompareConditionDescription : ConditionDescription
     {

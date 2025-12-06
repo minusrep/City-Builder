@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Runtime.StateMachine
+namespace Runtime.StateMachine.Descriptions.Conditions
 {
     public class OrConditionDescription : LogicConditionDescription
     {

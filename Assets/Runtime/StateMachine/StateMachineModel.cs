@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Runtime.StateMachine.Descriptions;
 
 namespace Runtime.StateMachine
 {
