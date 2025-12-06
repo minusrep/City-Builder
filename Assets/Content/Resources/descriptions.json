@@ -52,5 +52,9 @@
       "reduction_time": 30,
       "reduction_amount": 1
     }
+  },
+  "citizens": {
+    "names" : ["Bob", "Joe", "Tom"],
+    "start_move_speed": 1
   }
 }
