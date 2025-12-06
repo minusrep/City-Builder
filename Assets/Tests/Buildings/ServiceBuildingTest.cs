@@ -17,9 +17,10 @@ namespace Tests.Buildings
         {
             _description = new ServiceBuildingDescription("0", new Dictionary<string, object>
             {
+                { "type" , "service" },
                 { "max_citizen_amount", 2 },
                 { "max_queue", 2 },
-                { "service_time", 10 },
+                { "max_time_service", 10 },
                 { "service_resource", "food" }
             });
         }
