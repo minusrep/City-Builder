@@ -1,7 +1,7 @@
 ﻿using Runtime.Descriptions.GameResources;
 using Runtime.Descriptions.Buildings;
+using Runtime.Descriptions.Citizens;
 using System.Collections.Generic;
-using Runtime.Colony.Citizens;
 using Runtime.Utilities;
 
 namespace Runtime.Descriptions
@@ -24,10 +24,8 @@ namespace Runtime.Descriptions
             Factory.Register<DecorBuildingDescription>("decor");
             Factory.Register<StorageBuildingDescription>("storage");
             
-            
-            BuildingDescriptionCollection = new BuildingsDescriptionCollection(data.GetDict("buildings"), Factory);
-            ResourceDescriptionCollection = new ResourceDescriptionCollection(data.GetDict("resources"));
-            CitizensDescription = new CitizensDescription();
+            BuildingDescriptionCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
+            ResourceDescriptionCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
         }
     }
 }

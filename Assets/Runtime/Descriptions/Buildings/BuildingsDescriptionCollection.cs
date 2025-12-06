@@ -14,7 +14,7 @@ namespace Runtime.Descriptions.Buildings
             foreach (var description in descriptions)
             {
                 Descriptions.Add(description.Key,
-                    factory.Create<BuildingDescription>(description.Key ,descriptions.GetDict(description.Key)));
+                    factory.Create<BuildingDescription>(description.Key ,descriptions.GetNode(description.Key)));
             }
         }
     }

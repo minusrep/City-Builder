@@ -1,58 +1,75 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 namespace Runtime.Utilities
 {
     public static class SerializationExtensions
     {
-        public static string GetString(this Dictionary<string, object> dict, string key)
+        public static string GetString(this Dictionary<string, object> dictionary, string key)
         {
-            return (string)dict[key];
+            return (string)dictionary[key];
         }
 
-        public static int GetInt(this Dictionary<string, object> dict, string key)
+        public static int GetInt(this Dictionary<string, object> dictionary, string key)
         {
-            return Convert.ToInt32(dict[key]);
+            return Convert.ToInt32(dictionary[key]);
         }
 
-        public static float GetFloat(this Dictionary<string, object> dict, string key)
+        public static float GetFloat(this Dictionary<string, object> dictionary, string key)
         {
-            return Convert.ToSingle(dict[key]);
+            return Convert.ToSingle(dictionary[key]);
         }
         
-        public static long GetLong(this Dictionary<string, object> dict, string key)
+        public static long GetLong(this Dictionary<string, object> dictionary, string key)
         {
-            return Convert.ToInt64(dict[key]);
+            return Convert.ToInt64(dictionary[key]);
         }
 
-        public static bool GetBool(this Dictionary<string, object> dict, string key)
+        public static bool GetBool(this Dictionary<string, object> dictionary, string key)
         {
-            return Convert.ToBoolean(dict[key]);
+            return Convert.ToBoolean(dictionary[key]);
+        }
+
+        public static List<object> GetList(this Dictionary<string, object> dictionary, string key)
+        {
+            var value = dictionary[key];
+            return value switch
+            {
+                List<object> list => list,
+                Array array => array.Cast<object>().ToList(),
+                _ => null
+            };
         }
         
-        public static List<object> GetList(this Dictionary<string, object> dict, string key)
+        public static List<T> GetList<T>(this Dictionary<string, object> dictionary, string key)
         {
-            return (List<object>)dict[key];
+            var list = new List<T>();
+            foreach (var obj in dictionary.GetList(key))
+            {
+                list.Add((T)obj);
+            }
+            return list;
         }
 
-        public static Dictionary<string, object> GetDict(this Dictionary<string, object> dict, string key)
+        public static Dictionary<string, object> GetNode(this Dictionary<string, object> dictionary, string key)
         {
-            return (Dictionary<string, object>)dict[key];
+            return (Dictionary<string, object>)dictionary[key];
         }
 
-        public static Vector2 GetVector2(this Dictionary<string, object> dict, string key)
+        public static Vector2 GetVector2(this Dictionary<string, object> dictionary, string key)
         {
-            var list = (List<object>)dict[key];
+            var list = (List<object>)dictionary[key];
             return new Vector2(
                 Convert.ToSingle(list[0]),
                 Convert.ToSingle(list[1])
             );
         }
 
-        public static Vector3 GetVector3(this Dictionary<string, object> dict, string key)
+        public static Vector3 GetVector3(this Dictionary<string, object> dictionary, string key)
         {
-            var list = (List<object>)dict[key];
+            var list = (List<object>)dictionary[key];
             return new Vector3(
                 Convert.ToSingle(list[0]),
                 Convert.ToSingle(list[1]),
@@ -60,19 +77,19 @@ namespace Runtime.Utilities
             );
         }
 
-        public static void Set(this Dictionary<string, object> dict, string key, object value)
+        public static void Set(this Dictionary<string, object> dictionary, string key, object value)
         {
-            dict[key] = value;
+            dictionary[key] = value;
         }
 
-        public static List<object> ToList(this Vector2 v)
+        public static List<object> ToList(this Vector2 vector)
         {
-            return new List<object> { v.x, v.y };
+            return new List<object> { vector.x, vector.y };
         }
 
-        public static List<object> ToList(this Vector3 v)
+        public static List<object> ToList(this Vector3 vector)
         {
-            return new List<object> { v.x, v.y, v.z };
+            return new List<object> { vector.x, vector.y, vector.z };
         }
     }
 }

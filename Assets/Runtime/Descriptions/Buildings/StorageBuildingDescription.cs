@@ -14,9 +14,9 @@ namespace Runtime.Descriptions.Buildings
             
             StoredResources = new List<string>();
             
-            foreach (var obj in data.GetList("stored_resources"))
+            foreach (var resource in data.GetList<string>("stored_resources"))
             {
-                StoredResources.Add((string)obj);
+                StoredResources.Add(resource);
             }
         }
     }
