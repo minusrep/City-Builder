@@ -20,6 +20,7 @@ namespace Tests.Buildings
         {
             _description = new ProductionBuildingDescription("0",new Dictionary<string, object>
             {
+                { "type" , "production" },
                 { "production_amount", 1 },
                 { "production_time", 10 },
                 { "max_resource", 3 },
@@ -113,6 +114,7 @@ namespace Tests.Buildings
         {
             _description = new ProductionBuildingDescription("0", new Dictionary<string, object>
             {
+                { "type" , "production" },
                 { "production_amount", 1 },
                 { "production_time", 0 },
                 { "max_resource", 3 },

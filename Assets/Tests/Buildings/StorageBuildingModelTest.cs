@@ -20,6 +20,8 @@ namespace Tests.Buildings
         {
             _description = new StorageBuildingDescription("0", new Dictionary<string, object>
             {
+                { "type", "storage" },
+                { "stored_resources", new[] { "wood"} },
                 { "max_resource_amount", 100 },
             });
 
@@ -29,14 +31,18 @@ namespace Tests.Buildings
                     "wood",
                     new ResourceModel(new ResourceDescription(new Dictionary<string, object>
                     {
-                        { "type", "wood" }
+                        { "type", "wood" },
+                        { "reduction_time", 0},
+                        { "reduction_amount", 0}
                     }))
                 },
                 {
                     "iron",
                     new ResourceModel(new ResourceDescription(new Dictionary<string, object>
                     {
-                        { "type", "iron" }
+                        { "type", "iron" },
+                        { "reduction_time", 0},
+                        { "reduction_amount", 0}
                     }))
                 }
             };
@@ -59,7 +65,9 @@ namespace Tests.Buildings
 
             var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
-                { "type", "wood" }
+                { "type", "wood" },
+                { "reduction_time", 0},
+                { "reduction_amount", 0}
             }));
             resource.IncreaseAmount(30);
 
@@ -78,7 +86,9 @@ namespace Tests.Buildings
             
             var wood = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
-                { "type", "wood" }
+                { "type", "wood" },
+                { "reduction_time", 0},
+                { "reduction_amount", 0}
             }));
             wood.IncreaseAmount(20);
 
@@ -95,7 +105,9 @@ namespace Tests.Buildings
 
             var stone = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
-                { "type", "wood" }
+                { "type", "wood" },
+                { "reduction_time", 0},
+                { "reduction_amount", 0}
             }));
             stone.IncreaseAmount(10);
 

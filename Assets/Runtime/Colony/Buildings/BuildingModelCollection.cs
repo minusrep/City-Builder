@@ -1,8 +1,8 @@
 ﻿using Runtime.Colony.ModelCollections;
 using Runtime.Descriptions.Buildings;
 using System.Collections.Generic;
-using UnityEngine;
 using Runtime.Utilities;
+using UnityEngine;
 
 namespace Runtime.Colony.Buildings
 {
@@ -23,7 +23,7 @@ namespace Runtime.Colony.Buildings
             return _factory.Create(desc.Type, Index, Vector2.zero, desc);
         }
 
-        protected override BuildingModel CreateModelFromData(int id, Dictionary<string, object> data)
+        protected override BuildingModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
             var position = data.GetVector2("position");
 
@@ -31,7 +31,7 @@ namespace Runtime.Colony.Buildings
             
             var description = _descriptions.Descriptions[descriptionId];
 
-            return _factory.Create(description.Type, id, position, description);
+            return _factory.Create(description.Type, GetCurrentId(id), position, description);
         }
     }
 }

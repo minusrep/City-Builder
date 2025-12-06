@@ -2,9 +2,9 @@
 
 namespace Runtime.Colony.ModelCollections
 {
-    public interface IModelCollection<out T> where T : ISerializeModel
+    public interface IModelCollection<out T>
     {
-        event Action<T> OnCreateModel;
-        event Action<T> OnDeleteModel;
+        event Action<T> OnAdded;
+        event Action<T> OnRemoved;
     }
 }

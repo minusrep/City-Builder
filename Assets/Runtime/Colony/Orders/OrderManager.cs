@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Runtime.Colony.Orders
 {
-    public class OrderManager
+    public class OrderManager : IOrderManager
     {
         public Dictionary<int, OrderModel> AvailableOrders { get; } = new();
         private Dictionary<int, OrderModel> ClaimedOrders { get; } = new();
