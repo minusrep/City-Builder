@@ -6,8 +6,8 @@ namespace Runtime.Colony.ModelCollections
 {
     public abstract class ModelCollectionBase<T> : IModelCollection<T> where T : ISerializeModel
     {
-        public event Action<T> OnCreateModel;
-        public event Action<T> OnDeleteModel;
+        public event Action<TValue> OnAdded;
+        public event Action<TValue> OnRemoved;
 
         protected Dictionary<int, T> Models { get; private set; } = new();
         public int Index { get; protected set; }
@@ -16,7 +16,7 @@ namespace Runtime.Colony.ModelCollections
         {
             var model = Models[id];
             Models.Remove(id);
-            OnDeleteModel?.Invoke(model);
+            OnRemoved?.Invoke(model);
         }
 
         public T FindModel(int id)
@@ -61,6 +61,7 @@ namespace Runtime.Colony.ModelCollections
         protected void InvokeOnCreateModel(T model)
         {
             OnCreateModel?.Invoke(model);
+            OnAdded?.Invoke(model);
         }
     }
 }
