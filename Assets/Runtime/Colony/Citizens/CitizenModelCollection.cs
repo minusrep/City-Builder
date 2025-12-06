@@ -1,6 +1,7 @@
-using System.Collections.Generic;
 using Runtime.Colony.ModelCollections;
-using UnityEngine;
+using Runtime.Descriptions.Citizens;
+using System.Collections.Generic;
+using Runtime.Utilities;
 using Random = UnityEngine.Random;
 
 namespace Runtime.Colony.Citizens
@@ -9,7 +10,7 @@ namespace Runtime.Colony.Citizens
     {
         private readonly CitizensDescription _description;
 
-        public CitizenModelCollection(CitizensDescription description)
+        public CitizenModelCollection(CitizensDescription description) : base("citizen")
         {
             _description = description;
         }
@@ -23,13 +24,13 @@ namespace Runtime.Colony.Citizens
             
             return model;
         }
-
-        protected override CitizenModel CreateModelFromData(int id, Dictionary<string, object> data)
+        
+        protected override CitizenModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
-            var name = (string)data["name"];
-            var position = (Vector2)data["position"];
+            var name = data.GetString("name");
+            var position = data.GetVector2("position");
     
-            return new CitizenModel(id, _description, name)
+            return new CitizenModel(GetCurrentId(id), _description, name)
             {
                 Position = position
             };
