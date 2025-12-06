@@ -25,7 +25,7 @@ namespace Runtime
         {
             InitializeDescriptions();
 
-            InitializeModelFactories(new OrderManager(), new CitizenNeedServiceMock());
+         //   InitializeModelFactories(new OrderManager(), new CitizenNeedServiceMock());
             
             InitializeBuildings();
 

@@ -1,0 +1,26 @@
+{
+    "patrol": {
+        "transitions": [
+            {
+                "idle": {
+                    "type": "compare",
+                    "value": 10.0,
+                    "counter_name": "hungry",
+                    "operation_name": "greater"
+                }
+            }
+        ]
+    },
+    "idle": {
+        "transitions": [
+            {
+                "patrol": {
+                    "type": "compare",
+                    "value": 10.0,
+                    "counter_name": "hungry",
+                    "operation_name": "lesser"
+                }
+            }
+        ]
+    }
+}
