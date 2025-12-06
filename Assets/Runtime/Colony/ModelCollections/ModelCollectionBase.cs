@@ -8,7 +8,7 @@ namespace Runtime.Colony.ModelCollections
         public event Action<TValue> OnAdded;
         public event Action<TValue> OnRemoved;
 
-        protected Dictionary<TKey, TValue> Models { get; } = new();
+        public Dictionary<TKey, TValue> Models { get; } = new();
         
         public void DeleteModel(TKey id)
         {

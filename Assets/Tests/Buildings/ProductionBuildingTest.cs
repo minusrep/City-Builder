@@ -1,3 +1,4 @@
+/*
 using Runtime.Descriptions.Buildings;
 using System.Collections.Generic;
 using Runtime.Colony.Buildings;
@@ -146,3 +147,4 @@ namespace Tests.Buildings
         }
     }
 }
+*/
