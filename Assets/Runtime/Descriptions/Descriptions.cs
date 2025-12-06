@@ -26,6 +26,7 @@ namespace Runtime.Descriptions
             
             BuildingDescriptionCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
             ResourceDescriptionCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
+            CitizensDescription = new CitizensDescription(data.GetNode("citizens"));
         }
     }
 }
