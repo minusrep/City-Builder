@@ -11,7 +11,7 @@ namespace Runtime.Colony.Buildings
     {
         public bool IsActive { get; private set; }
         public int ProducedAmount { get; private set; }
-        private OrderManager Orders { get; }
+        private IOrderManager Orders { get; }
         
         private readonly ProductionBuildingDescription _description;
 
@@ -20,7 +20,7 @@ namespace Runtime.Colony.Buildings
         public ProductionBuildingModel(int id,
             Vector2 position,
             ProductionBuildingDescription description,
-            OrderManager orders, int producedAmount) : base(id, position, description)
+            IOrderManager orders, int producedAmount) : base(id, position, description)
         {
             _description = description;
             Orders = orders;
