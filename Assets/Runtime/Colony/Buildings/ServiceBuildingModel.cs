@@ -1,6 +1,7 @@
 ﻿    using Runtime.Descriptions.Buildings;
     using System.Collections.Generic;
     using Runtime.Colony.Citizens;
+    using Runtime.Utilities;
     using UnityEngine;
 
     namespace Runtime.Colony.Buildings
@@ -84,6 +85,12 @@
                     { "waiting_queue", WaitingQueue },
                 };
                 return dictionary;
+            }
+
+            //TODO: Дописать десериализацию полей
+            public override void Deserialize(Dictionary<string, object> data)
+            {
+                _isActive = data.GetBool("is_active");
             }
         }
     }

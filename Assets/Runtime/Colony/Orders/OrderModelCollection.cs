@@ -7,7 +7,7 @@ namespace Runtime.Colony.Orders
     {
         private readonly int _buildingId;
 
-        public OrderModelCollection(string descriptionKey, int buildingId) : base(descriptionKey)
+        public OrderModelCollection(int buildingId) : base(string.Empty)
         {
             _buildingId = buildingId;
         }

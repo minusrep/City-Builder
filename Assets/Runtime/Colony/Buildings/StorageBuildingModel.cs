@@ -62,5 +62,11 @@ namespace Runtime.Colony.Buildings
             dictionary.Set("resources", serializedResources);
             return dictionary;
         }
+
+        //TODO: Дописать десериализацию полей
+        public override void Deserialize(Dictionary<string, object> data)
+        {
+            
+        }
     }
 }

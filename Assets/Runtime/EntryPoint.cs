@@ -3,7 +3,6 @@ using Runtime.Colony.GameResources;
 using System.Collections.Generic;
 using Runtime.Colony.Buildings;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.Orders;
 using Runtime.Descriptions;
 using UnityEngine;
 using System.IO;
@@ -14,19 +13,19 @@ namespace Runtime
     public sealed class EntryPoint : MonoBehaviour
     {
         private Descriptions.Descriptions _descriptions;
-        
+
         private ResourceFactory _resourceFactory;
         private BuildingFactory _buildingFactory;
-        
+
         private BuildingModelCollection _buildings;
         private CitizenModelCollection _citizens;
-        
+
         private void Start()
         {
             InitializeDescriptions();
 
-            InitializeModelFactories(new OrderManager(), new CitizenNeedServiceMock());
-            
+            InitializeModelFactories(new CitizenNeedServiceMock());
+
             InitializeBuildings();
 
             InitializeCitizens();
@@ -40,7 +39,7 @@ namespace Runtime
             if (File.Exists(path))
             {
                 var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
-            
+
                 _citizens.Deserialize(data);
             }
         }
@@ -48,20 +47,20 @@ namespace Runtime
         private void InitializeBuildings()
         {
             _buildings = new BuildingModelCollection(_descriptions.BuildingDescriptionCollection, _buildingFactory);
-            
+
             var path = Path.Combine(Application.persistentDataPath, "buildings_data.json");
             if (File.Exists(path))
             {
                 var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
-            
+
                 _buildings.Deserialize(data);
             }
         }
 
-        private void InitializeModelFactories(IOrderManager orderManager,  ICitizenNeedService needService)
+        private void InitializeModelFactories(ICitizenNeedService needService)
         {
             _resourceFactory = new ResourceFactory(_descriptions.ResourceDescriptionCollection);
-            _buildingFactory = new BuildingFactory(orderManager,needService, _resourceFactory);
+            _buildingFactory = new BuildingFactory(needService, _resourceFactory);
             _buildingFactory.RegisterAll();
         }
 
@@ -84,7 +83,6 @@ namespace Runtime
     {
         public void RestoreNeed(int citizenId, string needId)
         {
-            
         }
     }
 }

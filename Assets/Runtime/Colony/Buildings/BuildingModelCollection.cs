@@ -16,11 +16,11 @@ namespace Runtime.Colony.Buildings
             _descriptions = descriptions;
             _factory = factory;
         }
-        
+
         protected override BuildingModel CreateModel(string descriptionKey)
         {
-            var desc = _descriptions.Descriptions[descriptionKey];
-            return _factory.Create(desc.Type, Index, Vector2.zero, desc);
+            var description = _descriptions.Descriptions[descriptionKey];
+            return _factory.Create(description.Type, Index, Vector2.zero, description);
         }
 
         protected override BuildingModel CreateModelFromData(string id, Dictionary<string, object> data)
@@ -31,7 +31,13 @@ namespace Runtime.Colony.Buildings
             
             var description = _descriptions.Descriptions[descriptionId];
 
-            return _factory.Create(description.Type, GetCurrentId(id), position, description);
+            DescriptionKey = id;
+
+            var building = _factory.Create(description.Type, GetCurrentId(id), position, description);
+            
+            building.Deserialize(data);
+            
+            return building;
         }
     }
 }
