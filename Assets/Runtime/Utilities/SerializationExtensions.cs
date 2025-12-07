@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 using System.Linq;
+using System;
 
 namespace Runtime.Utilities
 {
@@ -31,24 +31,13 @@ namespace Runtime.Utilities
         {
             return Convert.ToBoolean(dictionary[key]);
         }
-
-        public static List<object> GetList(this Dictionary<string, object> dictionary, string key)
-        {
-            var value = dictionary[key];
-            return value switch
-            {
-                List<object> list => list,
-                Array array => array.Cast<object>().ToList(),
-                _ => null
-            };
-        }
         
         public static List<T> GetList<T>(this Dictionary<string, object> dictionary, string key)
         {
             var list = new List<T>();
             foreach (var obj in dictionary.GetList(key))
             {
-                list.Add((T)obj);
+                list.Add((T)Convert.ChangeType(obj, typeof(T)));
             }
             return list;
         }
@@ -90,6 +79,11 @@ namespace Runtime.Utilities
         public static List<object> ToList(this Vector3 vector)
         {
             return new List<object> { vector.x, vector.y, vector.z };
+        }
+        
+        private static List<object> GetList(this Dictionary<string, object> dictionary, string key)
+        {
+            return (List<object>)dictionary[key];
         }
     }
 }
