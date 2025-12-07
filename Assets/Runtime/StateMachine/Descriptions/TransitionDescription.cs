@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Runtime.Colony.ModelCollections;
+using Runtime.ModelCollections;
 using Runtime.StateMachine.Descriptions.Conditions;
 
 namespace Runtime.StateMachine.Descriptions

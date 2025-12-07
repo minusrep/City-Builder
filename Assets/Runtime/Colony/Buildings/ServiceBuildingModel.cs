@@ -9,11 +9,11 @@
         public class ServiceBuildingModel : BuildingModel
         {
             public IReadOnlyDictionary<int, long> InService => _inService;
-            public Queue<int> WaitingQueue { get; } = new();
+            public Queue<int> WaitingQueue { get; private set; } = new();
             public ICitizenNeedService NeedService { get; }
+            private ServiceBuildingDescription Description { get; }
 
-            private readonly ServiceBuildingDescription _description;
-            private readonly Dictionary<int, long> _inService = new();
+            private Dictionary<int, long> _inService = new();
             
             private bool _isActive;
             
@@ -24,19 +24,19 @@
                 position,
                 description)
             {
-                _description = description;
+                Description = description;
                 NeedService = needService;
             }
 
             public bool TryEnter(int citizenId)
             {
-                if (_inService.Count < _description.MaxCitizenAmount)
+                if (_inService.Count < Description.MaxCitizenAmount)
                 {
-                    _inService[citizenId] = _description.ServiceTime;
+                    _inService[citizenId] = Description.ServiceTime;
                     return true;
                 }
 
-                if (WaitingQueue.Count < _description.MaxQueue)
+                if (WaitingQueue.Count < Description.MaxQueue)
                 {
                     WaitingQueue.Enqueue(citizenId);
                     return true;
@@ -66,12 +66,12 @@
                 foreach (var citizenId in finished)
                 {
                     _inService.Remove(citizenId);
-                    NeedService.RestoreNeed(citizenId, _description.ServiceResource);
+                    NeedService.RestoreNeed(citizenId, Description.ServiceResource);
 
                     if (WaitingQueue.Count > 0)
                     {
                         var nextCitizen = WaitingQueue.Dequeue();
-                        _inService[nextCitizen] = _description.ServiceTime;
+                        _inService[nextCitizen] = Description.ServiceTime;
                     }
                 }
             }
@@ -81,16 +81,17 @@
                 var dictionary = new Dictionary<string, object>(base.Serialize())
                 {
                     { "is_active", _isActive },
-                    { "in_service", _inService },
+                    { "in_service", _inService.ToJson() },
                     { "waiting_queue", WaitingQueue },
                 };
                 return dictionary;
             }
 
-            //TODO: Дописать десериализацию полей
             public override void Deserialize(Dictionary<string, object> data)
             {
                 _isActive = data.GetBool("is_active");
+                _inService = data.GetDictionary<int, long>("in_service");
+                WaitingQueue = data.GetQueue<int>("waiting_queue");
             }
         }
     }

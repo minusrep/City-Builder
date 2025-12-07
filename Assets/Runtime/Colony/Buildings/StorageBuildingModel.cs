@@ -8,25 +8,29 @@ namespace Runtime.Colony.Buildings
 {
     public class StorageBuildingModel : BuildingModel
     {
-        private readonly StorageBuildingDescription _description;
-        private readonly Dictionary<string, ResourceModel> _resources;
+        private StorageBuildingDescription Description { get; }
+        private Dictionary<string, ResourceModel> _resources = new();
+        private IResourceFactory ResourceFactory { get; }
 
         public StorageBuildingModel(int id,
             Vector2 position,
             StorageBuildingDescription description,
-            Dictionary<string, ResourceModel> resources) : base(id,
-            position,
-            description)
+            IResourceFactory resourceFactory) : base(id, position, description)
         {
-            _description = description;
-            _resources = resources;
+            ResourceFactory = resourceFactory;
+            Description = description;
+
+            foreach (var resourceId in Description.StoredResources)
+            {
+                _resources.Add(resourceId, resourceFactory.Create(resourceId));
+            }
         }
         
         public bool TryAddResource(string resourceKey, ResourceModel resourceModel)
         {
             if (_resources.TryGetValue(resourceKey, out var stored))
             {
-                if (stored.Amount + resourceModel.Amount <= _description.MaxResourceAmount)
+                if (stored.Amount + resourceModel.Amount <= Description.MaxResourceAmount)
                 {
                     stored.IncreaseAmount(resourceModel.Amount);
                     return true;
@@ -63,10 +67,17 @@ namespace Runtime.Colony.Buildings
             return dictionary;
         }
 
-        //TODO: Дописать десериализацию полей
         public override void Deserialize(Dictionary<string, object> data)
         {
+            _resources = new Dictionary<string, ResourceModel>();
+            var node = data.GetNode("resources");
             
+            foreach (var resource in node)
+            {
+                var resourceModel = ResourceFactory.Create(resource.Key);
+                resourceModel.Deserialize(node.GetNode(resource.Key));
+                _resources.Add(resource.Key, resourceModel);
+            }
         }
     }
 }

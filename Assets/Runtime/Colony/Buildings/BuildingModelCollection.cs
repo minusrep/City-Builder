@@ -1,6 +1,6 @@
-﻿using Runtime.Colony.ModelCollections;
-using Runtime.Descriptions.Buildings;
+﻿using Runtime.Descriptions.Buildings;
 using System.Collections.Generic;
+using Runtime.ModelCollections;
 using Runtime.Utilities;
 using UnityEngine;
 
@@ -30,8 +30,6 @@ namespace Runtime.Colony.Buildings
             var descriptionId = data.GetString("description");
             
             var description = _descriptions.Descriptions[descriptionId];
-
-            DescriptionKey = id;
 
             var building = _factory.Create(description.Type, GetCurrentId(id), position, description);
             

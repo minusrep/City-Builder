@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Runtime.Colony.ModelCollections
+namespace Runtime.ModelCollections
 {
     public interface IDeserializeModel
     {

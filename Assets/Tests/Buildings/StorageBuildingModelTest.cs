@@ -53,10 +53,22 @@ namespace Tests.Buildings
             return new StorageBuildingModel(
                 id: 1,
                 position: Vector2.zero,
-                description: _description,
-                _resources);
+                description: _description, new ResourceFactory(new ResourceDescriptionCollection(new Dictionary<string, object>
+                {
+                    { "wood", new ResourceDescription(new Dictionary<string, object>
+                    {
+                        { "type", "wood" },
+                        { "reduction_time", 0},
+                        { "reduction_amount", 0}
+                    })},
+                    { "iron", new ResourceDescription(new Dictionary<string, object>
+                    {
+                        { "type", "iron" },
+                        { "reduction_time", 0},
+                        { "reduction_amount", 0}
+                    })}
+                })));
         }
-
 
         [Test]
         public void TryAddResource_WhenEnoughCapacity_AddResource()

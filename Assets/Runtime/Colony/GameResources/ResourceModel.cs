@@ -1,7 +1,7 @@
 using Runtime.Descriptions.GameResources;
-using Runtime.Colony.ModelCollections;
 using System.Collections.Generic;
 using System;
+using Runtime.ModelCollections;
 using Runtime.Utilities;
 
 namespace Runtime.Colony.GameResources

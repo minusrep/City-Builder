@@ -52,7 +52,7 @@ namespace Runtime
             if (File.Exists(path))
             {
                 var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
-
+                
                 _buildings.Deserialize(data);
             }
         }
