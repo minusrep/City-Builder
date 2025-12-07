@@ -31,8 +31,6 @@ namespace Runtime.Colony.Buildings
             
             var description = _descriptions.Descriptions[descriptionId];
 
-            DescriptionKey = id;
-
             var building = _factory.Create(description.Type, GetCurrentId(id), position, description);
             
             building.Deserialize(data);

@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Runtime.Colony.ModelCollections;
 using Runtime.Descriptions.Buildings;
+using System.Collections.Generic;
 using Runtime.Utilities;
 using UnityEngine;
 
@@ -10,20 +10,20 @@ namespace Runtime.Colony.Buildings
     {
         protected int Id { get; }
         private Vector2 Position { get; set; }
-        public BuildingDescription Description { get; }
+        public BuildingDescription BaseDescription { get; }
 
-        protected BuildingModel(int id, Vector2 position, BuildingDescription description)
+        protected BuildingModel(int id, Vector2 position, BuildingDescription baseDescription)
         {
             Id = id;    
             Position = position;
-            Description = description;
+            BaseDescription = baseDescription;
         }
 
         public virtual Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>
             {
-                { "description", Description.Id },
+                { "description", BaseDescription.Id },
                 { "position", Position.ToList() }
             };
         }
