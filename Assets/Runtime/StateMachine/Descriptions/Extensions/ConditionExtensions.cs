@@ -12,6 +12,7 @@ namespace Runtime.StateMachine.Descriptions.Conditions
         private const string Or = "or";
         private const string And = "and";
         private const string Distance = "distance";
+        private const string Timer = "timer";
         
         public static ConditionDescription ToConditionDescription(this Dictionary<string, object> data)
         {
@@ -21,6 +22,8 @@ namespace Runtime.StateMachine.Descriptions.Conditions
                 FlagKey => CreateConditionDescription<FlagConditionDescription>(data),
                 Or => CreateConditionDescription<OrConditionDescription>(data),
                 And => CreateConditionDescription<AndConditionDescription>(data),
+                Distance => CreateConditionDescription<DistanceConditionDescription>(data),
+                Timer => CreateConditionDescription<TimerConditionDescription>(data),
                 _ =>  throw new NotImplementedException()
             };
         }

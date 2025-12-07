@@ -11,7 +11,7 @@
             {
                 "walk_back": {
                     "type": "timer",
-                    "name": "wait_time"
+                    "name": "wait"
                 }
             }
         ]
@@ -28,7 +28,7 @@
             {
                 "walk_forward": {
                     "type": "timer",
-                    "name": "wait_time"
+                    "name": "wait"
                 }
             }
         ]
