@@ -15,7 +15,7 @@ namespace Tests.Buildings
         [SetUp]
         public void Setup()
         {
-            _collection = new OrderModelCollection("", 5);
+            _collection = new OrderModelCollection(5);
         }
 
         [Test]

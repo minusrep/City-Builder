@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.ModelCollections;
+using Runtime.ModelCollections;
 
 namespace Runtime.StateMachine.Descriptions
 {

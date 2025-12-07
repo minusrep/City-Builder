@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Runtime.Colony.ModelCollections;
 using Runtime.Descriptions.Citizens;
+using Runtime.ModelCollections;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens

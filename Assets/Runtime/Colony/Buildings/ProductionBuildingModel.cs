@@ -1,9 +1,9 @@
 ﻿using Runtime.Descriptions.Buildings;
+using System.Collections.Generic;
 using Runtime.Colony.Orders;
+using Runtime.Utilities;
 using UnityEngine;
 using System;
-using System.Collections.Generic;
-using Runtime.Utilities;
 
 namespace Runtime.Colony.Buildings
 {
@@ -12,17 +12,16 @@ namespace Runtime.Colony.Buildings
         public bool IsActive { get; private set; }
         public int ProducedAmount { get; private set; }
 
+        private ProductionBuildingDescription Description { get; }
+        
         private OrderModelCollection _orders;
-
-        private readonly ProductionBuildingDescription _description;
-
         private long _completeProductionTime;
 
         public ProductionBuildingModel(int id,
             Vector2 position,
             ProductionBuildingDescription description, int producedAmount) : base(id, position, description)
         {
-            _description = description;
+            Description = description;
             ProducedAmount = producedAmount;
 
             IsActive = false;
@@ -35,7 +34,7 @@ namespace Runtime.Colony.Buildings
             if (!IsActive && CapacityLeft() > 0)
             {
                 IsActive = true;
-                _completeProductionTime = currentTime + _description.ProductionTime;
+                _completeProductionTime = currentTime + Description.ProductionTime;
             }
         }
 
@@ -49,7 +48,7 @@ namespace Runtime.Colony.Buildings
         {
             if (IsActive)
             {
-                var productionTime = _description.ProductionTime;
+                var productionTime = Description.ProductionTime;
 
                 if (productionTime <= 0)
                 {
@@ -100,7 +99,7 @@ namespace Runtime.Colony.Buildings
         {
             if (CapacityLeft() > 0)
             {
-                var canAdd = Math.Min(CapacityLeft(), _description.ProductionAmount);
+                var canAdd = Math.Min(CapacityLeft(), Description.ProductionAmount);
                 ProducedAmount += canAdd;
 
                 _orders.Create();
@@ -112,7 +111,7 @@ namespace Runtime.Colony.Buildings
 
         private int CapacityLeft()
         {
-            return _description.MaxResource - ProducedAmount;
+            return Description.MaxResource - ProducedAmount;
         }
     }
 }

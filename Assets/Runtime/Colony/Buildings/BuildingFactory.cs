@@ -2,7 +2,6 @@
 using Runtime.Colony.GameResources;
 using System.Collections.Generic;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.Orders;
 using UnityEngine;
 using System;
 
@@ -35,11 +34,8 @@ namespace Runtime.Colony.Buildings
             Register("storage", (id, position, description) =>
             {
                 var storageDescription = (StorageBuildingDescription)description;
-
-                var res = new Dictionary<string, ResourceModel>();
-                foreach (var r in storageDescription.StoredResources)
-                    res[r] = _resourceFactory.Create(r);
-                return new StorageBuildingModel(id, position, storageDescription, res);
+                
+                return new StorageBuildingModel(id, position, storageDescription, _resourceFactory);
             });
 
             Register("decor",

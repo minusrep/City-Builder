@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Runtime.Colony.ModelCollections
+namespace Runtime.ModelCollections
 {
     public abstract class ModelCollectionBase<TKey, TValue> : IModelCollection<TValue>
     {
@@ -10,22 +10,21 @@ namespace Runtime.Colony.ModelCollections
 
         public Dictionary<TKey, TValue> Models { get; } = new();
         
-        public void DeleteModel(TKey id)
+        public void Remove(TKey id)
         {
             var model = Models[id];
             Models.Remove(id);
             OnRemoved?.Invoke(model);
         }
 
-        public TValue FindModel(TKey id)
+        public TValue Get(TKey id)
         {
             return Models[id];
         }
-
-        protected abstract TValue CreateModelFromData(TKey id, Dictionary<string, object> data);
         
-        protected void InvokeOnCreateModel(TValue model)
+        protected void Add(TKey key, TValue model)
         {
+            Models.Add(key, model);
             OnAdded?.Invoke(model);
         }
     }
