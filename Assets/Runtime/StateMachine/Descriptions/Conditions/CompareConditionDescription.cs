@@ -27,8 +27,6 @@ namespace Runtime.StateMachine.Descriptions.Conditions
         public override bool Check(Dictionary<string, object> model)
         {
             var counterValue =  Convert.ToSingle(model[Counter]);
-
-            Debug.Log($"CounterValue: {counterValue}");
             
             return Operation switch
             {

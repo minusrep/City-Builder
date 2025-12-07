@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using fastJSON;
 using Runtime.StateMachine.Descriptions;
 using UnityEngine;
@@ -17,6 +19,8 @@ namespace Runtime.StateMachine
         private StateMachineView _stateMachineView;
         
         private StateDescriptionCollection _stateDescriptionCollection;
+        
+        private PointOfInterestDescriptionCollection _pointOfInterestDescriptionCollection;
 
         private TempModel _tempModel;
         
@@ -24,7 +28,7 @@ namespace Runtime.StateMachine
 
         [SerializeField] private float hungry;
         [SerializeField] private float energy;
-        
+        [SerializeField] private Vector2 position;
         
         private Vector2 scroll;
 
@@ -73,13 +77,19 @@ namespace Runtime.StateMachine
         
         private void Start()
         {
-            var file = File.ReadAllText("Assets/Resources/states_description.json");
+            var statesString = File.ReadAllText("Assets/Resources/states_description.json");
+            var pointString = File.ReadAllText("Assets/Resources/points_of_interest_description.json");
 
-            var json = JSON.ToObject<Dictionary<string, object>>(file);
+            var statesDictionary = JSON.ToObject<Dictionary<string, object>>(statesString);
+            var pointsDictionary = JSON.ToObject<Dictionary<string, object>>(pointString);
 
             _stateDescriptionCollection = new StateDescriptionCollection();
             
-            _stateDescriptionCollection.Deserialize(json);
+            _stateDescriptionCollection.Deserialize(statesDictionary);
+            
+            _pointOfInterestDescriptionCollection = new PointOfInterestDescriptionCollection();
+            
+            _pointOfInterestDescriptionCollection.Deserialize(pointsDictionary);
 
             _stateMachineModel = new StateMachineModel(_stateDescriptionCollection);
             
@@ -92,12 +102,43 @@ namespace Runtime.StateMachine
             _stateMachineSystem = new StateMachineSystem(_stateMachineModel, _tempModel);
 
             _updateService.OnUpdate += _stateMachineSystem.Update;
+            
+            _stateMachineModel.OnChange += OnChangeState;
+            
+            Debug.Log(_pointOfInterestDescriptionCollection.Get("p_0"));
+            Debug.Log(_pointOfInterestDescriptionCollection.Get("p_1"));
+            Debug.Log(_stateMachineModel.CurrentState.Actions.First().Type);
+            
+        }
+
+        private void OnChangeState()
+        {
+            foreach (var action in _stateMachineModel.CurrentState.Actions)
+            {
+                switch (action)
+                {
+                    case TimerActionDescription timerAction:
+                    {
+                        _tempModel.Stats[timerAction.Timer] = DateTimeOffset.UtcNow.AddSeconds(timerAction.Duration).ToUnixTimeSeconds();
+                        
+                        break;
+                    }
+
+                    case SetPointOfInterestActionDescription setPointOfInterest:
+                    {
+                        _tempModel.Stats["point_of_interest"] = _pointOfInterestDescriptionCollection.Get(setPointOfInterest.PointOfInterest);
+                        
+                        break;
+                    }
+                }
+            }
         }
 
         private void Update()
         {
             _tempModel.Stats["hungry"] = hungry;
             _tempModel.Stats["energy"] = energy;
+            _tempModel.Stats["position"] = position;
         }
     }
 
@@ -111,6 +152,8 @@ namespace Runtime.StateMachine
             {
                 {"hungry", 100},
                 {"energy", 50},
+                {"position", Vector2.zero},
+                {"point_of_interest", Vector2.zero}
             };
         }
     }
