@@ -7,7 +7,7 @@ namespace Runtime.Colony.ModelCollections
     {
         protected int Index { get; private set; }
 
-        protected string DescriptionKey;
+        protected string DescriptionKey { get; set; }
 
         public Dictionary<string, object> Serialize()
         {
@@ -31,7 +31,7 @@ namespace Runtime.Colony.ModelCollections
             {
                 var modelData = (Dictionary<string, object>)pair.Value;
                 var model = CreateModelFromData(pair.Key, modelData);
-                Models.Add(pair.Key, model);
+                Add(pair.Key, model);
                 Index++;
             }
         }
@@ -40,14 +40,14 @@ namespace Runtime.Colony.ModelCollections
         
         protected int GetCurrentId(string key)
         {
-            if (string.IsNullOrEmpty(DescriptionKey))
+            if (int.TryParse(key, out var id))
             {
-                return Convert.ToInt32(key);
+                return id;
             }
-            
-            return Convert.ToInt32(key.Split('_')[1]);
-        }
 
+            return int.Parse(key.Split('_')[1]);
+        }
+        
         protected string GetCurrentKey()
         {
             if (string.IsNullOrEmpty(DescriptionKey))
