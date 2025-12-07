@@ -1,4 +1,5 @@
-﻿using Runtime.Descriptions.Buildings;
+﻿using System.Collections.Generic;
+using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings
@@ -10,6 +11,10 @@ namespace Runtime.Colony.Buildings
             DecorBuildingDescription description) : base(id,
             position,
             description)
+        {
+        }
+
+        public override void Deserialize(Dictionary<string, object> data)
         {
         }
     }

@@ -10,46 +10,45 @@ namespace Runtime.Colony.Buildings
 {
     public sealed class BuildingFactory
     {
-        private readonly Dictionary<string, Func<int, Vector2, BuildingDescription, BuildingModel>> _constructors 
+        private readonly Dictionary<string, Func<int, Vector2, BuildingDescription, BuildingModel>> _constructors
             = new();
-        private readonly IOrderManager _orderManager;
+
         private readonly ICitizenNeedService _needService;
         private readonly IResourceFactory _resourceFactory;
 
-        public BuildingFactory(IOrderManager orderManager, ICitizenNeedService needService, IResourceFactory resourceFactory)
+        public BuildingFactory(ICitizenNeedService needService, IResourceFactory resourceFactory)
         {
-            _orderManager = orderManager;
             _needService = needService;
             _resourceFactory = resourceFactory;
         }
-        
+
         public void RegisterAll()
         {
             Register("production",
                 (id, position, description) => new ProductionBuildingModel(id, position,
-                    (ProductionBuildingDescription)description, _orderManager, 0));
-            
+                    (ProductionBuildingDescription)description, 0));
+
             Register("service",
                 (id, position, description) =>
                     new ServiceBuildingModel(id, position, (ServiceBuildingDescription)description, _needService));
-            
-            Register("storage", (id, position, description) =>
-                {
-                    var storageDescription = (StorageBuildingDescription)description;
 
-                    var res = new Dictionary<string, ResourceModel>();
-                    foreach (var r in storageDescription.StoredResources)
-                        res[r] = _resourceFactory.Create(r);
-                    return new StorageBuildingModel(id, position, storageDescription, res);
-                });
-            
+            Register("storage", (id, position, description) =>
+            {
+                var storageDescription = (StorageBuildingDescription)description;
+
+                var res = new Dictionary<string, ResourceModel>();
+                foreach (var r in storageDescription.StoredResources)
+                    res[r] = _resourceFactory.Create(r);
+                return new StorageBuildingModel(id, position, storageDescription, res);
+            });
+
             Register("decor",
                 (id, position, description) =>
                     new DecorBuildingModel(id, position, (DecorBuildingDescription)description));
         }
-        
-        private void Register<T>(string type, 
-            Func<int, Vector2, BuildingDescription, T> ctor) 
+
+        private void Register<T>(string type,
+            Func<int, Vector2, BuildingDescription, T> ctor)
             where T : BuildingModel
         {
             _constructors[type] = ctor;

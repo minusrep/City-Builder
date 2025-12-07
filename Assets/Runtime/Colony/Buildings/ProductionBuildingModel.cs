@@ -3,6 +3,7 @@ using Runtime.Colony.Orders;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Runtime.Utilities;
 
 namespace Runtime.Colony.Buildings
 {
@@ -10,24 +11,25 @@ namespace Runtime.Colony.Buildings
     {
         public bool IsActive { get; private set; }
         public int ProducedAmount { get; private set; }
-        private IOrderManager Orders { get; }
-        
+
+        private OrderModelCollection _orders;
+
         private readonly ProductionBuildingDescription _description;
 
         private long _completeProductionTime;
 
         public ProductionBuildingModel(int id,
             Vector2 position,
-            ProductionBuildingDescription description,
-            IOrderManager orders, int producedAmount) : base(id, position, description)
+            ProductionBuildingDescription description, int producedAmount) : base(id, position, description)
         {
             _description = description;
-            Orders = orders;
             ProducedAmount = producedAmount;
 
             IsActive = false;
+
+            _orders = new OrderModelCollection(id);
         }
-        
+
         public void StartProduction(long currentTime)
         {
             if (!IsActive && CapacityLeft() > 0)
@@ -42,7 +44,7 @@ namespace Runtime.Colony.Buildings
             IsActive = false;
             _completeProductionTime = 0;
         }
-        
+
         public void Update(long currentTime)
         {
             if (IsActive)
@@ -55,7 +57,7 @@ namespace Runtime.Colony.Buildings
                     StopProduction();
                     return;
                 }
-                
+
                 while (currentTime >= _completeProductionTime)
                 {
                     if (ProduceOnceAndQueue())
@@ -77,9 +79,21 @@ namespace Runtime.Colony.Buildings
             {
                 { "is_active", IsActive },
                 { "produced_amount", ProducedAmount },
-                { "complete_production_time", _completeProductionTime }
+                { "complete_production_time", _completeProductionTime },
+                { "orders", _orders.Serialize() }
             };
+
             return dictionary;
+        }
+
+        public override void Deserialize(Dictionary<string, object> data)
+        {
+            IsActive = data.GetBool("is_active");
+            ProducedAmount = data.GetInt("produced_amount");
+            _completeProductionTime = data.GetLong("complete_production_time");
+            
+            _orders = new OrderModelCollection(Id);
+            _orders.Deserialize(data.GetNode("orders"));
         }
 
         private bool ProduceOnceAndQueue()
@@ -89,17 +103,13 @@ namespace Runtime.Colony.Buildings
                 var canAdd = Math.Min(CapacityLeft(), _description.ProductionAmount);
                 ProducedAmount += canAdd;
 
-                CreateDeliveryOrder();
+                _orders.Create();
                 return true;
             }
 
             return false;
         }
 
-        private void CreateDeliveryOrder()
-        {
-        }
-        
         private int CapacityLeft()
         {
             return _description.MaxResource - ProducedAmount;
