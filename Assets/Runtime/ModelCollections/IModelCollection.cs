@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Runtime.Colony.ModelCollections
+namespace Runtime.ModelCollections
 {
     public interface IModelCollection<out T>
     {

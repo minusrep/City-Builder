@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Runtime.Colony.ModelCollections
+namespace Runtime.ModelCollections
 {
     public abstract class ModelCollectionBase<TKey, TValue> : IModelCollection<TValue>
     {

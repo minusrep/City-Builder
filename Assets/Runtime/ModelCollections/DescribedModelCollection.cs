@@ -1,4 +1,4 @@
-﻿namespace Runtime.Colony.ModelCollections
+﻿namespace Runtime.ModelCollections
 {
     public abstract class DescribedModelCollection<T> : SerializeModelCollection<T>
         where T : ISerializeModel

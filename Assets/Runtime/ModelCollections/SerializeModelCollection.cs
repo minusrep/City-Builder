@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Runtime.Utilities;
 
-namespace Runtime.Colony.ModelCollections
+namespace Runtime.ModelCollections
 {
     public abstract class SerializeModelCollection<T> : ModelCollectionBase<string, T> where T : ISerializeModel 
     {
