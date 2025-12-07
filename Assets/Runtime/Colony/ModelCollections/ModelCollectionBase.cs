@@ -10,14 +10,14 @@ namespace Runtime.Colony.ModelCollections
 
         public Dictionary<TKey, TValue> Models { get; } = new();
         
-        public void DeleteModel(TKey id)
+        public void Remove(TKey id)
         {
             var model = Models[id];
             Models.Remove(id);
             OnRemoved?.Invoke(model);
         }
 
-        public TValue FindModel(TKey id)
+        public TValue Get(TKey id)
         {
             return Models[id];
         }
