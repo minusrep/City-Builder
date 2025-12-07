@@ -21,11 +21,10 @@ namespace Runtime.Colony.ModelCollections
         {
             return Models[id];
         }
-
-        protected abstract TValue CreateModelFromData(TKey id, Dictionary<string, object> data);
         
-        protected void InvokeOnCreateModel(TValue model)
+        protected void Add(TKey key, TValue model)
         {
+            Models.Add(key, model);
             OnAdded?.Invoke(model);
         }
     }

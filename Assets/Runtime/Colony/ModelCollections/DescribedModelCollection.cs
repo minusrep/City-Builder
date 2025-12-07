@@ -3,15 +3,13 @@
     public abstract class DescribedModelCollection<T> : SerializeModelCollection<T>
         where T : ISerializeModel
     {
-        
         public void Create(string descriptionKey)
         {
             DescriptionKey = descriptionKey;
             var model = CreateModel(descriptionKey);
-            Models.Add(GetCurrentKey(), model);
-            InvokeOnCreateModel(model);
+            Add(GetCurrentKey(), model);
         }
-
+        
         protected abstract T CreateModel(string descriptionKey);
     }
 }

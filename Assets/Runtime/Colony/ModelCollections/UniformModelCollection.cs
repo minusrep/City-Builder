@@ -10,8 +10,7 @@
         public void Create()
         {
             var model = CreateModel();
-            Models.Add(GetCurrentKey(), model);
-            InvokeOnCreateModel(model);
+            Add(GetCurrentKey(), model);
         }
 
         protected abstract T CreateModel();

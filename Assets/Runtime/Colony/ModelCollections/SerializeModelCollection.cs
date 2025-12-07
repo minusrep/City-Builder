@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Runtime.Utilities;
-using System;
 
 namespace Runtime.Colony.ModelCollections
 {
@@ -37,7 +36,7 @@ namespace Runtime.Colony.ModelCollections
             }
         }
 
-        protected abstract override T CreateModelFromData(string id, Dictionary<string, object> data);
+        protected abstract T CreateModelFromData(string id, Dictionary<string, object> data);
         
         protected int GetCurrentId(string key)
         {
