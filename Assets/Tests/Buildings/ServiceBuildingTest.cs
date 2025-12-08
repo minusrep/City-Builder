@@ -2,6 +2,7 @@
 using Runtime.Descriptions.Buildings;
 using Runtime.Colony.Buildings;
 using NUnit.Framework;
+using Runtime.Colony.Buildings.Models;
 using UnityEngine;
 
 namespace Tests.Buildings
@@ -28,7 +29,7 @@ namespace Tests.Buildings
         private ServiceBuildingModel CreateModel()
         {
             return new ServiceBuildingModel(
-                id: 1,
+                id: "warehouse_0",
                 position: Vector2.zero,
                 description: _description,
                 needService: new CitizenNeedServiceMock());

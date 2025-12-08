@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Runtime.Colony.ModelCollections;
+using Runtime.ModelCollections;
 using UnityEngine;
+using System;
 
 namespace Runtime.StateMachine.Descriptions
 {

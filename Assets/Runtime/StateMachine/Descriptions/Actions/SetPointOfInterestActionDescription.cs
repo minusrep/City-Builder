@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Runtime.StateMachine.Descriptions
+namespace Runtime.StateMachine.Descriptions.Actions
 {
     public class SetPointOfInterestActionDescription : ActionDescription
     {

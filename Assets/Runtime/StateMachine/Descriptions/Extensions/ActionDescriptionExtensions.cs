@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Runtime.StateMachine.Descriptions.Actions;
 
-namespace Runtime.StateMachine.Descriptions
+namespace Runtime.StateMachine.Descriptions.Extensions
 {
     public static class ActionDescriptionExtensions
     {
