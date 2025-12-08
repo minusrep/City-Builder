@@ -54,6 +54,11 @@ namespace Runtime.Colony.Buildings.Models
             return false;
         }
 
+        public int GetAmount(string resourceKey)
+        {
+            return _resources[resourceKey].Amount;
+        }
+
         public override Dictionary<string, object> Serialize()
         {
             var dictionary = new Dictionary<string, object>(base.Serialize());
