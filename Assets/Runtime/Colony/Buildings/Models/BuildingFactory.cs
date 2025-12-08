@@ -1,15 +1,15 @@
-﻿using Runtime.Descriptions.Buildings;
-using Runtime.Colony.GameResources;
+﻿using System;
 using System.Collections.Generic;
 using Runtime.Colony.Citizens;
+using Runtime.Colony.GameResources;
+using Runtime.Descriptions.Buildings;
 using UnityEngine;
-using System;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Models
 {
     public sealed class BuildingFactory
     {
-        private readonly Dictionary<string, Func<int, Vector2, BuildingDescription, BuildingModel>> _constructors
+        private readonly Dictionary<string, Func<string, Vector2, BuildingDescription, BuildingModel>> _constructors
             = new();
 
         private readonly ICitizenNeedService _needService;
@@ -44,13 +44,13 @@ namespace Runtime.Colony.Buildings
         }
 
         private void Register<T>(string type,
-            Func<int, Vector2, BuildingDescription, T> ctor)
+            Func<string, Vector2, BuildingDescription, T> ctor)
             where T : BuildingModel
         {
             _constructors[type] = ctor;
         }
 
-        public BuildingModel Create(string type, int id, Vector2 pos, BuildingDescription desc)
+        public BuildingModel Create(string type, string id, Vector2 pos, BuildingDescription desc)
         {
             return _constructors[type](id, pos, desc);
         }

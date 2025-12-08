@@ -7,9 +7,9 @@ namespace Runtime.Colony.Orders
     public class OrderModel : ISerializeModel, IDeserializeModel
     {
         public int Id { get; set; }
-        public int FromBuildingId { get; }
+        public string FromBuildingId { get; }
 
-        public OrderModel(int id, int fromBuildingId)
+        public OrderModel(int id, string fromBuildingId)
         {
             Id = id;
             FromBuildingId = fromBuildingId;

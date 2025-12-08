@@ -1,10 +1,10 @@
-﻿using Runtime.Descriptions.Buildings;
+﻿using System.Collections.Generic;
 using Runtime.Colony.GameResources;
-using System.Collections.Generic;
+using Runtime.Descriptions.Buildings;
 using Runtime.Utilities;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Models
 {
     public class StorageBuildingModel : BuildingModel
     {
@@ -12,7 +12,7 @@ namespace Runtime.Colony.Buildings
         private Dictionary<string, ResourceModel> _resources = new();
         private IResourceFactory ResourceFactory { get; }
 
-        public StorageBuildingModel(int id,
+        public StorageBuildingModel(string id,
             Vector2 position,
             StorageBuildingDescription description,
             IResourceFactory resourceFactory) : base(id, position, description)

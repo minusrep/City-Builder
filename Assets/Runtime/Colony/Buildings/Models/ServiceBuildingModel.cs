@@ -1,10 +1,10 @@
-﻿    using Runtime.Descriptions.Buildings;
-    using System.Collections.Generic;
-    using Runtime.Colony.Citizens;
-    using Runtime.Utilities;
-    using UnityEngine;
+﻿using System.Collections.Generic;
+using Runtime.Colony.Citizens;
+using Runtime.Descriptions.Buildings;
+using Runtime.Utilities;
+using UnityEngine;
 
-    namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Models
     {
         public class ServiceBuildingModel : BuildingModel
         {
@@ -17,7 +17,7 @@
             
             private bool _isActive;
             
-            public ServiceBuildingModel(int id,
+            public ServiceBuildingModel(string id,
                 Vector2 position,
                 ServiceBuildingDescription description,
                 ICitizenNeedService needService) : base(id,

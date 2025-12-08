@@ -1,10 +1,10 @@
-﻿using Runtime.Descriptions.Buildings;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Runtime.Descriptions.Buildings;
 using Runtime.ModelCollections;
 using Runtime.Utilities;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Models
 {
     public sealed class BuildingModelCollection : DescribedModelCollection<BuildingModel>
     {
@@ -20,7 +20,7 @@ namespace Runtime.Colony.Buildings
         protected override BuildingModel CreateModel(string descriptionKey)
         {
             var description = _descriptions.Descriptions[descriptionKey];
-            return _factory.Create(description.Type, Index, Vector2.zero, description);
+            return _factory.Create(description.Type, GetCurrentKey(), Vector2.zero, description);
         }
 
         protected override BuildingModel CreateModelFromData(string id, Dictionary<string, object> data)
@@ -31,7 +31,7 @@ namespace Runtime.Colony.Buildings
             
             var description = _descriptions.Descriptions[descriptionId];
 
-            var building = _factory.Create(description.Type, GetCurrentId(id), position, description);
+            var building = _factory.Create(description.Type, GetCurrentKey(), position, description);
             
             building.Deserialize(data);
             

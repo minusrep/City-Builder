@@ -2,11 +2,11 @@
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Models
 {
     public class DecorBuildingModel : BuildingModel
     {
-        public DecorBuildingModel(int id,
+        public DecorBuildingModel(string id,
             Vector2 position,
             DecorBuildingDescription baseDescription) : base(id,
             position,

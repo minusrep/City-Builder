@@ -1,18 +1,18 @@
-using Runtime.Descriptions.Buildings;
 using System.Collections.Generic;
+using Runtime.Descriptions.Buildings;
 using Runtime.ModelCollections;
 using Runtime.Utilities;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Models
 {
     public abstract class BuildingModel : ISerializeModel, IDeserializeModel
     {
-        protected int Id { get; }
-        private Vector2 Position { get; set; }
+        public string Id { get; }
+        public Vector2 Position { get; set; }
         public BuildingDescription BaseDescription { get; }
 
-        protected BuildingModel(int id, Vector2 position, BuildingDescription baseDescription)
+        protected BuildingModel(string id, Vector2 position, BuildingDescription baseDescription)
         {
             Id = id;    
             Position = position;

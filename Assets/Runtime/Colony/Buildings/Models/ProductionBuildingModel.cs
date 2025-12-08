@@ -1,11 +1,11 @@
-﻿using Runtime.Descriptions.Buildings;
+﻿using System;
 using System.Collections.Generic;
 using Runtime.Colony.Orders;
+using Runtime.Descriptions.Buildings;
 using Runtime.Utilities;
 using UnityEngine;
-using System;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Models
 {
     public class ProductionBuildingModel : BuildingModel
     {
@@ -17,7 +17,7 @@ namespace Runtime.Colony.Buildings
         private OrderModelCollection _orders;
         private long _completeProductionTime;
 
-        public ProductionBuildingModel(int id,
+        public ProductionBuildingModel(string id,
             Vector2 position,
             ProductionBuildingDescription description, int producedAmount) : base(id, position, description)
         {
