@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.StateMachine.Descriptions.Extensions;
 
 namespace Runtime.StateMachine.Descriptions.Conditions
 {

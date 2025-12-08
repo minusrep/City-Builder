@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Runtime.Colony.ModelCollections;
+using Runtime.ModelCollections;
 
-namespace Runtime.StateMachine.Descriptions
+namespace Runtime.StateMachine.Descriptions.Actions
 {
     public abstract class ActionDescription :  IDeserializeModel
     {

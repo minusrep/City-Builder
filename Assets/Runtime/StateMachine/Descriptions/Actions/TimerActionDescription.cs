@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Runtime.StateMachine.Descriptions
+namespace Runtime.StateMachine.Descriptions.Actions
 {
     public class TimerActionDescription : ActionDescription
     {
