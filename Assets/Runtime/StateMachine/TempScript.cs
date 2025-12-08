@@ -13,11 +13,7 @@ namespace Runtime.StateMachine
     {
         private StateMachineModel _stateMachineModel;
 
-        private StateMachinePresenter _stateMachinePresenter;
-        
         private StateMachineSystem _stateMachineSystem;
-        
-        private StateMachineView _stateMachineView;
         
         private StateDescriptionCollection _stateDescriptionCollection;
         
@@ -94,10 +90,6 @@ namespace Runtime.StateMachine
 
             _stateMachineModel = new StateMachineModel(_stateDescriptionCollection);
             
-            _stateMachineView =  new StateMachineView();
-            
-            _stateMachinePresenter = new StateMachinePresenter(_stateMachineModel, _stateMachineView);
-
             _tempModel = new TempModel();
             
             _stateMachineSystem = new StateMachineSystem(_stateMachineModel, _tempModel);
