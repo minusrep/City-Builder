@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.ModelCollections;
+using Runtime.ModelCollections;
 using UnityEngine;
 
 namespace Runtime.StateMachine.Descriptions
