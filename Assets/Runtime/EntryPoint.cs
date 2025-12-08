@@ -1,7 +1,9 @@
-﻿using Runtime.Descriptions.Buildings;
+﻿using Runtime.Colony.Buildings.Presenters;
+using Runtime.ViewDescriptions.Buildings;
+using Runtime.Colony.Buildings.Models;
+using Runtime.Descriptions.Buildings;
 using Runtime.Colony.GameResources;
 using System.Collections.Generic;
-using Runtime.Colony.Buildings;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using UnityEngine;
@@ -12,6 +14,9 @@ namespace Runtime
 {
     public sealed class EntryPoint : MonoBehaviour
     {
+        [SerializeField] private BuildingViewDescriptionCollection _viewDescriptionCollection;
+        [SerializeField] private Transform _buildingRootTransform;
+        
         private Descriptions.Descriptions _descriptions;
 
         private ResourceFactory _resourceFactory;
@@ -19,6 +24,8 @@ namespace Runtime
 
         private BuildingModelCollection _buildings;
         private CitizenModelCollection _citizens;
+        
+        private BuildingCollectionPresenter _buildingCollectionPresenter;
 
         private void Start()
         {
@@ -29,6 +36,10 @@ namespace Runtime
             InitializeBuildings();
 
             InitializeCitizens();
+
+            _viewDescriptionCollection.Initialize();
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingRootTransform);
+            _buildingCollectionPresenter.Enable();
         }
 
         private void InitializeCitizens()
