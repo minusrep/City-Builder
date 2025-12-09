@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Runtime.Colony;
+using Runtime.Core;
 using Runtime.ModelCollections;
 
 namespace Runtime.StateMachine.Descriptions.Conditions
@@ -13,6 +15,6 @@ namespace Runtime.StateMachine.Descriptions.Conditions
             Type = data[TypeKey] as string;
         }
         
-        public abstract bool Check(Dictionary<string, object> model);
+        public abstract bool Check(World world, IUserConditionModel user);
     }
 }

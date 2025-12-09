@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony;
+using Runtime.Core;
 using UnityEngine;
 
 namespace Runtime.StateMachine.Descriptions.Conditions
@@ -22,11 +24,13 @@ namespace Runtime.StateMachine.Descriptions.Conditions
             PointOfInterest = Convert.ToString(data[PointOfInterestKey]);
         }
 
-        public override bool Check(Dictionary<string, object> model)
+        public override bool Check(World world, IUserConditionModel user)
         {
-            var to = model[PointOfInterestKey] as Vector2? ?? default;
+            if (user is not IMovementModel movementModel) return false;
+            
+            var to = movementModel.PointOfInterest;
 
-            var from = model[PositionKey] as Vector2? ?? default;
+            var from = movementModel.Position;
             
             return Vector2.Distance(from, to) <= _distance;
         }

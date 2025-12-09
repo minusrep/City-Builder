@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony;
+using Runtime.Core;
 using UnityEngine;
 
 namespace Runtime.StateMachine.Descriptions.Conditions
@@ -33,9 +35,11 @@ namespace Runtime.StateMachine.Descriptions.Conditions
 
         private float Value { get; set; }
 
-        public override bool Check(Dictionary<string, object> model)
+        public override bool Check(World world, IUserConditionModel user)
         {
-            var counterValue =  Convert.ToSingle(model[Counter]);
+            if (user is not IStatsModel statsModel) return false;
+            
+            var counterValue =  Convert.ToSingle(statsModel.Stats[Counter]);
             
             return Operation switch
             {

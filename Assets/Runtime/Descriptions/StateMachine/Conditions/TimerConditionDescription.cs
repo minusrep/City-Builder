@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony;
+using Runtime.Core;
 
 namespace Runtime.StateMachine.Descriptions.Conditions
 {
@@ -14,11 +16,11 @@ namespace Runtime.StateMachine.Descriptions.Conditions
             Name = data[NameKey] as string;
         }
 
-        public override bool Check(Dictionary<string, object> model)
+        public override bool Check(World world, IUserConditionModel user)
         {
-            if (!model.ContainsKey(NameKey)) return true;
+            if (user is not ITimerModel timerModel) return true;
 
-            var endUnixSeconds = Convert.ToInt64(model[Name]);
+            var endUnixSeconds = timerModel.Timers[Name];
 
             return DateTimeOffset.UtcNow.ToUnixTimeSeconds() >= (long)endUnixSeconds;
         }
