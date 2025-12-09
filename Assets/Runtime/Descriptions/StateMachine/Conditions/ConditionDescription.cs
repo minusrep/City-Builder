@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Runtime.Colony;
 using Runtime.Core;
 using Runtime.ModelCollections;
+using Runtime.Utilities;
 
 namespace Runtime.StateMachine.Descriptions.Conditions
 {
@@ -12,7 +13,7 @@ namespace Runtime.StateMachine.Descriptions.Conditions
 
         protected ConditionDescription(Dictionary<string, object> data)
         {
-            Type = data[TypeKey] as string;
+            Type = data.GetString(TypeKey);
         }
         
         public abstract bool Check(World world, IUserConditionModel user);
