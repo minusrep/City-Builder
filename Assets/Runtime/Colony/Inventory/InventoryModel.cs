@@ -47,12 +47,12 @@ namespace Runtime.Colony.Inventory
                 if (cell.Item != null && IsSameItem(cell.Item, item))
                 {
                     var free = item.MaxAmount - cell.Amount;
-                    
+
                     if (free > 0)
                     {
                         targets.Add((cell, free));
                         remaining -= Math.Min(free, remaining);
-                        
+
                         if (remaining <= 0)
                         {
                             return true;
@@ -83,17 +83,23 @@ namespace Runtime.Colony.Inventory
         {
             var remaining = amount;
 
-            foreach (var cell in Cells)
+            for (var i = Cells.Count - 1; i >= 0; i--)
             {
-                if (IsSameItem(cell.Item, item))
-                {
-                    var toTake = Math.Min(cell.Amount, remaining);
-                    cell.TryReduce(toTake);
-                    remaining -= toTake;
+                var cell = Cells[i];
 
-                    if (remaining == 0)
+                if (cell.Item != null && IsSameItem(cell.Item, item))
+                {
+                    var toRemove = Math.Min(cell.Amount, remaining);
+
+                    if (toRemove > 0)
                     {
-                        return true;
+                        cell.TryReduce(toRemove);
+                        remaining -= toRemove;
+
+                        if (remaining == 0)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
