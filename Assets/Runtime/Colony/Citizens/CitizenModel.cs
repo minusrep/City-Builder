@@ -9,7 +9,7 @@ namespace Runtime.Colony.Citizens
         public int Id { get; set; }
         public CitizensDescription Description { get; }
 
-        public Vector2 PointOfInterest { get; private set; }
+        public Vector2 PointOfInterest { get; set; }
 
         public Vector2 Position { get; set; }
 

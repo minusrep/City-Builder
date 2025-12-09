@@ -5,7 +5,7 @@ namespace Runtime.Colony.Citizens
 {
     public interface ICitizenModel : 
         ITimerModel, IFlagsModel, IMovementModel, IStatsModel, 
-        IConditionModel, ISerializeModel, IDeserializeModel
+        IUserConditionModel, ISerializeModel, IDeserializeModel
     {
         
     }

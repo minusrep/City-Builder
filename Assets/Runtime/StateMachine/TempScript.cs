@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using fastJSON;
+using Runtime.Colony;
+using Runtime.Colony.Citizens;
 using Runtime.StateMachine.Descriptions;
 using UnityEngine;
 
@@ -10,6 +12,8 @@ namespace Runtime.StateMachine
 {
     public class TempScript : MonoBehaviour
     {
+        private World _world;
+        
         private StateMachineModel _stateMachineModel;
 
         private StateMachineSystem _stateMachineSystem;
@@ -18,7 +22,7 @@ namespace Runtime.StateMachine
         
         private PointOfInterestDescriptionCollection _pointOfInterestDescriptionCollection;
 
-        private TempModel _tempModel;
+        private CitizenModel _citizenModel;
         
         [SerializeField] private UpdateService _updateService;
 
@@ -42,7 +46,7 @@ namespace Runtime.StateMachine
             scroll = GUILayout.BeginScrollView(scroll, GUILayout.Width(500), GUILayout.Height(Screen.height - 20));
 
             GUILayout.Label("Stats:", labelStyle);
-            foreach (var s in _tempModel.Stats)
+            foreach (var s in _citizenModel.Stats)
                 GUILayout.Label(s.Key + ": " + s.Value, labelStyle);
 
             GUILayout.Space(15);
@@ -89,9 +93,7 @@ namespace Runtime.StateMachine
 
             _stateMachineModel = new StateMachineModel(_stateDescriptionCollection);
             
-            _tempModel = new TempModel();
-            
-            _stateMachineSystem = new StateMachineSystem(_stateMachineModel, _tempModel);
+            _stateMachineSystem = new StateMachineSystem(_stateMachineModel, _world, _citizenModel);
 
             _updateService.OnUpdate += _stateMachineSystem.Update;
             
@@ -111,14 +113,14 @@ namespace Runtime.StateMachine
                 {
                     case TimerActionDescription timerAction:
                     {
-                        _tempModel.Stats[timerAction.Timer] = DateTimeOffset.UtcNow.AddSeconds(timerAction.Duration).ToUnixTimeSeconds();
+                        _citizenModel.Stats[timerAction.Timer] = DateTimeOffset.UtcNow.AddSeconds(timerAction.Duration).ToUnixTimeSeconds();
                         
                         break;
                     }
 
                     case SetPointOfInterestActionDescription setPointOfInterest:
                     {
-                        _tempModel.Stats["point_of_interest"] = _pointOfInterestDescriptionCollection.Get(setPointOfInterest.PointOfInterest);
+                        _citizenModel.PointOfInterest = _pointOfInterestDescriptionCollection.Get(setPointOfInterest.PointOfInterest);
                         
                         break;
                     }
@@ -128,25 +130,9 @@ namespace Runtime.StateMachine
 
         private void Update()
         {
-            _tempModel.Stats["hungry"] = hungry;
-            _tempModel.Stats["energy"] = energy;
-            _tempModel.Stats["position"] = position;
-        }
-    }
-
-    public class TempModel : ISystemModel
-    {
-        public Dictionary<string, object> Stats { get; }
-
-        public TempModel()
-        {
-            Stats = new Dictionary<string, object>()
-            {
-                {"hungry", 100},
-                {"energy", 50},
-                {"position", Vector2.zero},
-                {"point_of_interest", Vector2.zero}
-            };
+            _citizenModel.Stats["hungry"] = hungry;
+            _citizenModel.Stats["energy"] = energy;
+            _citizenModel.Position = position;
         }
     }
 }

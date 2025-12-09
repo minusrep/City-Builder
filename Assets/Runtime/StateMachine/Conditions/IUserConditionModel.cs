@@ -1,6 +1,6 @@
 namespace Runtime.Core
 {
-    public interface IConditionModel
+    public interface IUserConditionModel
     {
         
     }

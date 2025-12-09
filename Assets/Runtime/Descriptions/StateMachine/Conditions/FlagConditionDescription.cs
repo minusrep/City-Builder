@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony;
+using Runtime.Core;
 
 namespace Runtime.StateMachine.Descriptions.Conditions
 {
@@ -19,11 +21,11 @@ namespace Runtime.StateMachine.Descriptions.Conditions
             Value = Convert.ToBoolean(data[ValueKey]);
         }
 
-        public override bool Check(Dictionary<string, object> model)
+        public override bool Check(World world, IUserConditionModel user)
         {
-            var statusValue = Convert.ToBoolean(model[Flag]);
+            if (user is not IFlagsModel flagsModel) return false;
             
-            return statusValue == Value;
+            return flagsModel.Flags[Flag] == Value;
         }
     }
 }
