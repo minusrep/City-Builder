@@ -2,12 +2,25 @@ using System;
 using System.Collections.Generic;
 using Runtime.Descriptions.Citizens;
 using Runtime.StateMachine;
+using Runtime.Utilities;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens
 {
     public class CitizenModel : ICitizenModel
     {
+        private const string NameKey = "name";
+        
+        private const string PositionKey = "position";
+        
+        private const string PointOfInterestKey = "point_of_interest";
+        
+        private const string FlagsKey = "flags";
+        
+        private const string StatsKey = "stats";
+        
+        private const string TimerKey = "timers";
+        
         public event Action OnChangePointOfInterest;
         
         public int Id { get; set; }
@@ -27,11 +40,11 @@ namespace Runtime.Colony.Citizens
 
         public Vector3 PointOfInterest { get; set; }
         
-        public Dictionary<string, long> Timers { get; }
-        
-        public Dictionary<string, bool> Flags { get; }
-        
-        public Dictionary<string, float> Stats { get; }
+        public Dictionary<string, long> Timers { get; private set; }
+
+        public Dictionary<string, bool> Flags { get; private set; }
+
+        public Dictionary<string, float> Stats { get; private set; }
 
         public StateMachineModel StateMachine { get; }        
         
@@ -54,18 +67,28 @@ namespace Runtime.Colony.Citizens
             StateMachine = stateMachine;
         }
 
-        public Dictionary<string, object> Serialize() =>
-            new()
+        public Dictionary<string, object> Serialize()
+        {
+            return new Dictionary<string, object>()
             {
-                { "position", new[] { Position.x, Position.y } },
-                { "name", Name }
+                { NameKey, Name },
+                { PositionKey, Position.ToList() },
+                { PointOfInterestKey, PointOfInterest.ToList() },
+                { FlagsKey, Flags },
+                { StatsKey, Stats },
+                { TimerKey, Timers }
             };
+        }
 
 
         public void Deserialize(Dictionary<string, object> data)
         {
-            Name = (string)data["name"];
-            Position = (Vector2)data["position"];
+            Name = data.GetString(NameKey);
+            Position = data.GetVector3(PositionKey);
+            PointOfInterest = data.GetVector3(PointOfInterestKey);
+            Flags = data.GetDictionary<string, bool>(FlagsKey);
+            Stats = data.GetDictionary<string, float>(StatsKey);
+            Timers = data.GetDictionary<string, long>(TimerKey);
         }
     }
 }
