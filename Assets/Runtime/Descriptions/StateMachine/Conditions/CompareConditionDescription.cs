@@ -18,6 +18,15 @@ namespace Runtime.StateMachine.Descriptions.Conditions
         
         private const string ValueKey = "value";
 
+        public CompareConditionDescription(Dictionary<string, object> data) : base(data)
+        {
+            Counter = data[CounterKey] as string;
+            
+            Operation = data[OperationKey] as string;
+
+            Value = Convert.ToSingle(data[ValueKey]);
+        }
+
         private string Counter { get; set; }
 
         private string Operation { get; set; }
@@ -35,17 +44,6 @@ namespace Runtime.StateMachine.Descriptions.Conditions
                 LesserOperationKey => counterValue < Value,
                 _ => false
             };
-        }
-
-        public override void Deserialize(Dictionary<string, object> data)
-        {
-            base.Deserialize(data);
-
-            Counter = data[CounterKey] as string;
-            
-            Operation = data[OperationKey] as string;
-
-            Value = Convert.ToSingle(data[ValueKey]);
         }
     }
 }

@@ -18,23 +18,14 @@ namespace Runtime.StateMachine.Descriptions.Conditions
         {
             return data[TypeKey] switch
             {
-                CompareKey => CreateConditionDescription<CompareConditionDescription>(data),
-                FlagKey => CreateConditionDescription<FlagConditionDescription>(data),
-                Or => CreateConditionDescription<OrConditionDescription>(data),
-                And => CreateConditionDescription<AndConditionDescription>(data),
-                Distance => CreateConditionDescription<DistanceConditionDescription>(data),
-                Timer => CreateConditionDescription<TimerConditionDescription>(data),
+                CompareKey => new CompareConditionDescription(data),
+                FlagKey => new FlagConditionDescription(data),
+                Or => new OrConditionDescription(data),
+                And => new AndConditionDescription(data),
+                Distance => new DistanceConditionDescription(data),
+                Timer => new TimerConditionDescription(data),
                 _ =>  throw new NotImplementedException()
             };
-        }
-
-        private static T CreateConditionDescription<T>(Dictionary<string, object> data) where T : ConditionDescription, new()
-        {
-            var conditionDescription = new T();
-            
-            conditionDescription.Deserialize(data);
-
-            return conditionDescription;
         }
     }
 }

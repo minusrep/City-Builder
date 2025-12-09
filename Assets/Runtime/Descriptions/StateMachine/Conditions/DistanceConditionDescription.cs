@@ -12,6 +12,13 @@ namespace Runtime.StateMachine.Descriptions.Conditions
         
         private const string PositionKey = "position";
 
+        public DistanceConditionDescription(Dictionary<string, object> data) : base(data)
+        {
+            _distance = Convert.ToSingle(data[DistanceKey]);
+            
+            PointOfInterest = Convert.ToString(data[PointOfInterestKey]);
+        }
+
         public string PointOfInterest { get; private set; }
 
         private float _distance;
@@ -23,15 +30,6 @@ namespace Runtime.StateMachine.Descriptions.Conditions
             var from = model[PositionKey] as Vector2? ?? default;
             
             return Vector2.Distance(from, to) <= _distance;
-        }
-
-        public override void Deserialize(Dictionary<string, object> data)
-        {
-            base.Deserialize(data);
-            
-            _distance = Convert.ToSingle(data[DistanceKey]);
-            
-            PointOfInterest = Convert.ToString(data[PointOfInterestKey]);
         }
     }
 }
