@@ -3,6 +3,7 @@ using Runtime.Colony.Buildings.Models;
 using Runtime.Colony.Buildings.Views;
 using Runtime.Common;
 using UnityEngine;
+using IPresenter = Runtime.Core.IPresenter;
 
 namespace Runtime.Colony.Buildings.Presenters
 {

@@ -3,27 +3,38 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using fastJSON;
-using Runtime.StateMachine.Descriptions;
-using Runtime.StateMachine.Descriptions.Actions;
+using Runtime.Colony;
+using Runtime.Colony.Citizens;
+using Runtime.Descriptions;
+using Runtime.Descriptions.Citizens;
+using Runtime.Descriptions.StateMachine;
+using Runtime.Movement;
+using Runtime.Timer;
 using UnityEngine;
 
 namespace Runtime.StateMachine
 {
     public class TempScript : MonoBehaviour
     {
+        private World _world;
+        
         private StateMachineModel _stateMachineModel;
 
-        private StateMachinePresenter _stateMachinePresenter;
-        
         private StateMachineSystem _stateMachineSystem;
-        
-        private StateMachineView _stateMachineView;
         
         private StateDescriptionCollection _stateDescriptionCollection;
         
         private PointOfInterestDescriptionCollection _pointOfInterestDescriptionCollection;
 
-        private TempModel _tempModel;
+        private CitizenModel _citizenModel;
+
+        private MovementPresenter _movementPresenter;
+        
+        private TimerPresenter _timerPresenter;
+        
+        [SerializeField] private MovementView _movementView;
+        
+        [SerializeField] private ITimerView _timerView;
         
         [SerializeField] private UpdateService _updateService;
 
@@ -47,7 +58,7 @@ namespace Runtime.StateMachine
             scroll = GUILayout.BeginScrollView(scroll, GUILayout.Width(500), GUILayout.Height(Screen.height - 20));
 
             GUILayout.Label("Stats:", labelStyle);
-            foreach (var s in _tempModel.Stats)
+            foreach (var s in _citizenModel.Stats)
                 GUILayout.Label(s.Key + ": " + s.Value, labelStyle);
 
             GUILayout.Space(15);
@@ -78,33 +89,31 @@ namespace Runtime.StateMachine
         
         private void Start()
         {
-            var statesString = File.ReadAllText("Assets/Resources/states_description.json");
-            var pointString = File.ReadAllText("Assets/Resources/points_of_interest_description.json");
+            var statesString = File.ReadAllText("Assets/Content/Resources/states_description.json");
+            var pointString = File.ReadAllText("Assets/Content/Resources/points_of_interest_description.json");
 
             var statesDictionary = JSON.ToObject<Dictionary<string, object>>(statesString);
             var pointsDictionary = JSON.ToObject<Dictionary<string, object>>(pointString);
-
-            _stateDescriptionCollection = new StateDescriptionCollection();
             
-            _stateDescriptionCollection.Deserialize(statesDictionary);
+            _pointOfInterestDescriptionCollection = new PointOfInterestDescriptionCollection(pointsDictionary);
             
-            _pointOfInterestDescriptionCollection = new PointOfInterestDescriptionCollection();
+            _stateDescriptionCollection = new StateDescriptionCollection(statesDictionary);
             
-            _pointOfInterestDescriptionCollection.Deserialize(pointsDictionary);
-
             _stateMachineModel = new StateMachineModel(_stateDescriptionCollection);
-            
-            _stateMachineView =  new StateMachineView();
-            
-            _stateMachinePresenter = new StateMachinePresenter(_stateMachineModel, _stateMachineView);
 
-            _tempModel = new TempModel();
+            _citizenModel = new CitizenModel(0, null, "Vasek");
+
+            _movementPresenter = new MovementPresenter(_citizenModel, _movementView, _updateService, _stateMachineModel,  _pointOfInterestDescriptionCollection);
+
+            _timerPresenter = new TimerPresenter(_citizenModel, null, _stateMachineModel);
             
-            _stateMachineSystem = new StateMachineSystem(_stateMachineModel, _tempModel);
+            _movementPresenter.Enable();
+            
+            _timerPresenter.Enable();
+            
+            _stateMachineSystem = new StateMachineSystem(_stateMachineModel, _world, _citizenModel);
 
             _updateService.OnUpdate += _stateMachineSystem.Update;
-            
-            _stateMachineModel.OnChange += OnChangeState;
             
             Debug.Log(_pointOfInterestDescriptionCollection.Get("p_0"));
             Debug.Log(_pointOfInterestDescriptionCollection.Get("p_1"));
@@ -112,50 +121,10 @@ namespace Runtime.StateMachine
             
         }
 
-        private void OnChangeState()
-        {
-            foreach (var action in _stateMachineModel.CurrentState.Actions)
-            {
-                switch (action)
-                {
-                    case TimerActionDescription timerAction:
-                    {
-                        _tempModel.Stats[timerAction.Timer] = DateTimeOffset.UtcNow.AddSeconds(timerAction.Duration).ToUnixTimeSeconds();
-                        
-                        break;
-                    }
-
-                    case SetPointOfInterestActionDescription setPointOfInterest:
-                    {
-                        _tempModel.Stats["point_of_interest"] = _pointOfInterestDescriptionCollection.Get(setPointOfInterest.PointOfInterest);
-                        
-                        break;
-                    }
-                }
-            }
-        }
-
         private void Update()
         {
-            _tempModel.Stats["hungry"] = hungry;
-            _tempModel.Stats["energy"] = energy;
-            _tempModel.Stats["position"] = position;
-        }
-    }
-
-    public class TempModel : ISystemModel
-    {
-        public Dictionary<string, object> Stats { get; }
-
-        public TempModel()
-        {
-            Stats = new Dictionary<string, object>()
-            {
-                {"hungry", 100},
-                {"energy", 50},
-                {"position", Vector2.zero},
-                {"point_of_interest", Vector2.zero}
-            };
+            _citizenModel.Stats["hungry"] = hungry;
+            _citizenModel.Stats["energy"] = energy;
         }
     }
 }

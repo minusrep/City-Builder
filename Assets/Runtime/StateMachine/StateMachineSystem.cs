@@ -1,3 +1,5 @@
+using Runtime.Colony;
+using Runtime.StateMachine.Conditions;
 using UnityEngine;
 
 namespace Runtime.StateMachine
@@ -6,23 +8,24 @@ namespace Runtime.StateMachine
     {
         private readonly StateMachineModel _stateMachine;
         
-        private readonly ISystemModel _systemModel;
+        private readonly World _world;
+        
+        private readonly IUserConditionModel _userModel;
 
-        public StateMachineSystem(StateMachineModel  stateMachine, ISystemModel systemModel)
+        public StateMachineSystem(StateMachineModel  stateMachine, World world, IUserConditionModel userModel)
         {
             _stateMachine = stateMachine;
 
-            _systemModel =  systemModel;
+            _userModel =  userModel;
+            
+            _world = world;
         }
         
         public void Update()
         {
             foreach (var transition in _stateMachine.CurrentState.Transitions)
             {
-                Debug.Log($"{_stateMachine.CurrentStateName}");
-                Debug.Log($"{transition.Condition.Type}: {transition.Condition.Check(_systemModel.Stats)}");
-                
-                if (!transition.Condition.Check(_systemModel.Stats)) continue;
+                if (!transition.Condition.Check(_world, _userModel)) continue;
                 
                 _stateMachine.Enter(transition.ToState);
                     
