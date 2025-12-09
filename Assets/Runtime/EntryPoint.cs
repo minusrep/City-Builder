@@ -7,6 +7,7 @@ using Runtime.Descriptions;
 using UnityEngine;
 using System.IO;
 using fastJSON;
+using Runtime.Colony;
 
 namespace Runtime
 {
@@ -17,44 +18,50 @@ namespace Runtime
         private ResourceFactory _resourceFactory;
         private BuildingFactory _buildingFactory;
 
-        private BuildingModelCollection _buildings;
-        private CitizenModelCollection _citizens;
-
+        private World _world;
+        
         private void Start()
         {
             InitializeDescriptions();
 
             InitializeModelFactories(new CitizenNeedServiceMock());
-
-            InitializeBuildings();
-
-            InitializeCitizens();
+            
+            InitializeWorld();
         }
 
-        private void InitializeCitizens()
+        private void InitializeWorld()
         {
-            _citizens = new CitizenModelCollection(_descriptions.CitizensDescription);
+            _world = new World(InitializeCitizens(), InitializeBuildings());
+        }
+        
+        private CitizenModelCollection InitializeCitizens()
+        {
+            var citizens = new CitizenModelCollection(_descriptions.CitizensDescription);
 
             var path = Path.Combine(Application.persistentDataPath, "citizens_data.json");
             if (File.Exists(path))
             {
                 var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
 
-                _citizens.Deserialize(data);
+                citizens.Deserialize(data);
             }
+
+            return citizens;
         }
 
-        private void InitializeBuildings()
+        private BuildingModelCollection InitializeBuildings()
         {
-            _buildings = new BuildingModelCollection(_descriptions.BuildingDescriptionCollection, _buildingFactory);
+            var buildings = new BuildingModelCollection(_descriptions.BuildingDescriptionCollection, _buildingFactory);
 
             var path = Path.Combine(Application.persistentDataPath, "buildings_data.json");
             if (File.Exists(path))
             {
                 var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
                 
-                _buildings.Deserialize(data);
+                buildings.Deserialize(data);
             }
+
+            return buildings;
         }
 
         private void InitializeModelFactories(ICitizenNeedService needService)

@@ -4,6 +4,6 @@ namespace Runtime.Core
 {
     public interface ITimerModel 
     {
-        Dictionary<string, ulong> Timers { get; }
+        Dictionary<string, long> Timers { get; }
     }
 }

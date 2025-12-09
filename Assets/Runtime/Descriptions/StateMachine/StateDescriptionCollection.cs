@@ -3,16 +3,11 @@ using Runtime.ModelCollections;
 
 namespace Runtime.StateMachine.Descriptions
 {
-    public class StateDescriptionCollection : IDeserializeModel
+    public class StateDescriptionCollection
     {
         public Dictionary<string, StateDescription> States { get; private set; }
 
-        public StateDescription Get(string stateName)
-        {
-            return States[stateName];
-        }
-        
-        public void Deserialize(Dictionary<string, object> data)
+        public StateDescriptionCollection(Dictionary<string, object> data)
         {
             States = new Dictionary<string, StateDescription>();
 
@@ -26,6 +21,11 @@ namespace Runtime.StateMachine.Descriptions
                 
                 States.Add(pair.Key, state);
             } 
+        }
+        
+        public StateDescription Get(string stateName)
+        {
+            return States[stateName];
         }
     }
 }
