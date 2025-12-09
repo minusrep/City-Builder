@@ -1,4 +1,4 @@
-namespace Runtime.Colony.Citizens.Timer
+namespace Runtime.Timer
 {
     public interface ITimerView
     {

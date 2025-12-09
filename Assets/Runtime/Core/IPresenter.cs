@@ -1,4 +1,4 @@
-namespace Runtime
+namespace Runtime.Core
 {
     public interface IPresenter
     {

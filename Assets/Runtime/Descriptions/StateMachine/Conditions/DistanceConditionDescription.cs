@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using Runtime.Colony;
-using Runtime.Core;
+using Runtime.Movement;
+using Runtime.StateMachine.Conditions;
 using Runtime.Utilities;
 using UnityEngine;
 
-namespace Runtime.StateMachine.Descriptions.Conditions
+namespace Runtime.Descriptions.StateMachine.Conditions
 {
     public class DistanceConditionDescription : ConditionDescription
     {

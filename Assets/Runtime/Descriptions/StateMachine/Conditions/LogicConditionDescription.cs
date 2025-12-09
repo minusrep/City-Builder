@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Runtime.StateMachine.Descriptions.Extensions;
+using Runtime.Descriptions.StateMachine.Extensions;
 
-namespace Runtime.StateMachine.Descriptions.Conditions
+namespace Runtime.Descriptions.StateMachine.Conditions
 {
     public abstract class LogicConditionDescription : ConditionDescription
     {

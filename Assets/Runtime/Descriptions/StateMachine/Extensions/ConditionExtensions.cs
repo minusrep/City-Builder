@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Runtime.StateMachine.Descriptions.Conditions;
+using Runtime.Descriptions.StateMachine.Conditions;
 
-namespace Runtime.StateMachine.Descriptions.Extensions
+namespace Runtime.Descriptions.StateMachine.Extensions
 {
     public static class ConditionExtensions
     {

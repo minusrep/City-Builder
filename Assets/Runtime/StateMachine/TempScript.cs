@@ -5,8 +5,11 @@ using System.Linq;
 using fastJSON;
 using Runtime.Colony;
 using Runtime.Colony.Citizens;
-using Runtime.StateMachine.Descriptions;
-using Runtime.StateMachine.Descriptions.Actions;
+using Runtime.Descriptions;
+using Runtime.Descriptions.Citizens;
+using Runtime.Descriptions.StateMachine;
+using Runtime.Movement;
+using Runtime.Timer;
 using UnityEngine;
 
 namespace Runtime.StateMachine
@@ -24,6 +27,14 @@ namespace Runtime.StateMachine
         private PointOfInterestDescriptionCollection _pointOfInterestDescriptionCollection;
 
         private CitizenModel _citizenModel;
+
+        private MovementPresenter _movementPresenter;
+        
+        private TimerPresenter _timerPresenter;
+        
+        [SerializeField] private MovementView _movementView;
+        
+        [SerializeField] private ITimerView _timerView;
         
         [SerializeField] private UpdateService _updateService;
 
@@ -78,27 +89,31 @@ namespace Runtime.StateMachine
         
         private void Start()
         {
-            var statesString = File.ReadAllText("Assets/Resources/states_description.json");
-            var pointString = File.ReadAllText("Assets/Resources/points_of_interest_description.json");
+            var statesString = File.ReadAllText("Assets/Content/Resources/states_description.json");
+            var pointString = File.ReadAllText("Assets/Content/Resources/points_of_interest_description.json");
 
             var statesDictionary = JSON.ToObject<Dictionary<string, object>>(statesString);
             var pointsDictionary = JSON.ToObject<Dictionary<string, object>>(pointString);
-
-            _stateDescriptionCollection = new StateDescriptionCollection();
             
-            _stateDescriptionCollection.Deserialize(statesDictionary);
+            _pointOfInterestDescriptionCollection = new PointOfInterestDescriptionCollection(pointsDictionary);
             
-            _pointOfInterestDescriptionCollection = new PointOfInterestDescriptionCollection();
+            _stateDescriptionCollection = new StateDescriptionCollection(statesDictionary);
             
-            _pointOfInterestDescriptionCollection.Deserialize(pointsDictionary);
-
             _stateMachineModel = new StateMachineModel(_stateDescriptionCollection);
+
+            _citizenModel = new CitizenModel(0, null, "Vasek");
+
+            _movementPresenter = new MovementPresenter(_citizenModel, _movementView, _updateService, _stateMachineModel,  _pointOfInterestDescriptionCollection);
+
+            _timerPresenter = new TimerPresenter(_citizenModel, null, _stateMachineModel);
+            
+            _movementPresenter.Enable();
+            
+            _timerPresenter.Enable();
             
             _stateMachineSystem = new StateMachineSystem(_stateMachineModel, _world, _citizenModel);
 
             _updateService.OnUpdate += _stateMachineSystem.Update;
-            
-            _stateMachineModel.OnChange += OnChangeState;
             
             Debug.Log(_pointOfInterestDescriptionCollection.Get("p_0"));
             Debug.Log(_pointOfInterestDescriptionCollection.Get("p_1"));
@@ -106,34 +121,10 @@ namespace Runtime.StateMachine
             
         }
 
-        private void OnChangeState()
-        {
-            foreach (var action in _stateMachineModel.CurrentState.Actions)
-            {
-                switch (action)
-                {
-                    case TimerActionDescription timerAction:
-                    {
-                        _citizenModel.Stats[timerAction.Timer] = DateTimeOffset.UtcNow.AddSeconds(timerAction.Duration).ToUnixTimeSeconds();
-                        
-                        break;
-                    }
-
-                    case SetPointOfInterestActionDescription setPointOfInterest:
-                    {
-                        _citizenModel.PointOfInterest = _pointOfInterestDescriptionCollection.Get(setPointOfInterest.PointOfInterest);
-                        
-                        break;
-                    }
-                }
-            }
-        }
-
         private void Update()
         {
             _citizenModel.Stats["hungry"] = hungry;
             _citizenModel.Stats["energy"] = energy;
-            _citizenModel.Position = position;
         }
     }
 }

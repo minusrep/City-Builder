@@ -1,4 +1,4 @@
-namespace Runtime.Core
+namespace Runtime.StateMachine.Conditions
 {
     public interface IUserConditionModel
     {

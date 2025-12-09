@@ -1,9 +1,10 @@
 using System;
 using Runtime.Core;
+using Runtime.Descriptions.StateMachine.Actions;
 using Runtime.StateMachine;
-using Runtime.StateMachine.Descriptions;
+using Runtime.StateMachine.Conditions;
 
-namespace Runtime.Colony.Citizens.Timer
+namespace Runtime.Timer
 {
     public class TimerPresenter : IPresenter
     {

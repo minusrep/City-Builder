@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using Runtime.Colony;
-using Runtime.Core;
-using Runtime.ModelCollections;
+using Runtime.StateMachine.Conditions;
 using Runtime.Utilities;
 
-namespace Runtime.StateMachine.Descriptions.Conditions
+namespace Runtime.Descriptions.StateMachine.Conditions
 {
     public abstract class ConditionDescription
     {

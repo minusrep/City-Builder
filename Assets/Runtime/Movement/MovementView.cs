@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Runtime.Core
+namespace Runtime.Movement
 {
     public class MovementView : MonoBehaviour
     {

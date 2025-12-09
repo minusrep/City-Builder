@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Runtime.ModelCollections;
 
-namespace Runtime.StateMachine.Descriptions.Actions
+namespace Runtime.Descriptions.StateMachine.Actions
 {
     public abstract class ActionDescription 
     {

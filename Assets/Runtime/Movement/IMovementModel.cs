@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Runtime.Core
+namespace Runtime.Movement
 {
     public interface IMovementModel
     {

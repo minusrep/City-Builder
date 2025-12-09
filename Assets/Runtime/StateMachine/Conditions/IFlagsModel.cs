@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Runtime.Core
+namespace Runtime.StateMachine.Conditions
 {
     public interface IFlagsModel 
     {

@@ -4,6 +4,7 @@ using Runtime.Colony.Buildings.Models;
 using Runtime.Common;
 using Runtime.ViewDescriptions.Buildings;
 using UnityEngine;
+using IPresenter = Runtime.Core.IPresenter;
 
 namespace Runtime.Colony.Buildings.Presenters
 {

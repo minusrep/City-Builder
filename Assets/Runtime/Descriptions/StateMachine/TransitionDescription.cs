@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using Runtime.Descriptions.StateMachine.Conditions;
+using Runtime.Descriptions.StateMachine.Extensions;
 using Runtime.ModelCollections;
-using Runtime.StateMachine.Descriptions.Conditions;
-using Runtime.StateMachine.Descriptions.Extensions;
 
-namespace Runtime.StateMachine.Descriptions
+namespace Runtime.Descriptions.StateMachine
 {
     public class TransitionDescription : IDeserializeModel
     {

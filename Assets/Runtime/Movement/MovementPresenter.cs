@@ -1,7 +1,9 @@
+using Runtime.Core;
+using Runtime.Descriptions;
+using Runtime.Descriptions.StateMachine.Actions;
 using Runtime.StateMachine;
-using Runtime.StateMachine.Descriptions;
 
-namespace Runtime.Core
+namespace Runtime.Movement
 {
     public class MovementPresenter : IPresenter
     {

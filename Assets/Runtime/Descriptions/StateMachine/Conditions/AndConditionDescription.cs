@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Runtime.Colony;
-using Runtime.Core;
+using Runtime.StateMachine.Conditions;
 
-namespace Runtime.StateMachine.Descriptions.Conditions
+namespace Runtime.Descriptions.StateMachine.Conditions
 {
     public class AndConditionDescription : LogicConditionDescription
     {

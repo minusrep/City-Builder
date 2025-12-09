@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
-namespace Runtime.Core
+namespace Runtime.StateMachine.Conditions
 {
     public interface ITimerModel 
     {
-        Dictionary<string, ulong> Timers { get; }
+        Dictionary<string, long> Timers { get; }
     }
 }
