@@ -3,13 +3,13 @@ using Runtime.ModelCollections;
 
 namespace Runtime.StateMachine.Descriptions
 {
-    public abstract class ActionDescription :  IDeserializeModel
+    public abstract class ActionDescription 
     {
         private const string TypeKey = "type";
         
         public string Type { get; private set; }
-        
-        public virtual void Deserialize(Dictionary<string, object> data)
+
+        protected ActionDescription(Dictionary<string, object> data)
         {
             Type = data[TypeKey] as string;
         }
