@@ -37,7 +37,10 @@ namespace Runtime.StateMachine.Descriptions.Conditions
 
         public override bool Check(World world, IUserConditionModel user)
         {
-            if (user is not IStatsModel statsModel) return false;
+            if (user is not IStatsModel statsModel)
+            {
+                return false;
+            }
             
             var counterValue =  Convert.ToSingle(statsModel.Stats[Counter]);
             

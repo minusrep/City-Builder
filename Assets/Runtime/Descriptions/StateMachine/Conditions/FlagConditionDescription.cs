@@ -23,7 +23,10 @@ namespace Runtime.StateMachine.Descriptions.Conditions
 
         public override bool Check(World world, IUserConditionModel user)
         {
-            if (user is not IFlagsModel flagsModel) return false;
+            if (user is not IFlagsModel flagsModel)
+            {
+                return false;
+            }
             
             return flagsModel.Flags[Flag] == Value;
         }

@@ -18,9 +18,15 @@ namespace Runtime.StateMachine.Descriptions.Conditions
 
         public override bool Check(World world, IUserConditionModel user)
         {
-            if (user is not ITimerModel timerModel) return true;
+            if (user is not ITimerModel timerModel)
+            {
+                return true;
+            }
 
-            var endUnixSeconds = timerModel.Timers[Name];
+            if (!timerModel.Timers.TryGetValue(Name, out var endUnixSeconds))
+            {
+                return true;
+            }
 
             return DateTimeOffset.UtcNow.ToUnixTimeSeconds() >= (long)endUnixSeconds;
         }
