@@ -5,27 +5,25 @@ namespace Runtime.StateMachine.Descriptions.Conditions
 {
     public class FlagConditionDescription : ConditionDescription
     {
-        private const string TimerKey = "timer";
+        private const string FlagKey = "flag";
+
+        private const string ValueKey = "value";
         
-        private const string NameKey = "name";
+        private string Flag { get; set; }
 
-        private const string StatusKey = "status";
-
-        private string Name { get; set; }
-
-        private bool Status { get; set; }
+        private bool Value { get; set; }
+        
+        public FlagConditionDescription(Dictionary<string, object> data) : base(data)
+        {
+            Flag = data[FlagKey] as string;
+            Value = Convert.ToBoolean(data[ValueKey]);
+        }
 
         public override bool Check(Dictionary<string, object> model)
         {
-            var statusValue = Convert.ToBoolean(model[Name]);
+            var statusValue = Convert.ToBoolean(model[Flag]);
             
-            return statusValue == Status;
-        }
-
-        public override void Deserialize(Dictionary<string, object> data)
-        {
-            Name = data[NameKey] as string;
-            Status = Convert.ToBoolean(data[StatusKey]);
+            return statusValue == Value;
         }
     }
 }

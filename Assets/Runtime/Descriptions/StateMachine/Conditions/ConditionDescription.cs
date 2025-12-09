@@ -3,16 +3,16 @@ using Runtime.ModelCollections;
 
 namespace Runtime.StateMachine.Descriptions.Conditions
 {
-    public abstract class ConditionDescription : IDeserializeModel
+    public abstract class ConditionDescription
     {
         private const string TypeKey = "type";
         public string Type { get; private set; }
 
-        public abstract bool Check(Dictionary<string, object> model);
-        
-        public virtual void Deserialize(Dictionary<string, object> data)
+        protected ConditionDescription(Dictionary<string, object> data)
         {
             Type = data[TypeKey] as string;
         }
+        
+        public abstract bool Check(Dictionary<string, object> model);
     }
 }
