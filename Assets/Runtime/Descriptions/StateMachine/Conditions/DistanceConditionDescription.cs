@@ -11,6 +11,9 @@ namespace Runtime.StateMachine.Descriptions.Conditions
         private const string PointOfInterestKey = "point_of_interest";
         
         private const string PositionKey = "position";
+        public string PointOfInterest { get; private set; }
+
+        private readonly float _distance;
 
         public DistanceConditionDescription(Dictionary<string, object> data) : base(data)
         {
@@ -18,10 +21,6 @@ namespace Runtime.StateMachine.Descriptions.Conditions
             
             PointOfInterest = Convert.ToString(data[PointOfInterestKey]);
         }
-
-        public string PointOfInterest { get; private set; }
-
-        private float _distance;
 
         public override bool Check(Dictionary<string, object> model)
         {
