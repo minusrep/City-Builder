@@ -1,42 +1,56 @@
-using UnityEngine;
-using UnityEngine.UIElements;
+using System.Collections.Generic;
+using Runtime.Colony.Inventory.Cell;
 
 namespace Runtime.Colony.Inventory
 {
     public class InventoryPresenter
     {
-        private InventoryModel _model;
-        private InventoryView _view;
-        private Transform _target;
+        private readonly InventoryModel _model;
+        private readonly InventoryView _view;
         
-        public InventoryPresenter(InventoryView view, int size,Transform target)
+        private List<CellView> _cells = new();
+
+        public InventoryPresenter(InventoryModel model, InventoryView view)
         {
-            _model = new InventoryModel(size);
             _view = view;
-            _target = target;
+            _model = model;
         }
 
         public void Enable()
         {
-            var screenPos = Camera.main.WorldToScreenPoint(_target.position);
-            
-            foreach (var cell in _model.Cells)
+            CreateCells();
+        }
+
+        private void CreateCells()
+        {
+            foreach (var pair in _model.Models)
             {
                 var cellView = new CellView(_view.CellAsset);
+
+                cellView.Amount.text = pair.Value.Amount.ToString();
                 
-                cellView.Root.style.position = Position.Absolute;
-                cellView.Root.style.left = screenPos.x;
-                cellView.Root.style.top = Screen.height - screenPos.y;
+                _view.WorldRoot.Add(cellView.Root);
                 
-                _view.MenuRoot.Add(cellView.Root);
-                
-                cellView.Amount.text = cell.Amount.ToString();
+                _cells.Add(cellView);
+            }
+        }
+
+        private void UpdateCells()
+        {
+            
+        }
+
+        private void DestroyCells()
+        {
+            foreach (var cell in _cells)
+            {
+                cell.Root.RemoveFromHierarchy();
             }
         }
 
         public void Disable()
         {
-            
+            DestroyCells();
         }
     }
 }

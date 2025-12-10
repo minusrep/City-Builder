@@ -1,18 +1,44 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.GameResources;
+using System.Linq;
+using Runtime.Colony.Inventory.Cell;
 using Runtime.Colony.ModelCollections;
+using Runtime.Utilities;
 
 namespace Runtime.Colony.Inventory
 {
-    //TODO: Переписать на реактивную коллекцию
     public class InventoryModel : UniformModelCollection<CellModel>
     {
-        public List<CellModel> Cells { get; } = new();
+        public int Size;
 
         public InventoryModel(int size) : base(null)
         {
-            CreateEmptyCells(size);
+            Size = size;
+
+            //TODO: Где это должно быть?
+            for (var i = 0; i < size; i++)
+            {
+                Create();
+            }
+        }
+
+        protected override CellModel CreateModel()
+        {
+            var cell = new CellModel();
+
+            return cell;
+        }
+
+        //TODO: Добавить получение IInventoryItem
+        protected override CellModel CreateModelFromData(string id, Dictionary<string, object> data)
+        {
+            var cell = new CellModel();
+            
+            var amount = data.GetInt("amount");
+
+            cell.TryAdd(null, amount);
+
+            return cell;
         }
 
         public bool TryAddItem(IInventoryItem item, int amount)
@@ -44,15 +70,15 @@ namespace Runtime.Colony.Inventory
             targets = new List<(CellModel, int)>();
             var remaining = amount;
 
-            foreach (var cell in Cells)
+            foreach (var pair in Models)
             {
-                if (cell.Item != null && IsSameItem(cell.Item, item))
+                if (pair.Value.Item != null && IsSameItem(pair.Value.Item, item))
                 {
-                    var free = item.MaxAmount - cell.Amount;
+                    var free = item.MaxAmount - pair.Value.Amount;
 
                     if (free > 0)
                     {
-                        targets.Add((cell, free));
+                        targets.Add((pair.Value, free));
                         remaining -= Math.Min(free, remaining);
 
                         if (remaining <= 0)
@@ -63,12 +89,12 @@ namespace Runtime.Colony.Inventory
                 }
             }
 
-            foreach (var cell in Cells)
+            foreach (var pair in Models)
             {
-                if (cell.Item == null)
+                if (pair.Value.Item == null)
                 {
                     var free = item.MaxAmount;
-                    targets.Add((cell, free));
+                    targets.Add((pair.Value, free));
                     remaining -= Math.Min(free, remaining);
 
                     if (remaining <= 0)
@@ -85,9 +111,9 @@ namespace Runtime.Colony.Inventory
         {
             var remaining = amount;
 
-            for (var i = Cells.Count - 1; i >= 0; i--)
+            for (var i = Models.Count - 1; i >= 0; i--)
             {
-                var cell = Cells[i];
+                var cell = Models.ElementAt(i).Value;
 
                 if (cell.Item != null && IsSameItem(cell.Item, item))
                 {
@@ -109,34 +135,9 @@ namespace Runtime.Colony.Inventory
             return false;
         }
 
-        private void CreateEmptyCells(int size)
+        private bool IsSameItem(IInventoryItem itemA, IInventoryItem itemB)
         {
-            for (var i = 0; i < size; i++)
-            {
-                var cell = new CellModel();
-
-                Cells.Add(cell);
-            }
-        }
-
-        private bool IsSameItem(IInventoryItem a, IInventoryItem b)
-        {
-            if (a is ResourceModel resourceA && b is ResourceModel resourceB)
-            {
-                return resourceA.Description == resourceB.Description;
-            }
-
-            return false;
-        }
-
-        protected override CellModel CreateModelFromData(string id, Dictionary<string, object> data)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override CellModel CreateModel()
-        {
-            throw new NotImplementedException();
+            return itemA.Type == itemB.Type;
         }
     }
 }

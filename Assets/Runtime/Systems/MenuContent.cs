@@ -5,10 +5,12 @@ namespace Runtime.Systems
     public class MenuContent
     {
         public VisualElement MenuRoot {get; private set;}
+        public VisualElement WorldRoot {get; private set;}
         
-        public MenuContent(UIDocument document)
+        public MenuContent(UIDocument menuDocument, UIDocument worldDocument)
         {
-            MenuRoot = document.rootVisualElement.Q<VisualElement>("content");
+            MenuRoot = menuDocument.rootVisualElement.Q<VisualElement>("content");
+            WorldRoot = worldDocument.rootVisualElement.Q<VisualElement>("content");
         }
     }
 }

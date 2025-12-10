@@ -6,11 +6,11 @@ namespace Runtime.Colony.Inventory
     public class InventoryView
     {
         public VisualTreeAsset CellAsset { get; }
-        public VisualElement MenuRoot { get; }
+        public VisualElement WorldRoot { get; }
         
-        public InventoryView(MenuContent menuRoot, VisualTreeAsset cellAsset)
+        public InventoryView(MenuContent content, VisualTreeAsset cellAsset)
         {
-            MenuRoot = menuRoot.MenuRoot;
+            WorldRoot = content.WorldRoot;
             CellAsset = cellAsset;
         }
     }

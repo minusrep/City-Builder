@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Runtime.Colony.GameResources;
 using Runtime.Colony.Inventory;
@@ -18,15 +19,23 @@ namespace Tests
         [Test]
         public void CreateEmptyCells_SeveralCells()
         {
-            var inventory = new InventoryModel(8);
+            var inventory = new InventoryModel(3);
 
-            Assert.AreEqual(8, inventory.Cells.Count);
+            inventory.Create();
+            inventory.Create();
+            inventory.Create();
+            
+            Assert.AreEqual(3, inventory.Models.Count);
         }
         
         [Test]
         public void TryAddItem_SeveralItems()
         {
             var inventory = new InventoryModel(3);
+            
+            inventory.Create();
+            inventory.Create();
+            inventory.Create();
 
             Assert.IsTrue(inventory.CanFit(MockData.ResourceDescriptions["wood"], 15, out var woodFreeSpace));
             Assert.AreEqual(2, woodFreeSpace.Count);
@@ -40,23 +49,23 @@ namespace Tests
             Assert.AreEqual(1, woodFreeSpace1.Count);
             inventory.TryAddItem(MockData.ResourceDescriptions["wood"], 5);
             
-            Assert.AreEqual(10, inventory.Cells[0].Amount);
+            Assert.AreEqual(10, inventory.Models.ElementAt(0).Value.Amount);
             
-            if (inventory.Cells[0].Item is ResourceModel res)
+            if (inventory.Models.ElementAt(0).Value.Item is ResourceModel res)
             {
                 Assert.AreEqual("wood", res.Description.Type);
             }
             
-            Assert.AreEqual(10, inventory.Cells[1].Amount);
+            Assert.AreEqual(10, inventory.Models.ElementAt(1).Value.Amount);
             
-            if (inventory.Cells[1].Item is ResourceModel res1)
+            if (inventory.Models.ElementAt(1).Value.Item is ResourceModel res1)
             {
                 Assert.AreEqual("wood", res1.Description.Type);
             }
             
-            Assert.AreEqual(6, inventory.Cells[2].Amount);
+            Assert.AreEqual(6, inventory.Models.ElementAt(2).Value.Amount);
             
-            if (inventory.Cells[2].Item is ResourceModel res2)
+            if (inventory.Models.ElementAt(2).Value.Item is ResourceModel res2)
             {
                 Assert.AreEqual("iron", res2.Description.Type);
             }
@@ -67,20 +76,24 @@ namespace Tests
         {
             var inventory = new InventoryModel(3);
             
-            Assert.AreEqual(3, inventory.Cells.Count);
+            inventory.Create();
+            inventory.Create();
+            inventory.Create();
+            
+            Assert.AreEqual(3, inventory.Models.Count);
             
             inventory.TryAddItem(MockData.ResourceDescriptions["wood"], 10);
             
-            Assert.AreEqual(10, inventory.Cells[0].Amount);
+            Assert.AreEqual(10, inventory.Models.ElementAt(0).Value.Amount);
             
-            if (inventory.Cells[0].Item is ResourceModel wood)
+            if (inventory.Models.ElementAt(0).Value.Item is ResourceModel wood)
             {
                 Assert.AreEqual("wood", wood.Description.Type);
             }
 
             inventory.TryRemoveItem(MockData.ResourceDescriptions["wood"], 6);
             
-            Assert.AreEqual(4, inventory.Cells[0].Amount);
+            Assert.AreEqual(4, inventory.Models.ElementAt(0).Value.Amount);
         }
         
         [Test]
@@ -88,26 +101,30 @@ namespace Tests
         {
             var inventory = new InventoryModel(3);
             
-            Assert.AreEqual(3, inventory.Cells.Count);
+            inventory.Create();
+            inventory.Create();
+            inventory.Create();
+            
+            Assert.AreEqual(3, inventory.Models.Count);
             
             inventory.TryAddItem(MockData.ResourceDescriptions["wood"], 18);
             
-            Assert.AreEqual(10, inventory.Cells[0].Amount);
-            Assert.AreEqual(8, inventory.Cells[1].Amount);
+            Assert.AreEqual(10, inventory.Models.ElementAt(0).Value.Amount);
+            Assert.AreEqual(8, inventory.Models.ElementAt(1).Value.Amount);
             
-            if (inventory.Cells[0].Item is ResourceModel wood1)
+            if (inventory.Models.ElementAt(0).Value.Item is ResourceModel wood1)
             {
                 Assert.AreEqual("wood", wood1.Description.Type);
             }
             
-            if (inventory.Cells[1].Item is ResourceModel wood2)
+            if (inventory.Models.ElementAt(1).Value.Item is ResourceModel wood2)
             {
                 Assert.AreEqual("wood", wood2.Description.Type);
             }
 
             inventory.TryRemoveItem(MockData.ResourceDescriptions["wood"], 12);
             
-            Assert.AreEqual(6, inventory.Cells[0].Amount);
+            Assert.AreEqual(6, inventory.Models.ElementAt(0).Value.Amount);
         }
     }
 
