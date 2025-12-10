@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace Runtime.Colony.Inventory
+namespace Runtime.Colony.Inventory.Cell
 {
     public class CellView : VisualElement
     {
