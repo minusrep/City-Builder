@@ -10,8 +10,9 @@ namespace Runtime.Colony.GameResources
     public class ResourceModel : ISerializeModel, IDeserializeModel, IInventoryItem
     {
         public ResourceDescription Description { get; }
-
-        public int Amount { get; private set; }
+        public string Type => Description.Type;
+        public int Amount { get; set; }
+        public int MaxAmount { get; set; }
 
         public ResourceModel(ResourceDescription description)
         {
@@ -48,7 +49,5 @@ namespace Runtime.Colony.GameResources
         {
             Amount = data.GetInt("amount");
         }
-
-        public int MaxAmount { get; set; }
     }
 }
