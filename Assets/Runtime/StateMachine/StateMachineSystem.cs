@@ -1,6 +1,5 @@
 using Runtime.Colony;
 using Runtime.StateMachine.Conditions;
-using UnityEngine;
 
 namespace Runtime.StateMachine
 {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,7 +5,6 @@ using fastJSON;
 using Runtime.Colony;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
-using Runtime.Descriptions.Citizens;
 using Runtime.Descriptions.StateMachine;
 using Runtime.Movement;
 using Runtime.Timer;

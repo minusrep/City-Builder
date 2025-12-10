@@ -17,7 +17,7 @@ namespace Runtime
         [SerializeField] private BuildingViewDescriptionCollection _viewDescriptionCollection;
         [SerializeField] private Transform _buildingRootTransform;
         
-        private Descriptions.WorldDescription _worldDescription;
+        private WorldDescription _worldDescription;
 
         private ResourceFactory _resourceFactory;
         private BuildingFactory _buildingFactory;
@@ -85,7 +85,7 @@ namespace Runtime
             descriptionFactory.Register<DecorBuildingDescription>("decor");
             descriptionFactory.Register<StorageBuildingDescription>("storage");
 
-            _worldDescription = new Descriptions.WorldDescription(descriptionData);
+            _worldDescription = new WorldDescription(descriptionData);
         }
     }
 
