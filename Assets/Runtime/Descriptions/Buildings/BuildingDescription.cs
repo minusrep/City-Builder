@@ -7,11 +7,13 @@ namespace Runtime.Descriptions.Buildings
     {
         public string Id { get; }
         public string Type { get; }
+        public string ViewDescriptionId { get; }
 
         protected BuildingDescription(string id, Dictionary<string, object> data)
         {
             Id = id;
             Type = data.GetString("type");
+            ViewDescriptionId = data.GetString("view_id");
         }
     }
 }

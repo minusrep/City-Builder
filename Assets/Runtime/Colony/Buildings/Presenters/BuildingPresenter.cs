@@ -1,7 +1,6 @@
 ﻿using Runtime.ViewDescriptions.Buildings;
 using Runtime.Colony.Buildings.Models;
 using Runtime.Colony.Buildings.Views;
-using Runtime.Common;
 using UnityEngine;
 using IPresenter = Runtime.Core.IPresenter;
 
@@ -10,25 +9,34 @@ namespace Runtime.Colony.Buildings.Presenters
     public sealed class BuildingPresenter : IPresenter
     {
         private BuildingModel Model { get; }
-        private BuildingView View { get; }
+        private BuildingViewDescription ViewDescription { get; }
+        private Transform RootTransform { get; }
+        private BuildingView View { get; set; }
 
-        public BuildingPresenter(BuildingModel model, BuildingViewDescription viewDescription, Transform parent)
+        public BuildingPresenter(BuildingModel model, BuildingViewDescription viewDescription, Transform rootTransform)
         {
             Model = model;
-            
-            View = Object.Instantiate(viewDescription.Prefab, parent);
-            View.gameObject.SetActive(false);
+            ViewDescription = viewDescription;
+            RootTransform = rootTransform;
         }
         
         public void Enable()
         {
-            View.SetActive(true);
-            View.SetPosition(ModelPositionToVector3(Model));
+            View = Object.Instantiate(ViewDescription.Prefab, RootTransform);
+            View.Transform.position = ModelPositionToVector3(Model);
+            
+            Model.OnPositionChanged += HandlePositionChanged;
         }
-
+        
         public void Disable()
         {
-            View.SetActive(false);
+            Object.Destroy(View);
+            Model.OnPositionChanged -= HandlePositionChanged;
+        }
+
+        private void HandlePositionChanged()
+        {
+            View.Transform.position = ModelPositionToVector3(Model);
         }
 
         private Vector3 ModelPositionToVector3(BuildingModel model)

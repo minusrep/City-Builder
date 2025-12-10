@@ -1,7 +1,6 @@
 ﻿using Runtime.Descriptions.Buildings;
 using Runtime.Colony.GameResources;
 using System.Collections.Generic;
-using Runtime.Colony.Buildings;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using UnityEngine;
@@ -38,7 +37,6 @@ namespace Runtime
 
             InitializeCitizens();
 
-            _viewDescriptionCollection.Initialize();
             _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingRootTransform);
             _buildingCollectionPresenter.Enable();
         }

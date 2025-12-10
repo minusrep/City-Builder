@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Runtime.Colony.Buildings.Models;
-using Runtime.Common;
 using Runtime.ViewDescriptions.Buildings;
 using UnityEngine;
 using IPresenter = Runtime.Core.IPresenter;
 
 namespace Runtime.Colony.Buildings.Presenters
 {
-    public sealed class BuildingCollectionPresenter : IPresenter
+    public class BuildingCollectionPresenter : IPresenter
     {
         private readonly BuildingModelCollection _models;
         private readonly BuildingViewDescriptionCollection _viewDescriptions;
@@ -46,7 +44,7 @@ namespace Runtime.Colony.Buildings.Presenters
 
         private void HandleAdded(BuildingModel model)
         {
-            var presenter = new BuildingPresenter(model, _viewDescriptions.GetById(model.BaseDescription.Id), _rootTransform);
+            var presenter = new BuildingPresenter(model, _viewDescriptions.Get(model.BaseDescription.ViewDescriptionId), _rootTransform);
             presenter.Enable();
             _presenters.Add(model.Id, presenter);
         }
