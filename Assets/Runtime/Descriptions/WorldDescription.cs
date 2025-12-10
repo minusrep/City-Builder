@@ -6,7 +6,7 @@ using Runtime.Utilities;
 
 namespace Runtime.Descriptions
 {
-    public sealed class Descriptions
+    public sealed class WorldDescription
     {
         public BuildingsDescriptionCollection BuildingDescriptionCollection { get; }
         
@@ -16,7 +16,7 @@ namespace Runtime.Descriptions
         
         private DescriptionFactory Factory { get; }
 
-        public Descriptions(Dictionary<string, object> data)
+        public WorldDescription(Dictionary<string, object> data)
         {
             Factory = new DescriptionFactory();
             Factory.Register<ProductionBuildingDescription>("production");
