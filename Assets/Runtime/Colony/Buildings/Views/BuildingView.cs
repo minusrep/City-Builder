@@ -4,14 +4,13 @@ namespace Runtime.Colony.Buildings.Views
 {
     public sealed class BuildingView : MonoBehaviour
     {
-        public void SetPosition(Vector3 position)
-        {
-            transform.position = position;
-        }
+        public Transform Transform { get; set; }
+        public GameObject GameObject { get; set; }
 
-        public void SetActive(bool active)
+        private void Awake()
         {
-            gameObject.SetActive(active);
+            Transform = transform;
+            GameObject =  gameObject;
         }
     }
 }
