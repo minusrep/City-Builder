@@ -2,13 +2,14 @@ using Runtime.Descriptions.GameResources;
 using Runtime.Colony.ModelCollections;
 using System.Collections.Generic;
 using System;
+using Runtime.Colony.Inventory;
 using Runtime.Utilities;
 
 namespace Runtime.Colony.GameResources
 {
-    public class ResourceModel : ISerializeModel, IDeserializeModel
+    public class ResourceModel : ISerializeModel, IDeserializeModel, IInventoryItem
     {
-        private ResourceDescription Description { get; }
+        public ResourceDescription Description { get; }
 
         public int Amount { get; private set; }
 
@@ -47,5 +48,7 @@ namespace Runtime.Colony.GameResources
         {
             Amount = data.GetInt("amount");
         }
+
+        public int MaxAmount { get; set; }
     }
 }

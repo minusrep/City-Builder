@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
 using Runtime.Colony.GameResources;
+using Runtime.Colony.ModelCollections;
 
 namespace Runtime.Colony.Inventory
 {
-    public class InventoryModel
+    //TODO: Переписать на реактивную коллекцию
+    public class InventoryModel : UniformModelCollection<CellModel>
     {
         public List<CellModel> Cells { get; } = new();
 
-        public InventoryModel(int size)
+        public InventoryModel(int size) : base(null)
         {
             CreateEmptyCells(size);
         }
@@ -125,6 +127,16 @@ namespace Runtime.Colony.Inventory
             }
 
             return false;
+        }
+
+        protected override CellModel CreateModelFromData(string id, Dictionary<string, object> data)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CellModel CreateModel()
+        {
+            throw new NotImplementedException();
         }
     }
 }
