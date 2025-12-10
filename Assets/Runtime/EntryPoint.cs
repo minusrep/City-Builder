@@ -18,7 +18,7 @@ namespace Runtime
         [SerializeField] private BuildingViewDescriptionCollection _viewDescriptionCollection;
         [SerializeField] private Transform _buildingRootTransform;
         
-        private Descriptions.Descriptions _descriptions;
+        private Descriptions.WorldDescription _worldDescription;
 
         private ResourceFactory _resourceFactory;
         private BuildingFactory _buildingFactory;
@@ -45,7 +45,7 @@ namespace Runtime
 
         private void InitializeCitizens()
         {
-            _citizens = new CitizenModelCollection(_descriptions.CitizensDescription);
+            _citizens = new CitizenModelCollection(_worldDescription.CitizensDescription);
 
             var path = Path.Combine(Application.persistentDataPath, "citizens_data.json");
             if (File.Exists(path))
@@ -58,7 +58,7 @@ namespace Runtime
 
         private void InitializeBuildings()
         {
-            _buildings = new BuildingModelCollection(_descriptions.BuildingDescriptionCollection, _buildingFactory);
+            _buildings = new BuildingModelCollection(_worldDescription.BuildingDescriptionCollection, _buildingFactory);
 
             var path = Path.Combine(Application.persistentDataPath, "buildings_data.json");
             if (File.Exists(path))
@@ -71,7 +71,7 @@ namespace Runtime
 
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
-            _resourceFactory = new ResourceFactory(_descriptions.ResourceDescriptionCollection);
+            _resourceFactory = new ResourceFactory(_worldDescription.ResourceDescriptionCollection);
             _buildingFactory = new BuildingFactory(needService, _resourceFactory);
             _buildingFactory.RegisterAll();
         }
@@ -87,7 +87,7 @@ namespace Runtime
             descriptionFactory.Register<DecorBuildingDescription>("decor");
             descriptionFactory.Register<StorageBuildingDescription>("storage");
 
-            _descriptions = new Descriptions.Descriptions(descriptionData);
+            _worldDescription = new Descriptions.WorldDescription(descriptionData);
         }
     }
 
