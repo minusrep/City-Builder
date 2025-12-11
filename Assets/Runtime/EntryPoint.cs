@@ -15,7 +15,7 @@ namespace Runtime
     public sealed class EntryPoint : MonoBehaviour
     {
         [SerializeField] private BuildingViewDescriptionCollection _viewDescriptionCollection;
-        [SerializeField] private Transform _buildingRootTransform;
+        [SerializeField] private BuildingCollectionView _buildingCollectionView;
 
         private WorldDescription _worldDescription;
 
@@ -27,33 +27,19 @@ namespace Runtime
         private World _world;
 
         private BuildingCollectionPresenter _buildingCollectionPresenter;
-        private BuildingModelCollection _buildingModelCollection;
 
         private void Start()
         {
             InitializeDescriptions();
 
             InitializeModelFactories(new CitizenNeedServiceMock());
-
-            _buildingModelCollection =
-                new BuildingModelCollection(_worldDescription.BuildingDescriptionCollection, _buildingFactory);
-
-            _buildingModelCollection.Create("sawmill");
-
-            _buildingCollectionPresenter =
-                new BuildingCollectionPresenter(_buildingModelCollection, _viewDescriptionCollection,
-                    _buildingRootTransform);
-            _buildingCollectionPresenter.Enable();
-
-            _world = new World(_worldDescription, _factoryProvider);
-
-            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings, _viewDescriptionCollection,
-                _buildingRootTransform);
-            _buildingCollectionPresenter.Enable();
-
+            
             var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
-
-            saveLoadService.Save(_world);
+            _world = saveLoadService.Load();
+            
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings, _viewDescriptionCollection,
+                _buildingCollectionView);
+            _buildingCollectionPresenter.Enable();
         }
 
         private void InitializeModelFactories(ICitizenNeedService needService)
