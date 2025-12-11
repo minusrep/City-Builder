@@ -1,17 +1,19 @@
-using Runtime.Systems;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Inventory
 {
-    public class InventoryView
+    public class InventoryView : MonoBehaviour
     {
-        public VisualTreeAsset CellAsset { get; }
-        public VisualElement WorldRoot { get; }
+        public VisualTreeAsset CellAsset;
+        public VisualElement Root { get; private set; }
         
-        public InventoryView(MenuContent content, VisualTreeAsset cellAsset)
+        private UIDocument _document;
+
+        public void Awake()
         {
-            WorldRoot = content.WorldRoot;
-            CellAsset = cellAsset;
+            _document = GetComponent<UIDocument>();
+            Root = _document.rootVisualElement.Q<VisualElement>("content");
         }
     }
 }

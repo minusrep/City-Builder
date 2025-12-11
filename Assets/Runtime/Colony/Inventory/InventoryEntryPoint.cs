@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using Runtime.Colony.GameResources;
+using Runtime.Descriptions;
 using Runtime.Descriptions.GameResources;
 using Runtime.Systems;
 using UnityEngine;
@@ -13,36 +13,36 @@ namespace Runtime.Colony.Inventory
         [SerializeField] private VisualTreeAsset cellAsset;
 
         [SerializeField] private UIDocument mainUIDocument;
-        [SerializeField] private UIDocument worldUIDocument;
 
-        [SerializeField] private Transform building;
+        [SerializeField] private Transform building1;
+        [SerializeField] private Transform building2;
+        [SerializeField] private InventoryViewDescription inventoryViewDescription;
 
         private MenuContent _menuContent;
         private InventoryPresenter _inventoryPresenter;
 
         public void Start()
         {
-            _menuContent = new MenuContent(mainUIDocument, worldUIDocument);
-
-            var inventoryView = new InventoryView(_menuContent, cellAsset);
+            _menuContent = new MenuContent(mainUIDocument, null);
+            
             var inventoryModel = new InventoryModel(4);
 
             inventoryModel.TryAddItem(MockData.ResourceDescriptions["wood"], 8);
             inventoryModel.TryAddItem(MockData.ResourceDescriptions["iron"], 4);
             inventoryModel.TryAddItem(MockData.ResourceDescriptions["wood"], 15);
             
-            _inventoryPresenter = new InventoryPresenter(inventoryModel, inventoryView);
+            var _inventoryPresenter = new InventoryPresenter(inventoryModel, inventoryViewDescription, building1);
             
-            StartCoroutine(TestRoutine());
-        }
-
-        private IEnumerator TestRoutine()
-        {
             _inventoryPresenter.Enable();
             
-            yield return new WaitForSeconds(5f);
+            var inventoryModel1 = new InventoryModel(2);
+
+            inventoryModel1.TryAddItem(MockData.ResourceDescriptions["wood"], 8);
+            inventoryModel1.TryAddItem(MockData.ResourceDescriptions["iron"], 4);
             
-            _inventoryPresenter.Disable();
+            var _inventoryPresenter2 = new InventoryPresenter(inventoryModel1, inventoryViewDescription, building2);
+            
+            _inventoryPresenter2.Enable();
         }
     }
     
