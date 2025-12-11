@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Runtime.Descriptions.Citizens.Movement
+namespace Runtime.Colony.Citizens.Movement
 {
     public interface IMovementModel
     {

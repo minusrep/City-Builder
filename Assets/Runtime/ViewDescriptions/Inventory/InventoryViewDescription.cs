@@ -1,3 +1,4 @@
+using Runtime.ViewDescriptions.Resource;
 using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Inventory

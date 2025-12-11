@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Runtime.ViewDescriptions
+namespace Runtime.ViewDescriptions.Resource
 {
     [CreateAssetMenu(fileName = "ResourceViewDescription", menuName = "Resources/ViewDescription")]
     public class ResourceViewDescription : ScriptableObject

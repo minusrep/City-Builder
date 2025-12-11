@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Runtime.Colony.Inventory
+namespace Runtime.Systems
 {
     public class UIBillboard : MonoBehaviour
     {

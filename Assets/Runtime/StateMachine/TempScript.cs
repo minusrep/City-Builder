@@ -4,8 +4,8 @@ using System.Linq;
 using fastJSON;
 using Runtime.Colony;
 using Runtime.Colony.Citizens;
+using Runtime.Colony.Citizens.Movement;
 using Runtime.Descriptions;
-using Runtime.Descriptions.Citizens.Movement;
 using Runtime.Descriptions.StateMachine;
 using UnityEngine;
 

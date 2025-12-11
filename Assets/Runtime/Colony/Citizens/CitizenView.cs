@@ -1,7 +1,7 @@
-using Runtime.Descriptions.Citizens.Movement;
+using Runtime.Colony.Citizens.Movement;
 using UnityEngine;
 
-namespace Runtime.Descriptions.Citizens
+namespace Runtime.Colony.Citizens
 {
     public class CitizenView : MonoBehaviour
     {

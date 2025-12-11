@@ -1,9 +1,8 @@
-using Runtime.Colony.Citizens;
+using Runtime.Colony.Citizens.Movement;
 using Runtime.Common;
-using Runtime.Descriptions.Citizens.Movement;
 using Runtime.StateMachine;
 
-namespace Runtime.Descriptions.Citizens
+namespace Runtime.Colony.Citizens
 {
     public class CitizenPresenter : IPresenter
     {

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using UnityEngine;
-using System.IO;
 using fastJSON;
+using Runtime.Colony;
 using Runtime.Colony.Buildings;
 using Runtime.Colony.Buildings.Collection;
+using Runtime.Services.SaveLoad;
 using Runtime.ViewDescriptions.Buildings;
 
 namespace Runtime
@@ -15,65 +16,40 @@ namespace Runtime
     public sealed class EntryPoint : MonoBehaviour
     {
         [SerializeField] private BuildingViewDescriptionCollection _viewDescriptionCollection;
-        [SerializeField] private Transform _buildingRootTransform;
-        
+        [SerializeField] private BuildingCollectionView _buildingCollectionView;
+
         private WorldDescription _worldDescription;
+
+        private FactoryProvider _factoryProvider;
 
         private ResourceFactory _resourceFactory;
         private BuildingFactory _buildingFactory;
 
-        private BuildingModelCollection _buildings;
-        private CitizenModelCollection _citizens;
-        
+        private World _world;
+
         private BuildingCollectionPresenter _buildingCollectionPresenter;
-        
-        [SerializeField] private BuildingCollectionView _buildingCollectionView;
 
         private void Start()
         {
             InitializeDescriptions();
 
             InitializeModelFactories(new CitizenNeedServiceMock());
-
-            InitializeBuildings();
-
-            InitializeCitizens();
-
-            _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingCollectionView);
+            
+            var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
+            _world = saveLoadService.Load();
+            
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings, _viewDescriptionCollection,
+                _buildingCollectionView);
             _buildingCollectionPresenter.Enable();
         }
-
-        private void InitializeCitizens()
-        {
-            _citizens = new CitizenModelCollection(_worldDescription.Citizens);
-
-            var path = Path.Combine(Application.persistentDataPath, "citizens_data.json");
-            if (File.Exists(path))
-            {
-                var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
-
-                _citizens.Deserialize(data);
-            }
-        }
-
-        private void InitializeBuildings()
-        {
-            _buildings = new BuildingModelCollection(_worldDescription.BuildingCollection, _buildingFactory);
-
-            var path = Path.Combine(Application.persistentDataPath, "buildings_data.json");
-            if (File.Exists(path))
-            {
-                var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
-                
-                _buildings.Deserialize(data);
-            }
-        }
-
+        
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
             _resourceFactory = new ResourceFactory(_worldDescription.ResourceCollection);
             _buildingFactory = new BuildingFactory(needService, _resourceFactory);
+
             _buildingFactory.RegisterAll();
+            _factoryProvider = new FactoryProvider(_resourceFactory, _buildingFactory);
         }
 
         private void InitializeDescriptions()
@@ -89,12 +65,13 @@ namespace Runtime
 
             _worldDescription = new WorldDescription(descriptionData);
         }
-    }
 
-    internal class CitizenNeedServiceMock : ICitizenNeedService
-    {
-        public void RestoreNeed(int citizenId, string needId)
+
+        internal class CitizenNeedServiceMock : ICitizenNeedService
         {
+            public void RestoreNeed(int citizenId, string needId)
+            {
+            }
         }
     }
 }
