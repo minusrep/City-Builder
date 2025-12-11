@@ -25,16 +25,7 @@ namespace Runtime.Colony.Citizens
         
         public int Id { get; set; }
 
-        public Vector3 Position
-        {
-            get => _position;
-            set
-            {
-                _position = value;
-                
-                OnChangePointOfInterest?.Invoke();
-            }
-        }
+        public Vector3 Position { get; set; }
         
         public CitizensDescription Description { get; }
 
@@ -89,6 +80,13 @@ namespace Runtime.Colony.Citizens
             Flags = data.GetDictionary<string, bool>(FlagsKey);
             Stats = data.GetDictionary<string, float>(StatsKey);
             Timers = data.GetDictionary<string, long>(TimerKey);
+        }
+
+        public void SetPointOfInterest(Vector3 point)
+        {
+            PointOfInterest = point;
+            
+            OnChangePointOfInterest?.Invoke();
         }
     }
 }

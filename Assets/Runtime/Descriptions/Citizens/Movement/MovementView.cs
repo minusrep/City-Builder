@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Runtime.Movement
+namespace Runtime.Descriptions.Citizens.Movement
 {
     public class MovementView : MonoBehaviour
     {

@@ -1,5 +1,5 @@
+using Runtime.Descriptions.Citizens.Movement;
 using Runtime.ModelCollections;
-using Runtime.Movement;
 using Runtime.StateMachine.Conditions;
 
 namespace Runtime.Colony.Citizens
