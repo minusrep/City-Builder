@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Common;
+using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions.Buildings;
 
 namespace Runtime.Colony.Buildings.Collection
@@ -8,15 +9,20 @@ namespace Runtime.Colony.Buildings.Collection
     public class BuildingCollectionPresenter : IPresenter
     {
         private readonly BuildingModelCollection _models;
-        private readonly BuildingCollectionView _view;
         private readonly BuildingViewDescriptionCollection _viewDescriptions;
+        
         private readonly Dictionary<string, BuildingPresenter> _presenters = new();
+        private readonly Dictionary<string, ObjectPool<BuildingView>> _pools = new();
 
         public BuildingCollectionPresenter(BuildingModelCollection models, BuildingViewDescriptionCollection viewDescriptions, BuildingCollectionView view)
         {
             _models = models;
-            _view = view;
             _viewDescriptions = viewDescriptions;
+            
+            foreach (var description in _viewDescriptions.Descriptions)
+            {
+                _pools[description.name] = new ObjectPool<BuildingView>(description.Prefab, 2, view.Transform);
+            }
         }
 
         public void Enable()
@@ -43,7 +49,8 @@ namespace Runtime.Colony.Buildings.Collection
 
         private void HandleAdded(BuildingModel model)
         {
-            var presenter = new BuildingPresenter(model, _viewDescriptions.Get(model.BaseDescription.ViewDescriptionId), _view.Transform);
+            var presenter = new BuildingPresenter(model, _pools[model.BaseDescription.ViewDescriptionId],
+                _viewDescriptions.Get(model.BaseDescription.ViewDescriptionId));
             presenter.Enable();
             _presenters.Add(model.Id, presenter);
         }
