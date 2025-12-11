@@ -1,29 +1,30 @@
 ﻿using Runtime.ViewDescriptions.Buildings;
 using Runtime.Colony.Inventory;
 using Runtime.Common;
+using Runtime.Common.ObjectPool;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Common
 {
-    public sealed class BuildingPresenter : IPresenter
+    public class BuildingPresenter : IPresenter
     {
         private BuildingModel Model { get; }
         private BuildingViewDescription ViewDescription { get; }
-        private Transform RootTransform { get; }
+        private ObjectPool<BuildingView> ViewPool { get; }
         private BuildingView View { get; set; }
 
         private InventoryPresenter _inventoryPresenter;
 
-        public BuildingPresenter(BuildingModel model, BuildingViewDescription viewDescription, Transform rootTransform)
+        public BuildingPresenter(BuildingModel model, ObjectPool<BuildingView> viewPool, BuildingViewDescription viewDescription)
         {
             Model = model;
             ViewDescription = viewDescription;
-            RootTransform = rootTransform;
+            ViewPool = viewPool;
         }
 
         public void Enable()
         {
-            View = Object.Instantiate(ViewDescription.Prefab, RootTransform);
+            View = ViewPool.Get();
             View.Transform.position = ModelPositionToVector3(Model);
 
             Model.OnPositionChanged += HandlePositionChanged;
@@ -36,7 +37,8 @@ namespace Runtime.Colony.Buildings.Common
 
         public void Disable()
         {
-            Object.Destroy(View);
+            ViewPool.Release(View);
+            View = null;
             Model.OnPositionChanged -= HandlePositionChanged;
             
             _inventoryPresenter.Disable();
