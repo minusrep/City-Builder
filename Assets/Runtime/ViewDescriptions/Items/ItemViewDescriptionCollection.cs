@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.ViewDescriptions.Items;
 using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Resource
