@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions.Buildings;
 using Runtime.Utilities;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Models
+namespace Runtime.Colony.Buildings.Service
     {
         public class ServiceBuildingModel : BuildingModel
         {

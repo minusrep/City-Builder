@@ -1,4 +1,4 @@
-using Runtime.Colony.Buildings.Models;
+using Runtime.Colony.Buildings;
 using Runtime.Colony.GameResources;
 
 namespace Runtime

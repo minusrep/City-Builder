@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Runtime.Colony.Buildings.Common;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Models
+namespace Runtime.Colony.Buildings.Decor
 {
     public class DecorBuildingModel : BuildingModel
     {

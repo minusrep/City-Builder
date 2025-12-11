@@ -6,8 +6,7 @@ using Runtime.Descriptions;
 using UnityEngine;
 using fastJSON;
 using Runtime.Colony;
-using Runtime.Colony.Buildings.Models;
-using Runtime.Colony.Buildings.Presenters;
+using Runtime.Colony.Buildings;
 using Runtime.Services.SaveLoad;
 using Runtime.ViewDescriptions.Buildings;
 

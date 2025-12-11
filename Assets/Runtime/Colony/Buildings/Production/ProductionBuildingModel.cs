@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Orders;
 using Runtime.Descriptions.Buildings;
 using Runtime.Utilities;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Models
+namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingModel : BuildingModel
     {

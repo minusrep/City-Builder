@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Runtime.Colony.Buildings.Models;
+using Runtime.Colony.Buildings;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using Runtime.ModelCollections;

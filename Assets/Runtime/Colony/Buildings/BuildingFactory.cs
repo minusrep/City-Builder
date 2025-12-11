@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Buildings.Decor;
+using Runtime.Colony.Buildings.Production;
+using Runtime.Colony.Buildings.Service;
+using Runtime.Colony.Buildings.Storage;
 using Runtime.Colony.Citizens;
 using Runtime.Colony.GameResources;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Models
+namespace Runtime.Colony.Buildings
 {
     public sealed class BuildingFactory
     {

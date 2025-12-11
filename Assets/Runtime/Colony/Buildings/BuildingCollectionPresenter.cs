@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Runtime.Colony.Buildings.Models;
+using Runtime.Colony.Buildings.Common;
 using Runtime.ViewDescriptions.Buildings;
 using UnityEngine;
 using IPresenter = Runtime.Core.IPresenter;
 
-namespace Runtime.Colony.Buildings.Presenters
+namespace Runtime.Colony.Buildings
 {
     public class BuildingCollectionPresenter : IPresenter
     {
