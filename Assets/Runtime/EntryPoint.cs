@@ -1,7 +1,6 @@
 ﻿using Runtime.Descriptions.Buildings;
 using Runtime.Colony.GameResources;
 using System.Collections.Generic;
-using Runtime.Colony.Buildings;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using UnityEngine;
@@ -36,7 +35,12 @@ namespace Runtime
             
             InitializeModelFactories(new CitizenNeedServiceMock());
 
-            _viewDescriptionCollection.Initialize();
+            InitializeBuildings();
+
+            InitializeCitizens();
+
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingRootTransform);
+            _buildingCollectionPresenter.Enable();
 
             _world = new World(_worldDescription, _factoryProvider);
             
@@ -68,7 +72,7 @@ namespace Runtime
             descriptionFactory.Register<DecorBuildingDescription>("decor");
             descriptionFactory.Register<StorageBuildingDescription>("storage");
 
-            _worldDescription = new Descriptions.WorldDescription(descriptionData);
+            _worldDescription = new WorldDescription(descriptionData);
         }
     }
 

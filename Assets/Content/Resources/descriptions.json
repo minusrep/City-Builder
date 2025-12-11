@@ -6,7 +6,8 @@
       "production_time": 300,
       "production_resource": "wood",
       "production_amount": 1,
-      "max_resource": 5
+      "max_resource": 5,
+      "view_id": "Sawmill"
     },
     "shelter": {
       "type": "service",
@@ -14,7 +15,8 @@
       "max_time_service": 60,
       "max_queue": 5,
       "max_citizen_amount": 5,
-      "service_resource": "energy"
+      "service_resource": "energy",
+      "view_id": "Shelter"
     },
     "tavern": {
       "type": "service",
@@ -22,15 +24,18 @@
       "max_time_service": 86400,
       "max_queue": 5,
       "max_citizen_amount": 5,
-      "service_resource": "hunger"
+      "service_resource": "hunger",
+      "view_id": "Tavern"
     },
     "warehouse": {
       "type": "storage",
       "max_resource_amount": 100,
-      "stored_resources": ["wood"]
+      "stored_resources": ["wood"],
+      "view_id": "Warehouse"
     },
     "lantern": {
-      "type": "decor"
+      "type": "decor",
+      "view_id": "Lantern"
     }
   },
   "resources": {
