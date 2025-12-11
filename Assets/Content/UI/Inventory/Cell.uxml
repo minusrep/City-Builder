@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEditor.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <UnityEngine.UIElements.VisualElement name="cell" style="flex-grow: 1; min-width: 100px; max-width: 100px; max-height: 100px; min-height: 100px; background-color: rgba(34, 34, 34, 0.78); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-left-color: rgb(41, 41, 41); border-right-color: rgb(41, 41, 41); border-top-color: rgb(41, 41, 41); border-bottom-color: rgb(41, 41, 41); margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px;">
+        <UnityEngine.UIElements.VisualElement name="image" style="flex-grow: 1; background-size: 90% 90%; align-self: auto; align-items: flex-end; justify-content: flex-end;">
+            <UnityEngine.UIElements.Label text="0" name="amount" style="font-size: 26px; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); margin-top: 0; margin-right: 5px; margin-bottom: 0; margin-left: 0; padding-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0;"/>
+        </UnityEngine.UIElements.VisualElement>
+    </UnityEngine.UIElements.VisualElement>
+</ui:UXML>

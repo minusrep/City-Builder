@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Runtime.Descriptions.Buildings;
 using NUnit.Framework;
-using Runtime.Colony.Buildings.Models;
+using Runtime.Colony.Buildings.Service;
 using UnityEngine;
 
 namespace Tests.Buildings
