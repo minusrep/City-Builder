@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using UnityEngine;
-using System.IO;
 using fastJSON;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Models;
@@ -34,14 +33,7 @@ namespace Runtime
             InitializeDescriptions();
             
             InitializeModelFactories(new CitizenNeedServiceMock());
-
-            InitializeBuildings();
-
-            InitializeCitizens();
-
-            _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingRootTransform);
-            _buildingCollectionPresenter.Enable();
-
+            
             _world = new World(_worldDescription, _factoryProvider);
             
             _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings, _viewDescriptionCollection, _buildingRootTransform);

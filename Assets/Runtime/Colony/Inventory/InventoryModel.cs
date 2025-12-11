@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Runtime.Colony.Inventory.Cell;
-using Runtime.Colony.ModelCollections;
+using Runtime.ModelCollections;
 using Runtime.Utilities;
 
 namespace Runtime.Colony.Inventory

@@ -2,6 +2,7 @@ using Runtime.Descriptions.GameResources;
 using System.Collections.Generic;
 using System;
 using Runtime.Colony.Inventory;
+using Runtime.ModelCollections;
 using Runtime.Utilities;
 
 namespace Runtime.Colony.GameResources
