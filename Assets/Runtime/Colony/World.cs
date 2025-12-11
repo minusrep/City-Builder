@@ -1,19 +1,46 @@
+using System.Collections.Generic;
 using Runtime.Colony.Buildings.Models;
 using Runtime.Colony.Citizens;
+using Runtime.Descriptions;
+using Runtime.ModelCollections;
+using Runtime.Utilities;
 
 namespace Runtime.Colony
 {
-    public class World
+    public class World : ISerializeModel, IDeserializeModel
     {
+        private const string CitizensKey = "citizens";
+        
+        private const string BuildingsKey = "buildings";
+        
         public CitizenModelCollection Citizens { get; private set; }
 
         public BuildingModelCollection Buildings { get; private set; }
 
-        public World(CitizenModelCollection citizens, BuildingModelCollection buildings)
+
+        public World(WorldDescription worldDescription, FactoryProvider factoryProvider)
         {
-            Citizens = citizens;
+            Citizens = new CitizenModelCollection(worldDescription.CitizensDescription);
             
-            Buildings = buildings;
+            Buildings = new BuildingModelCollection(worldDescription.BuildingDescriptionCollection, factoryProvider.BuildingFactory);
+        }
+
+        public Dictionary<string, object> Serialize()
+        {
+            var dictionary = new Dictionary<string, object>();
+
+            dictionary[CitizensKey] = Citizens.Serialize();
+            
+            dictionary[BuildingsKey] = Buildings.Serialize();
+            
+            return dictionary;
+        }
+
+        public void Deserialize(Dictionary<string, object> data)
+        {
+            Buildings.Deserialize(data.GetNode(BuildingsKey));
+            
+            Citizens.Deserialize(data.GetNode(CitizensKey));
         }
     }
 }

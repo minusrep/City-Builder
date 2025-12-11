@@ -6,6 +6,7 @@ using Runtime.Descriptions;
 using UnityEngine;
 using System.IO;
 using fastJSON;
+using Runtime.Colony;
 using Runtime.Colony.Buildings.Models;
 using Runtime.Colony.Buildings.Presenters;
 using Runtime.ViewDescriptions.Buildings;
@@ -19,18 +20,19 @@ namespace Runtime
         
         private WorldDescription _worldDescription;
 
+        private FactoryProvider _factoryProvider;
+        
         private ResourceFactory _resourceFactory;
         private BuildingFactory _buildingFactory;
 
-        private BuildingModelCollection _buildings;
-        private CitizenModelCollection _citizens;
+        private World _world;
         
         private BuildingCollectionPresenter _buildingCollectionPresenter;
 
         private void Start()
         {
             InitializeDescriptions();
-
+            
             InitializeModelFactories(new CitizenNeedServiceMock());
 
             InitializeBuildings();
@@ -39,39 +41,24 @@ namespace Runtime
 
             _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingRootTransform);
             _buildingCollectionPresenter.Enable();
-        }
 
-        private void InitializeCitizens()
-        {
-            _citizens = new CitizenModelCollection(_worldDescription.CitizensDescription);
+            _world = new World(_worldDescription, _factoryProvider);
+            
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings, _viewDescriptionCollection, _buildingRootTransform);
+            _buildingCollectionPresenter.Enable();
+          
+            var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
 
-            var path = Path.Combine(Application.persistentDataPath, "citizens_data.json");
-            if (File.Exists(path))
-            {
-                var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
-
-                _citizens.Deserialize(data);
-            }
-        }
-
-        private void InitializeBuildings()
-        {
-            _buildings = new BuildingModelCollection(_worldDescription.BuildingDescriptionCollection, _buildingFactory);
-
-            var path = Path.Combine(Application.persistentDataPath, "buildings_data.json");
-            if (File.Exists(path))
-            {
-                var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
-                
-                _buildings.Deserialize(data);
-            }
+            saveLoadService.Save(_world);
         }
 
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
             _resourceFactory = new ResourceFactory(_worldDescription.ResourceDescriptionCollection);
             _buildingFactory = new BuildingFactory(needService, _resourceFactory);
+            
             _buildingFactory.RegisterAll();
+            _factoryProvider = new FactoryProvider(_resourceFactory, _buildingFactory);
         }
 
         private void InitializeDescriptions()
