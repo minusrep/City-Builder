@@ -1,4 +1,4 @@
-using Runtime.Movement;
+using Runtime.Descriptions.Citizens.Movement;
 using UnityEngine;
 
 namespace Runtime.Descriptions.Citizens

@@ -1,6 +1,6 @@
 using Runtime.Colony.Citizens;
 using Runtime.Common;
-using Runtime.Movement;
+using Runtime.Descriptions.Citizens.Movement;
 using Runtime.StateMachine;
 
 namespace Runtime.Descriptions.Citizens

@@ -5,8 +5,8 @@ using fastJSON;
 using Runtime.Colony;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
+using Runtime.Descriptions.Citizens.Movement;
 using Runtime.Descriptions.StateMachine;
-using Runtime.Movement;
 using UnityEngine;
 
 namespace Runtime.StateMachine
