@@ -1,7 +1,5 @@
 using Runtime.ViewDescriptions.Items;
-using Runtime.ViewDescriptions.Resource;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Runtime.ViewDescriptions.Inventory
 {

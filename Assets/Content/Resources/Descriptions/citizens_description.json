@@ -1,6 +1,8 @@
 {
-  "citizens": {
-    "names" : ["Bob", "Joe", "Tom"],
-    "start_move_speed": 1
-  }
+  "names": [
+    "Bob",
+    "Joe",
+    "Tom"
+  ],
+  "start_move_speed": 1
 }

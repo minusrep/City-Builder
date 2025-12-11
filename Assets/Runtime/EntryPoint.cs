@@ -1,5 +1,4 @@
-﻿using Runtime.Descriptions.Buildings;
-using Runtime.Colony.GameResources;
+﻿using Runtime.Colony.GameResources;
 using System.Collections.Generic;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
@@ -34,15 +33,15 @@ namespace Runtime
             InitializeDescriptions();
 
             InitializeModelFactories(new CitizenNeedServiceMock());
-            
+
             var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
             _world = saveLoadService.Load();
-            
+
             _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings, _viewDescriptionCollection,
                 _buildingCollectionView);
             _buildingCollectionPresenter.Enable();
         }
-        
+
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
             _resourceFactory = new ResourceFactory(_worldDescription.ResourceCollection);
@@ -54,16 +53,24 @@ namespace Runtime
 
         private void InitializeDescriptions()
         {
-            var textAsset = Resources.Load<TextAsset>("descriptions");
-            var descriptionData = (Dictionary<string, object>)JSON.Parse(textAsset.text);
+            var buildingDescriptions =
+                JSON.ToObject<Dictionary<string, object>>(
+                    Resources.Load<TextAsset>("Descriptions/buildings_description").text);
+            var citizensDescriptions =
+                JSON.ToObject<Dictionary<string, object>>(
+                    Resources.Load<TextAsset>("Descriptions/citizens_description").text);
+            var resourcesDescriptions =
+                JSON.ToObject<Dictionary<string, object>>(
+                    Resources.Load<TextAsset>("Descriptions/resources_description").text);
 
-            var descriptionFactory = new DescriptionFactory();
-            descriptionFactory.Register<ProductionBuildingDescription>("production");
-            descriptionFactory.Register<ServiceBuildingDescription>("service");
-            descriptionFactory.Register<DecorBuildingDescription>("decor");
-            descriptionFactory.Register<StorageBuildingDescription>("storage");
+            var data = new Dictionary<string, object>
+            {
+                { "buildings", buildingDescriptions },
+                { "citizens", citizensDescriptions },
+                { "resources", resourcesDescriptions }
+            };
 
-            _worldDescription = new WorldDescription(descriptionData);
+            _worldDescription = new WorldDescription(data);
         }
 
 
