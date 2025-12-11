@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.ViewDescriptions.Buildings;
-using UnityEngine;
 using IPresenter = Runtime.Core.IPresenter;
 
 namespace Runtime.Colony.Buildings
@@ -9,14 +8,14 @@ namespace Runtime.Colony.Buildings
     public class BuildingCollectionPresenter : IPresenter
     {
         private readonly BuildingModelCollection _models;
+        private readonly BuildingCollectionView _view;
         private readonly BuildingViewDescriptionCollection _viewDescriptions;
-        private readonly Transform _rootTransform;
         private readonly Dictionary<string, BuildingPresenter> _presenters = new();
 
-        public BuildingCollectionPresenter(BuildingModelCollection models, BuildingViewDescriptionCollection viewDescriptions, Transform rootTransform)
+        public BuildingCollectionPresenter(BuildingModelCollection models, BuildingViewDescriptionCollection viewDescriptions, BuildingCollectionView view)
         {
             _models = models;
-            _rootTransform = rootTransform;
+            _view = view;
             _viewDescriptions = viewDescriptions;
         }
 
@@ -44,7 +43,7 @@ namespace Runtime.Colony.Buildings
 
         private void HandleAdded(BuildingModel model)
         {
-            var presenter = new BuildingPresenter(model, _viewDescriptions.Get(model.BaseDescription.ViewDescriptionId), _rootTransform);
+            var presenter = new BuildingPresenter(model, _viewDescriptions.Get(model.BaseDescription.ViewDescriptionId), _view.Transform);
             presenter.Enable();
             _presenters.Add(model.Id, presenter);
         }
