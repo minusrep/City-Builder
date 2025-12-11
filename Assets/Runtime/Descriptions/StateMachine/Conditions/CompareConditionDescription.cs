@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Runtime.Colony;
-using Runtime.StateMachine.Conditions;
+using Runtime.Colony.StateMachine.Conditions;
 using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Conditions

@@ -1,7 +1,7 @@
 using Runtime.Descriptions.Citizens;
 using System.Collections.Generic;
+using Runtime.Extensions;
 using Runtime.ModelCollections;
-using Runtime.Utilities;
 using Random = UnityEngine.Random;
 
 namespace Runtime.Colony.Citizens

@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Runtime.Colony.Inventory.Cell;
+using Runtime.Extensions;
 using Runtime.ModelCollections;
-using Runtime.Utilities;
 
 namespace Runtime.Colony.Inventory
 {

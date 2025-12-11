@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Runtime.Extensions;
 using Runtime.ModelCollections;
-using Runtime.Utilities;
 
 namespace Runtime.Colony.Orders
 {

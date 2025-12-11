@@ -1,5 +1,6 @@
-using Runtime.ViewDescriptions.Resource;
+using Runtime.ViewDescriptions.Items;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Runtime.ViewDescriptions.Inventory
 {
@@ -8,6 +9,6 @@ namespace Runtime.ViewDescriptions.Inventory
     {
         public GameObject Prefab;
         
-        public ResourceViewDescriptionCollection ResourceViewDescriptions;
+        [FormerlySerializedAs("ResourceViewDescriptions")] public ItemViewDescriptionCollection itemViewDescriptions;
     }
 }

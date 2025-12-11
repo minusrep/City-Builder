@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Descriptions.Buildings;
+using Runtime.Extensions;
 using Runtime.ModelCollections;
-using Runtime.Utilities;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Collection

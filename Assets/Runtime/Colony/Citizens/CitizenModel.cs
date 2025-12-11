@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony.StateMachine;
 using Runtime.Descriptions.Citizens;
-using Runtime.StateMachine;
-using Runtime.Utilities;
+using Runtime.Extensions;
 using UnityEngine;
 
 namespace Runtime.Colony.Citizens

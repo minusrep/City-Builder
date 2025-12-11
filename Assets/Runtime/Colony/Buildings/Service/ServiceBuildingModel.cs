@@ -2,7 +2,7 @@
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions.Buildings;
-using Runtime.Utilities;
+using Runtime.Extensions;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Service

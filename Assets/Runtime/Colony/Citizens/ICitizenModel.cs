@@ -1,6 +1,6 @@
 using Runtime.Colony.Citizens.Movement;
+using Runtime.Colony.StateMachine.Conditions;
 using Runtime.ModelCollections;
-using Runtime.StateMachine.Conditions;
 
 namespace Runtime.Colony.Citizens
 {

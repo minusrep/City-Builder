@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Colony;
-using Runtime.StateMachine.Conditions;
-using Runtime.Utilities;
+using Runtime.Colony.StateMachine.Conditions;
+using Runtime.Extensions;
 
 namespace Runtime.Descriptions.StateMachine.Conditions
 {

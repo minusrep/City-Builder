@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Runtime.Colony;
 using Runtime.Colony.Citizens.Movement;
-using Runtime.StateMachine.Conditions;
-using Runtime.Utilities;
+using Runtime.Colony.StateMachine.Conditions;
+using Runtime.Extensions;
 using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Conditions

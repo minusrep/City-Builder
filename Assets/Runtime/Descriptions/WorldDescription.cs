@@ -2,7 +2,7 @@
 using Runtime.Descriptions.Buildings;
 using Runtime.Descriptions.Citizens;
 using System.Collections.Generic;
-using Runtime.Utilities;
+using Runtime.Extensions;
 
 namespace Runtime.Descriptions
 {

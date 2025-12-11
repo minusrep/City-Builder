@@ -59,8 +59,8 @@ namespace Runtime.Colony.Inventory
             {
                 cellView.Amount.style.display = DisplayStyle.Flex;
                 
-                //TODO: Жесткая связь с ResourceViewDescription
-                var itemViewDescription = _viewDescription.ResourceViewDescriptions.Get(model.Item.Type);
+                //TODO: Жесткая связь с ItemViewDescription
+                var itemViewDescription = _viewDescription.itemViewDescriptions.Get(model.Item.Type);
                 cellView.Image.style.backgroundImage = itemViewDescription.Image.texture;
             }
         }
