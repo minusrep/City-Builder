@@ -1,4 +1,4 @@
-﻿using Runtime.Colony.Buildings.Views;
+﻿using Runtime.Colony.Buildings.Common;
 using Runtime.ViewDescriptions.Inventory;
 using UnityEngine;
 

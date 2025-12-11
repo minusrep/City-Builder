@@ -1,12 +1,12 @@
+using System;
 using System.Collections.Generic;
+using Runtime.Colony.Inventory;
 using Runtime.Descriptions.Buildings;
 using Runtime.ModelCollections;
 using Runtime.Utilities;
 using UnityEngine;
-using System;
-using Runtime.Colony.Inventory;
 
-namespace Runtime.Colony.Buildings.Models
+namespace Runtime.Colony.Buildings.Common
 {
     public abstract class BuildingModel : ISerializeModel, IDeserializeModel
     {

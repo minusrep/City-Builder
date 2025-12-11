@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Views
+namespace Runtime.Colony.Buildings.Common
 {
     public sealed class BuildingView : MonoBehaviour
     {

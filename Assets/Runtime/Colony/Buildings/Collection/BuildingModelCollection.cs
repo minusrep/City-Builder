@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Runtime.Colony.Buildings.Common;
 using Runtime.Descriptions.Buildings;
 using Runtime.ModelCollections;
 using Runtime.Utilities;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Models
+namespace Runtime.Colony.Buildings.Collection
 {
     public sealed class BuildingModelCollection : DescribedModelCollection<BuildingModel>
     {

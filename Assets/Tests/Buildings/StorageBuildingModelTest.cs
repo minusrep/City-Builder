@@ -3,7 +3,7 @@ using Runtime.Descriptions.Buildings;
 using Runtime.Colony.GameResources;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Runtime.Colony.Buildings.Models;
+using Runtime.Colony.Buildings.Storage;
 using UnityEngine;
 
 namespace Tests.Buildings

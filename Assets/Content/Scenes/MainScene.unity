@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewDescriptionCollection: {fileID: 11400000, guid: 5a457251ccf9a884681614b9178892ba, type: 2}
-  _buildingRootTransform: {fileID: 730573692}
+  _buildingCollectionView: {fileID: 730573693}
 --- !u!4 &469992741
 Transform:
   m_ObjectHideFlags: 0
@@ -500,6 +500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 730573692}
+  - component: {fileID: 730573693}
   m_Layer: 0
   m_Name: Builginds
   m_TagString: Untagged
@@ -522,6 +523,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1858668570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &730573693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730573691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca00216a843d4207b1f987e38ff2546a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.BuildingCollectionView
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
