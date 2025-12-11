@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
+using Runtime.Common;
 using Runtime.ViewDescriptions.Buildings;
-using IPresenter = Runtime.Core.IPresenter;
 
 namespace Runtime.Colony.Buildings.Collection
 {

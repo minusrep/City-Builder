@@ -1,7 +1,7 @@
-﻿using Runtime.Colony.Inventory;
-using Runtime.ViewDescriptions.Buildings;
+﻿using Runtime.ViewDescriptions.Buildings;
+using Runtime.Colony.Inventory;
+using Runtime.Common;
 using UnityEngine;
-using IPresenter = Runtime.Core.IPresenter;
 
 namespace Runtime.Colony.Buildings.Common
 {
