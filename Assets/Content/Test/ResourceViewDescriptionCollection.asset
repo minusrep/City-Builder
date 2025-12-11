@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ResourceViewDescriptionCollection
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Descriptions.ResourceViewDescriptionCollection
   _descriptions:
-  - {fileID: 11400000, guid: 2a6cdd86c34e03241b81e1bd1e6e2953, type: 2}
+  - {fileID: 11400000, guid: aa68208af44b7e24a8f21443e72b4eb9, type: 2}
   - {fileID: 11400000, guid: 0e320705557022b4db5e0e8a0e279fc5, type: 2}

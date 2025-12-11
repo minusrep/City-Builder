@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 394466744810152173}
   - component: {fileID: 4016455974913646470}
   - component: {fileID: 1613744174770584495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InventoryView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Inventory.InventoryView
   CellAsset: {fileID: 9197481963319205126, guid: 57c17321542a92440a3e09d059419dca, type: 3}
+  Document: {fileID: 4016455974913646470}
 --- !u!114 &4016455974913646470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,11 +65,11 @@ MonoBehaviour:
   sourceAsset: {fileID: 9197481963319205126, guid: 859fd50035fd8854ba7eb3b8f959a1a3, type: 3}
   m_SortingOrder: 0
   m_Position: 0
-  m_WorldSpaceSizeMode: 0
-  m_WorldSpaceWidth: 100
-  m_WorldSpaceHeight: 100
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 80
+  m_WorldSpaceHeight: 80
   m_PivotReferenceSize: 0
-  m_Pivot: 7
+  m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
 --- !u!114 &1613744174770584495
 MonoBehaviour:

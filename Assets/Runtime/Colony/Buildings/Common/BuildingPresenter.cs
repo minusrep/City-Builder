@@ -27,8 +27,7 @@ namespace Runtime.Colony.Buildings.Common
             View.Transform.position = ModelPositionToVector3(Model);
 
             Model.OnPositionChanged += HandlePositionChanged;
-
-            Model.Inventory = new InventoryModel(5);
+            
             _inventoryPresenter = new InventoryPresenter(Model.Inventory, 
                 ViewDescription.InventoryViewDescription, View.Transform);
             

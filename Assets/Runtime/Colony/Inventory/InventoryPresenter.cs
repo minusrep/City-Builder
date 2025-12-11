@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Runtime.Colony.Inventory.Cell;
 using Runtime.ViewDescriptions.Inventory;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Inventory
 {
@@ -22,8 +23,8 @@ namespace Runtime.Colony.Inventory
 
         public void Enable()
         {
-            var view = Object.Instantiate(_viewDescription.Prefab, _transform);
-            _view = view.GetComponent<InventoryView>();
+            var prefab = Object.Instantiate(_viewDescription.Prefab, _transform);
+            _view = prefab.GetComponent<InventoryView>();
             
             CreateCells();
             
@@ -35,20 +36,11 @@ namespace Runtime.Colony.Inventory
             foreach (var pair in _model.Models)
             {
                 var cellView = new CellView(_view.CellAsset);
-
-                cellView.Amount.text = pair.Value.Amount.ToString();
-
-                //TODO: Жесткая связь с ResourceViewDescription
-                if (pair.Value.Amount != 0)
-                {
-                    var itemViewDescription = _viewDescription.ResourceViewDescriptions.Get(pair.Value.Item.Type);
-                    
-                    cellView.Image.style.backgroundImage = itemViewDescription.Image.texture;
-                }
                 
                 _view.Root.Add(cellView.Root);
-                
                 _cells.Add(pair.Value, cellView);
+
+                UpdateCell(pair.Value);
             }
         }
         
@@ -58,15 +50,18 @@ namespace Runtime.Colony.Inventory
             
             cellView.Amount.text = model.Amount.ToString();
 
-            if (model.Amount != 0)
+            if (model.Amount == 0)
             {
-                var itemViewDescription = _viewDescription.ResourceViewDescriptions.Get(model.Item.Type);
-                    
-                cellView.Image.style.backgroundImage = itemViewDescription.Image.texture;
+                cellView.Image.style.backgroundImage = null;
+                cellView.Amount.style.display = DisplayStyle.None;
             }
             else
             {
-                cellView.Image.style.backgroundImage = null;
+                cellView.Amount.style.display = DisplayStyle.Flex;
+                
+                //TODO: Жесткая связь с ResourceViewDescription
+                var itemViewDescription = _viewDescription.ResourceViewDescriptions.Get(model.Item.Type);
+                cellView.Image.style.backgroundImage = itemViewDescription.Image.texture;
             }
         }
 

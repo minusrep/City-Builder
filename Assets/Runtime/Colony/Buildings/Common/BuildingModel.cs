@@ -35,6 +35,7 @@ namespace Runtime.Colony.Buildings.Common
             Id = id;    
             Position = position;
             BaseDescription = baseDescription;
+            Inventory = new InventoryModel(5);
         }
 
         public virtual Dictionary<string, object> Serialize()
