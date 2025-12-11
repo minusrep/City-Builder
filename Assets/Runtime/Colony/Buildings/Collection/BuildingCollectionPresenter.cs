@@ -3,7 +3,7 @@ using Runtime.Colony.Buildings.Common;
 using Runtime.ViewDescriptions.Buildings;
 using IPresenter = Runtime.Core.IPresenter;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Collection
 {
     public class BuildingCollectionPresenter : IPresenter
     {

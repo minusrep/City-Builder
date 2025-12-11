@@ -5,7 +5,7 @@ using Runtime.ModelCollections;
 using Runtime.Utilities;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Collection
 {
     public sealed class BuildingModelCollection : DescribedModelCollection<BuildingModel>
     {
