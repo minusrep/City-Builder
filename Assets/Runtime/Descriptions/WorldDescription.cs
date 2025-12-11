@@ -1,7 +1,7 @@
-﻿using Runtime.Descriptions.GameResources;
-using Runtime.Descriptions.Buildings;
+﻿using Runtime.Descriptions.Buildings;
 using Runtime.Descriptions.Citizens;
 using System.Collections.Generic;
+using Runtime.Descriptions.Items;
 using Runtime.Extensions;
 
 namespace Runtime.Descriptions
@@ -10,7 +10,7 @@ namespace Runtime.Descriptions
     {
         public BuildingsDescriptionCollection BuildingCollection { get; }
         
-        public ResourceDescriptionCollection ResourceCollection { get; }
+        public ItemDescriptionCollection ItemCollection { get; }
         
         public CitizensDescription Citizens { get; }
   
@@ -27,7 +27,7 @@ namespace Runtime.Descriptions
             Factory.Register<StorageBuildingDescription>("storage");
             
             BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
-            ResourceCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
+            ItemCollection = new ItemDescriptionCollection(data.GetNode("resources"));
             Citizens = new CitizensDescription(data.GetNode("citizens"));
         }
     }

@@ -6,7 +6,7 @@ using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.GameResources;
+using Runtime.Colony.Items;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
@@ -18,12 +18,12 @@ namespace Runtime.Colony.Buildings
             = new();
 
         private readonly ICitizenNeedService _needService;
-        private readonly IResourceFactory _resourceFactory;
+        private readonly IItemFactory _itemFactory;
 
-        public BuildingFactory(ICitizenNeedService needService, IResourceFactory resourceFactory)
+        public BuildingFactory(ICitizenNeedService needService, IItemFactory itemFactory)
         {
             _needService = needService;
-            _resourceFactory = resourceFactory;
+            _itemFactory = itemFactory;
         }
 
         public void RegisterAll()
@@ -40,7 +40,7 @@ namespace Runtime.Colony.Buildings
             {
                 var storageDescription = (StorageBuildingDescription)description;
                 
-                return new StorageBuildingModel(id, position, storageDescription, _resourceFactory);
+                return new StorageBuildingModel(id, position, storageDescription, _itemFactory);
             });
 
             Register("decor",

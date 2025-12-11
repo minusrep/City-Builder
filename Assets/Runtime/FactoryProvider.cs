@@ -1,19 +1,19 @@
 using Runtime.Colony.Buildings;
-using Runtime.Colony.GameResources;
+using Runtime.Colony.Items;
 
 namespace Runtime
 {
     public class FactoryProvider
     {
-        public ResourceFactory ResourceFactory { get; }
+        public ItemFactory ItemFactory { get; }
         
         public BuildingFactory BuildingFactory { get; }
 
-        public FactoryProvider(ResourceFactory resourceFactory, BuildingFactory buildingFactory)
+        public FactoryProvider(ItemFactory itemFactory, BuildingFactory buildingFactory)
         {
             BuildingFactory = buildingFactory;
             
-            ResourceFactory = resourceFactory;
+            ItemFactory = itemFactory;
         }
     }
 }

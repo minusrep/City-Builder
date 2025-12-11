@@ -1,5 +1,4 @@
-﻿using Runtime.Colony.GameResources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using UnityEngine;
@@ -7,6 +6,7 @@ using fastJSON;
 using Runtime.Colony;
 using Runtime.Colony.Buildings;
 using Runtime.Colony.Buildings.Collection;
+using Runtime.Colony.Items;
 using Runtime.Services.SaveLoad;
 using Runtime.ViewDescriptions.Buildings;
 
@@ -21,7 +21,7 @@ namespace Runtime
 
         private FactoryProvider _factoryProvider;
 
-        private ResourceFactory _resourceFactory;
+        private ItemFactory _itemFactory;
         private BuildingFactory _buildingFactory;
 
         private World _world;
@@ -44,11 +44,11 @@ namespace Runtime
 
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
-            _resourceFactory = new ResourceFactory(_worldDescription.ResourceCollection);
-            _buildingFactory = new BuildingFactory(needService, _resourceFactory);
+            _itemFactory = new ItemFactory(_worldDescription.ItemCollection);
+            _buildingFactory = new BuildingFactory(needService, _itemFactory);
 
             _buildingFactory.RegisterAll();
-            _factoryProvider = new FactoryProvider(_resourceFactory, _buildingFactory);
+            _factoryProvider = new FactoryProvider(_itemFactory, _buildingFactory);
         }
 
         private void InitializeDescriptions()
@@ -61,7 +61,7 @@ namespace Runtime
                     Resources.Load<TextAsset>("Descriptions/citizens_description").text);
             var resourcesDescriptions =
                 JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/resources_description").text);
+                    Resources.Load<TextAsset>("Descriptions/items_description").text);
 
             var data = new Dictionary<string, object>
             {
