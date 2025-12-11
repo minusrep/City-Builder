@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Runtime.Colony.Inventory.Cell;
-using Runtime.Colony.ModelCollections;
+using Runtime.ModelCollections;
 using Runtime.Utilities;
 
 namespace Runtime.Colony.Inventory
 {
     public class InventoryModel : UniformModelCollection<CellModel>
     {
+        public event Action<CellModel> OnItemChanged;
+
         public int Size;
 
         public InventoryModel(int size) : base(null)
@@ -33,7 +35,7 @@ namespace Runtime.Colony.Inventory
         protected override CellModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
             var cell = new CellModel();
-            
+
             var amount = data.GetInt("amount");
 
             cell.TryAdd(null, amount);
@@ -54,6 +56,9 @@ namespace Runtime.Colony.Inventory
             {
                 var toAdd = Math.Min(free, remaining);
                 cell.TryAdd(item, toAdd);
+
+                OnItemChanged?.Invoke(cell);
+
                 remaining -= toAdd;
 
                 if (remaining == 0)
@@ -122,6 +127,9 @@ namespace Runtime.Colony.Inventory
                     if (toRemove > 0)
                     {
                         cell.TryReduce(toRemove);
+
+                        OnItemChanged?.Invoke(cell);
+
                         remaining -= toRemove;
 
                         if (remaining == 0)

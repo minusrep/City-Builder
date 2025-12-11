@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Runtime.Colony
+namespace Runtime.Services
 {
     public class ServiceLocator : IServiceLocator
     {

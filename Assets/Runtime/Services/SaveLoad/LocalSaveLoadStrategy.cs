@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.IO;
 using fastJSON;
+using Runtime.Colony;
 using Runtime.Descriptions;
 using UnityEngine;
 
-namespace Runtime.Colony
+namespace Runtime.Services.SaveLoad
 {
     public class LocalSaveLoadStrategy : SaveLoadStrategy
     {

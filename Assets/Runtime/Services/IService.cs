@@ -1,4 +1,4 @@
-namespace Runtime.Colony
+namespace Runtime.Services
 {
     public interface IService
     {

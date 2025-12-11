@@ -1,4 +1,6 @@
-namespace Runtime.Colony
+using Runtime.Colony;
+
+namespace Runtime.Services.SaveLoad
 {
     public interface ISaveLoadService : IService
     { 

@@ -1,6 +1,7 @@
 ﻿using Runtime.ViewDescriptions.Buildings;
 using Runtime.Colony.Buildings.Models;
 using Runtime.Colony.Buildings.Views;
+using Runtime.Colony.Inventory;
 using UnityEngine;
 using IPresenter = Runtime.Core.IPresenter;
 
@@ -13,25 +14,35 @@ namespace Runtime.Colony.Buildings.Presenters
         private Transform RootTransform { get; }
         private BuildingView View { get; set; }
 
+        private InventoryPresenter _inventoryPresenter;
+
         public BuildingPresenter(BuildingModel model, BuildingViewDescription viewDescription, Transform rootTransform)
         {
             Model = model;
             ViewDescription = viewDescription;
             RootTransform = rootTransform;
         }
-        
+
         public void Enable()
         {
             View = Object.Instantiate(ViewDescription.Prefab, RootTransform);
             View.Transform.position = ModelPositionToVector3(Model);
-            
+
             Model.OnPositionChanged += HandlePositionChanged;
+
+            Model.Inventory = new InventoryModel(5);
+            _inventoryPresenter = new InventoryPresenter(Model.Inventory, 
+                ViewDescription.InventoryViewDescription, View.Transform);
+            
+            _inventoryPresenter.Enable();
         }
-        
+
         public void Disable()
         {
             Object.Destroy(View);
             Model.OnPositionChanged -= HandlePositionChanged;
+            
+            _inventoryPresenter.Disable();
         }
 
         private void HandlePositionChanged()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4016455974913646470}
   - component: {fileID: 1613744174770584495}
   m_Layer: 0
-  m_Name: UI
+  m_Name: InventoryView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_WorldSpaceWidth: 100
   m_WorldSpaceHeight: 100
   m_PivotReferenceSize: 0
-  m_Pivot: 0
+  m_Pivot: 7
   m_WorldSpaceCollider: {fileID: 0}
 --- !u!114 &1613744174770584495
 MonoBehaviour:

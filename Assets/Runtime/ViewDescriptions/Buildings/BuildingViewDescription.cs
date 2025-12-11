@@ -1,4 +1,5 @@
 ﻿using Runtime.Colony.Buildings.Views;
+using Runtime.ViewDescriptions.Inventory;
 using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Buildings
@@ -7,5 +8,6 @@ namespace Runtime.ViewDescriptions.Buildings
     public class BuildingViewDescription : ScriptableObject
     {
         public BuildingView Prefab;
+        public InventoryViewDescription InventoryViewDescription;
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runtime.Descriptions
+namespace Runtime.ViewDescriptions
 {
     [CreateAssetMenu(fileName = "ResourceViewDescriptionCollection", menuName = "Resources/ViewDescriptionCollection")]
     public class ResourceViewDescriptionCollection : ScriptableObject

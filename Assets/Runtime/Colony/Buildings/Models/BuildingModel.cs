@@ -4,12 +4,15 @@ using Runtime.ModelCollections;
 using Runtime.Utilities;
 using UnityEngine;
 using System;
+using Runtime.Colony.Inventory;
 
 namespace Runtime.Colony.Buildings.Models
 {
     public abstract class BuildingModel : ISerializeModel, IDeserializeModel
     {
         public event Action OnPositionChanged;
+        
+        public InventoryModel Inventory { get; set; }
         
         public string Id { get; }
 

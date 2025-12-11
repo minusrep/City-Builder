@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Runtime.Descriptions
+namespace Runtime.ViewDescriptions.Inventory
 {
     [CreateAssetMenu(fileName = "InventoryViewDescription", menuName = "Inventory/ViewDescription")]
     public class InventoryViewDescription : ScriptableObject

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36a03fbc9cb405f982a32658e56ceb4, type: 3}
   m_Name: Tavern
   m_EditorClassIdentifier: 
-  BuildingDescriptionId: tavern
   Prefab: {fileID: 6383710204673921016, guid: 29c360f540bb3514382bb935bbb9c7f4, type: 3}
+  InventoryViewDescription: {fileID: 11400000, guid: 1dcbe1689025f1a4bb4951680941bb1c, type: 2}

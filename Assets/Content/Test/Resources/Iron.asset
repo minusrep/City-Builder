@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bba1284036d34f13a7b2e50508c8e7db, type: 3}
-  m_Name: Iron
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Descriptions.ResourceViewDescription
+  m_Script: {fileID: 11500000, guid: 9f86cbaedad2e0443b096db8236d9100, type: 3}
+  m_Name: iron
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.ResourceViewDescription
   Name: iron
   Image: {fileID: 21300000, guid: 7e38d2a77ad88e3438be30c32efaab9e, type: 3}
