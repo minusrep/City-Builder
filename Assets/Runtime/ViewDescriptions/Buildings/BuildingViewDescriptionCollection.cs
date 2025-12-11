@@ -6,11 +6,13 @@ namespace Runtime.ViewDescriptions.Buildings
     [CreateAssetMenu(fileName = "BuildingViewDescriptionCollection", menuName = "Buildings/ViewDescriptionCollection")]
     public sealed class BuildingViewDescriptionCollection : ScriptableObject
     {
-        [SerializeField] private List<BuildingViewDescription> descriptions;
+        public IReadOnlyList<BuildingViewDescription> Descriptions => _descriptions;
+        
+        [SerializeField] private List<BuildingViewDescription> _descriptions;
         
         public BuildingViewDescription Get(string id)
         {
-            return descriptions.Find(description => description.name == id);
+            return _descriptions.Find(description => description.name == id);
         }
     }
 }
