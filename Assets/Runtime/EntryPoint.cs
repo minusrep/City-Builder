@@ -6,8 +6,8 @@ using Runtime.Descriptions;
 using UnityEngine;
 using System.IO;
 using fastJSON;
-using Runtime.Colony.Buildings.Models;
-using Runtime.Colony.Buildings.Presenters;
+using Runtime.Colony.Buildings;
+using Runtime.Colony.Buildings.Collection;
 using Runtime.ViewDescriptions.Buildings;
 
 namespace Runtime
@@ -26,6 +26,8 @@ namespace Runtime
         private CitizenModelCollection _citizens;
         
         private BuildingCollectionPresenter _buildingCollectionPresenter;
+        
+        [SerializeField] private BuildingCollectionView _buildingCollectionView;
 
         private void Start()
         {
@@ -37,7 +39,7 @@ namespace Runtime
 
             InitializeCitizens();
 
-            _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingRootTransform);
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingCollectionView);
             _buildingCollectionPresenter.Enable();
         }
 

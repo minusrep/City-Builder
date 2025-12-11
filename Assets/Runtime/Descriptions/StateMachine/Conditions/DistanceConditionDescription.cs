@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Colony;
-using Runtime.Descriptions.Citizens.Movement;
+using Runtime.Movement;
 using Runtime.StateMachine.Conditions;
 using Runtime.Utilities;
 using UnityEngine;

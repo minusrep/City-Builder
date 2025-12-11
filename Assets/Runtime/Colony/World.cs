@@ -21,9 +21,9 @@ namespace Runtime.Colony
 
         public World(WorldDescription worldDescription, FactoryProvider factoryProvider)
         {
-            Citizens = new CitizenModelCollection(worldDescription.CitizensDescription);
+            Citizens = new CitizenModelCollection(worldDescription.Citizens);
             
-            Buildings = new BuildingModelCollection(worldDescription.BuildingDescriptionCollection, factoryProvider.BuildingFactory);
+            Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingFactory);
         }
 
         public Dictionary<string, object> Serialize()
