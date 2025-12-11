@@ -17,24 +17,20 @@ namespace Runtime.Movement
         
         private readonly UpdateService _updateService;
 
-        public MovementPresenter(IMovementModel model, MovementView view, UpdateService updateService, StateMachineModel stateMachineModel, PointOfInterestDescriptionCollection points)
+        public MovementPresenter(IMovementModel model, MovementView view, UpdateService updateService)
         {
             _updateService = updateService;
-            
-            _view = view;
-            
-            _model = model;
-            
-            _stateMachineModel =  stateMachineModel;
 
-            _points = points;
+            _view = view;
+
+            _model = model;
         }
 
         public void Enable()
         {
             _updateService.OnUpdate += Update;
-            
-            _stateMachineModel.OnChange += OnChangeState;
+
+            _model.OnChangePointOfInterest += OnChangePointOfInterest;
             
             _view.NavMeshAgent.isStopped = false;
         }
@@ -43,7 +39,7 @@ namespace Runtime.Movement
         {
             _updateService.OnUpdate -= Update;
             
-            _stateMachineModel.OnChange -= OnChangeState;
+            _stateMachineModel.OnChange -= OnChangePointOfInterest;
             
             _view.NavMeshAgent.isStopped = true;
         }
@@ -53,19 +49,9 @@ namespace Runtime.Movement
             _model.Position = _view.Transform.position;
         }
 
-        private void OnChangeState()
+        private void OnChangePointOfInterest()
         {
-            foreach (var action in _stateMachineModel.CurrentState.Actions)
-            {
-                if (action is not SetPointOfInterestActionDescription setPointOfInterest)
-                {
-                    continue;
-                }
-                
-                _model.PointOfInterest = _points.Get(setPointOfInterest.PointOfInterest);
-                
-                _view.NavMeshAgent.SetDestination(_model.PointOfInterest);
-            }
+            _view.NavMeshAgent.SetDestination(_model.PointOfInterest);
         }
     }
 }

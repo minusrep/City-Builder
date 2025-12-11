@@ -8,11 +8,13 @@ namespace Runtime.Descriptions
 {
     public sealed class WorldDescription
     {
-        public BuildingsDescriptionCollection BuildingDescriptionCollection { get; }
+        public BuildingsDescriptionCollection BuildingCollection { get; }
         
-        public ResourceDescriptionCollection ResourceDescriptionCollection { get; }
+        public ResourceDescriptionCollection ResourceCollection { get; }
         
-        public CitizensDescription CitizensDescription { get; }
+        public CitizensDescription Citizens { get; }
+  
+        public PointOfInterestDescriptionCollection PointOfInterestCollection { get; }
         
         private DescriptionFactory Factory { get; }
 
@@ -24,9 +26,9 @@ namespace Runtime.Descriptions
             Factory.Register<DecorBuildingDescription>("decor");
             Factory.Register<StorageBuildingDescription>("storage");
             
-            BuildingDescriptionCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
-            ResourceDescriptionCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
-            CitizensDescription = new CitizensDescription(data.GetNode("citizens"));
+            BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
+            ResourceCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
+            Citizens = new CitizensDescription(data.GetNode("citizens"));
         }
     }
 }

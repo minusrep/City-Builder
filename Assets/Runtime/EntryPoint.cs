@@ -43,7 +43,7 @@ namespace Runtime
 
         private void InitializeCitizens()
         {
-            _citizens = new CitizenModelCollection(_worldDescription.CitizensDescription);
+            _citizens = new CitizenModelCollection(_worldDescription.Citizens);
 
             var path = Path.Combine(Application.persistentDataPath, "citizens_data.json");
             if (File.Exists(path))
@@ -56,7 +56,7 @@ namespace Runtime
 
         private void InitializeBuildings()
         {
-            _buildings = new BuildingModelCollection(_worldDescription.BuildingDescriptionCollection, _buildingFactory);
+            _buildings = new BuildingModelCollection(_worldDescription.BuildingCollection, _buildingFactory);
 
             var path = Path.Combine(Application.persistentDataPath, "buildings_data.json");
             if (File.Exists(path))
@@ -69,7 +69,7 @@ namespace Runtime
 
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
-            _resourceFactory = new ResourceFactory(_worldDescription.ResourceDescriptionCollection);
+            _resourceFactory = new ResourceFactory(_worldDescription.ResourceCollection);
             _buildingFactory = new BuildingFactory(needService, _resourceFactory);
             _buildingFactory.RegisterAll();
         }

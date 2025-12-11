@@ -7,7 +7,6 @@ using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using Runtime.Descriptions.StateMachine;
 using Runtime.Movement;
-using Runtime.Timer;
 using UnityEngine;
 
 namespace Runtime.StateMachine
@@ -28,11 +27,7 @@ namespace Runtime.StateMachine
 
         private MovementPresenter _movementPresenter;
         
-        private TimerPresenter _timerPresenter;
-        
         [SerializeField] private MovementView _movementView;
-        
-        [SerializeField] private ITimerView _timerView;
         
         [SerializeField] private UpdateService _updateService;
 
@@ -101,13 +96,9 @@ namespace Runtime.StateMachine
 
             _citizenModel = new CitizenModel(0, null, "Vasek");
 
-            _movementPresenter = new MovementPresenter(_citizenModel, _movementView, _updateService, _stateMachineModel,  _pointOfInterestDescriptionCollection);
+            _movementPresenter = new MovementPresenter(_citizenModel, _movementView, _updateService);
 
-            _timerPresenter = new TimerPresenter(_citizenModel, null, _stateMachineModel);
-            
             _movementPresenter.Enable();
-            
-            _timerPresenter.Enable();
             
             _stateMachineSystem = new StateMachineSystem(_stateMachineModel, _world, _citizenModel);
 
