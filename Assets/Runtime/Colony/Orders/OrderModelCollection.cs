@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using Runtime.Colony.ModelCollections;
+using Runtime.ModelCollections;
 
 namespace Runtime.Colony.Orders
 {
     public class OrderModelCollection : UniformModelCollection<OrderModel>
     {
-        private readonly int _buildingId;
+        private readonly string _buildingId;
 
-        public OrderModelCollection(int buildingId) : base(string.Empty)
+        public OrderModelCollection(string buildingId) : base(string.Empty)
         {
             _buildingId = buildingId;
         }

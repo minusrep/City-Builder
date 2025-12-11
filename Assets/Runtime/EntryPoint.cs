@@ -1,67 +1,64 @@
 ﻿using Runtime.Descriptions.Buildings;
 using Runtime.Colony.GameResources;
 using System.Collections.Generic;
-using Runtime.Colony.Buildings;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using UnityEngine;
 using System.IO;
 using fastJSON;
+using Runtime.Colony;
+using Runtime.Colony.Buildings.Models;
+using Runtime.Colony.Buildings.Presenters;
+using Runtime.ViewDescriptions.Buildings;
 
 namespace Runtime
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        private Descriptions.Descriptions _descriptions;
+        [SerializeField] private BuildingViewDescriptionCollection _viewDescriptionCollection;
+        [SerializeField] private Transform _buildingRootTransform;
+        
+        private WorldDescription _worldDescription;
 
+        private FactoryProvider _factoryProvider;
+        
         private ResourceFactory _resourceFactory;
         private BuildingFactory _buildingFactory;
 
-        private BuildingModelCollection _buildings;
-        private CitizenModelCollection _citizens;
+        private World _world;
+        
+        private BuildingCollectionPresenter _buildingCollectionPresenter;
 
         private void Start()
         {
             InitializeDescriptions();
-
+            
             InitializeModelFactories(new CitizenNeedServiceMock());
 
             InitializeBuildings();
 
             InitializeCitizens();
-        }
 
-        private void InitializeCitizens()
-        {
-            _citizens = new CitizenModelCollection(_descriptions.CitizensDescription);
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_buildings, _viewDescriptionCollection, _buildingRootTransform);
+            _buildingCollectionPresenter.Enable();
 
-            var path = Path.Combine(Application.persistentDataPath, "citizens_data.json");
-            if (File.Exists(path))
-            {
-                var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
+            _world = new World(_worldDescription, _factoryProvider);
+            
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings, _viewDescriptionCollection, _buildingRootTransform);
+            _buildingCollectionPresenter.Enable();
+          
+            var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
 
-                _citizens.Deserialize(data);
-            }
-        }
-
-        private void InitializeBuildings()
-        {
-            _buildings = new BuildingModelCollection(_descriptions.BuildingDescriptionCollection, _buildingFactory);
-
-            var path = Path.Combine(Application.persistentDataPath, "buildings_data.json");
-            if (File.Exists(path))
-            {
-                var data = (Dictionary<string, object>)JSON.Parse(File.ReadAllText(path));
-
-                _buildings.Deserialize(data);
-            }
+            saveLoadService.Save(_world);
         }
 
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
-            _resourceFactory = new ResourceFactory(_descriptions.ResourceDescriptionCollection);
+            _resourceFactory = new ResourceFactory(_worldDescription.ResourceDescriptionCollection);
             _buildingFactory = new BuildingFactory(needService, _resourceFactory);
+            
             _buildingFactory.RegisterAll();
+            _factoryProvider = new FactoryProvider(_resourceFactory, _buildingFactory);
         }
 
         private void InitializeDescriptions()
@@ -75,7 +72,7 @@ namespace Runtime
             descriptionFactory.Register<DecorBuildingDescription>("decor");
             descriptionFactory.Register<StorageBuildingDescription>("storage");
 
-            _descriptions = new Descriptions.Descriptions(descriptionData);
+            _worldDescription = new WorldDescription(descriptionData);
         }
     }
 

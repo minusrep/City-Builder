@@ -2,8 +2,8 @@
 using Runtime.Descriptions.Buildings;
 using Runtime.Colony.GameResources;
 using System.Collections.Generic;
-using Runtime.Colony.Buildings;
 using NUnit.Framework;
+using Runtime.Colony.Buildings.Models;
 using UnityEngine;
 
 namespace Tests.Buildings
@@ -13,7 +13,6 @@ namespace Tests.Buildings
     public class StorageBuildingModelTest
     {
         private StorageBuildingDescription _description;
-        private Dictionary<string, ResourceModel> _resources;
         
         [SetUp]
         public void SetUp()
@@ -21,42 +20,32 @@ namespace Tests.Buildings
             _description = new StorageBuildingDescription("0", new Dictionary<string, object>
             {
                 { "type", "storage" },
-                { "stored_resources", new[] { "wood"} },
+                { "stored_resources", new List<object> { "wood" } },
                 { "max_resource_amount", 100 },
             });
-
-            _resources = new Dictionary<string, ResourceModel>
-            {
-                {
-                    "wood",
-                    new ResourceModel(new ResourceDescription(new Dictionary<string, object>
-                    {
-                        { "type", "wood" },
-                        { "reduction_time", 0},
-                        { "reduction_amount", 0}
-                    }))
-                },
-                {
-                    "iron",
-                    new ResourceModel(new ResourceDescription(new Dictionary<string, object>
-                    {
-                        { "type", "iron" },
-                        { "reduction_time", 0},
-                        { "reduction_amount", 0}
-                    }))
-                }
-            };
         }
 
         private StorageBuildingModel CreateModel()
         {
             return new StorageBuildingModel(
-                id: 1,
+                id: "warehouse_0",
                 position: Vector2.zero,
-                description: _description,
-                _resources);
+                description: _description, new ResourceFactory(new ResourceDescriptionCollection(new Dictionary<string, object>
+                {
+                    { "wood", new Dictionary<string, object>
+                    {
+                        { "type", "wood" },
+                        { "reduction_time", 0},
+                        { "reduction_amount", 0}
+                    }},
+                    { "iron", new Dictionary<string, object>
+                    {
+                        { "type", "iron" },
+                        { "reduction_time", 0},
+                        { "reduction_amount", 0}
+                    }}
+                })));
         }
-
 
         [Test]
         public void TryAddResource_WhenEnoughCapacity_AddResource()
@@ -74,7 +63,7 @@ namespace Tests.Buildings
             var result = model.TryAddResource("wood", resource);
             
             Assert.IsTrue(result);
-            Assert.AreEqual(30, _resources["wood"].Amount);
+            Assert.AreEqual(30, model.GetAmount("wood"));
         }
 
         [Test]
@@ -82,20 +71,18 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
             
-            _resources["wood"].IncreaseAmount(90);
-            
-            var wood = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
                 { "type", "wood" },
                 { "reduction_time", 0},
                 { "reduction_amount", 0}
             }));
-            wood.IncreaseAmount(20);
+            resource.IncreaseAmount(110);
 
-            var result = model.TryAddResource("wood", wood);
+            var result = model.TryAddResource("wood", resource);
 
             Assert.IsFalse(result);
-            Assert.AreEqual(90, _resources["wood"].Amount);
+            Assert.AreEqual(0, model.GetAmount("wood"));
         }
         
         [Test]
@@ -103,15 +90,15 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
 
-            var stone = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
                 { "type", "wood" },
                 { "reduction_time", 0},
                 { "reduction_amount", 0}
             }));
-            stone.IncreaseAmount(10);
+            resource.IncreaseAmount(10);
 
-            var result = model.TryAddResource("stone", stone);
+            var result = model.TryAddResource("stone", resource);
 
             Assert.IsFalse(result);
         }
@@ -121,25 +108,39 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
 
-            _resources["iron"].IncreaseAmount(50);
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
+            {
+                { "type", "wood" },
+                { "reduction_time", 0},
+                { "reduction_amount", 0}
+            }));
+            resource.IncreaseAmount(50);
+            model.TryAddResource("wood", resource);
 
-            var result = model.TryTakeResource("iron", 30);
+            var result = model.TryTakeResource("wood", 30);
 
             Assert.IsTrue(result);
-            Assert.AreEqual(20, _resources["iron"].Amount);
+            Assert.AreEqual(20, model.GetAmount("wood"));
         }
 
         [Test]
         public void TryTakeResource_WhenNotEnoughAmount_ReturnsFalse()
         {
             var model = CreateModel();
+            
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
+                {
+                    { "type", "wood" },
+                    { "reduction_time", 0},
+                    { "reduction_amount", 0}
+                }));
+            resource.IncreaseAmount(10);
+            model.TryAddResource("wood", resource);
 
-            _resources["iron"].IncreaseAmount(10);
-
-            var result = model.TryTakeResource("iron", 30);
+            var result = model.TryTakeResource("wood", 30);
 
             Assert.IsFalse(result);
-            Assert.AreEqual(10, _resources["iron"].Amount);
+            Assert.AreEqual(10, model.GetAmount("wood"));
         }
 
         [Test]

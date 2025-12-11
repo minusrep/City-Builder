@@ -1,0 +1,32 @@
+﻿using Runtime.Descriptions.GameResources;
+using Runtime.Descriptions.Buildings;
+using Runtime.Descriptions.Citizens;
+using System.Collections.Generic;
+using Runtime.Utilities;
+
+namespace Runtime.Descriptions
+{
+    public sealed class WorldDescription
+    {
+        public BuildingsDescriptionCollection BuildingDescriptionCollection { get; }
+        
+        public ResourceDescriptionCollection ResourceDescriptionCollection { get; }
+        
+        public CitizensDescription CitizensDescription { get; }
+        
+        private DescriptionFactory Factory { get; }
+
+        public WorldDescription(Dictionary<string, object> data)
+        {
+            Factory = new DescriptionFactory();
+            Factory.Register<ProductionBuildingDescription>("production");
+            Factory.Register<ServiceBuildingDescription>("service");
+            Factory.Register<DecorBuildingDescription>("decor");
+            Factory.Register<StorageBuildingDescription>("storage");
+            
+            BuildingDescriptionCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
+            ResourceDescriptionCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
+            CitizensDescription = new CitizensDescription(data.GetNode("citizens"));
+        }
+    }
+}

@@ -1,0 +1,72 @@
+{
+    "wait_forward": {
+        "actions": [
+            {
+                "type": "set_timer",
+                "timer": "wait",
+                "duration": 1.5
+            }
+        ],
+        "transitions": [
+            {
+                "walk_back": {
+                    "type": "timer",
+                    "name": "wait"
+                }
+            }
+        ]
+    },
+    "wait_back": {
+        "actions": [
+            {
+                "type": "set_timer",
+                "timer": "wait",
+                "duration": 1.5
+            }
+        ],
+        "transitions": [
+            {
+                "walk_forward": {
+                    "type": "timer",
+                    "name": "wait"
+                }
+            }
+        ]
+    },
+    "walk_back": {
+        "actions": [
+            {
+                "type": "set_point_of_interest",
+                "point_of_interest": "p_0"
+            }
+        ],
+        
+        "transitions": [
+            {
+                "wait_back": {
+                    "type": "distance",
+                    "distance": 0.5,
+                    "point_of_interest": "p_0"
+                }
+            }
+        ]
+    },
+    "walk_forward": {
+        "actions": [
+            {
+                "type": "set_point_of_interest",
+                "point_of_interest": "p_1"
+            }
+        ],
+
+        "transitions": [
+            {
+                "wait_forward": {
+                    "type": "distance",
+                    "distance": 0.5,
+                    "point_of_interest": "p_1"
+                }
+            }
+        ]
+    }
+}
