@@ -2,10 +2,10 @@
 
 namespace Runtime.Colony.Buildings.Common
 {
-    public sealed class BuildingView : MonoBehaviour
+    public class BuildingView : MonoBehaviour
     {
-        public Transform Transform { get; set; }
-        public GameObject GameObject { get; set; }
+        public Transform Transform { get; private set; }
+        public GameObject GameObject { get; private set; }
 
         private void Awake()
         {
