@@ -8,11 +8,13 @@ namespace Runtime.Colony.Buildings.Production
     public class ProductionBuildingPresenter : BuildingPresenter
     {
         private readonly ProductionBuildingModel _model;
+        
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, ObjectPool<BuildingView> viewPool,
             BuildingViewDescription viewDescription) : base(model, viewPool, viewDescription)
         {
+            _model = model;
         }
 
         public override void Enable()
