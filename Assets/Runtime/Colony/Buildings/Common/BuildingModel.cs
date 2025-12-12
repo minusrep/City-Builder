@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using Runtime.Colony.Inventory;
 using Runtime.Descriptions.Buildings;
-using Runtime.Extensions;
+using System.Collections.Generic;
 using Runtime.ModelCollections;
+using Runtime.Extensions;
 using UnityEngine;
+using System;
 
 namespace Runtime.Colony.Buildings.Common
 {
     public abstract class BuildingModel : ISerializeModel, IDeserializeModel
     {
         public event Action OnPositionChanged;
-        
-        public InventoryModel Inventory { get; set; }
         
         public string Id { get; }
 
@@ -35,7 +32,6 @@ namespace Runtime.Colony.Buildings.Common
             Id = id;    
             Position = position;
             BaseDescription = baseDescription;
-            Inventory = new InventoryModel(5);
         }
 
         public virtual Dictionary<string, object> Serialize()

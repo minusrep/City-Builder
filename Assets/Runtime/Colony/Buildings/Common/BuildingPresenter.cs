@@ -1,7 +1,6 @@
 ﻿using Runtime.ViewDescriptions.Buildings;
-using Runtime.Colony.Inventory;
-using Runtime.Common;
 using Runtime.Common.ObjectPool;
+using Runtime.Common;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Common
@@ -9,11 +8,9 @@ namespace Runtime.Colony.Buildings.Common
     public class BuildingPresenter : IPresenter
     {
         private BuildingModel Model { get; }
-        private BuildingViewDescription ViewDescription { get; }
+        protected BuildingViewDescription ViewDescription { get; }
         private ObjectPool<BuildingView> ViewPool { get; }
-        private BuildingView View { get; set; }
-
-        private InventoryPresenter _inventoryPresenter;
+        protected BuildingView View { get; private set; }
 
         public BuildingPresenter(BuildingModel model, ObjectPool<BuildingView> viewPool, BuildingViewDescription viewDescription)
         {
@@ -22,26 +19,19 @@ namespace Runtime.Colony.Buildings.Common
             ViewPool = viewPool;
         }
 
-        public void Enable()
+        public virtual void Enable()
         {
             View = ViewPool.Get();
             View.Transform.position = ModelPositionToVector3(Model);
 
             Model.OnPositionChanged += HandlePositionChanged;
-            
-            _inventoryPresenter = new InventoryPresenter(Model.Inventory, 
-                ViewDescription.InventoryViewDescription, View.Transform);
-            
-            _inventoryPresenter.Enable();
         }
 
-        public void Disable()
+        public virtual void Disable()
         {
             ViewPool.Release(View);
             View = null;
             Model.OnPositionChanged -= HandlePositionChanged;
-            
-            _inventoryPresenter.Disable();
         }
 
         private void HandlePositionChanged()

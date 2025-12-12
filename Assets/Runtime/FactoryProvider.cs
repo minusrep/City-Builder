@@ -1,4 +1,4 @@
-using Runtime.Colony.Buildings;
+using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Colony.Items;
 
 namespace Runtime
@@ -7,11 +7,11 @@ namespace Runtime
     {
         public ItemFactory ItemFactory { get; }
         
-        public BuildingFactory BuildingFactory { get; }
+        public BuildingModelFactory BuildingModelFactory { get; }
 
-        public FactoryProvider(ItemFactory itemFactory, BuildingFactory buildingFactory)
+        public FactoryProvider(ItemFactory itemFactory, BuildingModelFactory buildingModelFactory)
         {
-            BuildingFactory = buildingFactory;
+            BuildingModelFactory = buildingModelFactory;
             
             ItemFactory = itemFactory;
         }

@@ -4,8 +4,8 @@ using Runtime.Descriptions;
 using UnityEngine;
 using fastJSON;
 using Runtime.Colony;
-using Runtime.Colony.Buildings;
 using Runtime.Colony.Buildings.Collection;
+using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Colony.Items;
 using Runtime.Services.SaveLoad;
 using Runtime.ViewDescriptions.Buildings;
@@ -22,7 +22,7 @@ namespace Runtime
         private FactoryProvider _factoryProvider;
 
         private ItemFactory _itemFactory;
-        private BuildingFactory _buildingFactory;
+        private BuildingModelFactory _buildingModelFactory;
 
         private World _world;
 
@@ -45,10 +45,10 @@ namespace Runtime
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
             _itemFactory = new ItemFactory(_worldDescription.ItemCollection);
-            _buildingFactory = new BuildingFactory(needService, _itemFactory);
+            _buildingModelFactory = new BuildingModelFactory(needService, _itemFactory);
 
-            _buildingFactory.RegisterAll();
-            _factoryProvider = new FactoryProvider(_itemFactory, _buildingFactory);
+            _buildingModelFactory.RegisterAll();
+            _factoryProvider = new FactoryProvider(_itemFactory, _buildingModelFactory);
         }
 
         private void InitializeDescriptions()

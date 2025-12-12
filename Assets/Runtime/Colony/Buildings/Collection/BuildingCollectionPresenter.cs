@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using Runtime.Colony.Buildings.Common;
-using Runtime.Common;
-using Runtime.Common.ObjectPool;
+﻿using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.ViewDescriptions.Buildings;
+using Runtime.Colony.Buildings.Common;
+using System.Collections.Generic;
+using Runtime.Common.ObjectPool;
+using Runtime.Common;
 
 namespace Runtime.Colony.Buildings.Collection
 {
@@ -10,19 +11,23 @@ namespace Runtime.Colony.Buildings.Collection
     {
         private readonly BuildingModelCollection _models;
         private readonly BuildingViewDescriptionCollection _viewDescriptions;
+        private readonly BuildingPresenterFactory _presenterFactory;
         
         private readonly Dictionary<string, BuildingPresenter> _presenters = new();
-        private readonly Dictionary<string, ObjectPool<BuildingView>> _pools = new();
+        private readonly Dictionary<string, ObjectPool<BuildingView>> _viewPools = new();
 
         public BuildingCollectionPresenter(BuildingModelCollection models, BuildingViewDescriptionCollection viewDescriptions, BuildingCollectionView view)
         {
             _models = models;
             _viewDescriptions = viewDescriptions;
+
             
             foreach (var description in _viewDescriptions.Descriptions)
             {
-                _pools[description.name] = new ObjectPool<BuildingView>(description.Prefab, 2, view.Transform);
+                _viewPools[description.name] = new ObjectPool<BuildingView>(description.Prefab, 2, view.Transform);
             }
+            
+            _presenterFactory = new BuildingPresenterFactory(_viewDescriptions, _viewPools);
         }
 
         public void Enable()
@@ -49,8 +54,7 @@ namespace Runtime.Colony.Buildings.Collection
 
         private void HandleAdded(BuildingModel model)
         {
-            var presenter = new BuildingPresenter(model, _pools[model.BaseDescription.ViewDescriptionId],
-                _viewDescriptions.Get(model.BaseDescription.ViewDescriptionId));
+            var presenter = _presenterFactory.Create(model);
             presenter.Enable();
             _presenters.Add(model.Id, presenter);
         }

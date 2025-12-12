@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Inventory;
 using Runtime.Colony.Items;
 using Runtime.Descriptions.Buildings;
 using Runtime.Extensions;
@@ -9,6 +10,8 @@ namespace Runtime.Colony.Buildings.Storage
 {
     public class StorageBuildingModel : BuildingModel
     {
+        public InventoryModel Inventory { get; }
+        
         private StorageBuildingDescription Description { get; }
         private Dictionary<string, ItemModel> _resources = new();
         private IItemFactory ItemFactory { get; }
@@ -25,6 +28,8 @@ namespace Runtime.Colony.Buildings.Storage
             {
                 _resources.Add(resourceId, itemFactory.Create(resourceId));
             }
+
+            Inventory = new InventoryModel(description.MaxResourceAmount);
         }
         
         public bool TryAddResource(string resourceKey, ItemModel itemModel)

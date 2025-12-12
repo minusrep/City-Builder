@@ -22,7 +22,7 @@ namespace Runtime.Colony
         {
             Citizens = new CitizenModelCollection(worldDescription.Citizens);
             
-            Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingFactory);
+            Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
         }
 
         public Dictionary<string, object> Serialize()
