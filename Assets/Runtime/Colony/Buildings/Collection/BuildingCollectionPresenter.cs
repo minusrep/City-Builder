@@ -12,7 +12,7 @@ namespace Runtime.Colony.Buildings.Collection
         private readonly BuildingViewDescriptionCollection _viewDescriptions;
         
         private readonly Dictionary<string, BuildingPresenter> _presenters = new();
-        private readonly Dictionary<string, ObjectPool<BuildingView>> _pools = new();
+        private readonly Dictionary<string, ObjectPool<BuildingView>> _viewPools = new();
 
         public BuildingCollectionPresenter(BuildingModelCollection models, BuildingViewDescriptionCollection viewDescriptions, BuildingCollectionView view)
         {
@@ -21,7 +21,7 @@ namespace Runtime.Colony.Buildings.Collection
             
             foreach (var description in _viewDescriptions.Descriptions)
             {
-                _pools[description.name] = new ObjectPool<BuildingView>(description.Prefab, 2, view.Transform);
+                _viewPools[description.name] = new ObjectPool<BuildingView>(description.Prefab, 2, view.Transform);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Runtime.Colony.Buildings.Collection
 
         private void HandleAdded(BuildingModel model)
         {
-            var presenter = new BuildingPresenter(model, _pools[model.BaseDescription.ViewDescriptionId],
+            var presenter = new BuildingPresenter(model, _viewPools[model.BaseDescription.ViewDescriptionId],
                 _viewDescriptions.Get(model.BaseDescription.ViewDescriptionId));
             presenter.Enable();
             _presenters.Add(model.Id, presenter);
