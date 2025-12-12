@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Decor;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
@@ -10,9 +9,9 @@ using Runtime.Colony.Items;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings
+namespace Runtime.Colony.Buildings.Common.Factories
 {
-    public sealed class BuildingFactory
+    public sealed class BuildingModelFactory
     {
         private readonly Dictionary<string, Func<string, Vector2, BuildingDescription, BuildingModel>> _constructors
             = new();
@@ -20,7 +19,7 @@ namespace Runtime.Colony.Buildings
         private readonly ICitizenNeedService _needService;
         private readonly IItemFactory _itemFactory;
 
-        public BuildingFactory(ICitizenNeedService needService, IItemFactory itemFactory)
+        public BuildingModelFactory(ICitizenNeedService needService, IItemFactory itemFactory)
         {
             _needService = needService;
             _itemFactory = itemFactory;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Descriptions.Buildings;
 using Runtime.Extensions;
 using Runtime.ModelCollections;
@@ -10,18 +11,18 @@ namespace Runtime.Colony.Buildings.Collection
     public sealed class BuildingModelCollection : DescribedModelCollection<BuildingModel>
     {
         private readonly BuildingsDescriptionCollection _descriptions;
-        private readonly BuildingFactory _factory;
+        private readonly BuildingModelFactory _modelFactory;
 
-        public BuildingModelCollection(BuildingsDescriptionCollection descriptions, BuildingFactory factory)
+        public BuildingModelCollection(BuildingsDescriptionCollection descriptions, BuildingModelFactory modelFactory)
         {
             _descriptions = descriptions;
-            _factory = factory;
+            _modelFactory = modelFactory;
         }
 
         protected override BuildingModel CreateModel(string descriptionKey)
         {
             var description = _descriptions.Descriptions[descriptionKey];
-            return _factory.Create(description.Type, GetCurrentKey(), Vector2.zero, description);
+            return _modelFactory.Create(description.Type, GetCurrentKey(), Vector2.zero, description);
         }
 
         protected override BuildingModel CreateModelFromData(string id, Dictionary<string, object> data)
@@ -32,7 +33,7 @@ namespace Runtime.Colony.Buildings.Collection
             
             var description = _descriptions.Descriptions[descriptionId];
 
-            var building = _factory.Create(description.Type, GetCurrentKey(), position, description);
+            var building = _modelFactory.Create(description.Type, GetCurrentKey(), position, description);
             
             building.Deserialize(data);
             
