@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Inventory;
 using Runtime.Colony.Orders;
 using Runtime.Descriptions.Buildings;
 using Runtime.Extensions;
@@ -12,6 +13,8 @@ namespace Runtime.Colony.Buildings.Production
     {
         public bool IsActive { get; private set; }
         public int ProducedAmount { get; private set; }
+        
+        public InventoryModel Inventory { get; set; }
 
         private ProductionBuildingDescription Description { get; }
         
@@ -28,6 +31,7 @@ namespace Runtime.Colony.Buildings.Production
             IsActive = false;
 
             _orders = new OrderModelCollection(id);
+            Inventory = new InventoryModel(description.MaxResource);
         }
 
         public void StartProduction(long currentTime)
