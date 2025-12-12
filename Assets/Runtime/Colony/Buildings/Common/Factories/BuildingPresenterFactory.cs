@@ -1,6 +1,7 @@
 ﻿using Runtime.Colony.Buildings.Production;
 using Runtime.ViewDescriptions.Buildings;
 using System.Collections.Generic;
+using Runtime.Colony.Buildings.Storage;
 using Runtime.Common.ObjectPool;
 
 namespace Runtime.Colony.Buildings.Common.Factories
@@ -25,6 +26,11 @@ namespace Runtime.Colony.Buildings.Common.Factories
             if (model is ProductionBuildingModel productionModel)
             {
                 return new ProductionBuildingPresenter(productionModel, pool, viewDescription);
+            }
+
+            if (model is StorageBuildingModel storageModel)
+            {
+                return new StorageBuildingPresenter(storageModel, pool, viewDescription);
             }
 
             return new BuildingPresenter(model, pool, viewDescription);
