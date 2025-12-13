@@ -1,7 +1,7 @@
 {
   "sawmill": {
     "type": "production",
-    "production_time": 300,
+    "production_time": 10000,
     "production_resource": "wood",
     "production_amount": 1,
     "max_resource": 5,
@@ -9,7 +9,7 @@
   },
   "shelter": {
     "type": "service",
-    "max_time_service": 60,
+    "max_time_service": 10000,
     "max_queue": 5,
     "max_citizen_amount": 5,
     "service_resource": "energy",
@@ -17,7 +17,7 @@
   },
   "tavern": {
     "type": "service",
-    "max_time_service": 86400,
+    "max_time_service": 10000,
     "max_queue": 5,
     "max_citizen_amount": 5,
     "service_resource": "hunger",
