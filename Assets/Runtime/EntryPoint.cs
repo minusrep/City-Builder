@@ -73,7 +73,7 @@ namespace Runtime
 
             _worldDescription = new WorldDescription(data);
 
-            _viewDescriptions = ViewDescriptionsLoader.Load();
+            _viewDescriptions = new ViewDescriptions.ViewDescriptions();
         }
 
 

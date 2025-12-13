@@ -1,17 +1,15 @@
 ﻿using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Inventory;
+using UnityEngine;
 
 namespace Runtime.ViewDescriptions
 {
     public class ViewDescriptions
     {
-        public BuildingViewDescriptionCollection BuildingViewDescriptions { get; }
-        public InventoryViewDescription InventoryViewDescription { get; }
+        public BuildingViewDescriptionCollection BuildingViewDescriptions { get; } = Resources.Load<BuildingViewDescriptionCollection>(
+            "ViewDescriptions/Buildings/BuildingViewDescriptionCollection");
 
-        public ViewDescriptions(BuildingViewDescriptionCollection buildingViewDescriptions, InventoryViewDescription inventoryViewDescription)
-        {
-            BuildingViewDescriptions = buildingViewDescriptions;
-            InventoryViewDescription = inventoryViewDescription;
-        }
+        public InventoryViewDescription InventoryViewDescription { get; } = Resources.Load<InventoryViewDescription>(
+            "ViewDescriptions/Items/InventoryViewDescription");
     }
 }
