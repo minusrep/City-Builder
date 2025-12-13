@@ -8,6 +8,6 @@ namespace Runtime.ViewDescriptions.Inventory
     {
         public GameObject Prefab;
         
-        public ItemViewDescriptionCollection itemViewDescriptions;
+        public ItemViewDescriptionCollection ItemViewDescriptions;
     }
 }

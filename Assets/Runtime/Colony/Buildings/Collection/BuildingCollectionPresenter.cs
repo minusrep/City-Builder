@@ -1,28 +1,27 @@
-﻿using Runtime.Colony.Buildings.Common.Factories;
-using Runtime.ViewDescriptions.Buildings;
+﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
-using System.Collections.Generic;
-using Runtime.Common.ObjectPool;
+using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Common;
+using Runtime.Common.ObjectPool;
 
 namespace Runtime.Colony.Buildings.Collection
 {
     public class BuildingCollectionPresenter : IPresenter
     {
         private readonly BuildingModelCollection _models;
-        private readonly BuildingViewDescriptionCollection _viewDescriptions;
+        private readonly ViewDescriptions.ViewDescriptions _viewDescriptions;
         private readonly BuildingPresenterFactory _presenterFactory;
         
         private readonly Dictionary<string, BuildingPresenter> _presenters = new();
         private readonly Dictionary<string, ObjectPool<BuildingView>> _viewPools = new();
 
-        public BuildingCollectionPresenter(BuildingModelCollection models, BuildingViewDescriptionCollection viewDescriptions, BuildingCollectionView view)
+        public BuildingCollectionPresenter(BuildingModelCollection models, ViewDescriptions.ViewDescriptions viewDescriptions, BuildingCollectionView view)
         {
             _models = models;
             _viewDescriptions = viewDescriptions;
 
             
-            foreach (var description in _viewDescriptions.Descriptions)
+            foreach (var description in _viewDescriptions.BuildingViewDescriptions.Descriptions)
             {
                 _viewPools[description.name] = new ObjectPool<BuildingView>(description.Prefab, 2, view.Transform);
             }

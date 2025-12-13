@@ -1,7 +1,6 @@
-﻿using Runtime.ViewDescriptions.Buildings;
-using Runtime.Colony.Buildings.Common;
-using Runtime.Common.ObjectPool;
+﻿using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Inventory;
+using Runtime.Common.ObjectPool;
 
 namespace Runtime.Colony.Buildings.Production
 {
@@ -12,7 +11,7 @@ namespace Runtime.Colony.Buildings.Production
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, ObjectPool<BuildingView> viewPool,
-            BuildingViewDescription viewDescription) : base(model, viewPool, viewDescription)
+            ViewDescriptions.ViewDescriptions viewDescriptions) : base(model, viewPool, viewDescriptions)
         {
             _model = model;
         }
@@ -22,7 +21,7 @@ namespace Runtime.Colony.Buildings.Production
             base.Enable();
 
             _inventoryPresenter = new InventoryPresenter(_model.Inventory,
-                ViewDescription.InventoryViewDescription, View.Transform);
+                ViewDescriptions.InventoryViewDescription, View.Transform);
 
             _inventoryPresenter.Enable();
         }
