@@ -38,7 +38,7 @@ namespace Runtime
             _world = saveLoadService.Load();
 
             _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings,
-                _viewDescriptions.BuildingViewDescriptions,
+                _viewDescriptions,
                 _buildingCollectionView);
             _buildingCollectionPresenter.Enable();
         }
