@@ -60,7 +60,7 @@ namespace Runtime.Colony.Inventory
                 cellView.Amount.style.display = DisplayStyle.Flex;
                 
                 //TODO: Жесткая связь с ItemViewDescription
-                var itemViewDescription = _viewDescription.itemViewDescriptions.Get(model.Item.Type);
+                var itemViewDescription = _viewDescription.ItemViewDescriptions.Get(model.Item.Type);
                 cellView.Image.style.backgroundImage = itemViewDescription.Image.texture;
             }
         }
