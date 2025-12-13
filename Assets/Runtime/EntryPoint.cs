@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
-using Runtime.Colony.Citizens;
-using Runtime.Descriptions;
-using UnityEngine;
 using fastJSON;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Common.Factories;
+using Runtime.Colony.Citizens;
 using Runtime.Colony.Items;
+using Runtime.Descriptions;
+using UnityEngine;
 using Runtime.Services.SaveLoad;
-using Runtime.ViewDescriptions.Buildings;
+using Runtime.ViewDescriptions;
 
 namespace Runtime
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        [SerializeField] private BuildingViewDescriptionCollection _viewDescriptionCollection;
         [SerializeField] private BuildingCollectionView _buildingCollectionView;
 
         private WorldDescription _worldDescription;
+        private ViewDescriptions.ViewDescriptions _viewDescriptions;
 
         private FactoryProvider _factoryProvider;
 
@@ -37,7 +37,8 @@ namespace Runtime
             var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
             _world = saveLoadService.Load();
 
-            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings, _viewDescriptionCollection,
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings,
+                _viewDescriptions.BuildingViewDescriptions,
                 _buildingCollectionView);
             _buildingCollectionPresenter.Enable();
         }
@@ -71,10 +72,12 @@ namespace Runtime
             };
 
             _worldDescription = new WorldDescription(data);
+
+            _viewDescriptions = ViewDescriptionsLoader.Load();
         }
 
 
-        internal class CitizenNeedServiceMock : ICitizenNeedService
+        private class CitizenNeedServiceMock : ICitizenNeedService
         {
             public void RestoreNeed(int citizenId, string needId)
             {
