@@ -22,10 +22,22 @@ namespace Runtime.ModelCollections
             return Models[id];
         }
         
-        protected void Add(TKey key, TValue model)
+        public void Add(TKey key, TValue model)
         {
             Models.Add(key, model);
             OnAdded?.Invoke(model);
+        }
+
+        public void Clear()
+        {
+            var models = new Dictionary<TKey, TValue>(Models);
+
+            Models.Clear();
+
+            foreach (var model in models.Values)
+            {
+                OnRemoved?.Invoke(model);
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using fastJSON;
+using Runtime.AsyncLoad;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Common.Factories;
@@ -8,7 +10,8 @@ using Runtime.Colony.Items;
 using Runtime.Descriptions;
 using UnityEngine;
 using Runtime.Services.SaveLoad;
-using Runtime.ViewDescriptions;
+using Runtime.ViewDescriptions.Buildings;
+using Runtime.ViewDescriptions.Inventory;
 
 namespace Runtime
 {
@@ -27,10 +30,17 @@ namespace Runtime
         private World _world;
 
         private BuildingCollectionPresenter _buildingCollectionPresenter;
-
-        private void Start()
+        
+        private AddressableModel _addressableModel;
+        private AddressablePresenter _addressablePresenter;
+        
+        private async void Start()
         {
+            InitializeAddressable();
+            
             InitializeDescriptions();
+            
+            await InitializeViewDescriptionsAsync();
 
             InitializeModelFactories(new CitizenNeedServiceMock());
 
@@ -72,10 +82,26 @@ namespace Runtime
             };
 
             _worldDescription = new WorldDescription(data);
-
-            _viewDescriptions = new ViewDescriptions.ViewDescriptions();
         }
 
+        private async Task InitializeViewDescriptionsAsync()
+        {
+            var buildingViewLoad = _addressableModel.Load<BuildingViewDescriptionCollection>("BuildingViewDescriptionCollection");
+            var inventoryViewLoad = _addressableModel.Load<InventoryViewDescription>("InventoryViewDescription");
+
+            await buildingViewLoad.LoadAwaiter;
+            await inventoryViewLoad.LoadAwaiter;
+            
+            _viewDescriptions = new ViewDescriptions.ViewDescriptions(buildingViewLoad.Result, inventoryViewLoad.Result);
+        }
+
+        private void InitializeAddressable()
+        {
+            _addressableModel = new AddressableModel();
+            _addressablePresenter = new AddressablePresenter(_addressableModel);
+            
+            _addressablePresenter.Enable();
+        }
 
         private class CitizenNeedServiceMock : ICitizenNeedService
         {
