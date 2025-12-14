@@ -34,6 +34,7 @@ namespace Runtime.Colony.Buildings.Service
                 if (_inService.Count < Description.MaxCitizenAmount)
                 {
                     _inService[citizenId] = Description.ServiceTime;
+                    _isActive = true;
                     return true;
                 }
 
@@ -48,31 +49,39 @@ namespace Runtime.Colony.Buildings.Service
 
             public void Update(long currentTime)
             {
-                var finished = new List<int>();
-
-                foreach (var key in _inService.Keys)
+                if (_isActive)
                 {
-                    var remaining = _inService[key] - currentTime;
+                    var finished = new List<int>();
 
-                    if (remaining <= 0)
+                    foreach (var key in _inService.Keys)
                     {
-                        finished.Add(key);
+                        var remaining = _inService[key] - currentTime;
+
+                        if (remaining <= 0)
+                        {
+                            finished.Add(key);
+                        }
+                        else
+                        {
+                            _inService[key] = remaining;
+                        }
                     }
-                    else
+
+                    foreach (var citizenId in finished)
                     {
-                        _inService[key] = remaining;
+                        _inService.Remove(citizenId);
+                        NeedService.RestoreNeed(citizenId, Description.ServiceResource);
+
+                        if (WaitingQueue.Count > 0)
+                        {
+                            var nextCitizen = WaitingQueue.Dequeue();
+                            _inService[nextCitizen] = Description.ServiceTime;
+                        }
                     }
-                }
 
-                foreach (var citizenId in finished)
-                {
-                    _inService.Remove(citizenId);
-                    NeedService.RestoreNeed(citizenId, Description.ServiceResource);
-
-                    if (WaitingQueue.Count > 0)
+                    if (_inService.Count <= 0)
                     {
-                        var nextCitizen = WaitingQueue.Dequeue();
-                        _inService[nextCitizen] = Description.ServiceTime;
+                        _isActive = false;
                     }
                 }
             }
