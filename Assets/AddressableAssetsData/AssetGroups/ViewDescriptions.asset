@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ViewDescriptions
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: ViewDescriptions
+  m_GUID: baaff44265523304c856762b41cd906e
+  m_SerializeEntries:
+  - m_GUID: 1dcbe1689025f1a4bb4951680941bb1c
+    m_Address: InventoryViewDescription
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a457251ccf9a884681614b9178892ba
+    m_Address: BuildingViewDescriptionCollection
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5870ca5a51afee640ada8608be70eb1d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ff2bac050b4495f44bc2d0d795b4b067, type: 2}
+    - {fileID: 11400000, guid: aa53c6d435f80be47a1f4811fbbdc9b0, type: 2}
