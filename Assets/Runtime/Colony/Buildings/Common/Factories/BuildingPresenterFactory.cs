@@ -1,5 +1,6 @@
 ﻿using Runtime.Colony.Buildings.Production;
 using System.Collections.Generic;
+using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Common.ObjectPool;
 
@@ -29,6 +30,11 @@ namespace Runtime.Colony.Buildings.Common.Factories
             if (model is StorageBuildingModel storageModel)
             {
                 return new StorageBuildingPresenter(storageModel, pool, _viewDescriptions);
+            }
+
+            if (model is ServiceBuildingModel serviceModel)
+            {
+                return new ServiceBuildingPresenter(serviceModel, pool, _viewDescriptions);
             }
 
             return new BuildingPresenter(model, pool, _viewDescriptions);
