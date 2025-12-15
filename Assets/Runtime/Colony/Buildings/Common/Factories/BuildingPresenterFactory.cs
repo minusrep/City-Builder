@@ -3,6 +3,7 @@ using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Common;
+using Runtime.GameSystems;
 
 namespace Runtime.Colony.Buildings.Common.Factories
 {
@@ -10,11 +11,13 @@ namespace Runtime.Colony.Buildings.Common.Factories
     { 
         private readonly ViewDescriptions.ViewDescriptions _viewDescriptions;
         private readonly BuildingPoolRegistry _pools;
+        private readonly GameSystemCollection _gameSystemCollection;
 
-        public BuildingPresenterFactory(ViewDescriptions.ViewDescriptions viewDescriptions, BuildingPoolRegistry pools)
+        public BuildingPresenterFactory(ViewDescriptions.ViewDescriptions viewDescriptions, BuildingPoolRegistry pools, GameSystemCollection gameSystemCollection)
         {
             _viewDescriptions = viewDescriptions;
             _pools = pools;
+            _gameSystemCollection = gameSystemCollection;
         }
         
         public IPresenter Create(BuildingModel model)
@@ -25,7 +28,7 @@ namespace Runtime.Colony.Buildings.Common.Factories
             return model switch
             {
                 ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool,
-                    _viewDescriptions),
+                    _viewDescriptions, _gameSystemCollection),
                 StorageBuildingModel storageModel =>
                     new StorageBuildingPresenter(storageModel, pool, _viewDescriptions),
                 ServiceBuildingModel serviceModel =>

@@ -33,7 +33,7 @@ namespace Runtime.Colony.Buildings.Production
             IsActive = false;
 
             _orders = new OrderModelCollection(id);
-            Inventory = new InventoryModel(description.MaxResource);
+            Inventory = new InventoryModel(1);
         }
 
         public void StartProduction(long currentTime)
@@ -49,34 +49,6 @@ namespace Runtime.Colony.Buildings.Production
         {
             IsActive = false;
             CompleteProductionTime = 0;
-        }
-
-        public void Update(long currentTime)
-        {
-            if (IsActive)
-            {
-                var productionTime = Description.ProductionTime;
-
-                if (productionTime <= 0)
-                {
-                    ProduceOnceAndQueue();
-                    StopProduction();
-                    return;
-                }
-
-                while (currentTime >= CompleteProductionTime)
-                {
-                    if (ProduceOnceAndQueue())
-                    {
-                        CompleteProductionTime += productionTime;
-                    }
-                    else
-                    {
-                        StopProduction();
-                        break;
-                    }
-                }
-            }
         }
 
         public override Dictionary<string, object> Serialize()

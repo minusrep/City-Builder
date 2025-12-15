@@ -8,10 +8,11 @@ using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Colony.Citizens;
 using Runtime.Colony.Items;
 using Runtime.Descriptions;
-using UnityEngine;
+using Runtime.GameSystems;
 using Runtime.Services.SaveLoad;
 using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Inventory;
+using UnityEngine;
 
 namespace Runtime
 {
@@ -31,15 +32,19 @@ namespace Runtime
 
         private BuildingCollectionPresenter _buildingCollectionPresenter;
         
+        private GameSystemCollection _gameSystemCollection;
+        
         private AddressableModel _addressableModel;
         private AddressablePresenter _addressablePresenter;
         
         private async void Start()
         {
+            _gameSystemCollection = new GameSystemCollection();
+            
             InitializeAddressable();
-            
+
             InitializeDescriptions();
-            
+
             await InitializeViewDescriptionsAsync();
 
             InitializeModelFactories(new CitizenNeedServiceMock());
@@ -48,8 +53,18 @@ namespace Runtime
             _world = saveLoadService.Load();
 
             _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings,
-                _buildingCollectionView, _worldDescription.BuildingCollection, _viewDescriptions);
+                _buildingCollectionView, _worldDescription.BuildingCollection, _viewDescriptions, _gameSystemCollection);
             _buildingCollectionPresenter.Enable();
+        }
+
+        private void Update()
+        {
+            _gameSystemCollection.Update(Time.deltaTime);
+        }
+
+        private void OnDisable()
+        {
+            _buildingCollectionPresenter.Disable();
         }
 
         private void InitializeModelFactories(ICitizenNeedService needService)

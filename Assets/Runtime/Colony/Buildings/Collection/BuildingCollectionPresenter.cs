@@ -4,6 +4,7 @@ using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Colony.Buildings.Pool;
 using Runtime.Common;
 using Runtime.Descriptions.Buildings;
+using Runtime.GameSystems;
 
 namespace Runtime.Colony.Buildings.Collection
 {
@@ -17,14 +18,15 @@ namespace Runtime.Colony.Buildings.Collection
         public BuildingCollectionPresenter(BuildingModelCollection models,
             BuildingCollectionView view,
             BuildingsDescriptionCollection modelDescriptions, 
-            ViewDescriptions.ViewDescriptions viewDescriptions)
+            ViewDescriptions.ViewDescriptions viewDescriptions,
+            GameSystemCollection gameSystemCollection)
         {
             _models = models;
             
             var poolRegistry = new BuildingPoolRegistry();
             poolRegistry.RegisterAll(viewDescriptions.BuildingViewDescriptions, modelDescriptions, view.Transform);
             
-            _presenterFactory = new BuildingPresenterFactory(viewDescriptions, poolRegistry);
+            _presenterFactory = new BuildingPresenterFactory(viewDescriptions, poolRegistry, gameSystemCollection);
         }
 
         public void Enable()
