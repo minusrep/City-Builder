@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Timers;
 using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Buildings.Pool;
 using Runtime.Colony.Inventory;
-using Runtime.Common.ObjectPool;
 
 namespace Runtime.Colony.Buildings.Production
 {
-    public class ProductionBuildingPresenter : BuildingPresenter
+    public class ProductionBuildingPresenter : BuildingPresenter<ProductionBuildingView>
     {
         private readonly ProductionBuildingModel _model;
         private Timer _timer;
         
         private InventoryPresenter _inventoryPresenter;
 
-        public ProductionBuildingPresenter(ProductionBuildingModel model, ObjectPool<BuildingView> viewPool,
+        public ProductionBuildingPresenter(ProductionBuildingModel model, IBuildingViewPool viewPool,
             ViewDescriptions.ViewDescriptions viewDescriptions) : base(model, viewPool, viewDescriptions)
         {
             _model = model;

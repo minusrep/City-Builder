@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6030165305410528423}
-  - component: {fileID: 6383710204673921016}
+  - component: {fileID: 1686836590681740451}
   m_Layer: 0
   m_Name: Tavern
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 3879587966557687809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6383710204673921016
+--- !u!114 &1686836590681740451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,9 +43,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5389820821820916020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdc2d5e87e34c538184856218c0a9fb, type: 3}
+  m_Script: {fileID: 11500000, guid: fc961b6af68642bcb15bf68f1231c684, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Service.ServiceBuildingView
 --- !u!1001 &3874911447583641983
 PrefabInstance:
   m_ObjectHideFlags: 0

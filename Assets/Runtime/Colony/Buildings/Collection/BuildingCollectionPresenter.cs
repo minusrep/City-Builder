@@ -1,32 +1,30 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Common.Factories;
+using Runtime.Colony.Buildings.Pool;
 using Runtime.Common;
-using Runtime.Common.ObjectPool;
+using Runtime.Descriptions.Buildings;
 
 namespace Runtime.Colony.Buildings.Collection
 {
     public class BuildingCollectionPresenter : IPresenter
     {
         private readonly BuildingModelCollection _models;
-        private readonly ViewDescriptions.ViewDescriptions _viewDescriptions;
         private readonly BuildingPresenterFactory _presenterFactory;
         
-        private readonly Dictionary<string, BuildingPresenter> _presenters = new();
-        private readonly Dictionary<string, ObjectPool<BuildingView>> _viewPools = new();
+        private readonly Dictionary<string, IPresenter> _presenters = new();
 
-        public BuildingCollectionPresenter(BuildingModelCollection models, ViewDescriptions.ViewDescriptions viewDescriptions, BuildingCollectionView view)
+        public BuildingCollectionPresenter(BuildingModelCollection models,
+            BuildingCollectionView view,
+            BuildingsDescriptionCollection modelDescriptions, 
+            ViewDescriptions.ViewDescriptions viewDescriptions)
         {
             _models = models;
-            _viewDescriptions = viewDescriptions;
-
             
-            foreach (var description in _viewDescriptions.BuildingViewDescriptions.Descriptions)
-            {
-                _viewPools[description.name] = new ObjectPool<BuildingView>(description.Prefab, 2, view.Transform);
-            }
+            var poolRegistry = new BuildingPoolRegistry();
+            poolRegistry.RegisterAll(viewDescriptions.BuildingViewDescriptions, modelDescriptions, view.Transform);
             
-            _presenterFactory = new BuildingPresenterFactory(_viewDescriptions, _viewPools);
+            _presenterFactory = new BuildingPresenterFactory(viewDescriptions, poolRegistry);
         }
 
         public void Enable()

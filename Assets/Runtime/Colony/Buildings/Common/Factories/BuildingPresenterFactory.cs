@@ -1,43 +1,37 @@
-﻿using Runtime.Colony.Buildings.Production;
-using System.Collections.Generic;
+﻿using Runtime.Colony.Buildings.Pool;
+using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
-using Runtime.Common.ObjectPool;
+using Runtime.Common;
 
 namespace Runtime.Colony.Buildings.Common.Factories
 {
     public class BuildingPresenterFactory
-    {
+    { 
         private readonly ViewDescriptions.ViewDescriptions _viewDescriptions;
-        private readonly Dictionary<string, ObjectPool<BuildingView>> _viewPools;
+        private readonly BuildingPoolRegistry _pools;
 
-        public BuildingPresenterFactory(ViewDescriptions.ViewDescriptions viewDescriptions, Dictionary<string, ObjectPool<BuildingView>> viewPools)
+        public BuildingPresenterFactory(ViewDescriptions.ViewDescriptions viewDescriptions, BuildingPoolRegistry pools)
         {
             _viewDescriptions = viewDescriptions;
-            _viewPools = viewPools;
+            _pools = pools;
         }
         
-        public BuildingPresenter Create(BuildingModel model)
+        public IPresenter Create(BuildingModel model)
         {
             var viewId = model.BaseDescription.ViewDescriptionId;
-            var pool = _viewPools[viewId];
+            var pool = _pools.Get(viewId);
 
-            if (model is ProductionBuildingModel productionModel)
+            return model switch
             {
-                return new ProductionBuildingPresenter(productionModel, pool, _viewDescriptions);
-            }
-
-            if (model is StorageBuildingModel storageModel)
-            {
-                return new StorageBuildingPresenter(storageModel, pool, _viewDescriptions);
-            }
-
-            if (model is ServiceBuildingModel serviceModel)
-            {
-                return new ServiceBuildingPresenter(serviceModel, pool, _viewDescriptions);
-            }
-
-            return new BuildingPresenter(model, pool, _viewDescriptions);
+                ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool,
+                    _viewDescriptions),
+                StorageBuildingModel storageModel =>
+                    new StorageBuildingPresenter(storageModel, pool, _viewDescriptions),
+                ServiceBuildingModel serviceModel =>
+                    new ServiceBuildingPresenter(serviceModel, pool, _viewDescriptions),
+                _ => new BuildingPresenter<BuildingView>(model, pool, _viewDescriptions)
+            };
         }
     }
 }

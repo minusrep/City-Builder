@@ -7,7 +7,7 @@ namespace Runtime.Colony.Buildings.Common
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
 
-        private void Awake()
+        public void Initialize()
         {
             Transform = transform;
             GameObject =  gameObject;

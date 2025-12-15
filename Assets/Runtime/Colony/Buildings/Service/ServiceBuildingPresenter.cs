@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Timers;
 using Runtime.Colony.Buildings.Common;
-using Runtime.Common.ObjectPool;
+using Runtime.Colony.Buildings.Pool;
 
 namespace Runtime.Colony.Buildings.Service
 {
-    public class ServiceBuildingPresenter : BuildingPresenter
+    public class ServiceBuildingPresenter : BuildingPresenter<ServiceBuildingView>
     {
         private readonly ServiceBuildingModel _model;
         private Timer _timer;
         
-        public ServiceBuildingPresenter(ServiceBuildingModel model, ObjectPool<BuildingView> viewPool, ViewDescriptions.ViewDescriptions viewDescriptions) : base(model, viewPool, viewDescriptions)
+        public ServiceBuildingPresenter(ServiceBuildingModel model, IBuildingViewPool viewPool, ViewDescriptions.ViewDescriptions viewDescriptions) : base(model, viewPool, viewDescriptions)
         {
             _model = model;
             _timer = new Timer(1000);
