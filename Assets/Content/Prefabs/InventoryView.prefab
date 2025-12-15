@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 9124506604834247708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65,11 +65,11 @@ MonoBehaviour:
   sourceAsset: {fileID: 9197481963319205126, guid: 859fd50035fd8854ba7eb3b8f959a1a3, type: 3}
   m_SortingOrder: 0
   m_Position: 0
-  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceSizeMode: 0
   m_WorldSpaceWidth: 80
   m_WorldSpaceHeight: 80
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
+  m_PivotReferenceSize: 1
+  m_Pivot: 2
   m_WorldSpaceCollider: {fileID: 0}
 --- !u!114 &1613744174770584495
 MonoBehaviour:
