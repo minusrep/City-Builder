@@ -14,12 +14,14 @@ namespace Runtime.Colony.Buildings.Production
         public bool IsActive { get; private set; }
         public int ProducedAmount { get; private set; }
         
+        public long CompleteProductionTime;
+        public long StartProductionTime;
+
         public InventoryModel Inventory { get; }
 
-        private ProductionBuildingDescription Description { get; }
-        
+        public ProductionBuildingDescription Description { get; }
+
         private OrderModelCollection _orders;
-        private long _completeProductionTime;
 
         public ProductionBuildingModel(string id,
             Vector2 position,
@@ -31,7 +33,7 @@ namespace Runtime.Colony.Buildings.Production
             IsActive = false;
 
             _orders = new OrderModelCollection(id);
-            Inventory = new InventoryModel(description.MaxResource);
+            Inventory = new InventoryModel(1);
         }
 
         public void StartProduction(long currentTime)
@@ -39,42 +41,16 @@ namespace Runtime.Colony.Buildings.Production
             if (!IsActive && CapacityLeft() > 0)
             {
                 IsActive = true;
-                _completeProductionTime = currentTime + Description.ProductionTime;
+                StartProductionTime = currentTime;
+                CompleteProductionTime = currentTime + Description.ProductionTime;
             }
         }
 
         public void StopProduction()
         {
             IsActive = false;
-            _completeProductionTime = 0;
-        }
-
-        public void Update(long currentTime)
-        {
-            if (IsActive)
-            {
-                var productionTime = Description.ProductionTime;
-
-                if (productionTime <= 0)
-                {
-                    ProduceOnceAndQueue();
-                    StopProduction();
-                    return;
-                }
-
-                while (currentTime >= _completeProductionTime)
-                {
-                    if (ProduceOnceAndQueue())
-                    {
-                        _completeProductionTime += productionTime;
-                    }
-                    else
-                    {
-                        StopProduction();
-                        break;
-                    }
-                }
-            }
+            CompleteProductionTime = 0;
+            StartProductionTime = 0;
         }
 
         public override Dictionary<string, object> Serialize()
@@ -83,7 +59,7 @@ namespace Runtime.Colony.Buildings.Production
             {
                 { "is_active", IsActive },
                 { "produced_amount", ProducedAmount },
-                { "complete_production_time", _completeProductionTime },
+                { "complete_production_time", CompleteProductionTime },
                 { "orders", _orders.Serialize() }
             };
 
@@ -94,13 +70,13 @@ namespace Runtime.Colony.Buildings.Production
         {
             IsActive = data.GetBool("is_active");
             ProducedAmount = data.GetInt("produced_amount");
-            _completeProductionTime = data.GetLong("complete_production_time");
+            CompleteProductionTime = data.GetLong("complete_production_time");
             
             _orders = new OrderModelCollection(Id);
             _orders.Deserialize(data.GetNode("orders"));
         }
 
-        private bool ProduceOnceAndQueue()
+        public bool ProduceOnceAndQueue()
         {
             if (CapacityLeft() > 0)
             {

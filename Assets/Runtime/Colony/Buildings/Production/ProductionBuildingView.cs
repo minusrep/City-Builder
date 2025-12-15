@@ -6,9 +6,15 @@ namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingView : BuildingView
     {
-        [SerializeField] private UIDocument _document;
+        [SerializeField] private UIDocument _uiDocument;
 
-        public VisualTreeAsset ProgressBarAsset;
-        public VisualElement Root { get; private set; }
+        public ProgressBar ProgressBar;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            var root = _uiDocument.rootVisualElement;
+            ProgressBar = root.Q<ProgressBar>("production-progress");
+        }
     }
 }

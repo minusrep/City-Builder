@@ -1,30 +1,31 @@
 ﻿using System;
-using System.Timers;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Pool;
 using Runtime.Colony.Inventory;
+using Runtime.GameSystems;
 
 namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingPresenter : BuildingPresenter<ProductionBuildingView>
     {
         private readonly ProductionBuildingModel _model;
-        private Timer _timer;
-        
+        private readonly GameSystemCollection _systemCollection;
+        private readonly ProductionBuildingSystem _productionSystem;
+
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, IBuildingViewPool viewPool,
-            ViewDescriptions.ViewDescriptions viewDescriptions) : base(model, viewPool, viewDescriptions)
+            ViewDescriptions.ViewDescriptions viewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, viewDescriptions)
         {
             _model = model;
-            _timer = new Timer(1000);
-            _timer.AutoReset = true;
+            _systemCollection = systemCollection;
+            _productionSystem = new ProductionBuildingSystem(_model);
         }
 
         public override void Enable()
         {
             base.Enable();
-            
+
             _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 
             _inventoryPresenter = new InventoryPresenter(_model.Inventory,
@@ -32,27 +33,27 @@ namespace Runtime.Colony.Buildings.Production
 
             _inventoryPresenter.Enable();
             
-            _timer.Elapsed += Update;
-            _timer.Start();
+            _systemCollection.Add(_productionSystem);
+            _productionSystem.OnUpdate += HandleUpdate;
         }
 
         public override void Disable()
         {
-            base.Disable();
-            
             _model.StopProduction();
 
             _inventoryPresenter.Disable();
             _inventoryPresenter = null;
+
+            _productionSystem.OnUpdate -= HandleUpdate;
+            _systemCollection.Remove(_productionSystem);
             
-            _timer.Elapsed -= Update;
-            _timer.Dispose();
-            _timer = null;
+            base.Disable();
         }
         
-        private void Update(object sender, ElapsedEventArgs e)
+        private void HandleUpdate(long time)
         {
-            _model.Update(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            var progress = (float)(time - _model.StartProductionTime) / _model.Description.ProductionTime;
+            View.ProgressBar.value = Math.Clamp(progress, 0f, 1f) * 100f;
         }
     }
 }
