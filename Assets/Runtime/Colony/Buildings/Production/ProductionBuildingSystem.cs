@@ -5,9 +5,9 @@ namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingSystem : IGameSystem
     {
+        public event Action<long> OnUpdate;
+        
         private readonly ProductionBuildingModel _model;
-
-        private float _elapsed;
 
         public ProductionBuildingSystem(ProductionBuildingModel model)
         {
@@ -27,11 +27,13 @@ namespace Runtime.Colony.Buildings.Production
                     return;
                 }
 
-                while (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() >= _model.CompleteProductionTime)
+                var currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+                while (currentTime >= _model.CompleteProductionTime)
                 {
                     if (_model.ProduceOnceAndQueue())
                     {
-                        _model.StartProductionTime = _model.CompleteProductionTime;
+                        _model.StartProductionTime = currentTime;
                         _model.CompleteProductionTime += productionTime;
                     }
                     else
@@ -40,6 +42,8 @@ namespace Runtime.Colony.Buildings.Production
                         break;
                     }
                 }
+
+                OnUpdate?.Invoke(currentTime);
             }
         }
     }

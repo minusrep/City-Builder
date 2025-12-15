@@ -41,6 +41,7 @@ namespace Runtime.Colony.Buildings.Production
             if (!IsActive && CapacityLeft() > 0)
             {
                 IsActive = true;
+                StartProductionTime = currentTime;
                 CompleteProductionTime = currentTime + Description.ProductionTime;
             }
         }
@@ -49,6 +50,7 @@ namespace Runtime.Colony.Buildings.Production
         {
             IsActive = false;
             CompleteProductionTime = 0;
+            StartProductionTime = 0;
         }
 
         public override Dictionary<string, object> Serialize()

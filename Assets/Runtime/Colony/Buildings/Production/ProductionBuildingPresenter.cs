@@ -34,18 +34,26 @@ namespace Runtime.Colony.Buildings.Production
             _inventoryPresenter.Enable();
             
             _systemCollection.Add(_productionSystem);
+            _productionSystem.OnUpdate += HandleUpdate;
         }
 
         public override void Disable()
         {
-            base.Disable();
-
             _model.StopProduction();
 
             _inventoryPresenter.Disable();
             _inventoryPresenter = null;
-            
+
+            _productionSystem.OnUpdate -= HandleUpdate;
             _systemCollection.Remove(_productionSystem);
+            
+            base.Disable();
+        }
+        
+        private void HandleUpdate(long time)
+        {
+            var progress = (float)(time - _model.StartProductionTime) / _model.Description.ProductionTime;
+            View.ProgressBar.value = Math.Clamp(progress, 0f, 1f) * 100f;
         }
     }
 }
