@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Items
 {
-    [CreateAssetMenu(fileName = "ItemViewDescriptionCollection", menuName = "Resources/ViewDescriptionCollection")]
+    [CreateAssetMenu(fileName = "ItemViewDescriptionCollection", menuName = "ViewDescription/Inventory/ItemsCollection")]
     public class ItemViewDescriptionCollection : ScriptableObject
     {
         [SerializeField] private List<ItemViewDescription> _descriptions;

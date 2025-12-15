@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Buildings
 {
-    [CreateAssetMenu(fileName = "BuildingViewDescriptionCollection", menuName = "Buildings/View/Collection")]
+    [CreateAssetMenu(fileName = "BuildingViewDescriptionCollection", menuName = "ViewDescription/Buildings/Collection")]
     public class BuildingViewDescriptionCollection : ScriptableObject
     {
         public IReadOnlyList<BuildingViewDescriptionBase> Descriptions => _descriptions;

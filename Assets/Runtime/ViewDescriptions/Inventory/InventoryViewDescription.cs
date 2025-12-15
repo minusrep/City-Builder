@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Inventory
 {
-    [CreateAssetMenu(fileName = "InventoryViewDescription", menuName = "Inventory/ViewDescription")]
+    [CreateAssetMenu(fileName = "InventoryViewDescription", menuName = "ViewDescription/Inventory/Inventory")]
     public class InventoryViewDescription : ScriptableObject
     {
         public GameObject Prefab;

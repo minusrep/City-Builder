@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Buildings
 {
-    [CreateAssetMenu(fileName = "BaseBuildingViewDescription", menuName = "Buildings/View/Base")]
+    [CreateAssetMenu(fileName = "BaseBuildingViewDescription", menuName = "ViewDescription/Buildings/Base")]
     public class BaseBuildingViewDescription : BuildingViewDescription<BuildingView>
     {
     }
