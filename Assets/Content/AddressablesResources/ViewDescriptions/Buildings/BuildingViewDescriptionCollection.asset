@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BuildingViewDescriptionCollection
   m_EditorClassIdentifier: 
   _descriptions:
-  - {fileID: 11400000, guid: 639c1b599607321418abe2c2f9378c7e, type: 2}
+  - {fileID: 11400000, guid: 2b7c0051119cb0f45a072d0099451b5f, type: 2}
   - {fileID: 11400000, guid: 1201e40f3418f384380acac762647fb9, type: 2}
   - {fileID: 11400000, guid: 07768b422d08b8e4dacd69bd6679ebe7, type: 2}
   - {fileID: 11400000, guid: d961f96305415854e82097642e9044bc, type: 2}

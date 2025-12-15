@@ -27,7 +27,7 @@ namespace Runtime.Colony.Buildings.Pool
                 var modelDescription = modelDescriptions.Descriptions.Values
                     .First(d => d.ViewDescriptionId == viewId);
 
-                var prefab = viewDescription.Prefab;
+                var prefab = viewDescription.PrefabBase;
                 switch (modelDescription)
                 {
                     case ProductionBuildingDescription:
@@ -51,9 +51,9 @@ namespace Runtime.Colony.Buildings.Pool
 
         public IBuildingViewPool Get(string viewId) => _pools[viewId];
         
-        private void Register<TView>(string viewId, GameObject prefab, Transform root) where TView : BuildingView
+        private void Register<TView>(string viewId, BuildingView prefab, Transform root) where TView : BuildingView
         {
-            var buildingView = prefab.GetComponent<TView>();
+            var buildingView = (TView)prefab;
             var pool = new ObjectPool<TView>(buildingView, 2, root);
             _pools[viewId] = new BuildingViewPool<TView>(pool);
         }
