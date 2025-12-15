@@ -66,7 +66,6 @@ namespace Runtime.Colony.Buildings.Production
                 {
                     if (ProduceOnceAndQueue())
                     {
-                        Debug.Log(ProducedAmount);
                         _completeProductionTime += productionTime;
                     }
                     else
