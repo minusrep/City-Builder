@@ -1,10 +1,16 @@
-﻿using UnityEngine;
+﻿using Runtime.Colony.Buildings.Common;
+using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Buildings
 {
-    [CreateAssetMenu(fileName = "BuildingViewDescription", menuName = "Buildings/ViewDescription")]
-    public class BuildingViewDescription : ScriptableObject
+    public abstract class BuildingViewDescription<TView> : BuildingViewDescriptionBase where TView : BuildingView
     {
-        public GameObject Prefab;
+        [SerializeField] private TView _prefab;
+
+        public TView Prefab => _prefab;
+
+        public override BuildingView PrefabBase => _prefab;
+
+        public string Id => name;
     }
 }
