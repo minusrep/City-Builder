@@ -11,6 +11,5 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c36a03fbc9cb405f982a32658e56ceb4, type: 3}
   m_Name: Sawmill
-  m_EditorClassIdentifier: 
-  Prefab: {fileID: 6383710204673921016, guid: 436d6bceca5bd464aa7470befbb7c8c2, type: 3}
-  InventoryViewDescription: {fileID: 11400000, guid: 1dcbe1689025f1a4bb4951680941bb1c, type: 2}
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ProductionBuildingViewDescription
+  Prefab: {fileID: 5389820821820916020, guid: 436d6bceca5bd464aa7470befbb7c8c2, type: 3}

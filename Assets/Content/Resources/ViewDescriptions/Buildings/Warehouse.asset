@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36a03fbc9cb405f982a32658e56ceb4, type: 3}
   m_Name: Warehouse
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6383710204673921016, guid: 5d3d64af25b15b843a2c7015b2b2378b, type: 3}
-  InventoryViewDescription: {fileID: 11400000, guid: 1dcbe1689025f1a4bb4951680941bb1c, type: 2}
+  Prefab: {fileID: 5389820821820916020, guid: 5d3d64af25b15b843a2c7015b2b2378b, type: 3}

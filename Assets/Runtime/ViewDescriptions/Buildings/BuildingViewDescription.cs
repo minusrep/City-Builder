@@ -1,11 +1,10 @@
-﻿using Runtime.Colony.Buildings.Common;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Buildings
 {
     [CreateAssetMenu(fileName = "BuildingViewDescription", menuName = "Buildings/ViewDescription")]
     public class BuildingViewDescription : ScriptableObject
     {
-        public BuildingView Prefab;
+        public GameObject Prefab;
     }
 }
