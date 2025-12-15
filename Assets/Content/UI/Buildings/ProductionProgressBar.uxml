@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="width: 120px; height: 16px;">
+        <ui:ProgressBar name="production-progress" title="" value="0" style="width: 100%; height: 100%; background-color: rgba(190, 0, 0, 0.6);"/>
+    </ui:VisualElement>
+</ui:UXML>
