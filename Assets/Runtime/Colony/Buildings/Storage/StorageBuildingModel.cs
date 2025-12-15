@@ -29,7 +29,7 @@ namespace Runtime.Colony.Buildings.Storage
                 _resources.Add(resourceId, itemFactory.Create(resourceId));
             }
 
-            Inventory = new InventoryModel(description.MaxResourceAmount);
+            Inventory = new InventoryModel(description.StoredResources.Count);
         }
         
         public bool TryAddResource(string resourceKey, ItemModel itemModel)
