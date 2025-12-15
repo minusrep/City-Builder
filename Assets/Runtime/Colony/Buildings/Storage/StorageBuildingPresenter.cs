@@ -1,16 +1,16 @@
 ﻿using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Buildings.Pool;
 using Runtime.Colony.Inventory;
-using Runtime.Common.ObjectPool;
 
 namespace Runtime.Colony.Buildings.Storage
 {
-    public class StorageBuildingPresenter : BuildingPresenter
+    public class StorageBuildingPresenter : BuildingPresenter<StorageBuildingView>
     {
         private readonly StorageBuildingModel _model;
         
         private InventoryPresenter _inventoryPresenter;
         
-        public StorageBuildingPresenter(StorageBuildingModel model, ObjectPool<BuildingView> viewPool, ViewDescriptions.ViewDescriptions viewDescriptions) : base(model, viewPool, viewDescriptions)
+        public StorageBuildingPresenter(StorageBuildingModel model, IBuildingViewPool viewPool, ViewDescriptions.ViewDescriptions viewDescriptions) : base(model, viewPool, viewDescriptions)
         {
             _model = model;
         }
