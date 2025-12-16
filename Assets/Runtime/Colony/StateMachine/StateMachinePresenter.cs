@@ -47,7 +47,7 @@ namespace Runtime.Colony.StateMachine
                     
                     case SetPointOfInterestActionDescription setPointOfInterestAction:
 
-                        var point = _worldDescription.PointOfInterestCollection.Get(setPointOfInterestAction
+                        var point = _worldDescription.PointsOfInterest.Get(setPointOfInterestAction
                             .PointOfInterest);
                         
                         _citizenModel.SetPointOfInterest(point);

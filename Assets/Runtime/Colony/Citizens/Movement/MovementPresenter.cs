@@ -13,8 +13,6 @@ namespace Runtime.Colony.Citizens.Movement
 
         private readonly MovementView _view;
         
-        private readonly PointOfInterestDescriptionCollection _points;
-        
         private readonly UpdateService _updateService;
 
         public MovementPresenter(IMovementModel model, MovementView view, UpdateService updateService)

@@ -54,16 +54,27 @@ namespace Runtime
 
         private void InitializeDescriptions()
         {
-            var textAsset = Resources.Load<TextAsset>("descriptions");
-            var descriptionData = (Dictionary<string, object>)JSON.Parse(textAsset.text);
+            var buildingsDescriptionsTextAsset = Resources.Load<TextAsset>("Descriptions/buildings_description");
+            var citizensDescriptionTextAsset = Resources.Load<TextAsset>("Descriptions/citizens_description");
+            var resourcesDescriptionTextAsset = Resources.Load<TextAsset>("Descriptions/resources_description");
+            var pointsOfInterestDescriptionTextAsset = Resources.Load<TextAsset>("Descriptions/points_of_interest_description");
+            var statesDescriptionTextAsset = Resources.Load<TextAsset>("Descriptions/states_description");
 
+            var allDictionary = new Dictionary<string, object>();
+            
+            allDictionary.Add("buildings", JSON.ToObject<Dictionary<string, object>>(buildingsDescriptionsTextAsset.text));
+            allDictionary.Add("citizens", JSON.ToObject<Dictionary<string, object>>(citizensDescriptionTextAsset.text));
+            allDictionary.Add("resources", JSON.ToObject<Dictionary<string, object>>(resourcesDescriptionTextAsset.text));
+            allDictionary.Add("points_of_interest", JSON.ToObject<Dictionary<string, object>>(pointsOfInterestDescriptionTextAsset.text));
+            allDictionary.Add("states", JSON.ToObject<Dictionary<string, object>>(statesDescriptionTextAsset.text));
+            
             var descriptionFactory = new DescriptionFactory();
             descriptionFactory.Register<ProductionBuildingDescription>("production");
             descriptionFactory.Register<ServiceBuildingDescription>("service");
             descriptionFactory.Register<DecorBuildingDescription>("decor");
             descriptionFactory.Register<StorageBuildingDescription>("storage");
 
-            _worldDescription = new WorldDescription(descriptionData);
+            _worldDescription = new WorldDescription(allDictionary);
         }
 
 

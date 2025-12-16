@@ -1,19 +1,17 @@
 {
-  "resources": {
-    "wood": {
-      "type": "resource",
-      "reduction_time": 0,
-      "reduction_amount": 0
-    },
-    "hunger": {
-      "type": "need",
-      "reduction_time": 60,
-      "reduction_amount": 1
-    },
-    "energy": {
-      "type": "need",
-      "reduction_time": 30,
-      "reduction_amount": 1
-    }
+  "wood": {
+    "type": "resource",
+    "reduction_time": 0,
+    "reduction_amount": 0
+  },
+  "hunger": {
+    "type": "need",
+    "reduction_time": 60,
+    "reduction_amount": 1
+  },
+  "energy": {
+    "type": "need",
+    "reduction_time": 30,
+    "reduction_amount": 1
   }
 }
