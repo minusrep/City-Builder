@@ -2,6 +2,7 @@
 using Runtime.Descriptions.Citizens;
 using System.Collections.Generic;
 using Runtime.Descriptions.Items;
+using Runtime.Descriptions.StateMachine;
 using Runtime.Extensions;
 
 namespace Runtime.Descriptions
@@ -16,6 +17,8 @@ namespace Runtime.Descriptions
   
         public PointOfInterestDescriptionCollection PointOfInterestCollection { get; }
         
+        public StateDescriptionCollection States { get; }
+        
         private DescriptionFactory Factory { get; }
 
         public WorldDescription(Dictionary<string, object> data)
@@ -29,6 +32,8 @@ namespace Runtime.Descriptions
             BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
             ItemCollection = new ItemDescriptionCollection(data.GetNode("resources"));
             Citizens = new CitizensDescription(data.GetNode("citizens"));
+            PointOfInterestCollection = new PointOfInterestDescriptionCollection(data.GetNode("points_of_interest"));
+            States =  new StateDescriptionCollection(data.GetNode("states"));
         }
     }
 }
