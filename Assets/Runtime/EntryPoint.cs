@@ -87,12 +87,20 @@ namespace Runtime
             var resourcesDescriptions =
                 JSON.ToObject<Dictionary<string, object>>(
                     Resources.Load<TextAsset>("Descriptions/items_description").text);
-
+            
+            var statesDescriptions = JSON.ToObject<Dictionary<string, object>>(
+                Resources.Load<TextAsset>("Descriptions/states_description").text);
+            
+            var pointsOfInterestDescriptions = JSON.ToObject<Dictionary<string, object>>(
+                Resources.Load<TextAsset>("Descriptions/points_of_interest_description").text);
+            
             var data = new Dictionary<string, object>
             {
                 { "buildings", buildingDescriptions },
                 { "citizens", citizensDescriptions },
-                { "resources", resourcesDescriptions }
+                { "resources", resourcesDescriptions },
+                { "states", statesDescriptions },
+                {"points_of_interest", pointsOfInterestDescriptions}
             };
 
             _worldDescription = new WorldDescription(data);
