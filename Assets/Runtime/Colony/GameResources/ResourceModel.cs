@@ -1,20 +1,19 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.Inventory;
 using Runtime.Descriptions.Items;
 using Runtime.Extensions;
 using Runtime.ModelCollections;
 
-namespace Runtime.Colony.Items
+namespace Runtime.Colony.GameResources
 {
-    public class ItemModel : ISerializeModel, IDeserializeModel, IInventoryItem
+    public class ResourceModel : ISerializeModel, IDeserializeModel
     {
-        public ItemDescription Description { get; }
+        public ResourceDescription Description { get; }
         public string Type => Description.Type;
         public int Amount { get; set; }
         public int MaxAmount { get; set; }
 
-        public ItemModel(ItemDescription description)
+        public ResourceModel(ResourceDescription description)
         {
             Description = description;
         }

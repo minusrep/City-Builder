@@ -4,6 +4,7 @@ using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Inventory;
 using Runtime.Colony.Orders;
 using Runtime.Descriptions.Buildings;
+using Runtime.Descriptions.Items;
 using Runtime.Extensions;
 using UnityEngine;
 
@@ -13,9 +14,10 @@ namespace Runtime.Colony.Buildings.Production
     {
         public bool IsActive { get; private set; }
         public int ProducedAmount { get; private set; }
-        
+
         public long CompleteProductionTime;
         public long StartProductionTime;
+        private const int MaxStackSize = 20;
 
         public InventoryModel Inventory { get; }
 
@@ -33,7 +35,13 @@ namespace Runtime.Colony.Buildings.Production
             IsActive = false;
 
             _orders = new OrderModelCollection(id);
-            Inventory = new InventoryModel(1);
+            Inventory = new InventoryModel(1, MaxStackSize);
+            Inventory.TryAddItem(new ResourceDescription(new Dictionary<string, object>()
+            {
+                { "type", "wood" },
+                { "reduction_time", 0 },
+                { "reduction_amount", 0 }
+            }), 0);
         }
 
         public void StartProduction(long currentTime)
@@ -71,7 +79,7 @@ namespace Runtime.Colony.Buildings.Production
             IsActive = data.GetBool("is_active");
             ProducedAmount = data.GetInt("produced_amount");
             CompleteProductionTime = data.GetLong("complete_production_time");
-            
+
             _orders = new OrderModelCollection(Id);
             _orders.Deserialize(data.GetNode("orders"));
         }

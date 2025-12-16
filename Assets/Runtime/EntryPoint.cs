@@ -6,7 +6,7 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.Items;
+using Runtime.Colony.GameResources;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
 using Runtime.Services.SaveLoad;
@@ -25,7 +25,7 @@ namespace Runtime
 
         private FactoryProvider _factoryProvider;
 
-        private ItemFactory _itemFactory;
+        private ResourceFactory _resourceFactory;
         private BuildingModelFactory _buildingModelFactory;
 
         private World _world;
@@ -69,11 +69,11 @@ namespace Runtime
 
         private void InitializeModelFactories(ICitizenNeedService needService)
         {
-            _itemFactory = new ItemFactory(_worldDescription.ItemCollection);
-            _buildingModelFactory = new BuildingModelFactory(needService, _itemFactory);
+            _resourceFactory = new ResourceFactory(_worldDescription.ItemCollection);
+            _buildingModelFactory = new BuildingModelFactory(needService, _resourceFactory);
 
             _buildingModelFactory.RegisterAll();
-            _factoryProvider = new FactoryProvider(_itemFactory, _buildingModelFactory);
+            _factoryProvider = new FactoryProvider(_resourceFactory, _buildingModelFactory);
         }
 
         private void InitializeDescriptions()

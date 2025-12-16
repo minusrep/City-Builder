@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Runtime.Colony.Inventory.Cell;
 using Runtime.ViewDescriptions.Inventory;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Inventory
 {
@@ -12,76 +11,40 @@ namespace Runtime.Colony.Inventory
         private readonly InventoryModel _model;
         private readonly InventoryViewDescription _viewDescription;
         private readonly Transform _transform;
-        private readonly Dictionary<CellModel, CellView> _cells = new();
+        private readonly List<CellPresenter> _cellPresenters = new();
 
         public InventoryPresenter(InventoryModel model, InventoryViewDescription viewDescription, Transform transform)
         {
             _model = model;
-            _viewDescription =  viewDescription;
+            _viewDescription = viewDescription;
             _transform = transform;
         }
 
         public void Enable()
         {
-            var prefab = Object.Instantiate(_viewDescription.Prefab, _transform);
-            _view = prefab.GetComponent<InventoryView>();
-            
-            CreateCells();
-            
-            _model.OnItemChanged += UpdateCell;
-        }
+            _view = Object.Instantiate(_viewDescription.Prefab, _transform);
 
-        private void CreateCells()
-        {
             foreach (var pair in _model.Models)
             {
                 var cellView = new CellView(_view.CellAsset);
-                
                 _view.Root.Add(cellView.Root);
-                _cells.Add(pair.Value, cellView);
 
-                UpdateCell(pair.Value);
-            }
-        }
-        
-        private void UpdateCell(CellModel model)
-        {
-            _cells.TryGetValue(model, out var cellView);
-            
-            cellView.Amount.text = model.Amount.ToString();
-
-            if (model.Amount == 0)
-            {
-                cellView.Image.style.backgroundImage = null;
-                cellView.Amount.style.display = DisplayStyle.None;
-            }
-            else
-            {
-                cellView.Amount.style.display = DisplayStyle.Flex;
+                var cellPresenter = new CellPresenter(pair.Value, cellView, _viewDescription);
+                cellPresenter.Enable();
                 
-                //TODO: Жесткая связь с ItemViewDescription
-                var itemViewDescription = _viewDescription.ItemViewDescriptions.Get(model.Item.Type);
-                cellView.Image.style.backgroundImage = itemViewDescription.Image.texture;
+                _cellPresenters.Add(cellPresenter);
             }
-        }
-
-        private void DestroyCells()
-        {
-            foreach (var cell in _cells)
-            {
-                cell.Value.Root.RemoveFromHierarchy();
-            }
-
-            _cells.Clear();
         }
 
         public void Disable()
         {
-            _model.OnItemChanged -= UpdateCell;
+            foreach (var presenter in _cellPresenters)
+            {
+                presenter.Disable();
+            }
             
-            DestroyCells();
-            
-            //TODO: Должно ли вью разрушаться?
+            _cellPresenters.Clear();
+
             Object.Destroy(_view.gameObject);
         }
     }

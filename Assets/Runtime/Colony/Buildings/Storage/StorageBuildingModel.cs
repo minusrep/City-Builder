@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.GameResources;
 using Runtime.Colony.Inventory;
-using Runtime.Colony.Items;
 using Runtime.Descriptions.Buildings;
 using Runtime.Extensions;
 using UnityEngine;
@@ -13,32 +13,33 @@ namespace Runtime.Colony.Buildings.Storage
         public InventoryModel Inventory { get; }
         
         private StorageBuildingDescription Description { get; }
-        private Dictionary<string, ItemModel> _resources = new();
-        private IItemFactory ItemFactory { get; }
+        private Dictionary<string, ResourceModel> _resources = new();
+        private IResourceFactory ResourceFactory { get; }
+        private const int MaxStackSize = 20;
 
         public StorageBuildingModel(string id,
             Vector2 position,
             StorageBuildingDescription description,
-            IItemFactory itemFactory) : base(id, position, description)
+            IResourceFactory resourceFactory) : base(id, position, description)
         {
-            ItemFactory = itemFactory;
+            ResourceFactory = resourceFactory;
             Description = description;
 
             foreach (var resourceId in Description.StoredResources)
             {
-                _resources.Add(resourceId, itemFactory.Create(resourceId));
+                _resources.Add(resourceId, resourceFactory.Create(resourceId));
             }
 
-            Inventory = new InventoryModel(description.StoredResources.Count);
+            Inventory = new InventoryModel(description.StoredResources.Count, MaxStackSize);
         }
         
-        public bool TryAddResource(string resourceKey, ItemModel itemModel)
+        public bool TryAddResource(string resourceKey, ResourceModel resourceModel)
         {
             if (_resources.TryGetValue(resourceKey, out var stored))
             {
-                if (stored.Amount + itemModel.Amount <= Description.MaxResourceAmount)
+                if (stored.Amount + resourceModel.Amount <= Description.MaxResourceAmount)
                 {
-                    stored.IncreaseAmount(itemModel.Amount);
+                    stored.IncreaseAmount(resourceModel.Amount);
                     return true;
                 }
             }
@@ -80,12 +81,12 @@ namespace Runtime.Colony.Buildings.Storage
 
         public override void Deserialize(Dictionary<string, object> data)
         {
-            _resources = new Dictionary<string, ItemModel>();
+            _resources = new Dictionary<string, ResourceModel>();
             var node = data.GetNode("resources");
             
             foreach (var resource in node)
             {
-                var resourceModel = ItemFactory.Create(resource.Key);
+                var resourceModel = ResourceFactory.Create(resource.Key);
                 resourceModel.Deserialize(node.GetNode(resource.Key));
                 _resources.Add(resource.Key, resourceModel);
             }
