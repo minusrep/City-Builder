@@ -1,31 +1,37 @@
+using System;
 using System.Collections.Generic;
+using Runtime.Descriptions.Items;
 using Runtime.ModelCollections;
 
 namespace Runtime.Colony.Inventory.Cell
 {
     public class CellModel : ISerializeModel
     {
-        public IInventoryItem Item { get; private set; }
+        public event Action OnChanged;
+        public ResourceDescription Resource { get; private set; }
         public int Amount { get; private set; }
 
-        public bool TryAdd(IInventoryItem item, int amount)
+        public bool TryAdd(ResourceDescription resource, int amount, int maxAmount)
         {
             if (Amount == 0)
             {
-                if (amount > item.MaxAmount)
+                if (amount > maxAmount)
                 {
                     return false;
                 }
 
-                Item = item;
+                Resource = resource;
             }
 
-            if (Amount + amount > Item.MaxAmount)
+            if (Amount + amount > maxAmount)
             {
                 return false;
             }
 
             Amount += amount;
+            
+            OnChanged?.Invoke();
+            
             return true;
         }
 
@@ -42,19 +48,21 @@ namespace Runtime.Colony.Inventory.Cell
             {
                 Clear();
             }
+            
+            OnChanged?.Invoke();
 
             return true;
         }
 
         private void Clear()
         {
-            Item = null;
+            Resource = null;
             Amount = 0;
         }
 
         public Dictionary<string, object> Serialize() => new()
         {
-            { "item", Item }, //TODO: Убедится, сохранять ли сам Item
+            { "item", Resource },
             { "amount", Amount }
         };
     }

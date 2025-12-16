@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Runtime.Colony.Buildings.Storage;
-using Runtime.Colony.Items;
+using Runtime.Colony.GameResources;
 using Runtime.Descriptions.Items;
 using UnityEngine;
 
@@ -30,7 +30,7 @@ namespace Tests.Buildings
             return new StorageBuildingModel(
                 id: "warehouse_0",
                 position: Vector2.zero,
-                description: _description, new ItemFactory(new ItemDescriptionCollection(new Dictionary<string, object>
+                description: _description, new ResourceFactory(new ItemDescriptionCollection(new Dictionary<string, object>
                 {
                     { "wood", new Dictionary<string, object>
                     {
@@ -52,7 +52,7 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
 
-            var resource = new ItemModel(new ItemDescription(new Dictionary<string, object>
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
                 { "type", "wood" },
                 { "reduction_time", 0},
@@ -71,7 +71,7 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
             
-            var resource = new ItemModel(new ItemDescription(new Dictionary<string, object>
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
                 { "type", "wood" },
                 { "reduction_time", 0},
@@ -90,7 +90,7 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
 
-            var resource = new ItemModel(new ItemDescription(new Dictionary<string, object>
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
                 { "type", "wood" },
                 { "reduction_time", 0},
@@ -108,7 +108,7 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
 
-            var resource = new ItemModel(new ItemDescription(new Dictionary<string, object>
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
             {
                 { "type", "wood" },
                 { "reduction_time", 0},
@@ -128,7 +128,7 @@ namespace Tests.Buildings
         {
             var model = CreateModel();
             
-            var resource = new ItemModel(new ItemDescription(new Dictionary<string, object>
+            var resource = new ResourceModel(new ResourceDescription(new Dictionary<string, object>
                 {
                     { "type", "wood" },
                     { "reduction_time", 0},
