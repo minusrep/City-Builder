@@ -16,15 +16,6 @@ namespace Runtime.Colony.Buildings.Common.Factories
         private readonly Dictionary<string, Func<string, Vector2, BuildingDescription, BuildingModel>> _constructors
             = new();
 
-        private readonly ICitizenNeedService _needService;
-        private readonly IResourceFactory _resourceFactory;
-
-        public BuildingModelFactory(ICitizenNeedService needService, IResourceFactory resourceFactory)
-        {
-            _needService = needService;
-            _resourceFactory = resourceFactory;
-        }
-
         public void RegisterAll()
         {
             Register("production",
@@ -33,13 +24,13 @@ namespace Runtime.Colony.Buildings.Common.Factories
 
             Register("service",
                 (id, position, description) =>
-                    new ServiceBuildingModel(id, position, (ServiceBuildingDescription)description, _needService));
+                    new ServiceBuildingModel(id, position, (ServiceBuildingDescription)description));
 
             Register("storage", (id, position, description) =>
             {
                 var storageDescription = (StorageBuildingDescription)description;
                 
-                return new StorageBuildingModel(id, position, storageDescription, _resourceFactory);
+                return new StorageBuildingModel(id, position, storageDescription);
             });
 
             Register("decor",

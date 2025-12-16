@@ -6,7 +6,7 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.Items;
+using Runtime.Colony.GameResources;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
 using Runtime.Services.SaveLoad;
@@ -47,7 +47,7 @@ namespace Runtime
 
             await InitializeViewDescriptionsAsync();
 
-            InitializeModelFactories(new CitizenNeedServiceMock());
+            InitializeModelFactories();
 
             var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
             _world = saveLoadService.Load();
@@ -67,10 +67,10 @@ namespace Runtime
             _buildingCollectionPresenter.Disable();
         }
 
-        private void InitializeModelFactories(ICitizenNeedService needService)
+        private void InitializeModelFactories()
         {
             _resourceFactory = new ResourceFactory(_worldDescription.ItemCollection);
-            _buildingModelFactory = new BuildingModelFactory(needService, _resourceFactory);
+            _buildingModelFactory = new BuildingModelFactory();
 
             _buildingModelFactory.RegisterAll();
             _factoryProvider = new FactoryProvider(_resourceFactory, _buildingModelFactory);
@@ -93,8 +93,6 @@ namespace Runtime
                 { "buildings", buildingDescriptions },
                 { "citizens", citizensDescriptions },
                 { "resources", resourcesDescriptions },
-                { "states", statesDescriptions },
-                {"points_of_interest", pointsOfInterestDescriptions}
             };
 
             _worldDescription = new WorldDescription(data);
@@ -117,13 +115,6 @@ namespace Runtime
             _addressablePresenter = new AddressablePresenter(_addressableModel);
             
             _addressablePresenter.Enable();
-        }
-
-        private class CitizenNeedServiceMock : ICitizenNeedService
-        {
-            public void RestoreNeed(int citizenId, string needId)
-            {
-            }
         }
     }
 }

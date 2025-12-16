@@ -11,7 +11,7 @@ namespace Runtime.Colony.Buildings.Service
         {
             public IReadOnlyDictionary<int, long> InService => _inService;
             public Queue<int> WaitingQueue { get; private set; } = new();
-            public ICitizenNeedService NeedService { get; }
+
             private ServiceBuildingDescription Description { get; }
 
             private Dictionary<int, long> _inService = new();
@@ -20,13 +20,11 @@ namespace Runtime.Colony.Buildings.Service
             
             public ServiceBuildingModel(string id,
                 Vector2 position,
-                ServiceBuildingDescription description,
-                ICitizenNeedService needService) : base(id,
+                ServiceBuildingDescription description) : base(id,
                 position,
                 description)
             {
                 Description = description;
-                NeedService = needService;
             }
 
             public bool TryEnter(int citizenId)
@@ -70,7 +68,6 @@ namespace Runtime.Colony.Buildings.Service
                     foreach (var citizenId in finished)
                     {
                         _inService.Remove(citizenId);
-                        NeedService.RestoreNeed(citizenId, Description.ServiceResource);
 
                         if (WaitingQueue.Count > 0)
                         {

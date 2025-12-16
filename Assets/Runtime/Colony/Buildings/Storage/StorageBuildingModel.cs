@@ -14,21 +14,15 @@ namespace Runtime.Colony.Buildings.Storage
         
         private StorageBuildingDescription Description { get; }
         private Dictionary<string, ResourceModel> _resources = new();
-        private IResourceFactory ResourceFactory { get; }
+
         private const int MaxStackSize = 20;
 
         public StorageBuildingModel(string id,
             Vector2 position,
-            StorageBuildingDescription description,
-            IResourceFactory resourceFactory) : base(id, position, description)
+            StorageBuildingDescription description) : base(id, position, description)
         {
-            ResourceFactory = resourceFactory;
             Description = description;
 
-            foreach (var resourceId in Description.StoredResources)
-            {
-                _resources.Add(resourceId, resourceFactory.Create(resourceId));
-            }
 
             Inventory = new InventoryModel(description.StoredResources.Count, MaxStackSize);
         }
@@ -83,13 +77,6 @@ namespace Runtime.Colony.Buildings.Storage
         {
             _resources = new Dictionary<string, ResourceModel>();
             var node = data.GetNode("resources");
-            
-            foreach (var resource in node)
-            {
-                var resourceModel = ResourceFactory.Create(resource.Key);
-                resourceModel.Deserialize(node.GetNode(resource.Key));
-                _resources.Add(resource.Key, resourceModel);
-            }
         }
     }
 }

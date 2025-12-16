@@ -3,7 +3,7 @@ using Runtime.Colony.Citizens;
 
 namespace Tests.Buildings
 {
-    public sealed class CitizenNeedServiceMock : ICitizenNeedService
+    public sealed class CitizenNeedServiceMock 
     {
         public readonly List<(int id, string resource)> Calls = new();
 

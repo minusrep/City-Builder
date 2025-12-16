@@ -49,11 +49,10 @@ namespace Runtime.Colony.Citizens
 
         private string Name { get; set; }
         
-        public CitizenModel(int id, CitizensDescription description, string name, StateMachineModel stateMachine = null)
+        public CitizenModel(int id, CitizensDescription description)
         {
             Id = id;
             Description = description;
-            Name = name;
             Position = new Vector2(0, 0);
             PointOfInterest = new Vector2(0, 0);
             

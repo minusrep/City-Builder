@@ -30,8 +30,7 @@ namespace Tests.Buildings
             return new ServiceBuildingModel(
                 id: "warehouse_0",
                 position: Vector2.zero,
-                description: _description,
-                needService: new CitizenNeedServiceMock());
+                description: _description);
         }
         
         [Test]
@@ -86,23 +85,7 @@ namespace Tests.Buildings
             Assert.AreEqual(2, queue.Count);
             Assert.AreEqual(3, queue.Peek());
         }
-        
-        [Test]
-        public void Update_WhenTimeElapsed_RestoresNeedAndRemovesFromService()
-        {
-            var model = CreateModel();
 
-            model.TryEnter(1);
-
-            model.Update(10);
-
-            Assert.AreEqual(1, ((CitizenNeedServiceMock)model.NeedService).Calls.Count);
-            Assert.AreEqual((1, "food"), ((CitizenNeedServiceMock)model.NeedService).Calls[0]);
-
-            var inService = model.InService;
-            Assert.AreEqual(0, inService.Count);
-        }
-        
         [Test]
         public void Update_WhenQueueExists_MovesNextCitizenFromQueue()
         {
@@ -118,24 +101,6 @@ namespace Tests.Buildings
     
             Assert.IsTrue(inService.ContainsKey(3));
             Assert.AreEqual(_description.ServiceTime, inService[3]);
-        }
-        
-        [Test]
-        public void Update_WhenMultipleCitizensFinished_AllAreProcessed()
-        {
-            var model = CreateModel();
-
-            model.TryEnter(1);
-            model.TryEnter(2);
-
-            model.Update(10);
-            var mock = (CitizenNeedServiceMock)model.NeedService;
-            Assert.AreEqual(2, mock.Calls.Count);
-            Assert.AreEqual((1, "food"), mock.Calls[0]);
-            Assert.AreEqual((2, "food"), mock.Calls[1]);
-
-            var inService = model.InService;
-            Assert.AreEqual(0, inService.Count);
         }
     }
 }

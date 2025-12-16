@@ -2,7 +2,7 @@
 
 namespace Runtime.Colony.GameResources
 {
-    public sealed class ResourceFactory : IResourceFactory
+    public sealed class ResourceFactory
     {
         private readonly ItemDescriptionCollection _collection;
 
