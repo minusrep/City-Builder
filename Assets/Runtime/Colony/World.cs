@@ -17,9 +17,12 @@ namespace Runtime.Colony
 
         public BuildingModelCollection Buildings { get; private set; }
 
+        public WorldDescription WorldDescription { get; private set; }
 
         public World(WorldDescription worldDescription, FactoryProvider factoryProvider)
         {
+            WorldDescription = worldDescription;
+            
             Citizens = new CitizenModelCollection(worldDescription.Citizens);
             
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);

@@ -18,22 +18,20 @@ namespace Runtime.Colony.Citizens
         protected override CitizenModel CreateModel()
         {
             var index = Random.Range(0, _description.Names.Count);
-            var name = _description.Names[index];
             
-            var model = new CitizenModel(Index, _description, name);
+            var model = new CitizenModel(Index, _description);
             
             return model;
         }
         
         protected override CitizenModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
-            var name = data.GetString("name");
-            var position = data.GetVector2("position");
-    
-            return new CitizenModel(GetCurrentId(id), _description, name)
-            {
-                Position = position
-            };
+            var citizenModel =  new CitizenModel(Index, _description);
+            
+            citizenModel.Deserialize(data);
+
+            return citizenModel;
+            
         }
     }
 }

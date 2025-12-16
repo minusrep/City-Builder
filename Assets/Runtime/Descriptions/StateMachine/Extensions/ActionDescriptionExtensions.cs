@@ -9,6 +9,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string TypeKey = "type";
         
         private const string TimerKey = "set_timer";
+
+        private const string SearchBuildingKey = "search_building";
         
         private const string SetPointOfInterestKey = "set_point_of_interest";
         
@@ -17,7 +19,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
             return data[TypeKey] switch
             {
                 TimerKey => new TimerActionDescription(data),
-                SetPointOfInterestKey => new SetPointOfInterestActionDescription(data),
+                SetPointOfInterestKey => new SetPointOfInterestDescription(data),
+                SearchBuildingKey => new SearchBuildingDescription(data),
                 _ =>  throw new NotImplementedException()
             };
         }

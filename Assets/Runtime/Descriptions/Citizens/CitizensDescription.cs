@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.Descriptions.StateMachine;
 using Runtime.Extensions;
 
 namespace Runtime.Descriptions.Citizens
@@ -8,11 +9,14 @@ namespace Runtime.Descriptions.Citizens
         public List<string> Names { get; }
 
         public float StartMoveSpeed { get; }
+        
+        public StateDescriptionCollection States { get; }
 
         public CitizensDescription(Dictionary<string, object> data)
         {
             Names = data.GetList<string>("names");
             StartMoveSpeed = data.GetFloat("start_move_speed");
+            States = new StateDescriptionCollection(data.GetNode("states"));
         }
     }
 }

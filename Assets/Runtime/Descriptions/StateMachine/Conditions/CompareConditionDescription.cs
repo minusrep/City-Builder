@@ -14,9 +14,9 @@ namespace Runtime.Descriptions.StateMachine.Conditions
         
         private const string GreaterOperationKey = "greater";
 
-        private const string CounterKey = "counter_name";
+        private const string CounterKey = "counter";
         
-        private const string OperationKey = "operation_name";
+        private const string OperationKey = "operation";
         
         private const string ValueKey = "value";
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.StateMachine;
 using Runtime.Descriptions.Citizens;
 using Runtime.Extensions;
@@ -21,41 +22,47 @@ namespace Runtime.Colony.Citizens
         
         private const string TimerKey = "timers";
         
-        public event Action OnChangePointOfInterest;
+        private const string StateMachineKey = "state_machine";
         
+        private const string BuildingIdKey = "building_id";
+
+        private const string HasBuildingFlagKey = "has_building";
+
+        public event Action OnChangePointOfInterest;
+
         public int Id { get; set; }
 
         public Vector3 Position { get; set; }
-        
+
         public CitizensDescription Description { get; }
 
         public Vector3 PointOfInterest { get; set; }
-        
+
         public Dictionary<string, long> Timers { get; private set; }
 
         public Dictionary<string, bool> Flags { get; private set; }
 
         public Dictionary<string, float> Stats { get; private set; }
 
-        public StateMachineModel StateMachine { get; }        
-        
-        private string Name { get; set; }
-        
-        private Vector3 _position;
+        public StateMachineModel StateMachine { get; }
 
-        public CitizenModel(int id, CitizensDescription description, string name, StateMachineModel stateMachine = null)
+        public string BuildingId { get; private set; }
+
+        private string Name { get; set; }
+
+
+        public CitizenModel(int id, CitizensDescription description)
         {
             Id = id;
             Description = description;
-            Name = name;
             Position = new Vector2(0, 0);
             PointOfInterest = new Vector2(0, 0);
             
             Flags = new Dictionary<string, bool>();
             Stats = new Dictionary<string, float>();
             Timers = new Dictionary<string, long>();
-            
-            StateMachine = stateMachine;
+
+            StateMachine = new StateMachineModel(description.States);
         }
 
         public Dictionary<string, object> Serialize()
@@ -67,10 +74,11 @@ namespace Runtime.Colony.Citizens
                 { PointOfInterestKey, PointOfInterest.ToList() },
                 { FlagsKey, Flags },
                 { StatsKey, Stats },
-                { TimerKey, Timers }
+                { TimerKey, Timers },
+                { StateMachineKey, StateMachine.Serialize()},
+                { BuildingIdKey, BuildingId }
             };
         }
-
 
         public void Deserialize(Dictionary<string, object> data)
         {
@@ -80,6 +88,8 @@ namespace Runtime.Colony.Citizens
             Flags = data.GetDictionary<string, bool>(FlagsKey);
             Stats = data.GetDictionary<string, float>(StatsKey);
             Timers = data.GetDictionary<string, long>(TimerKey);
+            BuildingId = data.GetString(BuildingIdKey);
+            StateMachine.Deserialize(data.GetNode(StateMachineKey));
         }
 
         public void SetPointOfInterest(Vector3 point)
@@ -87,6 +97,13 @@ namespace Runtime.Colony.Citizens
             PointOfInterest = point;
             
             OnChangePointOfInterest?.Invoke();
+        }
+
+        public void SetBuildingId(string buildingId)
+        {
+            BuildingId = buildingId;
+
+            Flags[HasBuildingFlagKey] = BuildingId == string.Empty;
         }
     }
 }

@@ -1,56 +1,72 @@
 using System;
+using System.Linq;
+using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Citizens;
 using Runtime.Common;
-using Runtime.Descriptions;
 using Runtime.Descriptions.StateMachine.Actions;
+using UnityEngine;
 
 namespace Runtime.Colony.StateMachine
 {
     public class StateMachinePresenter : IPresenter
     {
-        private readonly StateMachineModel _model;
+        private readonly CitizenModel _model;
         
-        private readonly CitizenModel _citizenModel;
-        
-        private readonly WorldDescription _worldDescription;
+        private readonly World _world;
 
-        public StateMachinePresenter(StateMachineModel model, CitizenModel citizenModel, WorldDescription worldDescription)
+        public StateMachinePresenter(CitizenModel model, World world)
         {
-            _model = model;            
-            
-            _citizenModel =  citizenModel;
-            
-            _worldDescription =  worldDescription;
+            _model =  model;
+
+            _world = world;
         }
         
         public void Enable()
         {
-            _model.OnChange += OnChangeState;
+            _model.StateMachine.OnChange += OnChangeState;
         }
 
         public void Disable()
         {
-            _model.OnChange -= OnChangeState;
+            _model.StateMachine.OnChange -= OnChangeState;
         }
 
         private void OnChangeState()
         {
-            foreach (var action in _model.CurrentState.Actions)
+            foreach (var action in _model.StateMachine.CurrentState.Actions)
             {
                 switch (action)
                 {
                     case TimerActionDescription timerAction:
                         
-                        _citizenModel.Timers[timerAction.Timer] = DateTimeOffset.UtcNow.AddSeconds(timerAction.Duration).ToUnixTimeSeconds();
+                        _model.Timers[timerAction.Timer] = DateTimeOffset.UtcNow.AddSeconds(timerAction.Duration).ToUnixTimeSeconds();
 
                         break;
                     
-                    case SetPointOfInterestActionDescription setPointOfInterestAction:
+                    case SetPointOfInterestDescription setPointOfInterestAction:
 
-                        var point = _worldDescription.PointOfInterestCollection.Get(setPointOfInterestAction
-                            .PointOfInterest);
+                        Vector3 point;
                         
-                        _citizenModel.SetPointOfInterest(point);
+                        if (setPointOfInterestAction.PointOfInterest == "current_building")
+                        {
+                            var buildingModel = _world.Buildings.Get(_model.BuildingId);
+                            
+                            point = new Vector3(buildingModel.Position.x, 0f, buildingModel.Position.y);
+                        }
+                        else
+                        {
+                            point = _world.WorldDescription.PointOfInterestCollection.Get(setPointOfInterestAction.PointOfInterest);
+                        }
+                        
+                        _model.SetPointOfInterest(point);
+                        
+                        break;
+                    
+                    case SearchBuildingDescription searchBuildingDescription:
+
+                        var founded = _world.Buildings.Models.Values.FirstOrDefault(a => a is ServiceBuildingModel);
+                        
+                        _model.SetBuildingId(founded == null ? string.Empty : founded.Id);
                         
                         break;
                 }
