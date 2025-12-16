@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.StateMachine;
 using Runtime.Descriptions.Citizens;
 using Runtime.Extensions;
@@ -29,15 +28,15 @@ namespace Runtime.Colony.Citizens
         private const string HasBuildingFlagKey = "has_building";
 
         public event Action OnChangePointOfInterest;
-
+        
         public int Id { get; set; }
 
         public Vector3 Position { get; set; }
-
+        
         public CitizensDescription Description { get; }
 
         public Vector3 PointOfInterest { get; set; }
-
+        
         public Dictionary<string, long> Timers { get; private set; }
 
         public Dictionary<string, bool> Flags { get; private set; }
@@ -49,12 +48,12 @@ namespace Runtime.Colony.Citizens
         public string BuildingId { get; private set; }
 
         private string Name { get; set; }
-
-
-        public CitizenModel(int id, CitizensDescription description)
+        
+        public CitizenModel(int id, CitizensDescription description, string name, StateMachineModel stateMachine = null)
         {
             Id = id;
             Description = description;
+            Name = name;
             Position = new Vector2(0, 0);
             PointOfInterest = new Vector2(0, 0);
             
@@ -76,9 +75,9 @@ namespace Runtime.Colony.Citizens
                 { StatsKey, Stats },
                 { TimerKey, Timers },
                 { StateMachineKey, StateMachine.Serialize()},
-                { BuildingIdKey, BuildingId }
             };
         }
+
 
         public void Deserialize(Dictionary<string, object> data)
         {
@@ -88,7 +87,6 @@ namespace Runtime.Colony.Citizens
             Flags = data.GetDictionary<string, bool>(FlagsKey);
             Stats = data.GetDictionary<string, float>(StatsKey);
             Timers = data.GetDictionary<string, long>(TimerKey);
-            BuildingId = data.GetString(BuildingIdKey);
             StateMachine.Deserialize(data.GetNode(StateMachineKey));
         }
 
