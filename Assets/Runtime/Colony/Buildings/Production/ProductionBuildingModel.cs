@@ -27,10 +27,9 @@ namespace Runtime.Colony.Buildings.Production
 
         public ProductionBuildingModel(string id,
             Vector2 position,
-            ProductionBuildingDescription description, int producedAmount) : base(id, position, description)
+            ProductionBuildingDescription description) : base(id, position, description)
         {
             Description = description;
-            ProducedAmount = producedAmount;
 
             IsActive = false;
 

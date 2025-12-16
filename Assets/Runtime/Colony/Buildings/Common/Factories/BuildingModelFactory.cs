@@ -29,7 +29,7 @@ namespace Runtime.Colony.Buildings.Common.Factories
         {
             Register("production",
                 (id, position, description) => new ProductionBuildingModel(id, position,
-                    (ProductionBuildingDescription)description, 0));
+                    (ProductionBuildingDescription)description));
 
             Register("service",
                 (id, position, description) =>
