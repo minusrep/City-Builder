@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Runtime.Descriptions.StateMachine.Extensions;
+using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Conditions
 {
@@ -15,14 +17,20 @@ namespace Runtime.Descriptions.StateMachine.Conditions
         {
             _conditions = new List<ConditionDescription>();
 
-            if (data[ConditionsKey] is not List<Dictionary<string, object>> conditionsDictionary)
+            if (!data.TryGetValue(ConditionsKey, out var rawConditions) ||
+                rawConditions is not List<object> conditionsList)
             {
-                throw new System.Exception("Conditions dictionary expected");
+                throw new Exception("Conditions list expected");
             }
-            
-            foreach (var dictionary in conditionsDictionary)
+
+            foreach (var condition in conditionsList)
             {
-                _conditions.Add(dictionary.ToConditionDescription());
+                if (condition is not Dictionary<string, object> conditionDict)
+                {
+                    throw new Exception("Condition must be an object");
+                }
+
+                _conditions.Add(conditionDict.ToConditionDescription());
             }
         }
     }

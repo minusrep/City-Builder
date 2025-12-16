@@ -9,18 +9,16 @@ namespace Runtime.Descriptions.StateMachine.Conditions
 {
     public class DistanceConditionDescription : ConditionDescription
     {
-        private const string DistanceKey = "distance";
+        private const string ValueKey = "value";
         
         private const string PointOfInterestKey = "point_of_interest";
-        
-        private const string PositionKey = "position";
         public string PointOfInterest { get; private set; }
 
-        private readonly float _distance;
+        private readonly float _value;
 
         public DistanceConditionDescription(Dictionary<string, object> data) : base(data)
         {
-            _distance = data.GetFloat(DistanceKey);
+            _value = data.GetFloat(ValueKey);
 
             PointOfInterest = data.GetString(PointOfInterestKey);
         }
@@ -36,7 +34,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
 
             var from = movementModel.Position;
             
-            return Vector3.Distance(from, to) <= _distance;
+            return Vector3.Distance(from, to) <= _value;
         }
     }
 }
