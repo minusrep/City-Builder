@@ -6,7 +6,7 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.GameResources;
+using Runtime.Colony.Items;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
 using Runtime.Services.SaveLoad;
@@ -88,16 +88,13 @@ namespace Runtime
                 JSON.ToObject<Dictionary<string, object>>(
                     Resources.Load<TextAsset>("Descriptions/items_description").text);
 
-            var pointsOfInterestDescriptions =
-                JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/points_of_interest_description").text);
-            
             var data = new Dictionary<string, object>
             {
                 { "buildings", buildingDescriptions },
                 { "citizens", citizensDescriptions },
                 { "resources", resourcesDescriptions },
-                { "points_of_interest", pointsOfInterestDescriptions}
+                { "states", statesDescriptions },
+                {"points_of_interest", pointsOfInterestDescriptions}
             };
 
             _worldDescription = new WorldDescription(data);

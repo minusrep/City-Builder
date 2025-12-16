@@ -13,7 +13,7 @@ namespace Runtime.Descriptions
         public ItemDescriptionCollection ItemCollection { get; }
         
         public CitizensDescription Citizens { get; }
-        
+  
         public PointOfInterestDescriptionCollection PointOfInterestCollection { get; }
         
         private DescriptionFactory Factory { get; }
@@ -29,7 +29,6 @@ namespace Runtime.Descriptions
             BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
             ItemCollection = new ItemDescriptionCollection(data.GetNode("resources"));
             Citizens = new CitizensDescription(data.GetNode("citizens"));
-            PointOfInterestCollection = new PointOfInterestDescriptionCollection(data.GetNode("points_of_interest"));
         }
     }
 }
