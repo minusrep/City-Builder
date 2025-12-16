@@ -41,8 +41,6 @@ namespace Runtime.Colony.Citizens
         
         private string Name { get; set; }
         
-        private Vector3 _position;
-
         public CitizenModel(int id, CitizensDescription description, string name, StateMachineModel stateMachine = null)
         {
             Id = id;
