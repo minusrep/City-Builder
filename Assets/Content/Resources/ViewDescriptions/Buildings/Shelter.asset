@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7577c5305dbb4bb9835befe5c3e3d2c4, type: 3}
   m_Name: Shelter
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ServiceBuildingViewDescription
-  _prefab: {fileID: 1995736407142382352, guid: bb95363bf246e774094abd04c42eb708, type: 3}
+  Prefab: {fileID: 1995736407142382352, guid: bb95363bf246e774094abd04c42eb708, type: 3}

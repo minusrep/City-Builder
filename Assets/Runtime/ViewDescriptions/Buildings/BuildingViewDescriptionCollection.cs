@@ -10,7 +10,7 @@ namespace Runtime.ViewDescriptions.Buildings
         
         [SerializeField] private List<BuildingViewDescriptionBase> _descriptions;
         
-        public BuildingViewDescriptionBase Get(string id)
+        public BuildingViewDescriptionBase Get(string id)   
         {
             return _descriptions.Find(description => description.name == id);
         }
