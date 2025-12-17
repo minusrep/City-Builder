@@ -5,7 +5,6 @@ using Runtime.AsyncLoad;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Common.Factories;
-using Runtime.Colony.Citizens;
 using Runtime.Colony.GameResources;
 using Runtime.Descriptions;
 using Runtime.GameSystems;

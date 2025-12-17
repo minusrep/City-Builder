@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517e3550a98a462aa1cdfa8391634f1a, type: 3}
   m_Name: Sawmill
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ProductionBuildingViewDescription
-  _prefab: {fileID: 7811179642611185603, guid: 436d6bceca5bd464aa7470befbb7c8c2, type: 3}
+  Prefab: {fileID: 7811179642611185603, guid: 436d6bceca5bd464aa7470befbb7c8c2, type: 3}

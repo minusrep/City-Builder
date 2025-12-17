@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Runtime.Descriptions.StateMachine.Extensions;
-using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Conditions
 {

@@ -10,7 +10,7 @@ namespace Runtime.Colony.Buildings.Production
     {
         private readonly ProductionBuildingModel _model;
         private readonly GameSystemCollection _systemCollection;
-        private readonly ProductionBuildingSystem _productionSystem;
+        private ProductionBuildingSystem _productionSystem;
 
         private InventoryPresenter _inventoryPresenter;
 
@@ -19,12 +19,13 @@ namespace Runtime.Colony.Buildings.Production
         {
             _model = model;
             _systemCollection = systemCollection;
-            _productionSystem = new ProductionBuildingSystem(_model);
         }
 
         public override void Enable()
         {
             base.Enable();
+            
+            _productionSystem = new ProductionBuildingSystem(_model, View);
 
             _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             
@@ -34,7 +35,6 @@ namespace Runtime.Colony.Buildings.Production
             _inventoryPresenter.Enable();
             
             _systemCollection.Add(_productionSystem);
-            _productionSystem.OnUpdate += HandleUpdate;
         }
 
         public override void Disable()
@@ -44,16 +44,9 @@ namespace Runtime.Colony.Buildings.Production
             _inventoryPresenter.Disable();
             _inventoryPresenter = null;
 
-            _productionSystem.OnUpdate -= HandleUpdate;
             _systemCollection.Remove(_productionSystem);
             
             base.Disable();
-        }
-        
-        private void HandleUpdate(long time)
-        {
-            var progress = (float)(time - _model.StartProductionTime) / _model.Description.ProductionTime;
-            View.ProgressBar.value = Math.Clamp(progress, 0f, 1f) * 100f;
         }
     }
 }

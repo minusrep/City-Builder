@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf741aa84ed345e3a1aaf11c8bb53d28, type: 3}
   m_Name: Lantern
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.BaseBuildingViewDescription
-  _prefab: {fileID: 6383710204673921016, guid: 7d25b5131c1d4414c892fed21d89d29b, type: 3}
+  Prefab: {fileID: 6383710204673921016, guid: 7d25b5131c1d4414c892fed21d89d29b, type: 3}

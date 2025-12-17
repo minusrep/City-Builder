@@ -27,7 +27,7 @@ namespace Runtime.Colony.Buildings.Pool
                 var modelDescription = modelDescriptions.Descriptions.Values
                     .First(d => d.ViewDescriptionId == viewId);
 
-                var prefab = viewDescription.PrefabBase;
+                var prefab = viewDescription.GetViewDescription();
                 switch (modelDescription)
                 {
                     case ProductionBuildingDescription:
