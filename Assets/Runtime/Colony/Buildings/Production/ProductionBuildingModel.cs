@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Inventory;
 using Runtime.Colony.Orders;
@@ -13,51 +12,47 @@ namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingModel : BuildingModel
     {
-        public bool IsActive { get; private set; }
-        public int ProducedAmount { get; private set; }
-
-        public long CompleteProductionTime;
-        public long StartProductionTime;
         private const int MaxStackSize = 20;
-
-        public InventoryModel Inventory { get; }
-
+        
         public ProductionBuildingDescription Description { get; }
+        public InventoryModel Inventory { get; private set; }
+        public bool IsActive { get; private set; }
+        private ResourceDescription ResourceDescription { get; }
+        private WorldDescription WorldDescription { get; }
+
+        public long StartProductionTime;
 
         private OrderModelCollection _orders;
 
         public ProductionBuildingModel(string id,
             Vector2 position,
-            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, position, description)
+            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, position,
+            description)
         {
+            WorldDescription = worldDescription;
             Description = description;
 
             IsActive = false;
 
             _orders = new OrderModelCollection(id);
-            Inventory = new InventoryModel(1, MaxStackSize, worldDescription.ResourceCollection);
-            Inventory.TryAddItem(new ResourceDescription(new Dictionary<string, object>()
-            {
-                { "type", "wood" },
-                { "reduction_time", 0 },
-                { "reduction_amount", 0 }
-            }), 0);
+
+            ResourceDescription = worldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
+            Inventory = new InventoryModel(1, MaxStackSize, WorldDescription.ResourceCollection);
+            Inventory.TryAddItem(ResourceDescription, 0);
         }
 
         public void StartProduction(long currentTime)
         {
-            if (!IsActive && CapacityLeft() > 0)
+            if (!IsActive && CapacityLeft())
             {
                 IsActive = true;
                 StartProductionTime = currentTime;
-                CompleteProductionTime = currentTime + Description.ProductionTime;
             }
         }
 
         public void StopProduction()
         {
             IsActive = false;
-            CompleteProductionTime = 0;
             StartProductionTime = 0;
         }
 
@@ -66,8 +61,7 @@ namespace Runtime.Colony.Buildings.Production
             var dictionary = new Dictionary<string, object>(base.Serialize())
             {
                 { "is_active", IsActive },
-                { "produced_amount", ProducedAmount },
-                { "complete_production_time", CompleteProductionTime },
+                { "inventory", Inventory.Serialize() },
                 { "orders", _orders.Serialize() }
             };
 
@@ -77,8 +71,8 @@ namespace Runtime.Colony.Buildings.Production
         public override void Deserialize(Dictionary<string, object> data)
         {
             IsActive = data.GetBool("is_active");
-            ProducedAmount = data.GetInt("produced_amount");
-            CompleteProductionTime = data.GetLong("complete_production_time");
+            Inventory = new InventoryModel(1, MaxStackSize, WorldDescription.ResourceCollection);
+            Inventory.Deserialize(data.GetNode("inventory"));
 
             _orders = new OrderModelCollection(Id);
             _orders.Deserialize(data.GetNode("orders"));
@@ -86,10 +80,9 @@ namespace Runtime.Colony.Buildings.Production
 
         public bool ProduceOnceAndQueue()
         {
-            if (CapacityLeft() > 0)
+            if (CapacityLeft())
             {
-                var canAdd = Math.Min(CapacityLeft(), Description.ProductionAmount);
-                ProducedAmount += canAdd;
+                Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
 
                 _orders.Create();
                 return true;
@@ -98,9 +91,9 @@ namespace Runtime.Colony.Buildings.Production
             return false;
         }
 
-        private int CapacityLeft()
+        private bool CapacityLeft()
         {
-            return Description.MaxResource - ProducedAmount;
+            return Inventory.CanFit(ResourceDescription, Description.ProductionAmount, out _);
         }
     }
 }
