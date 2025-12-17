@@ -1,23 +1,22 @@
 using Runtime.Colony.StateMachine;
 using Runtime.Common;
 using Runtime.Descriptions;
+using Runtime.Descriptions.StateMachine.Actions;
 using Runtime.Services.Update;
 
 namespace Runtime.Colony.Citizens.Movement
 {
-    public class MovementPresenter : IPresenter
+    public class CitizenMovementPresenter : IPresenter
     {
-        private readonly IMovementModel _model;
+        private readonly CitizenModel _model;
         
-        private readonly StateMachineModel _stateMachineModel;
-
         private readonly MovementView _view;
         
         private readonly PointOfInterestDescriptionCollection _points;
         
         private readonly UpdateService _updateService;
 
-        public MovementPresenter(IMovementModel model, MovementView view, UpdateService updateService)
+        public CitizenMovementPresenter(CitizenModel model, MovementView view, UpdateService updateService)
         {
             _updateService = updateService;
 
@@ -30,7 +29,8 @@ namespace Runtime.Colony.Citizens.Movement
         {
             _updateService.OnUpdate += Update;
 
-            _model.OnChangePointOfInterest += OnChangePointOfInterest;
+            _model.StateMachine.OnChange += OnChangeState;
+            
             
             _view.NavMeshAgent.isStopped = false;
         }
@@ -39,7 +39,7 @@ namespace Runtime.Colony.Citizens.Movement
         {
             _updateService.OnUpdate -= Update;
             
-            _stateMachineModel.OnChange -= OnChangePointOfInterest;
+            _model.StateMachine.OnChange -= OnChangeState;
             
             _view.NavMeshAgent.isStopped = true;
         }
@@ -49,9 +49,21 @@ namespace Runtime.Colony.Citizens.Movement
             _model.Position = _view.Transform.position;
         }
 
-        private void OnChangePointOfInterest()
+        private void OnChangeState()
         {
-            _view.NavMeshAgent.SetDestination(_model.PointOfInterest);
+            var currentState = _model.StateMachine.CurrentState;
+
+            foreach (var action in currentState.Actions)
+            {
+                if (action is not StartMoveActionDescription startMoveAction)
+                {
+                    continue;
+                }
+                
+                _view.NavMeshAgent.SetDestination(_model.PointsOfInterest[startMoveAction.PointOfInterest]);
+
+                break;
+            }
         }
     }
 }
