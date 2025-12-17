@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runtime.Colony.Citizens.Movement
+namespace Runtime.Colony.StateMachine.Conditions
 {
     public interface IMovementModel
     {

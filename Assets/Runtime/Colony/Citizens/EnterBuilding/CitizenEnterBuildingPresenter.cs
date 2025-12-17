@@ -1,11 +1,10 @@
 using System.Linq;
 using Runtime.Colony.Buildings.Common;
-using Runtime.Colony.Citizens;
 using Runtime.Common;
 using Runtime.Descriptions.StateMachine.Actions;
 using UnityEngine;
 
-namespace Runtime.Colony.StateMachine
+namespace Runtime.Colony.Citizens.EnterBuilding
 {
     public class CitizenEnterBuildingPresenter : IPresenter
     {

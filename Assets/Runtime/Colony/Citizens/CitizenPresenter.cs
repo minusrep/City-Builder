@@ -1,4 +1,8 @@
+using Runtime.Colony.Citizens.EnterBuilding;
 using Runtime.Colony.Citizens.Movement;
+using Runtime.Colony.Citizens.SetBuildingPointOfInterest;
+using Runtime.Colony.Citizens.SetPointOfIntrest;
+using Runtime.Colony.Citizens.Timer;
 using Runtime.Colony.StateMachine;
 using Runtime.Common;
 using Runtime.Services.Update;

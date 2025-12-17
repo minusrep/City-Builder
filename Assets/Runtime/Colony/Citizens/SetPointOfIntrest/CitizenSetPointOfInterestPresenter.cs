@@ -1,8 +1,7 @@
-using Runtime.Colony.Citizens;
 using Runtime.Common;
 using Runtime.Descriptions.StateMachine.Actions;
 
-namespace Runtime.Colony.StateMachine
+namespace Runtime.Colony.Citizens.SetPointOfIntrest
 {
     public class CitizenSetPointOfInterestPresenter : IPresenter
     {

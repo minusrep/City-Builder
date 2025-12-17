@@ -1,10 +1,9 @@
 using System.Linq;
-using Runtime.Colony.Citizens;
 using Runtime.Common;
 using Runtime.Descriptions.StateMachine.Actions;
 using UnityEngine;
 
-namespace Runtime.Colony.StateMachine
+namespace Runtime.Colony.Citizens.SetBuildingPointOfInterest
 {
     public class CitizenBuildingSetPointOfInterestPresenter : IPresenter
     {
