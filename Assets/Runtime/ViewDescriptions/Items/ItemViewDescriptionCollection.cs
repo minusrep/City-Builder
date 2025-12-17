@@ -10,7 +10,7 @@ namespace Runtime.ViewDescriptions.Items
 
         public ItemViewDescription Get(string id)
         {
-            return _descriptions.Find(descriptions => descriptions.Name == id);
+            return _descriptions.Find(descriptions => descriptions.Id == id);
         }
     }
 }
