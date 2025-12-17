@@ -4,6 +4,7 @@ using Runtime.Colony.Buildings.Decor;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
+using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
@@ -13,12 +14,18 @@ namespace Runtime.Colony.Buildings.Common.Factories
     {
         private readonly Dictionary<string, Func<string, Vector2, BuildingDescription, BuildingModel>> _constructors
             = new();
+        private readonly WorldDescription _worldDescription;
+
+        public BuildingModelFactory(WorldDescription worldDescription)
+        {
+            _worldDescription = worldDescription;
+        }
 
         public void RegisterAll()
         {
             Register("production",
                 (id, position, description) => new ProductionBuildingModel(id, position,
-                    (ProductionBuildingDescription)description));
+                    (ProductionBuildingDescription)description, _worldDescription));
 
             Register("service",
                 (id, position, description) =>
@@ -28,7 +35,7 @@ namespace Runtime.Colony.Buildings.Common.Factories
             {
                 var storageDescription = (StorageBuildingDescription)description;
                 
-                return new StorageBuildingModel(id, position, storageDescription);
+                return new StorageBuildingModel(id, position, storageDescription, _worldDescription);
             });
 
             Register("decor",

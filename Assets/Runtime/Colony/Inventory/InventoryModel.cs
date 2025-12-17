@@ -11,36 +11,15 @@ namespace Runtime.Colony.Inventory
     public class InventoryModel : UniformModelCollection<CellModel>
     {
         public int Size;
-        
-        private readonly int _maxStackSize;
 
-        public InventoryModel(int size, int maxStackSize) : base(null)
+        private readonly int _maxStackSize;
+        private readonly ResourceDescriptionCollection _resourceDescriptions;
+
+        public InventoryModel(int size, int maxStackSize, ResourceDescriptionCollection resourceDescriptions) : base(null)
         {
             Size = size;
             _maxStackSize = maxStackSize;
-
-            for (var i = 0; i < size; i++)
-            {
-                Create();
-            }
-        }
-
-        protected override CellModel CreateModel()
-        {
-            var cell = new CellModel();
-
-            return cell;
-        }
-
-        protected override CellModel CreateModelFromData(string id, Dictionary<string, object> data)
-        {
-            var cell = new CellModel();
-
-            var amount = data.GetInt("amount");
-
-            cell.TryAdd(null, amount, _maxStackSize);
-
-            return cell;
+            _resourceDescriptions = resourceDescriptions;
         }
 
         public bool TryAddItem(ResourceDescription item, int amount)
@@ -62,6 +41,35 @@ namespace Runtime.Colony.Inventory
                 if (remaining == 0)
                 {
                     return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool TryRemoveItem(ResourceDescription item, int amount)
+        {
+            var remaining = amount;
+
+            for (var i = Models.Count - 1; i >= 0; i--)
+            {
+                var cell = Models.ElementAt(i).Value;
+
+                if (cell.Resource != null && IsSameItem(cell.Resource, item))
+                {
+                    var toRemove = Math.Min(cell.Amount, remaining);
+
+                    if (toRemove > 0)
+                    {
+                        cell.TryReduce(toRemove);
+
+                        remaining -= toRemove;
+
+                        if (remaining == 0)
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
 
@@ -98,7 +106,7 @@ namespace Runtime.Colony.Inventory
                 {
                     var free = _maxStackSize;
                     targets.Add((pair.Value, free));
-                    
+
                     remaining -= Math.Min(free, remaining);
 
                     if (remaining <= 0)
@@ -111,33 +119,22 @@ namespace Runtime.Colony.Inventory
             return false;
         }
 
-        public bool TryRemoveItem(ResourceDescription item, int amount)
+        protected override CellModel CreateModel()
         {
-            var remaining = amount;
+            var cell = new CellModel();
 
-            for (var i = Models.Count - 1; i >= 0; i--)
-            {
-                var cell = Models.ElementAt(i).Value;
+            return cell;
+        }
 
-                if (cell.Resource != null && IsSameItem(cell.Resource, item))
-                {
-                    var toRemove = Math.Min(cell.Amount, remaining);
+        protected override CellModel CreateModelFromData(string id, Dictionary<string, object> data)
+        {
+            var cell = new CellModel();
+            
+            var amount = data.GetInt("amount");
 
-                    if (toRemove > 0)
-                    {
-                        cell.TryReduce(toRemove);
-                        
-                        remaining -= toRemove;
+            cell.TryAdd(_resourceDescriptions.Descriptions[id], amount, _maxStackSize);
 
-                        if (remaining == 0)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
+            return cell;
         }
 
         private bool IsSameItem(ResourceDescription itemA, ResourceDescription itemB)

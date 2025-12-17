@@ -68,8 +68,8 @@ namespace Runtime
 
         private void InitializeModelFactories()
         {
-            _resourceFactory = new ResourceFactory(_worldDescription.ItemCollection);
-            _buildingModelFactory = new BuildingModelFactory();
+            _resourceFactory = new ResourceFactory(_worldDescription.ResourceCollection);
+            _buildingModelFactory = new BuildingModelFactory(_worldDescription);
 
             _buildingModelFactory.RegisterAll();
             _factoryProvider = new FactoryProvider(_resourceFactory, _buildingModelFactory);

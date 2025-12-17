@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace Runtime.Descriptions.Items
 {
-    public class ItemDescriptionCollection
+    public class ResourceDescriptionCollection
     {
         public Dictionary<string, ResourceDescription> Descriptions { get; }
 
-        public ItemDescriptionCollection(Dictionary<string, object> descriptions)
+        public ResourceDescriptionCollection(Dictionary<string, object> descriptions)
         {
             Descriptions = new Dictionary<string, ResourceDescription>();
 

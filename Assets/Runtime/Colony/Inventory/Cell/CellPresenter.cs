@@ -33,14 +33,8 @@ namespace Runtime.Colony.Inventory.Cell
             _view.Amount.text = _model.Amount.ToString();
             
             _view.Amount.style.display = DisplayStyle.Flex;
-
-            //TODO: Заглушка
-            if (_model.Resource == null)
-            {
-                return;
-            }
             
-            var itemViewDescription = _viewDescription.ItemViewDescriptions.Get(_model.Resource.Type);
+            var itemViewDescription = _viewDescription.ItemViewDescriptions.Get(_model.Resource.ViewId);
             
             _view.Image.style.backgroundImage = itemViewDescription.Image.texture;
         }

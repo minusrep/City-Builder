@@ -4,9 +4,9 @@ namespace Runtime.Colony.GameResources
 {
     public sealed class ResourceFactory
     {
-        private readonly ItemDescriptionCollection _collection;
+        private readonly ResourceDescriptionCollection _collection;
 
-        public ResourceFactory(ItemDescriptionCollection collection)
+        public ResourceFactory(ResourceDescriptionCollection collection)
         {
             _collection = collection;
         }
