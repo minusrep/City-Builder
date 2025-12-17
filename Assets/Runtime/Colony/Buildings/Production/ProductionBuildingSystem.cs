@@ -18,38 +18,28 @@ namespace Runtime.Colony.Buildings.Production
         {
             if (_model.IsActive)
             {
-                var productionTime = _model.Description.ProductionTime;
-
-                if (productionTime <= 0)
-                {
-                    _model.ProduceOnceAndQueue();
-                    _model.StopProduction();
-                    return;
-                }
-
                 var currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                
+                var progress = (float)(currentTime - _model.StartProductionTime) / _model.Description.ProductionTime;
+                
+                UpdateProgressBar(progress);
 
-                while (currentTime >= _model.CompleteProductionTime)
+                if (progress >= 1f)
                 {
                     if (_model.ProduceOnceAndQueue())
                     {
-                        _model.StartProductionTime = currentTime;
-                        _model.CompleteProductionTime += productionTime;
+                        _model.StartProductionTime += _model.Description.ProductionTime;
                     }
                     else
                     {
                         _model.StopProduction();
-                        break;
                     }
                 }
-                
-                UpdateProgressBar(currentTime);
             }
         }
 
-        private void UpdateProgressBar(long currentTime)
+        private void UpdateProgressBar(float progress)
         {
-            var progress = (float)(currentTime - _model.StartProductionTime) / _model.Description.ProductionTime;
             _view.ProgressBar.value = Math.Clamp(progress, 0f, 1f) * 100f;
         }
     }
