@@ -5,13 +5,13 @@ namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingSystem : IGameSystem
     {
-        public event Action<long> OnUpdate;
-        
         private readonly ProductionBuildingModel _model;
+        private readonly ProductionBuildingView _view;
 
-        public ProductionBuildingSystem(ProductionBuildingModel model)
+        public ProductionBuildingSystem(ProductionBuildingModel model, ProductionBuildingView view)
         {
             _model = model;
+            _view = view;
         }
 
         public void Update(float deltaTime)
@@ -42,9 +42,15 @@ namespace Runtime.Colony.Buildings.Production
                         break;
                     }
                 }
-
-                OnUpdate?.Invoke(currentTime);
+                
+                UpdateProgressBar(currentTime);
             }
+        }
+
+        private void UpdateProgressBar(long currentTime)
+        {
+            var progress = (float)(currentTime - _model.StartProductionTime) / _model.Description.ProductionTime;
+            _view.ProgressBar.value = Math.Clamp(progress, 0f, 1f) * 100f;
         }
     }
 }
