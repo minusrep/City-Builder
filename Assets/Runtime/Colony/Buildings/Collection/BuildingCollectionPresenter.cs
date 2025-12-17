@@ -10,31 +10,30 @@ namespace Runtime.Colony.Buildings.Collection
 {
     public class BuildingCollectionPresenter : IPresenter
     {
-        private readonly BuildingModelCollection _models;
+        private readonly World _world;
         private readonly BuildingPresenterFactory _presenterFactory;
         
         private readonly Dictionary<string, IPresenter> _presenters = new();
 
-        public BuildingCollectionPresenter(BuildingModelCollection models,
+        public BuildingCollectionPresenter(World world,
             BuildingCollectionView view,
             BuildingsDescriptionCollection modelDescriptions, 
             ViewDescriptions.ViewDescriptions viewDescriptions,
             GameSystemCollection gameSystemCollection)
         {
-            _models = models;
-            
+            _world = world;
             var poolRegistry = new BuildingPoolRegistry();
             poolRegistry.RegisterAll(viewDescriptions.BuildingViewDescriptions, modelDescriptions, view.Transform);
             
-            _presenterFactory = new BuildingPresenterFactory(viewDescriptions, poolRegistry, gameSystemCollection);
+            _presenterFactory = new BuildingPresenterFactory(world, gameSystemCollection, poolRegistry, viewDescriptions);
         }
 
         public void Enable()
         {
-            _models.OnAdded += HandleAdded;
-            _models.OnRemoved += HandleRemoved;
+            _world.Buildings.OnAdded += HandleAdded;
+            _world.Buildings.OnRemoved += HandleRemoved;
 
-            foreach (var model in _models.Models.Values)
+            foreach (var model in _world.Buildings.Models.Values)
             {
                 HandleAdded(model);
             }
@@ -42,8 +41,8 @@ namespace Runtime.Colony.Buildings.Collection
 
         public void Disable()
         {
-            _models.OnAdded -= HandleAdded;
-            _models.OnRemoved -= HandleRemoved;
+            _world.Buildings.OnAdded -= HandleAdded;
+            _world.Buildings.OnRemoved -= HandleRemoved;
 
             foreach (var presenter in _presenters.Values)
             {

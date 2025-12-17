@@ -8,13 +8,16 @@ using Runtime.GameSystems;
 namespace Runtime.Colony.Buildings.Common.Factories
 {
     public class BuildingPresenterFactory
-    { 
+    {
+        private readonly World _world;
         private readonly ViewDescriptions.ViewDescriptions _viewDescriptions;
         private readonly BuildingPoolRegistry _pools;
         private readonly GameSystemCollection _gameSystemCollection;
 
-        public BuildingPresenterFactory(ViewDescriptions.ViewDescriptions viewDescriptions, BuildingPoolRegistry pools, GameSystemCollection gameSystemCollection)
+        public BuildingPresenterFactory(World world, GameSystemCollection gameSystemCollection,
+            BuildingPoolRegistry pools, ViewDescriptions.ViewDescriptions viewDescriptions)
         {
+            _world = world;
             _viewDescriptions = viewDescriptions;
             _pools = pools;
             _gameSystemCollection = gameSystemCollection;
@@ -32,7 +35,7 @@ namespace Runtime.Colony.Buildings.Common.Factories
                 StorageBuildingModel storageModel =>
                     new StorageBuildingPresenter(storageModel, pool, _viewDescriptions),
                 ServiceBuildingModel serviceModel =>
-                    new ServiceBuildingPresenter(serviceModel, pool, _viewDescriptions),
+                    new ServiceBuildingPresenter(serviceModel, pool, _world, _viewDescriptions, _gameSystemCollection),
                 _ => new BuildingPresenter<BuildingView>(model, pool, _viewDescriptions)
             };
         }

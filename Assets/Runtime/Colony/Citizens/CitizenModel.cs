@@ -102,5 +102,10 @@ namespace Runtime.Colony.Citizens
 
             Flags[HasBuildingFlagKey] = BuildingId == string.Empty;
         }
+
+        public void RestoreNeed(string needId)
+        {
+            
+        }
     }
 }

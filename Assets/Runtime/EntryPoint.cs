@@ -51,7 +51,7 @@ namespace Runtime
             var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
             _world = saveLoadService.Load();
 
-            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings,
+            _buildingCollectionPresenter = new BuildingCollectionPresenter(_world,
                 _buildingCollectionView, _worldDescription.BuildingCollection, _viewDescriptions, _gameSystemCollection);
             _buildingCollectionPresenter.Enable();
         }
