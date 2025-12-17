@@ -2,6 +2,7 @@
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.GameResources;
 using Runtime.Colony.Inventory;
+using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.Extensions;
 using UnityEngine;
@@ -19,12 +20,12 @@ namespace Runtime.Colony.Buildings.Storage
 
         public StorageBuildingModel(string id,
             Vector2 position,
-            StorageBuildingDescription description) : base(id, position, description)
+            StorageBuildingDescription description, WorldDescription worldDescription) : base(id, position, description)
         {
             Description = description;
 
 
-            Inventory = new InventoryModel(description.StoredResources.Count, MaxStackSize);
+            Inventory = new InventoryModel(description.StoredResources.Count, MaxStackSize, worldDescription.ResourceCollection);
         }
         
         public bool TryAddResource(string resourceKey, ResourceModel resourceModel)

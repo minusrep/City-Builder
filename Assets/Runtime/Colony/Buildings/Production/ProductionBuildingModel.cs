@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Inventory;
 using Runtime.Colony.Orders;
+using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.Descriptions.Items;
 using Runtime.Extensions;
@@ -27,14 +28,14 @@ namespace Runtime.Colony.Buildings.Production
 
         public ProductionBuildingModel(string id,
             Vector2 position,
-            ProductionBuildingDescription description) : base(id, position, description)
+            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, position, description)
         {
             Description = description;
 
             IsActive = false;
 
             _orders = new OrderModelCollection(id);
-            Inventory = new InventoryModel(1, MaxStackSize);
+            Inventory = new InventoryModel(1, MaxStackSize, worldDescription.ResourceCollection);
             Inventory.TryAddItem(new ResourceDescription(new Dictionary<string, object>()
             {
                 { "type", "wood" },
