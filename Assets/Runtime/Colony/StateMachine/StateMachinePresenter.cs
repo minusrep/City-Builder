@@ -43,7 +43,7 @@ namespace Runtime.Colony.StateMachine
 
                         break;
                     
-                    case SetPointOfInterestDescription setPointOfInterestAction:
+                    case SetPointOfInterestActionDescription setPointOfInterestAction:
 
                         Vector3 point;
                         
@@ -59,14 +59,6 @@ namespace Runtime.Colony.StateMachine
                         }
                         
                         _model.SetPointOfInterest(point);
-                        
-                        break;
-                    
-                    case SearchBuildingDescription searchBuildingDescription:
-
-                        var founded = _world.Buildings.Models.Values.FirstOrDefault(a => a is ServiceBuildingModel);
-                        
-                        _model.SetBuildingId(founded == null ? string.Empty : founded.Id);
                         
                         break;
                 }
