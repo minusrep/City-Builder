@@ -10,7 +10,7 @@ namespace Runtime.Descriptions
     {
         public BuildingsDescriptionCollection BuildingCollection { get; }
         
-        public ItemDescriptionCollection ItemCollection { get; }
+        public ResourceDescriptionCollection ResourceCollection { get; }
         
         public CitizensDescription Citizens { get; }
   
@@ -27,7 +27,7 @@ namespace Runtime.Descriptions
             Factory.Register<StorageBuildingDescription>("storage");
             
             BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
-            ItemCollection = new ItemDescriptionCollection(data.GetNode("resources"));
+            ResourceCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
             Citizens = new CitizensDescription(data.GetNode("citizens"));
         }
     }
