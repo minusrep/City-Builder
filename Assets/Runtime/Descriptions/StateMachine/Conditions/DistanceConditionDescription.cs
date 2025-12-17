@@ -30,7 +30,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
                 return false;
             }
             
-            var to = movementModel.PointOfInterest;
+            var to = movementModel.PointsOfInterest[PointOfInterest];
 
             var from = movementModel.Position;
             

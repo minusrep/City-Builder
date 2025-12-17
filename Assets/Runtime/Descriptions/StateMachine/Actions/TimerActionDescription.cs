@@ -21,16 +21,4 @@ namespace Runtime.Descriptions.StateMachine.Actions
             Duration = Convert.ToSingle(data[DurationKey]);
         }
     }
-
-    public class SearchBuildingDescription : ActionDescription
-    {
-        private const string ValueKey = "value";
-        
-        public string Value { get; private set; }
-        
-        public SearchBuildingDescription(Dictionary<string, object> data) : base(data)
-        {
-            Value = data.GetString(ValueKey);
-        }
-    }
 }

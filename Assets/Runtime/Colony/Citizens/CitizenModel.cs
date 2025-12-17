@@ -13,7 +13,7 @@ namespace Runtime.Colony.Citizens
         
         private const string PositionKey = "position";
         
-        private const string PointOfInterestKey = "point_of_interest";
+        private const string PointsOfInterestKey = "points_of_interest";
         
         private const string FlagsKey = "flags";
         
@@ -27,25 +27,21 @@ namespace Runtime.Colony.Citizens
 
         private const string HasBuildingFlagKey = "has_building";
 
-        public event Action OnChangePointOfInterest;
-        
         public int Id { get; set; }
 
         public Vector3 Position { get; set; }
-        
+
         public CitizensDescription Description { get; }
 
-        public Vector3 PointOfInterest { get; set; }
-        
         public Dictionary<string, long> Timers { get; private set; }
 
+        public Dictionary<string, Vector3> PointsOfInterest { get; set; }
+        
         public Dictionary<string, bool> Flags { get; private set; }
 
         public Dictionary<string, float> Stats { get; private set; }
 
         public StateMachineModel StateMachine { get; }
-
-        public string BuildingId { get; private set; }
 
         private string Name { get; set; }
         
@@ -54,8 +50,6 @@ namespace Runtime.Colony.Citizens
             Id = id;
             Description = description;
             Position = new Vector2(0, 0);
-            PointOfInterest = new Vector2(0, 0);
-            
             Flags = new Dictionary<string, bool>();
             Stats = new Dictionary<string, float>();
             Timers = new Dictionary<string, long>();
@@ -69,7 +63,7 @@ namespace Runtime.Colony.Citizens
             {
                 { NameKey, Name },
                 { PositionKey, Position.ToList() },
-                { PointOfInterestKey, PointOfInterest.ToList() },
+                { PointsOfInterestKey, PointsOfInterest },
                 { FlagsKey, Flags },
                 { StatsKey, Stats },
                 { TimerKey, Timers },
@@ -82,25 +76,16 @@ namespace Runtime.Colony.Citizens
         {
             Name = data.GetString(NameKey);
             Position = data.GetVector3(PositionKey);
-            PointOfInterest = data.GetVector3(PointOfInterestKey);
+            PointsOfInterest = data.GetDictionary<string, Vector3>(PointsOfInterestKey);
             Flags = data.GetDictionary<string, bool>(FlagsKey);
             Stats = data.GetDictionary<string, float>(StatsKey);
             Timers = data.GetDictionary<string, long>(TimerKey);
             StateMachine.Deserialize(data.GetNode(StateMachineKey));
         }
 
-        public void SetPointOfInterest(Vector3 point)
+        public void SetPointOfInterest(string key, Vector3 point)
         {
-            PointOfInterest = point;
-            
-            OnChangePointOfInterest?.Invoke();
-        }
-
-        public void SetBuildingId(string buildingId)
-        {
-            BuildingId = buildingId;
-
-            Flags[HasBuildingFlagKey] = BuildingId == string.Empty;
+            PointsOfInterest[key] = point;                
         }
 
         public void RestoreNeed(string needId)

@@ -4,6 +4,7 @@ using Runtime.ModelCollections;
 using Runtime.Extensions;
 using UnityEngine;
 using System;
+using Runtime.Colony.Citizens;
 
 namespace Runtime.Colony.Buildings.Common
 {
@@ -34,6 +35,16 @@ namespace Runtime.Colony.Buildings.Common
             BaseDescription = baseDescription;
         }
 
+        public virtual void Enter(CitizenModel citizen)
+        {
+            
+        }
+
+        public virtual void Work(CitizenModel citizen)
+        {
+            
+        }
+        
         public virtual Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>
