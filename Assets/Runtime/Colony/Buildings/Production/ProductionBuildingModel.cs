@@ -12,8 +12,6 @@ namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingModel : BuildingModel
     {
-        private const int MaxStackSize = 20;
-        
         public ProductionBuildingDescription Description { get; }
         public InventoryModel Inventory { get; private set; }
         public bool IsActive { get; private set; }
@@ -37,7 +35,7 @@ namespace Runtime.Colony.Buildings.Production
             _orders = new OrderModelCollection(id);
 
             ResourceDescription = worldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
-            Inventory = new InventoryModel(1, MaxStackSize, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
             Inventory.TryAddItem(ResourceDescription, 0);
         }
 
@@ -71,7 +69,7 @@ namespace Runtime.Colony.Buildings.Production
         public override void Deserialize(Dictionary<string, object> data)
         {
             IsActive = data.GetBool("is_active");
-            Inventory = new InventoryModel(1, MaxStackSize, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
 
             _orders = new OrderModelCollection(Id);
