@@ -1,12 +1,13 @@
 using Runtime.Colony.Citizens.Movement;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Runtime.Colony.Citizens
 {
     public class CitizenView : MonoBehaviour
     {
-        public MovementView MovementView => _movementView;
+        public CitizenMovementView CitizenMovementView => _citizenMovementView;
         
-        [SerializeField] private MovementView _movementView;
+        [SerializeField] private CitizenMovementView _citizenMovementView;
     }
 }

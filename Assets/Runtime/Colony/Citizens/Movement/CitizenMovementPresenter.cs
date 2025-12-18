@@ -1,7 +1,5 @@
-using Runtime.Colony.StateMachine;
 using Runtime.Common;
 using Runtime.Descriptions;
-using Runtime.Descriptions.StateMachine.Actions;
 using Runtime.Services.Update;
 
 namespace Runtime.Colony.Citizens.Movement
@@ -10,16 +8,12 @@ namespace Runtime.Colony.Citizens.Movement
     {
         private readonly CitizenModel _model;
         
-        private readonly MovementView _view;
+        private readonly CitizenMovementView _view;
         
         private readonly PointOfInterestDescriptionCollection _points;
         
-        private readonly UpdateService _updateService;
-
-        public CitizenMovementPresenter(CitizenModel model, MovementView view, UpdateService updateService)
+        public CitizenMovementPresenter(CitizenModel model, CitizenMovementView view)
         {
-            _updateService = updateService;
-
             _view = view;
 
             _model = model;
@@ -27,43 +21,30 @@ namespace Runtime.Colony.Citizens.Movement
 
         public void Enable()
         {
-            _updateService.OnUpdate += Update;
-
-            _model.StateMachine.OnChange += OnChangeState;
+            _view.OnUpdate += UpdatePosition;
             
+            _model.OnStartMove += StartMove;
             
             _view.NavMeshAgent.isStopped = false;
         }
 
         public void Disable()
         {
-            _updateService.OnUpdate -= Update;
+            _view.OnUpdate -= UpdatePosition;
             
-            _model.StateMachine.OnChange -= OnChangeState;
-            
+            _model.OnStartMove -= StartMove;
+
             _view.NavMeshAgent.isStopped = true;
         }
 
-        private void Update()
+        private void UpdatePosition()
         {
             _model.Position = _view.Transform.position;
         }
 
-        private void OnChangeState()
+        private void StartMove(string pointOfInterest)
         {
-            var currentState = _model.StateMachine.CurrentState;
-
-            foreach (var action in currentState.Actions)
-            {
-                if (action is not StartMoveActionDescription startMoveAction)
-                {
-                    continue;
-                }
-                
-                _view.NavMeshAgent.SetDestination(_model.PointsOfInterest[startMoveAction.PointOfInterest]);
-
-                break;
-            }
+            _view.NavMeshAgent.SetDestination(_model.PointsOfInterest[pointOfInterest]);
         }
     }
 }

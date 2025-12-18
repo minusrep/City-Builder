@@ -5,42 +5,27 @@
     "Tom"
   ],
   "start_move_speed": 1,
-  "states" :
-  {
+  "states": {
     "idle": {
       "actions": [
-        {
-          "type": "set_timer",
-          "timer": "wait",
-          "duration": 1
-        }
       ],
       "transitions": [
         {
-          "search_tavern": {
-            "type": "and",
-            "conditions": [
-              {
-                "type": "compare",
-                "counter": "hungry",
-                "operation": "greater",
-                "value": 20
-              },
-              {
-                "type": "timer",
-                "name": "wait"
-              }
-            ]
-          }
+            "walk_to_tavern": {
+              "type": "false"
+            }
         }
       ]
     },
     "walk_to_tavern": {
       "actions": [
         {
-          "type": "set_point_of_interest",
+          "type": "set_point_of_interest_building",
           "point_of_interest": "tavern"
-
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "tavern"
         }
       ],
       "transitions": [
@@ -53,19 +38,38 @@
         }
       ]
     },
-    "eat": {
+    "eat_start": {
       "actions": [
         {
-          "type": "set_timer",
-          "timer": "eat",
-          "duration": 2
+          "type": "register_system",
+          "system": "feed"
+        }
+      ],
+      "transitions": [
+        {
+          "eat_end": {
+            "type": "compare",
+            "counter": "satiety",
+            "operation": "greater",
+            "value": 100
+          }
+        }
+      ]
+    },
+    "eat_end": {
+      "actions": [
+        {
+          "type": "unregister_system",
+          "system": "feed"
         }
       ],
       "transitions": [
         {
           "idle": {
-            "type": "timer",
-            "name": "eat"
+            "type": "compare",
+            "counter": "satiety",
+            "operation": "greater",
+            "value": 20
           }
         }
       ]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Runtime.Descriptions.StateMachine.Actions;
 using Runtime.Descriptions.StateMachine.Extensions;
 using Runtime.ModelCollections;
+using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine
 {
@@ -43,7 +44,7 @@ namespace Runtime.Descriptions.StateMachine
         {
             Transitions = new List<TransitionDescription>();
             
-            if (data[TransitionKey] is not List<object> transitionList) throw new Exception();
+            if (data[TransitionKey] is not List<object> transitionList) throw new Exception(data[TransitionKey].ToString());
             
             foreach (var transitionObject in transitionList)
             {

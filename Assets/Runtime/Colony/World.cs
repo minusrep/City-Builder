@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Citizens;
+using Runtime.Colony.Citizens.Systems;
 using Runtime.Descriptions;
 using Runtime.Extensions;
+using Runtime.GameSystems;
 using Runtime.ModelCollections;
 
 namespace Runtime.Colony
@@ -10,22 +12,38 @@ namespace Runtime.Colony
     public class World : ISerializeModel, IDeserializeModel
     {
         private const string CitizensKey = "citizens";
-        
+
         private const string BuildingsKey = "buildings";
-        
+
         public CitizenModelCollection Citizens { get; private set; }
 
         public BuildingModelCollection Buildings { get; private set; }
 
         public WorldDescription WorldDescription { get; private set; }
 
-        public World(WorldDescription worldDescription, FactoryProvider factoryProvider)
+        public GameSystemCollection GameSystems { get; private set; }
+
+        public CitizenStatSystem CitizenStarvationStatSystem { get; }
+        
+        public CitizenStatSystem CitizenFeedStatSystem { get; }
+
+        public World(WorldDescription worldDescription, FactoryProvider factoryProvider, GameSystemCollection gameSystems)
         {
             WorldDescription = worldDescription;
-            
+
             Citizens = new CitizenModelCollection(worldDescription.Citizens);
-            
+
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
+            
+            GameSystems = gameSystems;
+            
+            CitizenStarvationStatSystem = new CitizenStatSystem("starvation","satiety", -10);
+            
+            CitizenFeedStatSystem = new CitizenStatSystem("feed","satiety", 20);
+            
+            GameSystems.Add(CitizenStarvationStatSystem);
+            
+            GameSystems.Add(CitizenFeedStatSystem);
         }
 
         public Dictionary<string, object> Serialize()

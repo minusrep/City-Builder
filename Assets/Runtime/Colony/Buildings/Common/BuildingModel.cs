@@ -14,7 +14,7 @@ namespace Runtime.Colony.Buildings.Common
         
         public string Id { get; }
 
-        public Vector2 Position
+        public Vector3 Position
         {
             get => _position;
             private set
@@ -28,6 +28,7 @@ namespace Runtime.Colony.Buildings.Common
         
         private Vector2 _position;
 
+        
         protected BuildingModel(string id, Vector2 position, BuildingDescription baseDescription)
         {
             Id = id;    

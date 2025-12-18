@@ -5,8 +5,11 @@ namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingSystem : IGameSystem
     {
+        public string Id { get; }
+        
         private readonly ProductionBuildingModel _model;
         private readonly ProductionBuildingView _view;
+
 
         public ProductionBuildingSystem(ProductionBuildingModel model, ProductionBuildingView view)
         {

@@ -5,7 +5,7 @@ using Runtime.Extensions;
 
 namespace Runtime.Descriptions.StateMachine.Conditions
 {
-    public abstract class ConditionDescription
+    public abstract class ConditionDescription 
     {
         private const string TypeKey = "type";
         public string Type { get; private set; }

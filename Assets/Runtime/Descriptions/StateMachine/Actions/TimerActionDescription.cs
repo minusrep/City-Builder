@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony;
+using Runtime.Colony.Citizens;
 using Runtime.Extensions;
 
 namespace Runtime.Descriptions.StateMachine.Actions
@@ -19,6 +21,11 @@ namespace Runtime.Descriptions.StateMachine.Actions
             Timer = data[TimerKey] as string;
             
             Duration = Convert.ToSingle(data[DurationKey]);
+        }
+
+        public override void Execute(World world, CitizenModel model)
+        {
+            model.Timers[Timer] = DateTimeOffset.UtcNow.AddSeconds(Duration).ToUnixTimeSeconds();
         }
     }
 }

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Runtime.Colony;
+using Runtime.Colony.Citizens;
 using Runtime.Extensions;
 
 namespace Runtime.Descriptions.StateMachine.Actions
@@ -12,6 +14,11 @@ namespace Runtime.Descriptions.StateMachine.Actions
         public StartMoveActionDescription(Dictionary<string, object> data) : base(data)
         {
             PointOfInterest = data.GetString(PointOfInterestKey);
+        }
+
+        public override void Execute(World world, CitizenModel model)
+        {
+            
         }
     }
 }

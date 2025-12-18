@@ -5,10 +5,12 @@ using Runtime.AsyncLoad;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Common.Factories;
+using Runtime.Colony.Citizens;
+using Runtime.Colony.Citizens.Systems;
 using Runtime.Colony.GameResources;
+using Runtime.Colony.StateMachine;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
-using Runtime.Services.SaveLoad;
 using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Inventory;
 using UnityEngine;
@@ -19,6 +21,8 @@ namespace Runtime
     {
         [SerializeField] private BuildingCollectionView _buildingCollectionView;
 
+        [SerializeField] private CitizenView _citizenView;
+        
         private WorldDescription _worldDescription;
         private ViewDescriptions.ViewDescriptions _viewDescriptions;
 
@@ -34,8 +38,19 @@ namespace Runtime
         private GameSystemCollection _gameSystemCollection;
         
         private AddressableModel _addressableModel;
+        
         private AddressablePresenter _addressablePresenter;
         
+        private CitizenStatSystem _citizenFeedStatSystem;
+        
+        private CitizenStatSystem _citizenStarvationSystem;
+
+        private StateMachineSystem _stateMachineSystem;
+        
+        private CitizenPresenter _citizenPresenter;
+        
+        private CitizenModel _citizenModel;
+
         private async void Start()
         {
             _gameSystemCollection = new GameSystemCollection();
@@ -47,13 +62,31 @@ namespace Runtime
             await InitializeViewDescriptionsAsync();
 
             InitializeModelFactories();
-
-            var saveLoadService = new SaveLoadService(new LocalSaveLoadStrategy(_worldDescription, _factoryProvider));
-            _world = saveLoadService.Load();
+            
+            _world = new World(_worldDescription, _factoryProvider, _gameSystemCollection);
 
             _buildingCollectionPresenter = new BuildingCollectionPresenter(_world,
                 _buildingCollectionView, _worldDescription.BuildingCollection, _viewDescriptions, _gameSystemCollection);
             _buildingCollectionPresenter.Enable();
+
+            _citizenModel = new CitizenModel(0, _world.WorldDescription.Citizens);
+
+            _citizenModel.Stats["satiety"] = 50;
+
+            _citizenPresenter = new CitizenPresenter(_citizenView, _citizenModel, _world);
+            
+            _stateMachineSystem = new StateMachineSystem(_citizenModel.StateMachine, _world, _citizenModel);
+            
+            _gameSystemCollection.Add(_stateMachineSystem);
+            
+            _world.Citizens.Add("0", _citizenModel);
+            
+            foreach (var citizen in _world.Citizens.Models.Values)
+            {
+                _world.CitizenStarvationStatSystem.Register(citizen);
+            }
+            
+            _citizenPresenter.Enable();
         }
 
         private void Update()

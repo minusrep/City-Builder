@@ -2,23 +2,28 @@
 
 namespace Runtime.GameSystems
 {
-    public class GameSystemCollection
+    public class GameSystemCollection 
     {
-        private readonly List<IGameSystem> _systems = new();
+        private readonly Dictionary<string, IGameSystem> _systems = new();
 
+        public IGameSystem Get(string Id)
+        {
+            return _systems[Id];
+        }
+        
         public void Add(IGameSystem system)
         {
-            _systems.Add(system);
+            _systems.Add(system.Id, system);
         }
 
         public void Remove(IGameSystem system)
         {
-            _systems.Remove(system);
+            _systems.Remove(system.Id);
         }
 
         public void Update(float deltaTime)
         {
-            foreach (var system in _systems)
+            foreach (var system in _systems.Values)
             {
                 system.Update(deltaTime);
             }

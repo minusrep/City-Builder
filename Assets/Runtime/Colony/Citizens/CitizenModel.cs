@@ -27,6 +27,8 @@ namespace Runtime.Colony.Citizens
 
         private const string HasBuildingFlagKey = "has_building";
 
+        public event Action<string> OnStartMove;
+        
         public int Id { get; set; }
 
         public Vector3 Position { get; set; }
@@ -50,6 +52,7 @@ namespace Runtime.Colony.Citizens
             Id = id;
             Description = description;
             Position = new Vector2(0, 0);
+            PointsOfInterest = new Dictionary<string, Vector3>();
             Flags = new Dictionary<string, bool>();
             Stats = new Dictionary<string, float>();
             Timers = new Dictionary<string, long>();
@@ -88,9 +91,9 @@ namespace Runtime.Colony.Citizens
             PointsOfInterest[key] = point;                
         }
 
-        public void RestoreNeed(string needId)
+        public void StartMove(string pointOfInterest)
         {
-            
+            OnStartMove?.Invoke(pointOfInterest);
         }
     }
 }

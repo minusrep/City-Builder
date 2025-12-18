@@ -14,6 +14,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string And = "and";
         private const string Distance = "distance";
         private const string Timer = "timer";
+        private const string False = "false";
+        private const string True = "true";
         
         public static ConditionDescription ToConditionDescription(this Dictionary<string, object> data)
         {
@@ -25,6 +27,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 And => new AndConditionDescription(data),
                 Distance => new DistanceConditionDescription(data),
                 Timer => new TimerConditionDescription(data),
+                True => new TrueConditionDescription(data),
+                False => new FalseConditionDescription(data),
                 _ =>  throw new NotImplementedException()
             };
         }

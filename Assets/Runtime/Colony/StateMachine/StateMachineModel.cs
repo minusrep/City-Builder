@@ -26,14 +26,14 @@ namespace Runtime.Colony.StateMachine
             
             Enter(initialState);
         }
-
+        
         public void Enter(string stateName)
         {
             CurrentStateName = stateName;
             
             OnChange?.Invoke();
         }
-
+        
         public Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>()

@@ -9,6 +9,7 @@ namespace Runtime.Colony.Buildings.Service
     {
         private readonly CitizenModelCollection _citizens;
         private readonly ServiceBuildingModel _model;
+        public string Id { get; }
 
         public ServiceBuildingSystem(ServiceBuildingModel model, CitizenModelCollection citizens)
         {
@@ -40,7 +41,7 @@ namespace Runtime.Colony.Buildings.Service
                 foreach (var citizenId in finished)
                 {
                     _model.InService.Remove(citizenId);
-                    _citizens.Get(citizenId).RestoreNeed(_model.Description.ServiceResource);
+                    //_citizens.Get(citizenId).RestoreNeed(_model.Description.ServiceResource);
 
                     if (_model.WaitingQueue.Count > 0)
                     {

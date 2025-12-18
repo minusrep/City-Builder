@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Runtime.Colony.Citizens.Movement
 {
-    public class MovementView : MonoBehaviour
+    public class CitizenMovementView : MonoBehaviour
     {
+        public event Action OnUpdate;
+        
         public Transform Transform => _transform;
 
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
@@ -12,5 +15,12 @@ namespace Runtime.Colony.Citizens.Movement
         [SerializeField] private Transform _transform;
         
         [SerializeField] private NavMeshAgent _navMeshAgent;
+
+        private void Update()
+        {
+            // TODO: REMOVE THIS
+            
+            OnUpdate?.Invoke();
+        }
     }
 }

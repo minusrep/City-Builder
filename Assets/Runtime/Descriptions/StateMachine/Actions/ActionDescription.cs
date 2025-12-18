@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Runtime.Colony;
+using Runtime.Colony.Citizens;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
@@ -12,5 +14,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         {
             Type = data[TypeKey] as string;
         }
+
+        public abstract void Execute(World world, CitizenModel model);
     }
 }
