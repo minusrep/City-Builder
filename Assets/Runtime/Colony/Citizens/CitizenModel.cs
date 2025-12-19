@@ -10,6 +10,8 @@ namespace Runtime.Colony.Citizens
 {
     public class CitizenModel : ICitizenModel
     {
+        private const string IdKey = "id";
+        
         private const string NameKey = "name";
         
         private const string PositionKey = "position";
@@ -65,6 +67,7 @@ namespace Runtime.Colony.Citizens
         {
             return new Dictionary<string, object>()
             {
+                { IdKey, Id},
                 { NameKey, Name },
                 { PositionKey, Position.ToList() },
                 { PointsOfInterestKey, PointsOfInterest },

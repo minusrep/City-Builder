@@ -1,12 +1,13 @@
 using Runtime.Colony.Citizens.Movement;
 using Runtime.Common;
+using UnityEngine;
 
 namespace Runtime.Colony.Citizens
 {
     public class CitizenPresenter : IPresenter
     {
         private CitizenMovementPresenter _citizenMovementPresenter;
-        
+
         private readonly CitizenModel _model;
         
         private readonly World _world;
@@ -20,13 +21,17 @@ namespace Runtime.Colony.Citizens
             _world =  world;
             
             _model = model;
+
+            _model.StateMachine.OnChange += OnChangeState;
         }
-        
+
         public void Enable()
         {
             _citizenMovementPresenter = new CitizenMovementPresenter(_model, _view.CitizenMovementView);
-
+            
             _citizenMovementPresenter.Enable();
+            
+            ExecuteActions();
         }
 
         public void Disable()
@@ -34,6 +39,19 @@ namespace Runtime.Colony.Citizens
             _citizenMovementPresenter.Disable();
 
             _citizenMovementPresenter = null;
+        }
+
+        private void OnChangeState()
+        {
+            ExecuteActions();
+        }
+
+        private void ExecuteActions()
+        {
+            foreach (var action in _model.StateMachine.CurrentState.Actions)
+            {
+                action.Execute(_world, _model);
+            }
         }
     }
 }

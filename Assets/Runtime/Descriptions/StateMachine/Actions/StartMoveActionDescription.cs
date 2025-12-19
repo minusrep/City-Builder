@@ -18,7 +18,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         public override void Execute(World world, CitizenModel model)
         {
-            
+            model.StartMove(PointOfInterest);
         }
     }
 }

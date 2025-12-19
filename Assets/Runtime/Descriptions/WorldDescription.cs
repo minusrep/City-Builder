@@ -3,11 +3,10 @@ using Runtime.Descriptions.Citizens;
 using System.Collections.Generic;
 using Runtime.Descriptions.Items;
 using Runtime.Extensions;
-using Runtime.ModelCollections;
 
 namespace Runtime.Descriptions
 {
-    public sealed class WorldDescription : IDeserializeModel
+    public sealed class WorldDescription
     {
         public BuildingsDescriptionCollection BuildingCollection { get; private set; }
         
@@ -15,11 +14,11 @@ namespace Runtime.Descriptions
         
         public CitizensDescription Citizens { get; private set; }
   
-        public PointOfInterestDescriptionCollection PointOfInterestCollection { get; }
+        public PointOfInterestDescriptionCollection PointOfInterestCollection { get; private set; }
         
         private DescriptionFactory Factory { get; set; }
-        
-        public void Deserialize(Dictionary<string, object> data)
+
+        public void SetData(Dictionary<string, object> data)
         {
             Factory = new DescriptionFactory();
             Factory.Register<ProductionBuildingDescription>("production");
@@ -30,6 +29,7 @@ namespace Runtime.Descriptions
             BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
             ResourceCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
             Citizens = new CitizensDescription(data.GetNode("citizens"));
+            PointOfInterestCollection = new PointOfInterestDescriptionCollection(data.GetNode("points_of_interest"));
         }
     }
 }

@@ -3832,7 +3832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23a49f538f041e6a3b52ea1e2035d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Citizens.CitizenView
-  _movementView: {fileID: 4096018201992737936}
+  _citizenMovementView: {fileID: 4096018201992737936}
 --- !u!114 &4096018201992737936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4338,7 +4338,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7747207753063257307}

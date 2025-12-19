@@ -1,5 +1,4 @@
 using Runtime.GameSystems;
-using UnityEngine;
 
 namespace Runtime.Colony.Citizens.Systems
 {
@@ -18,8 +17,6 @@ namespace Runtime.Colony.Citizens.Systems
 
         protected override void Update(CitizenModel item, float deltaTime)
         {
-            Debug.Log($"item: {item.Stats}");
-            
             item.Stats[_stat].ChangeValue(_changeSpeed * deltaTime);
         }
     }

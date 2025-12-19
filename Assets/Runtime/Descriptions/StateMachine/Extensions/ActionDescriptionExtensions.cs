@@ -21,7 +21,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
             {
                 TimerKey => new TimerActionDescription(data),
                 SetPointOfInterestKey => new SetPointOfInterestActionDescription(data),
-                SetBuildingPointOfInterestKey => new SetPointOfInterestActionDescription(data),
+                SetBuildingPointOfInterestKey => new SetPointOfInterestBuildingActionDescription(data),
                 StartMoveKey => new StartMoveActionDescription(data),
                 EnterBuildingKey => new EnterBuildingActionDescription(data),
                 RegisterSystemKey => new RegisterSystemActionDescription(data),

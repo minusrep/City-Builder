@@ -22,13 +22,17 @@ namespace Runtime.Colony
         
         public GameSystemCollection GameSystems { get; private set; }
         
-        public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider)
+        public PointOfInterestDescriptionCollection PointsOfInterest { get; private set; }
+        
+        public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider, GameSystemCollection gameSystems)
         {
             WorldDescription = worldDescription;
 
             Citizens = new CitizenModelCollection(worldDescription.Citizens);
 
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
+            
+            GameSystems = gameSystems;
         }
 
         public Dictionary<string, object> Serialize()

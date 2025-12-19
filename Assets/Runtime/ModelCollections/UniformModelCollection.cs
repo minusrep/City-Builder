@@ -12,7 +12,7 @@
             var model = CreateModel();
             Add(GetCurrentKey(), model);
         }
-
+        
         protected abstract T CreateModel();
     }
 }

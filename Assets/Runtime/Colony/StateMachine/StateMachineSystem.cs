@@ -7,30 +7,25 @@ namespace Runtime.Colony.StateMachine
     {
         public string Id => "state_machine";
         
-        private readonly StateMachineModel _stateMachine;
-        
         private readonly World _world;
         
-        private readonly CitizenModel _citizenModel;
-
-        public StateMachineSystem(StateMachineModel stateMachine, World world, CitizenModel citizenModel)
+        public StateMachineSystem(World world)
         {
-            _stateMachine = stateMachine;
-
-            _citizenModel =  citizenModel;
-            
             _world = world;
         }
 
         public void Update(float deltaTime)
         {
-            foreach (var transition in _stateMachine.CurrentState.Transitions)
+            foreach (var citizen in _world.Citizens.Models.Values)
             {
-                if (!transition.Condition.Check(_world, _citizenModel)) continue;
+                foreach (var transition in citizen.StateMachine.CurrentState.Transitions)
+                {
+                    if (!transition.Condition.Check(_world, citizen)) continue;
                 
-                _stateMachine.Enter(transition.ToState);
+                    citizen.StateMachine.Enter(transition.ToState);
                     
-                break;
+                    break;
+                }
             }
         }
     }
