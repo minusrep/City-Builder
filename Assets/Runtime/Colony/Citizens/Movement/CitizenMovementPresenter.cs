@@ -1,5 +1,7 @@
+using fastJSON;
 using Runtime.Common;
 using Runtime.Descriptions;
+using UnityEngine;
 
 namespace Runtime.Colony.Citizens.Movement
 {

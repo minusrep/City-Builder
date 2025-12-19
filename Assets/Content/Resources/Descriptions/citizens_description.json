@@ -8,12 +8,23 @@
   "states": {
     "idle": {
       "actions": [
+        {
+          "type": "set_point_of_interest",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "spawn"
+        }
       ],
       "transitions": [
         {
-            "walk_to_tavern": {
-              "type": "false"
-            }
+          "walk_to_tavern": {
+            "type": "compare",
+            "operation": "lesser",
+            "counter": "satiety",
+            "value": 20
+          }
         }
       ]
     },
@@ -30,7 +41,7 @@
       ],
       "transitions": [
         {
-          "eat": {
+          "eat_start": {
             "type": "distance",
             "value": 0.5,
             "point_of_interest": "tavern"
@@ -66,10 +77,7 @@
       "transitions": [
         {
           "idle": {
-            "type": "compare",
-            "counter": "satiety",
-            "operation": "greater",
-            "value": 20
+            "type": "true"
           }
         }
       ]

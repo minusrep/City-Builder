@@ -22,7 +22,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         {
             var buildings = world.Buildings.Models.Values;
 
-            var targetBuildings = buildings.Where(a => Type == a.BaseDescription.Type).ToList();
+            var targetBuildings = buildings.Where(a => BuildingPointOfInterest == a.BaseDescription.Id).ToList();
 
             var buildingPosition = targetBuildings[0].Position;
                 
@@ -40,7 +40,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 }
             }
                 
-            model.SetPointOfInterest(BuildingPointOfInterest, buildingPosition);
+            model.SetPointOfInterest(BuildingPointOfInterest, new Vector3(buildingPosition.x, 0, buildingPosition.z));
         }
     }
 }
