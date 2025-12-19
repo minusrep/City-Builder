@@ -1,6 +1,5 @@
 using Runtime.Colony.Citizens.Movement;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Runtime.Colony.Citizens
 {

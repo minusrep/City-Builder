@@ -1,6 +1,4 @@
-﻿using Runtime.Colony.Buildings.Production;
-
-namespace Runtime.GameSystems
+﻿namespace Runtime.GameSystems
 {
     public interface IGameSystem
     {

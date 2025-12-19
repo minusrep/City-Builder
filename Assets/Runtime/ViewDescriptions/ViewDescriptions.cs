@@ -5,15 +5,8 @@ namespace Runtime.ViewDescriptions
 {
     public class ViewDescriptions
     {
-        public BuildingViewDescriptionCollection BuildingViewDescriptions { get; }
+        public BuildingViewDescriptionCollection BuildingViewDescriptions { get; set; }
 
-        public InventoryViewDescription InventoryViewDescription { get; }
-
-        public ViewDescriptions(BuildingViewDescriptionCollection buildingViewDescriptionCollection,
-            InventoryViewDescription inventoryViewDescription)
-        {
-            BuildingViewDescriptions = buildingViewDescriptionCollection;
-            InventoryViewDescription = inventoryViewDescription;
-        }
+        public InventoryViewDescription InventoryViewDescription { get; set; }
     }
 }

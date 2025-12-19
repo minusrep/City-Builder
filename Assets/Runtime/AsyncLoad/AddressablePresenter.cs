@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Runtime.Common;
 
 namespace Runtime.AsyncLoad
 {
-    public class AddressablePresenter
+    public class AddressablePresenter : IPresenter
     {
         private readonly AddressableModel _addressableModel;
         private readonly Dictionary<ILoadModel, ILoadPresenter> _loadPresenters = new();
