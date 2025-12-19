@@ -12,7 +12,7 @@ namespace Runtime.Services.SaveLoadSteps
 {
     public class WorldLoadStep : IStep
     {
-        private static string WorldDataPath => Path.Combine(Application.persistentDataPath, "world.json");
+        private static string WorldDataPath => Path.Combine(Application.streamingAssetsPath, "world.json");
         
         private readonly World _world;
         private readonly WorldDescription _worldDescription;
