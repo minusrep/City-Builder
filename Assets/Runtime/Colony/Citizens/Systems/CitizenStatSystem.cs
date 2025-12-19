@@ -20,7 +20,7 @@ namespace Runtime.Colony.Citizens.Systems
         {
             Debug.Log($"item: {item.Stats}");
             
-            item.Stats[_stat] += _changeSpeed * deltaTime;
+            item.Stats[_stat].ChangeValue(_changeSpeed * deltaTime);
         }
     }
 } 
