@@ -72,7 +72,7 @@
             "type": "compare",
             "counter": "satiety",
             "operation": "greater",
-            "value": 100
+            "value": 95
           }
         }
       ]
