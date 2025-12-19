@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="content" style="width: 120px; height: 16px; -unity-background-scale-mode: stretch-to-fill; background-size: 1210% 100%;"/>
+</ui:UXML>

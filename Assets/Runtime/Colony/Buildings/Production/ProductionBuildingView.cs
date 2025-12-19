@@ -6,15 +6,17 @@ namespace Runtime.Colony.Buildings.Production
 {
     public class ProductionBuildingView : BuildingView
     {
-        [SerializeField] private UIDocument _uiDocument;
+        public UIDocument Document => _uiDocument;
+        public ProgressBar ProgressBar => _progressBar;
 
-        public ProgressBar ProgressBar;
+        [SerializeField] private UIDocument _uiDocument;
+        private ProgressBar _progressBar;
 
         public override void Initialize()
         {
             base.Initialize();
             var root = _uiDocument.rootVisualElement;
-            ProgressBar = root.Q<ProgressBar>("production-progress");
+            _progressBar = root.Q<ProgressBar>("production-progress");
         }
     }
 }

@@ -20,8 +20,7 @@ namespace Runtime.Colony.Buildings.Storage
         {
             base.Enable();
 
-            _inventoryPresenter = new InventoryPresenter(_model.Inventory,
-                WorldViewDescriptions.InventoryViewDescription, View.Transform);
+            _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
 
             _inventoryPresenter.Enable();
         }

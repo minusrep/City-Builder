@@ -30,8 +30,7 @@ namespace Runtime.Colony.Buildings.Production
 
             _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             
-            _inventoryPresenter = new InventoryPresenter(_model.Inventory,
-                WorldViewDescriptions.InventoryViewDescription, View.Transform);
+            _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
 
             _inventoryPresenter.Enable();
             
