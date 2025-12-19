@@ -49,10 +49,6 @@ namespace Runtime
             {
                 await step.Run();
             }
-            
-            _world.Citizens.Create();
-            
-            CitizenModel citizenModel =  _world.Citizens.Models.Values.Last();
         }
 
         private void Update()
