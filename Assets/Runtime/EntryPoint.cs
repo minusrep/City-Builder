@@ -52,9 +52,7 @@ namespace Runtime
             
             _world.Citizens.Create();
             
-            var citizenModel =  _world.Citizens.Models.Values.Last();
-            
-            citizenModel.Stats["satiety"] = 100;
+            CitizenModel citizenModel =  _world.Citizens.Models.Values.Last();
         }
 
         private void Update()

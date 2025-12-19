@@ -47,8 +47,6 @@ namespace Runtime.Colony.Citizens
 
             var hungrySystem = _world.GameSystems.Get("hungry") as CitizenStatSystem;
 
-            citizenModel.Stats["satiety"] = 100;
-            
             hungrySystem.Register(citizenModel);
             
             citizenPresenter.Enable();

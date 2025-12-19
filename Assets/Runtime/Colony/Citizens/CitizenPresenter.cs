@@ -8,8 +8,6 @@ namespace Runtime.Colony.Citizens
     {
         private CitizenMovementPresenter _citizenMovementPresenter;
 
-        private CitizenDebugPresenter _citizenDebugPresenter;
-        
         private readonly CitizenModel _model;
         
         private readonly World _world;
@@ -30,12 +28,8 @@ namespace Runtime.Colony.Citizens
         public void Enable()
         {
             _citizenMovementPresenter = new CitizenMovementPresenter(_model, _view.CitizenMovementView);
-
-            _citizenDebugPresenter = new CitizenDebugPresenter(_view, _model);
             
             _citizenMovementPresenter.Enable();
-            
-            _citizenDebugPresenter.Enable();
             
             ExecuteActions();
         }
