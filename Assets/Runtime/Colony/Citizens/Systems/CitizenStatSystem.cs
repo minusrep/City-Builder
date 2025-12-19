@@ -17,7 +17,7 @@ namespace Runtime.Colony.Citizens.Systems
 
         protected override void Update(CitizenModel item, float deltaTime)
         {
-            item.Stats[_stat].ChangeValue(_changeSpeed * deltaTime);
+            item.Stats.Get(_stat).ChangeValue(_changeSpeed * deltaTime);
         }
     }
 } 

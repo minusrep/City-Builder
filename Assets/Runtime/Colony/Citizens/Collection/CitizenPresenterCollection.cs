@@ -25,6 +25,11 @@ namespace Runtime.Colony.Citizens
 
         public void Enable()
         {
+            foreach (var model in _model.Models.Values)
+            {
+                CreateCitizenPresenter(model);
+            }
+            
             _model.OnAdded += OnAdded;
 
             _model.OnRemoved += OnRemoved;
@@ -39,17 +44,7 @@ namespace Runtime.Colony.Citizens
 
         private void OnAdded(CitizenModel citizenModel)
         {
-            var citizenView = _view.InstantiateCitizenView();
-
-            var citizenPresenter = new CitizenPresenter(citizenView, citizenModel, _world);
-            
-            _presenters[citizenModel.Id] = citizenPresenter;
-
-            var hungrySystem = _world.GameSystems.Get("hungry") as CitizenStatSystem;
-
-            hungrySystem.Register(citizenModel);
-            
-            citizenPresenter.Enable();
+            CreateCitizenPresenter(citizenModel);
         }
 
         private void OnRemoved(CitizenModel citizenModel)
@@ -63,6 +58,21 @@ namespace Runtime.Colony.Citizens
             citizenPresenter.Disable();
             
             _presenters.Remove(citizenModel.Id);
+        }
+
+        private void CreateCitizenPresenter(CitizenModel citizenModel)
+        {
+            var citizenView = _view.InstantiateCitizenView();
+
+            var citizenPresenter = new CitizenPresenter(citizenView, citizenModel, _world);
+            
+            _presenters[citizenModel.Id] = citizenPresenter;
+
+            var hungrySystem = _world.GameSystems.Get("hungry") as CitizenStatSystem;
+
+            hungrySystem.Register(citizenModel);
+            
+            citizenPresenter.Enable();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
                 return false;
             }
             
-            var counterValue =  Convert.ToSingle(statsModel.Stats[Counter]);
+            var counterValue =  Convert.ToSingle(statsModel.Stats.Get(Counter).Value);
             
             return Operation switch
             {

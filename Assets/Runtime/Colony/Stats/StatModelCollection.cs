@@ -17,8 +17,11 @@ namespace Runtime.Colony.Stats
                 _stats.Add(statDescription.Id, new StatModel(statDescription));
             }
         }
-        
-        public StatModel this[string id] => _stats[id];
+
+        public StatModel Get(string id)
+        {
+           return  _stats[id];
+        }
 
         public Dictionary<string, object> Serialize()
         {
