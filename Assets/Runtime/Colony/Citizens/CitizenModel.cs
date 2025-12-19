@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Runtime.Colony.StateMachine;
+using Runtime.Colony.Stats;
 using Runtime.Descriptions.Citizens;
 using Runtime.Extensions;
 using UnityEngine;
@@ -43,7 +44,7 @@ namespace Runtime.Colony.Citizens
         
         public Dictionary<string, bool> Flags { get; private set; }
 
-        public Dictionary<string, float> Stats { get; private set; }
+        public StatModelCollection Stats { get; private set; }
 
         public StateMachineModel StateMachine { get; }
 
@@ -56,7 +57,7 @@ namespace Runtime.Colony.Citizens
             Position = new Vector2(0, 0);
             PointsOfInterest = new Dictionary<string, Vector3>();
             Flags = new Dictionary<string, bool>();
-            Stats = new Dictionary<string, float>();
+            Stats = new StatModelCollection(description.Stats);
             Timers = new Dictionary<string, long>();
 
             StateMachine = new StateMachineModel(description.States);
@@ -71,7 +72,7 @@ namespace Runtime.Colony.Citizens
                 { PositionKey, Position.ToList() },
                 { PointsOfInterestKey, PointsOfInterest },
                 { FlagsKey, Flags },
-                { StatsKey, Stats },
+                { StatsKey, Stats.Serialize() },
                 { TimerKey, Timers },
                 { StateMachineKey, StateMachine.Serialize()},
             };
@@ -84,7 +85,7 @@ namespace Runtime.Colony.Citizens
             Position = data.GetVector3(PositionKey);
             PointsOfInterest = data.GetDictionary<string, Vector3>(PointsOfInterestKey);
             Flags = data.GetDictionary<string, bool>(FlagsKey);
-            Stats = data.GetDictionary<string, float>(StatsKey);
+            Stats.Deserialize(data.GetNode(StatsKey));
             Timers = data.GetDictionary<string, long>(TimerKey);
             StateMachine.Deserialize(data.GetNode(StateMachineKey));
         }

@@ -1,7 +1,60 @@
 {
   "citizens": {
     "models": {
-
+      "citizen_0": {
+        "name": null,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 50
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 25
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        }
+      },
+      "citizen_1": {
+        "name": null,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {},
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        }
+      },
+      "citizen_2": {
+        "name": null,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {},
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        }
+      }
     }
   },
   "buildings": {

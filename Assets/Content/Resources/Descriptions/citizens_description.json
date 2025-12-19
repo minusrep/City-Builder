@@ -4,6 +4,16 @@
     "Joe",
     "Tom"
   ],
+  "stats": {
+    "satiety":  {
+      "min" : 0,
+      "max" : 100
+    },
+    "energy": {
+      "min": 0,
+      "max": 100
+    }
+  },
   "start_move_speed": 1,
   "states": {
     "idle": {
