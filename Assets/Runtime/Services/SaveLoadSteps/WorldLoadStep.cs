@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Codice.CM.Client.Differences;
 using fastJSON;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Common.Factories;
@@ -26,8 +25,8 @@ namespace Runtime.Services.SaveLoadSteps
         
         public async Task Run()
         {
-            var resourceFactory = new ResourceFactory(_worldDescription.ItemCollection);
-            var buildingModelFactory = new BuildingModelFactory();
+            var resourceFactory = new ResourceFactory(_worldDescription.ResourceCollection);
+            var buildingModelFactory = new BuildingModelFactory(_worldDescription);
 
             buildingModelFactory.RegisterAll();
             var factoryProvider = new FactoryProvider(resourceFactory, buildingModelFactory);

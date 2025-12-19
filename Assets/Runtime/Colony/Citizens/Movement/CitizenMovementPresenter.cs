@@ -1,6 +1,5 @@
 using Runtime.Common;
 using Runtime.Descriptions;
-using Runtime.Services.Update;
 
 namespace Runtime.Colony.Citizens.Movement
 {

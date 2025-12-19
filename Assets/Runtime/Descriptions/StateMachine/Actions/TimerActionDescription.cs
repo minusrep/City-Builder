@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Runtime.Colony;
 using Runtime.Colony.Citizens;
-using Runtime.Extensions;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {

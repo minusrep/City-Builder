@@ -31,7 +31,7 @@ namespace Runtime.Services.SaveLoad
         public override World Load()
         {
             var world = new World();
-            world.SetData(_worldDescription, _factoryProvider);
+            world.SetData(WorldDescription, FactoryProvider);
             
             if (File.Exists(WorldDataPath))
             {

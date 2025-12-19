@@ -6,9 +6,9 @@ namespace Runtime.GameSystems
     {
         private readonly Dictionary<string, IGameSystem> _systems = new();
 
-        public IGameSystem Get(string Id)
+        public IGameSystem Get(string id)
         {
-            return _systems[Id];
+            return _systems[id];
         }
         
         public void Add(IGameSystem system)

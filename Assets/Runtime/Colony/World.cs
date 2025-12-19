@@ -3,6 +3,7 @@ using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Citizens;
 using Runtime.Descriptions;
 using Runtime.Extensions;
+using Runtime.GameSystems;
 using Runtime.ModelCollections;
 
 namespace Runtime.Colony
@@ -18,6 +19,8 @@ namespace Runtime.Colony
         public BuildingModelCollection Buildings { get; private set; }
 
         public WorldDescription WorldDescription { get; private set; }
+        
+        public GameSystemCollection GameSystems { get; private set; }
         
         public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider)
         {

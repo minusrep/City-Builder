@@ -4,7 +4,6 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Common;
 using Runtime.Descriptions;
-using Runtime.Descriptions.Buildings;
 using Runtime.GameSystems;
 
 namespace Runtime.Services.SaveLoadSteps
@@ -34,7 +33,7 @@ namespace Runtime.Services.SaveLoadSteps
 
         public async Task Run()
         {
-            var buildingCollectionPresenter = new BuildingCollectionPresenter(_world.Buildings,
+            var buildingCollectionPresenter = new BuildingCollectionPresenter(_world,
                 _buildingCollectionView, _worldDescription.BuildingCollection, _viewDescriptions, _gameSystemCollection);
             
             buildingCollectionPresenter.Enable();
