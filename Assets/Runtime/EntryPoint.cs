@@ -49,7 +49,7 @@ namespace Runtime
             _gameSystemCollection.Update(Time.deltaTime);
         }
 
-        private void OnDisable()
+        private void OnApplicationQuit()
         {
             _presenters.Reverse();
             foreach (var presenter in _presenters)
