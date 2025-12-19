@@ -11,10 +11,11 @@ namespace Runtime.Colony.Buildings.Service
         private readonly ServiceBuildingModel _model;
         public string Id { get; }
 
-        public ServiceBuildingSystem(ServiceBuildingModel model, CitizenModelCollection citizens)
+        public ServiceBuildingSystem(string id, ServiceBuildingModel model, CitizenModelCollection citizens)
         {
             _model = model;
             _citizens = citizens;
+            Id = id;
         }
 
         public void Update(float deltaTime)

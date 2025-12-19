@@ -26,7 +26,7 @@ namespace Runtime.Colony.Buildings.Production
         {
             base.Enable();
             
-            _productionSystem = new ProductionBuildingSystem(_model, View);
+            _productionSystem = new ProductionBuildingSystem(_model.Id, _model, View);
 
             _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             

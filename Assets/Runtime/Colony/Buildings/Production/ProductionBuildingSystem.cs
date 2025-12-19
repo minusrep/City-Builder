@@ -11,10 +11,11 @@ namespace Runtime.Colony.Buildings.Production
         private readonly ProductionBuildingView _view;
 
 
-        public ProductionBuildingSystem(ProductionBuildingModel model, ProductionBuildingView view)
+        public ProductionBuildingSystem(string id, ProductionBuildingModel model, ProductionBuildingView view)
         {
             _model = model;
             _view = view;
+            Id = id;
         }
 
         public void Update(float deltaTime)

@@ -13,7 +13,7 @@ namespace Runtime.Colony.Buildings.Service
         public ServiceBuildingPresenter(ServiceBuildingModel model, IBuildingViewPool viewPool, World world, WorldViewDescriptions worldViewDescriptions, GameSystemCollection gameSystemCollection) : base(model, viewPool, worldViewDescriptions)
         {
             _gameSystemCollection = gameSystemCollection;
-            _serviceSystem = new ServiceBuildingSystem(model, world.Citizens);
+            _serviceSystem = new ServiceBuildingSystem(model.Id, model, world.Citizens);
         }
 
         public override void Enable()
