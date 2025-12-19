@@ -2,7 +2,7 @@ namespace Runtime.AsyncLoad
 {
     public class LoadModel<T> : ILoadModel
     {
-        public CustomAwaiter LoadAwaiter { get; } = new CustomAwaiter();
+        public CustomAwaiter LoadAwaiter { get; } = new();
 
         public T Result { get; set; }
 

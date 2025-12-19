@@ -4,7 +4,7 @@ namespace Runtime.AsyncLoad
 {
     public class AddressableModel
     {
-        private readonly LoadModelCollection _loadModels = new LoadModelCollection();
+        private readonly LoadModelCollection _loadModels = new();
 
         public IModelCollection<ILoadModel> LoadModels => _loadModels;
 

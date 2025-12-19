@@ -2,10 +2,8 @@
 using Runtime.AsyncLoad;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
-using Runtime.Common;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.Citizens.Systems;
-using Runtime.Colony.StateMachine;
+using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
 using Runtime.Services.SaveLoadSteps;
@@ -16,30 +14,17 @@ namespace Runtime
     public sealed class EntryPoint : MonoBehaviour
     {
         [SerializeField] private BuildingCollectionView _buildingCollectionView;
+        
+        private readonly WorldDescription _worldDescription = new();
+        private readonly ViewDescriptions.ViewDescriptions _viewDescriptions  = new();
 
-        [SerializeField] private CitizenView _citizenView;
+        private readonly World _world = new();
         
-        private readonly WorldDescription _worldDescription = new WorldDescription();
-        private readonly ViewDescriptions.ViewDescriptions _viewDescriptions  = new ViewDescriptions.ViewDescriptions();
-
-        private readonly World _world = new World();
+        private readonly GameSystemCollection _gameSystemCollection = new();
         
-        private readonly GameSystemCollection _gameSystemCollection = new GameSystemCollection();
+        private readonly AddressableModel _addressableModel = new();
         
-        private readonly AddressableModel _addressableModel = new AddressableModel();
-
-        
-        private readonly List<IPresenter> _presenters = new List<IPresenter>();
-        
-        private CitizenStatSystem _citizenFeedStatSystem;
-        
-        private CitizenStatSystem _citizenStarvationSystem;
-
-        private StateMachineSystem _stateMachineSystem;
-        
-        private CitizenPresenter _citizenPresenter;
-        
-        private CitizenModel _citizenModel;
+        private readonly List<IPresenter> _presenters = new();
 
         private async void Start()
         {

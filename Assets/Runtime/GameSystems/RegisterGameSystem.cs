@@ -6,9 +6,9 @@ namespace Runtime.GameSystems
     {
         public string Id { get; set; }
 
-        private readonly List<T> _items =  new List<T>();
+        private readonly List<T> _items =  new();
 
-        private readonly List<T> _itemsToRemove = new List<T>();
+        private readonly List<T> _itemsToRemove = new();
 
         public RegisterGameSystem(string id)
         {
