@@ -119,67 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &68976953
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3165262886286983944, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: _citizenMovementView
-      value: 
-      objectReference: {fileID: 1943560130}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.40756
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.17728
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.71935
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3296322151259616587, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5466327982858300868, guid: 185544215506d724288e301cb095cb6f, type: 3}
-      propertyPath: m_Name
-      value: Citizen
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 185544215506d724288e301cb095cb6f, type: 3}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buildingCollectionView: {fileID: 730573693}
-  _citizenView: {fileID: 1943560131}
 --- !u!4 &469992741
 Transform:
   m_ObjectHideFlags: 0
@@ -688,28 +626,6 @@ Transform:
   - {fileID: 1330297542}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1943560130 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4096018201992737936, guid: 185544215506d724288e301cb095cb6f, type: 3}
-  m_PrefabInstance: {fileID: 68976953}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1e728660f2b435f8b3445f82bb95d82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Citizens.Movement.MovementView
---- !u!114 &1943560131 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3165262886286983944, guid: 185544215506d724288e301cb095cb6f, type: 3}
-  m_PrefabInstance: {fileID: 68976953}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b23a49f538f041e6a3b52ea1e2035d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Citizens.CitizenView
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -717,4 +633,3 @@ SceneRoots:
   - {fileID: 469992741}
   - {fileID: 1858668570}
   - {fileID: 832575519}
-  - {fileID: 68976953}
