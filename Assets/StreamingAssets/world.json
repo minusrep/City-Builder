@@ -1,0 +1,118 @@
+{
+  "citizens": {
+    "models": {
+      "citizen_0": {
+        "name": null,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {},
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        }
+      },
+      "citizen_1": {
+        "name": null,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {},
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        }
+      },
+      "citizen_2": {
+        "name": null,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {},
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        }
+      }
+    }
+  },
+  "buildings": {
+    "models": {
+      "sawmill_0": {
+        "description": "sawmill",
+        "position": [
+          26.8,
+          0.3
+        ],
+        "is_active": false,
+        "produced_amount": 0,
+        "inventory": {
+          "models": {
+            "wood": {
+              "amount": 0
+            }
+          }
+        },
+        "orders": {
+          "models": {}
+        }
+      },
+      "shelter_2": {
+        "description": "shelter",
+        "position": [
+          39.3,
+          25.5
+        ],
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "tavern_3": {
+        "description": "tavern",
+        "position": [
+          10.9,
+          23.8
+        ],
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "warehouse_4": {
+        "description": "warehouse",
+        "position": [
+          7.1,
+          10.4
+        ],
+        "inventory": {
+          "models": {
+            "wood": {
+              "amount": 18
+            },
+            "iron": {
+              "amount": 12
+            }
+          }
+        }
+      },
+      "lantern_5": {
+        "description": "lantern",
+        "position": [
+          19.6,
+          12.8
+        ]
+      }
+    }
+  }
+}
