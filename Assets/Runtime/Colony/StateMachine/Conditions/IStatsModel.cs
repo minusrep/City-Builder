@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Runtime.Colony.Stats;
 
 namespace Runtime.Colony.StateMachine.Conditions
 {
     public interface IStatsModel
     {
-        Dictionary<string, float> Stats { get; }
+        StatModelCollection Stats { get; }
     }
 }
