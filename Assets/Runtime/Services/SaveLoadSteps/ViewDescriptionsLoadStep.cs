@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Runtime.AsyncLoad;
+using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Inventory;
 
@@ -7,12 +8,12 @@ namespace Runtime.Services.SaveLoadSteps
 {
     public class ViewDescriptionsLoadStep : IStep
     {
-        private readonly ViewDescriptions.ViewDescriptions _viewDescriptions;
+        private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly AddressableModel _addressableModel;
 
-        public ViewDescriptionsLoadStep(ViewDescriptions.ViewDescriptions viewDescriptions, AddressableModel addressableModel)
+        public ViewDescriptionsLoadStep(WorldViewDescriptions worldViewDescriptions, AddressableModel addressableModel)
         {
-            _viewDescriptions = viewDescriptions;
+            _worldViewDescriptions = worldViewDescriptions;
             _addressableModel = addressableModel;
         }
 
@@ -24,8 +25,8 @@ namespace Runtime.Services.SaveLoadSteps
             await buildingViewLoad.LoadAwaiter;
             await inventoryViewLoad.LoadAwaiter;
 
-            _viewDescriptions.BuildingViewDescriptions = buildingViewLoad.Result;
-            _viewDescriptions.InventoryViewDescription = inventoryViewLoad.Result;
+            _worldViewDescriptions.BuildingViewDescriptions = buildingViewLoad.Result;
+            _worldViewDescriptions.InventoryViewDescription = inventoryViewLoad.Result;
         }
     }
 }

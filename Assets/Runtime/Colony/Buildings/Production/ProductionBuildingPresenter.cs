@@ -3,6 +3,7 @@ using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Pool;
 using Runtime.Colony.Inventory;
 using Runtime.GameSystems;
+using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Production
 {
@@ -15,7 +16,7 @@ namespace Runtime.Colony.Buildings.Production
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, IBuildingViewPool viewPool,
-            ViewDescriptions.ViewDescriptions viewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, viewDescriptions)
+           WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, worldViewDescriptions)
         {
             _model = model;
             _systemCollection = systemCollection;
@@ -30,7 +31,7 @@ namespace Runtime.Colony.Buildings.Production
             _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             
             _inventoryPresenter = new InventoryPresenter(_model.Inventory,
-                ViewDescriptions.InventoryViewDescription, View.Transform);
+                WorldViewDescriptions.InventoryViewDescription, View.Transform);
 
             _inventoryPresenter.Enable();
             

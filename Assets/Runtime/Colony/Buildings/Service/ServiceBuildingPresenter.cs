@@ -1,6 +1,7 @@
 ﻿using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Pool;
 using Runtime.GameSystems;
+using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Service
 {
@@ -9,7 +10,7 @@ namespace Runtime.Colony.Buildings.Service
         private readonly ServiceBuildingSystem _serviceSystem;
         private readonly GameSystemCollection _gameSystemCollection;
         
-        public ServiceBuildingPresenter(ServiceBuildingModel model, IBuildingViewPool viewPool, World world, ViewDescriptions.ViewDescriptions viewDescriptions, GameSystemCollection gameSystemCollection) : base(model, viewPool, viewDescriptions)
+        public ServiceBuildingPresenter(ServiceBuildingModel model, IBuildingViewPool viewPool, World world, WorldViewDescriptions worldViewDescriptions, GameSystemCollection gameSystemCollection) : base(model, viewPool, worldViewDescriptions)
         {
             _gameSystemCollection = gameSystemCollection;
             _serviceSystem = new ServiceBuildingSystem(model, world.Citizens);

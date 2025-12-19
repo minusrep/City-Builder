@@ -1,6 +1,7 @@
 ﻿using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Pool;
 using Runtime.Colony.Inventory;
+using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Storage
 {
@@ -10,7 +11,7 @@ namespace Runtime.Colony.Buildings.Storage
         
         private InventoryPresenter _inventoryPresenter;
         
-        public StorageBuildingPresenter(StorageBuildingModel model, IBuildingViewPool viewPool, ViewDescriptions.ViewDescriptions viewDescriptions) : base(model, viewPool, viewDescriptions)
+        public StorageBuildingPresenter(StorageBuildingModel model, IBuildingViewPool viewPool, WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, worldViewDescriptions)
         {
             _model = model;
         }
@@ -20,7 +21,7 @@ namespace Runtime.Colony.Buildings.Storage
             base.Enable();
 
             _inventoryPresenter = new InventoryPresenter(_model.Inventory,
-                ViewDescriptions.InventoryViewDescription, View.Transform);
+                WorldViewDescriptions.InventoryViewDescription, View.Transform);
 
             _inventoryPresenter.Enable();
         }

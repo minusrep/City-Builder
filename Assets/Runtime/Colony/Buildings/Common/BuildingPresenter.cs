@@ -1,5 +1,6 @@
 ﻿using Runtime.Colony.Buildings.Pool;
 using Runtime.Common;
+using Runtime.ViewDescriptions;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Common
@@ -7,14 +8,14 @@ namespace Runtime.Colony.Buildings.Common
     public class BuildingPresenter<TView> : IPresenter where TView : BuildingView
     {
         private BuildingModel Model { get; }
-        protected ViewDescriptions.ViewDescriptions ViewDescriptions { get; }
+        protected WorldViewDescriptions WorldViewDescriptions { get; }
         private IBuildingViewPool ViewPool { get; }
         protected TView View { get; private set; }
 
-        public BuildingPresenter(BuildingModel model, IBuildingViewPool viewPool, ViewDescriptions.ViewDescriptions viewDescriptions)
+        public BuildingPresenter(BuildingModel model, IBuildingViewPool viewPool, WorldViewDescriptions worldViewDescriptions)
         {
             Model = model;
-            ViewDescriptions = viewDescriptions;
+            WorldViewDescriptions = worldViewDescriptions;
             ViewPool = viewPool;
         }
 

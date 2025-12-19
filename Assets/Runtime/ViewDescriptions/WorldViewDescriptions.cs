@@ -3,7 +3,7 @@ using Runtime.ViewDescriptions.Inventory;
 
 namespace Runtime.ViewDescriptions
 {
-    public class ViewDescriptions
+    public class WorldViewDescriptions
     {
         public BuildingViewDescriptionCollection BuildingViewDescriptions { get; set; }
 
