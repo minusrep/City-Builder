@@ -10,7 +10,16 @@
         ],
         "points_of_interest": {},
         "flags": {},
-        "stats": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 50
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 25
+          }
+        },
         "timers": {},
         "state_machine": {
           "current_state": "idle"
