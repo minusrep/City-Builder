@@ -6,6 +6,7 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Colony.GameResources;
 using Runtime.Descriptions;
+using Runtime.GameSystems;
 using UnityEngine;
 
 namespace Runtime.Services.SaveLoadSteps
@@ -16,11 +17,13 @@ namespace Runtime.Services.SaveLoadSteps
         
         private readonly World _world;
         private readonly WorldDescription _worldDescription;
+        private readonly GameSystemCollection _gameSystems;
 
-        public WorldLoadStep(World word, WorldDescription worldDescription)
+        public WorldLoadStep(World world, WorldDescription worldDescription, GameSystemCollection gameSystems)
         {
-            _world = word;
+            _world = world;
             _worldDescription = worldDescription;
+            _gameSystems = gameSystems;
         }
         
         public async Task Run()
@@ -31,7 +34,7 @@ namespace Runtime.Services.SaveLoadSteps
             buildingModelFactory.RegisterAll();
             var factoryProvider = new FactoryProvider(resourceFactory, buildingModelFactory);
             
-            _world.SetData(_worldDescription, factoryProvider);
+            _world.SetData(_worldDescription, factoryProvider, _gameSystems);
             
             if (File.Exists(WorldDataPath))
             {
