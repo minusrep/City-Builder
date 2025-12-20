@@ -19,12 +19,8 @@
     "idle": {
       "actions": [
         {
-          "type": "set_point_of_interest",
-          "point_of_interest": "spawn"
-        },
-        {
-          "type": "start_move",
-          "point_of_interest": "spawn"
+          "type": "invoke_animation",
+          "animation": "idle"
         }
       ],
       "transitions": [
@@ -47,6 +43,10 @@
         {
           "type": "start_move",
           "point_of_interest": "tavern"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
         }
       ],
       "transitions": [
@@ -64,6 +64,10 @@
         {
           "type": "register_system",
           "system": "feed"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
         }
       ],
       "transitions": [
@@ -82,12 +86,26 @@
         {
           "type": "unregister_system",
           "system": "feed"
+        },
+        {
+          "type": "set_point_of_interest",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
         }
       ],
       "transitions": [
         {
           "idle": {
-            "type": "true"
+            "type": "distance",
+            "value": 0.5,
+            "point_of_interest": "spawn"
           }
         }
       ]

@@ -1,12 +1,14 @@
+using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Movement;
 using Runtime.Common;
-using UnityEngine;
 
 namespace Runtime.Colony.Citizens
 {
     public class CitizenPresenter : IPresenter
     {
         private CitizenMovementPresenter _citizenMovementPresenter;
+
+        private CitizenAnimatorPresenter _citizenAnimatorPresenter;
 
         private readonly CitizenModel _model;
         
@@ -29,7 +31,11 @@ namespace Runtime.Colony.Citizens
         {
             _citizenMovementPresenter = new CitizenMovementPresenter(_model, _view.CitizenMovementView);
             
+            _citizenAnimatorPresenter = new CitizenAnimatorPresenter(_view.CitizenAnimatorView, _model);
+            
             _citizenMovementPresenter.Enable();
+            
+            _citizenAnimatorPresenter.Enable();
             
             ExecuteActions();
         }
@@ -38,7 +44,11 @@ namespace Runtime.Colony.Citizens
         {
             _citizenMovementPresenter.Disable();
 
+            _citizenAnimatorPresenter.Disable();
+            
             _citizenMovementPresenter = null;
+            
+            _citizenAnimatorPresenter = null;
         }
 
         private void OnChangeState()

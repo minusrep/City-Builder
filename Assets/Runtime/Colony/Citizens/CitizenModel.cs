@@ -31,6 +31,8 @@ namespace Runtime.Colony.Citizens
         private const string HasBuildingFlagKey = "has_building";
 
         public event Action<string> OnStartMove;
+
+        public event Action<string> OnInvokeAnimation;
         
         public int Id { get; set; }
 
@@ -98,6 +100,11 @@ namespace Runtime.Colony.Citizens
         public void StartMove(string pointOfInterest)
         {
             OnStartMove?.Invoke(pointOfInterest);
+        }
+
+        public void InvokeAnimation(string animation)
+        {
+            OnInvokeAnimation?.Invoke(animation);
         }
     }
 }
