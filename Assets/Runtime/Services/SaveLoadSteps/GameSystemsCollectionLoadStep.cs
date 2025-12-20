@@ -22,15 +22,23 @@ namespace Runtime.Services.SaveLoadSteps
 
         public async Task Run()
         {
-            var hungrySystem = new CitizenStatSystem("hungry", "satiety", -20);
+            var hungrySystem = new CitizenStatSystem("hungry", "satiety", -10);
             
             var feedSystem = new CitizenStatSystem("feed", "satiety", 40);
+            
+            var fatigueSystem = new CitizenStatSystem("fatigue", "energy", -5);
+            
+            var sleepSystem = new CitizenStatSystem("sleep", "energy", 10);
 
             var stateMachineSystem = new StateMachineSystem(_world);
             
             _gameSystems.Add(hungrySystem);
             
             _gameSystems.Add(feedSystem);
+            
+            _gameSystems.Add(fatigueSystem);
+            
+            _gameSystems.Add(sleepSystem);
             
             _gameSystems.Add(stateMachineSystem);
             

@@ -5,9 +5,9 @@
     "Tom"
   ],
   "stats": {
-    "satiety":  {
-      "min" : 0,
-      "max" : 100
+    "satiety": {
+      "min": 0,
+      "max": 100
     },
     "energy": {
       "min": 0,
@@ -23,16 +23,20 @@
           "animation": "idle"
         }
       ],
-      "transitions": [
-        {
-          "walk_to_tavern": {
-            "type": "compare",
-            "operation": "lesser",
-            "counter": "satiety",
-            "value": 20
-          }
+      "transitions": {
+        "walk_to_tavern": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "satiety",
+          "value": 20
+        },
+        "walk_to_shelter": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "energy",
+          "value": 10
         }
-      ]
+      }
     },
     "walk_to_tavern": {
       "actions": [
@@ -49,15 +53,13 @@
           "animation": "walk"
         }
       ],
-      "transitions": [
-        {
-          "eat_start": {
-            "type": "distance",
-            "value": 0.5,
-            "point_of_interest": "tavern"
-          }
+      "transitions": {
+        "eat_start": {
+          "type": "distance",
+          "value": 0.5,
+          "point_of_interest": "tavern"
         }
-      ]
+      }
     },
     "eat_start": {
       "actions": [
@@ -70,16 +72,14 @@
           "animation": "idle"
         }
       ],
-      "transitions": [
-        {
-          "eat_end": {
-            "type": "compare",
-            "counter": "satiety",
-            "operation": "greater",
-            "value": 95
-          }
+      "transitions": {
+        "eat_end": {
+          "type": "compare",
+          "counter": "satiety",
+          "operation": "greater",
+          "value": 95
         }
-      ]
+      }
     },
     "eat_end": {
       "actions": [
@@ -100,15 +100,83 @@
           "animation": "walk"
         }
       ],
-      "transitions": [
-        {
-          "idle": {
-            "type": "distance",
-            "value": 0.5,
-            "point_of_interest": "spawn"
-          }
+      "transitions": {
+        "idle": {
+          "type": "distance",
+          "value": 0.5,
+          "point_of_interest": "spawn"
         }
-      ]
+      }
+    },
+    "walk_to_shelter": {
+      "actions": [
+        {
+          "type": "set_point_of_interest_building",
+          "point_of_interest": "shelter"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "shelter"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "sleep_start": {
+          "type": "distance",
+          "value": 0.5,
+          "point_of_interest": "shelter"
+        }
+      }
+    },
+    "sleep_start": {
+      "actions": [
+        {
+          "type": "register_system",
+          "system": "sleep"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
+        "sleep_end": {
+          "type": "compare",
+          "counter": "energy",
+          "operation": "greater",
+          "value": 95
+        }
+      }
+    },
+    "sleep_end": {
+      "actions": [
+        {
+          "type": "unregister_system",
+          "system": "sleep"
+        },
+        {
+          "type": "set_point_of_interest",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "idle": {
+          "type": "distance",
+          "value": 0.5,
+          "point_of_interest": "spawn"
+        }
+      }
     }
   }
 }

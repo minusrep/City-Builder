@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Runtime.Descriptions.StateMachine.Actions;
 using Runtime.Descriptions.StateMachine.Extensions;
+using Runtime.Extensions;
 using Runtime.ModelCollections;
 
 namespace Runtime.Descriptions.StateMachine
 {
-    public class StateDescription : IDeserializeModel
+    public class StateDescription
     {
         private const string TransitionKey = "transitions";
         
@@ -16,44 +18,25 @@ namespace Runtime.Descriptions.StateMachine
 
         public List<ActionDescription> Actions { get; private set; }
 
-        public void Deserialize(Dictionary<string, object> data)
-        {
-            DeserializeTransitions(data);
-
-            DeserializeActions(data);
-        }
-
-        private void DeserializeActions(Dictionary<string, object> data)
+        public StateDescription(Dictionary<string, object> data)
         {
             Actions = new List<ActionDescription>();
-
-            if (data[ActionsKey] is not List<object> actionObjects) throw new Exception();
-
-            foreach (var actionObject in actionObjects)
-            {
-                var actionDictionary = actionObject as Dictionary<string, object>;
-
-                var action = actionDictionary.ToActionDescription();
-                
-                Actions.Add(action);
-            }
-        }
-
-        private void DeserializeTransitions(Dictionary<string, object> data)
-        {
             Transitions = new List<TransitionDescription>();
+
+            var actionList = data[ActionsKey] as List<object>;
             
-            if (data[TransitionKey] is not List<object> transitionList) throw new Exception(data[TransitionKey].ToString());
-            
-            foreach (var transitionObject in transitionList)
+            foreach (var action in actionList)
             {
-                var transitionDictionary = transitionObject as Dictionary<string, object>;
+                var actionDictionary = action as Dictionary<string, object>;
                 
-                var transition = new TransitionDescription();
-                
-                transition.Deserialize(transitionDictionary);
-                
-                Transitions.Add(transition);
+                Actions.Add(actionDictionary.ToActionDescription());
+            }
+
+            var transitions = data.GetNode(TransitionKey);
+
+            foreach (var transition in transitions)
+            {
+                Transitions.Add(new TransitionDescription(transition.Key, transition.Value as Dictionary<string, object>));
             }
         }
     }
