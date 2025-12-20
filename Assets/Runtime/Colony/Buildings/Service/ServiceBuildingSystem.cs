@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Runtime.Colony.Citizens;
+using Runtime.Colony.Citizens.Collection;
 using Runtime.GameSystems;
 
 namespace Runtime.Colony.Buildings.Service

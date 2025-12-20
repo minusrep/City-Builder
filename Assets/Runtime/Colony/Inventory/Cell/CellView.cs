@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Inventory.Cell
 {
-    public class CellView : VisualElement
+    public class CellView
     {
         public VisualElement Root { get; }
         public VisualElement Image { get; }

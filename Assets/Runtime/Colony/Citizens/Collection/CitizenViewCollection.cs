@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Runtime.Colony.Citizens
+namespace Runtime.Colony.Citizens.Collection
 {
     public class CitizenViewCollection : MonoBehaviour
     {

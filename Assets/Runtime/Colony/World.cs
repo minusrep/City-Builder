@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Citizens;
+using Runtime.Colony.Citizens.Collection;
 using Runtime.Descriptions;
 using Runtime.Extensions;
 using Runtime.GameSystems;

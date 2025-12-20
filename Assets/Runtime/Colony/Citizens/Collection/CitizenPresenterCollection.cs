@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Runtime.Colony.Citizens.Systems;
 using Runtime.Common;
 
-namespace Runtime.Colony.Citizens
+namespace Runtime.Colony.Citizens.Collection
 {
     public class CitizenPresenterCollection : IPresenter
     {

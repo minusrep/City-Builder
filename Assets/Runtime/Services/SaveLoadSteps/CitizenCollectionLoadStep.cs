@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Runtime.Colony;
 using Runtime.Colony.Citizens;
+using Runtime.Colony.Citizens.Collection;
 using Runtime.Common;
 
 namespace Runtime.Services.SaveLoadSteps
