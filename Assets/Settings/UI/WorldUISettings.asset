@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ColliderIsTrigger: 1
   m_ScaleMode: 2
   m_ReferenceSpritePixelsPerUnit: 100
-  m_PixelsPerUnit: 25
+  m_PixelsPerUnit: 23
   m_Scale: 1
   m_ReferenceDpi: 96
   m_FallbackDpi: 96
