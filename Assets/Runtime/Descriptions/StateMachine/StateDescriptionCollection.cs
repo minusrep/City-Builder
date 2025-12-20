@@ -12,12 +12,10 @@ namespace Runtime.Descriptions.StateMachine
 
             foreach (var pair in data)
             {
-                var state = new StateDescription();
-                
                 var dictionary = pair.Value as Dictionary<string, object>;
                 
-                state.Deserialize(dictionary);
-                
+                var state = new StateDescription(dictionary);
+
                 States.Add(pair.Key, state);
             } 
         }

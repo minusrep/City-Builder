@@ -1,4 +1,5 @@
 using Runtime.Colony.Citizens.Animations;
+using Runtime.Colony.Citizens.Debugging;
 using Runtime.Colony.Citizens.Movement;
 using Runtime.Common;
 
@@ -9,6 +10,8 @@ namespace Runtime.Colony.Citizens
         private CitizenMovementPresenter _citizenMovementPresenter;
 
         private CitizenAnimatorPresenter _citizenAnimatorPresenter;
+        
+        private CitizenDebugPresenter _citizenDebugPresenter;
 
         private readonly CitizenModel _model;
         
@@ -33,9 +36,13 @@ namespace Runtime.Colony.Citizens
             
             _citizenAnimatorPresenter = new CitizenAnimatorPresenter(_view.CitizenAnimatorView, _model);
             
+            _citizenDebugPresenter = new CitizenDebugPresenter(_view.CitizenDebugView, _model);
+            
             _citizenMovementPresenter.Enable();
             
             _citizenAnimatorPresenter.Enable();
+            
+            _citizenDebugPresenter.Enable();
             
             ExecuteActions();
         }
@@ -45,6 +52,8 @@ namespace Runtime.Colony.Citizens
             _citizenMovementPresenter.Disable();
 
             _citizenAnimatorPresenter.Disable();
+            
+            _citizenDebugPresenter.Disable();
             
             _citizenMovementPresenter = null;
             

@@ -2,25 +2,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Runtime.Descriptions.StateMachine.Conditions;
 using Runtime.Descriptions.StateMachine.Extensions;
-using Runtime.ModelCollections;
 
 namespace Runtime.Descriptions.StateMachine
 {
-    public class TransitionDescription : IDeserializeModel
+    public class TransitionDescription 
     {
         public string ToState { get; private set; }
         
         public ConditionDescription Condition { get; private set; }
-        
-        public void Deserialize(Dictionary<string, object> data)
+
+        public TransitionDescription(string toState, Dictionary<string, object> data)
         {
-            var first = data.First();
+            ToState = toState;
             
-            ToState = first.Key;
-            
-            var conditionDictionary = first.Value as Dictionary<string, object>;
-            
-            Condition = conditionDictionary.ToConditionDescription();
+            Condition = data.ToConditionDescription();
         }
     }
 }
