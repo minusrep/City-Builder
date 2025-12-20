@@ -11,6 +11,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string SetPointOfInterestKey = "set_point_of_interest";
         private const string SetBuildingPointOfInterestKey = "set_point_of_interest_building";
         private const string StartMoveKey = "start_move";
+        private const string InvokeAnimationKey = "invoke_animation";
         private const string EnterBuildingKey = "enter_buidling";
         private const string RegisterSystemKey = "register_system";
         private const string UnregisterSystemKey = "unregister_system";
@@ -26,6 +27,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 EnterBuildingKey => new EnterBuildingActionDescription(data),
                 RegisterSystemKey => new RegisterSystemActionDescription(data),
                 UnregisterSystemKey => new UnregisterSystemActionDescription(data),
+                InvokeAnimationKey => new InvokeAnimationDescription(data),
                 _ =>  throw new NotImplementedException()
             };
         }
