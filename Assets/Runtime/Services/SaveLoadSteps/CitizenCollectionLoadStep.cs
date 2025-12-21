@@ -32,7 +32,8 @@ namespace Runtime.Services.SaveLoadSteps
             var shelterCitizenSpawnPresenter = new ShelterCitizenSpawnPresenter(_world.Buildings, _world.Citizens);
             shelterCitizenSpawnPresenter.Enable();
             
-            var citizenCollectionPresenter = new CitizenPresenterCollection(_citizenViewCollection, _world.Citizens, _world);
+            var citizenCollectionPresenter = new CitizenPresenterCollection(_citizenViewCollection, _world.Citizens, 
+                _world, _viewDescriptions);
             
             citizenCollectionPresenter.Enable();
 

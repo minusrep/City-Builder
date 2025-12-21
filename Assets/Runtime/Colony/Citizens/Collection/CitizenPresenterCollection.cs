@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Colony.Citizens.Systems;
 using Runtime.Common;
+using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Citizens.Collection
 {
@@ -14,14 +15,18 @@ namespace Runtime.Colony.Citizens.Collection
         
         private readonly World _world;
 
+        private readonly WorldViewDescriptions _viewDescriptions;
+
         public CitizenPresenterCollection(CitizenViewCollection view, CitizenModelCollection model, 
-            World world)
+            World world,  WorldViewDescriptions viewDescriptions)
         {
             _view = view;
             
             _model = model;
 
             _world = world;
+            
+            _viewDescriptions = viewDescriptions;
         }
 
         public void Enable()
@@ -67,7 +72,7 @@ namespace Runtime.Colony.Citizens.Collection
         {
             var citizenView = _view.InstantiateCitizenView();
 
-            var citizenPresenter = new CitizenPresenter(citizenView, citizenModel, _world);
+            var citizenPresenter = new CitizenPresenter(citizenView, citizenModel, _world, _viewDescriptions);
             
             _presenters[citizenModel.Id] = citizenPresenter;
 
