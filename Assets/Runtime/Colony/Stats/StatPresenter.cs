@@ -4,9 +4,9 @@ namespace Runtime.Colony.Stats
 {
     public class StatPresenter : IPresenter
     {
-        private StatModel _stat;
+        private readonly StatModel _stat;
         
-        private StatView _statView;
+        private readonly StatView _statView;
 
         public StatPresenter(StatModel stat, StatView statView)
         {

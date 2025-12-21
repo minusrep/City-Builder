@@ -5,7 +5,7 @@ namespace Runtime.Colony.Stats
 {
     public class StatView
     {
-        private ProgressBar _bar;
+        private readonly ProgressBar _bar;
         
         public VisualElement Root { get; }
 
