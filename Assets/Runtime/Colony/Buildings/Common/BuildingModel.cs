@@ -35,16 +35,6 @@ namespace Runtime.Colony.Buildings.Common
             Position = position;
             BaseDescription = baseDescription;
         }
-
-        public virtual void Enter(CitizenModel citizen)
-        {
-            
-        }
-
-        public virtual void Work(CitizenModel citizen)
-        {
-            
-        }
         
         public virtual Dictionary<string, object> Serialize()
         {

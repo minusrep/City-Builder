@@ -10,7 +10,6 @@ namespace Runtime.Colony.Buildings.Production
         private readonly ProductionBuildingModel _model;
         private readonly ProductionBuildingView _view;
 
-
         public ProductionBuildingSystem(string id, ProductionBuildingModel model, ProductionBuildingView view)
         {
             _model = model;
