@@ -1,4 +1,4 @@
-using Runtime.Colony.Stats;
+using Runtime.Colony.Stats.Collections;
 
 namespace Runtime.Colony.StateMachine.Conditions
 {
