@@ -1,7 +1,5 @@
-using fastJSON;
 using Runtime.Common;
 using Runtime.Descriptions;
-using UnityEngine;
 
 namespace Runtime.Colony.Citizens.Movement
 {
@@ -22,6 +20,8 @@ namespace Runtime.Colony.Citizens.Movement
 
         public void Enable()
         {
+            _view.Transform.position = _model.Position;
+            
             _view.OnUpdate += UpdatePosition;
             
             _model.OnStartMove += StartMove;

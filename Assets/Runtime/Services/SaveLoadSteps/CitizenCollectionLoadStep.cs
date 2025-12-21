@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Runtime.Colony;
-using Runtime.Colony.Citizens;
 using Runtime.Colony.Citizens.Collection;
+using Runtime.Colony.ShelterCitizenSpawn;
 using Runtime.Common;
 using Runtime.ViewDescriptions;
 
@@ -29,11 +29,14 @@ namespace Runtime.Services.SaveLoadSteps
 
         public async Task Run()
         {
-            var citizenCollectionPresenter =
-                new CitizenPresenterCollection(_citizenViewCollection, _world.Citizens, _world, _viewDescriptions);
+            var shelterCitizenSpawnPresenter = new ShelterCitizenSpawnPresenter(_world.Buildings, _world.Citizens);
+            shelterCitizenSpawnPresenter.Enable();
+            
+            var citizenCollectionPresenter = new CitizenPresenterCollection(_citizenViewCollection, _world.Citizens, _world);
             
             citizenCollectionPresenter.Enable();
-            
+
+            _presenters.Add(shelterCitizenSpawnPresenter);
             _presenters.Add(citizenCollectionPresenter);
             
             await Task.CompletedTask;

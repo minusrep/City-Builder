@@ -21,6 +21,7 @@ namespace Runtime.Colony.Buildings.Collection
 
         protected override BuildingModel CreateModel(string descriptionKey)
         {
+            DescriptionKey = descriptionKey;
             var description = _descriptions.Descriptions[descriptionKey];
             return _modelFactory.Create(description.Type, GetCurrentKey(), Vector2.zero, description);
         }
@@ -30,6 +31,7 @@ namespace Runtime.Colony.Buildings.Collection
             var position = data.GetVector2("position");
 
             var descriptionId = data.GetString("description");
+            DescriptionKey = descriptionId;
             
             var description = _descriptions.Descriptions[descriptionId];
 

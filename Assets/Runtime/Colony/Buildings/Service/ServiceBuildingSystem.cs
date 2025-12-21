@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Runtime.Colony.Citizens;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.GameSystems;
 
@@ -43,7 +42,6 @@ namespace Runtime.Colony.Buildings.Service
                 foreach (var citizenId in finished)
                 {
                     _model.InService.Remove(citizenId);
-                    //_citizens.Get(citizenId).RestoreNeed(_model.Description.ServiceResource);
 
                     if (_model.WaitingQueue.Count > 0)
                     {

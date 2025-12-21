@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Runtime.Colony;
-using Runtime.Colony.Citizens;
 using Runtime.Colony.Citizens.Systems;
 using Runtime.Colony.StateMachine;
 using Runtime.GameSystems;

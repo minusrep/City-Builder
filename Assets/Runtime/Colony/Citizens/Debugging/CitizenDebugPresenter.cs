@@ -36,28 +36,28 @@ namespace Runtime.Colony.Citizens.Debugging
             }
 
             // Define styles
-            GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
+            var labelStyle = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 12,
                 wordWrap = true,
                 normal = { textColor = Color.white }
             };
 
-            GUIStyle headerStyle = new GUIStyle(GUI.skin.label)
+            var headerStyle = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 14,
                 fontStyle = FontStyle.Bold,
                 normal = { textColor = Color.yellow }
             };
 
-            GUIStyle stateStyle = new GUIStyle(GUI.skin.label)
+            var stateStyle = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 13,
                 fontStyle = FontStyle.Bold,
                 normal = { textColor = Color.cyan }
             };
 
-            GUIStyle warningStyle = new GUIStyle(GUI.skin.label)
+            var warningStyle = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 12,
                 fontStyle = FontStyle.Bold,
@@ -145,7 +145,7 @@ namespace Runtime.Colony.Citizens.Debugging
             {
                 foreach (var flag in _model.Flags)
                 {
-                    string color = flag.Value ? "lime" : "red";
+                    var color = flag.Value ? "lime" : "red";
                     GUILayout.Label($"<color={color}>• {flag.Key}: {flag.Value}</color>", labelStyle);
                 }
             }
@@ -231,8 +231,8 @@ namespace Runtime.Colony.Citizens.Debugging
                 var stat = _model.Stats.Get(statId);
                 if (stat != null)
                 {
-                    float percentage = (stat.Value - stat.Stat.Min) / (stat.Stat.Max - stat.Stat.Min);
-                    string color = percentage > 0.7f ? "lime" : percentage > 0.3f ? "yellow" : "red";
+                    var percentage = (stat.Value - stat.Stat.Min) / (stat.Stat.Max - stat.Stat.Min);
+                    var color = percentage > 0.7f ? "lime" : percentage > 0.3f ? "yellow" : "red";
                     GUILayout.Label($"<color={color}>• {statId}: {stat.Value:F1} [{stat.Stat.Min}-{stat.Stat.Max}]</color>", GUI.skin.label);
                 }
             }

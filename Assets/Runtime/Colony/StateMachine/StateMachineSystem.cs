@@ -1,4 +1,3 @@
-using Runtime.Colony.Citizens;
 using Runtime.GameSystems;
 
 namespace Runtime.Colony.StateMachine

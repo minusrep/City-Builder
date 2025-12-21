@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Descriptions.Citizens;
 using Runtime.ModelCollections;
-using Random = UnityEngine.Random;
 
 namespace Runtime.Colony.Citizens.Collection
 {
@@ -16,8 +15,6 @@ namespace Runtime.Colony.Citizens.Collection
 
         protected override CitizenModel CreateModel()
         {
-            var index = Random.Range(0, _description.Names.Count);
-            
             var model = new CitizenModel(Index, _description);
             
             return model;
