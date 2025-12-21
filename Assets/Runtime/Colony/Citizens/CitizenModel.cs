@@ -16,6 +16,8 @@ namespace Runtime.Colony.Citizens
         
         private const string PositionKey = "position";
         
+        private const string SpawnedFromBuildingID = "spawned_from_building_id";
+        
         private const string PointsOfInterestKey = "points_of_interest";
         
         private const string FlagsKey = "flags";
@@ -25,10 +27,6 @@ namespace Runtime.Colony.Citizens
         private const string TimerKey = "timers";
         
         private const string StateMachineKey = "state_machine";
-        
-        private const string BuildingIdKey = "building_id";
-
-        private const string HasBuildingFlagKey = "has_building";
 
         public event Action<string> OnStartMove;
 
@@ -49,6 +47,8 @@ namespace Runtime.Colony.Citizens
         public StatModelCollection Stats { get; private set; }
 
         public StateMachineModel StateMachine { get; }
+        
+        public string SpawnedFromBuildingId { get; set; }
 
         private string Name { get; set; }
         
@@ -71,6 +71,7 @@ namespace Runtime.Colony.Citizens
             {
                 { IdKey, Id},
                 { NameKey, Name },
+                { SpawnedFromBuildingID, SpawnedFromBuildingId },
                 { PositionKey, Position.ToList() },
                 { PointsOfInterestKey, PointsOfInterest },
                 { FlagsKey, Flags },
@@ -85,6 +86,7 @@ namespace Runtime.Colony.Citizens
         {
             Name = data.GetString(NameKey);
             Position = data.GetVector3(PositionKey);
+            SpawnedFromBuildingId = data.GetString(SpawnedFromBuildingID);
             PointsOfInterest = data.GetDictionary<string, Vector3>(PointsOfInterestKey);
             Flags = data.GetDictionary<string, bool>(FlagsKey);
             Stats.Deserialize(data.GetNode(StatsKey));
