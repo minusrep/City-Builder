@@ -122,9 +122,7 @@
       ],
       "transitions": {
         "idle": {
-          "type": "distance",
-          "value": 0.5,
-          "point_of_interest": "spawn"
+          "type": "true"
         }
       }
     },
@@ -146,7 +144,7 @@
       "transitions": {
         "sleep_start": {
           "type": "distance",
-          "value": 0.5,
+          "value": 1.5,
           "point_of_interest": "shelter"
         }
       }
@@ -192,9 +190,7 @@
       ],
       "transitions": {
         "idle": {
-          "type": "distance",
-          "value": 0.5,
-          "point_of_interest": "spawn"
+          "type": "true"
         }
       }
     }
