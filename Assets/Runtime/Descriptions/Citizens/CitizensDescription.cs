@@ -14,6 +14,8 @@ namespace Runtime.Descriptions.Citizens
         public StateDescriptionCollection States { get; }
         
         public StatDescriptionCollection Stats { get; }
+        
+        public CitizenStatSystemDescriptionCollection Systems { get; }
 
         public CitizensDescription(Dictionary<string, object> data)
         {
@@ -21,6 +23,7 @@ namespace Runtime.Descriptions.Citizens
             StartMoveSpeed = data.GetFloat("start_move_speed");
             States = new StateDescriptionCollection(data.GetNode("states"));
             Stats = new StatDescriptionCollection(data.GetNode("stats"));
+            Systems = new CitizenStatSystemDescriptionCollection(data.GetNode("systems"));
         }
     }
 }

@@ -17,6 +17,24 @@
     }
   },
   "start_move_speed": 1,
+  "systems": {
+    "sleep": {
+      "stat": "energy",
+      "change_speed": 5
+    },
+    "fatigue": {
+      "stat": "energy",
+      "change_speed": -2
+    },
+    "hungry": {
+      "stat": "satiety",
+      "change_speed": -4
+    },
+    "feed": {
+      "stat": "satiety",
+      "change_speed": 50
+    }
+  },
   "states": {
     "idle": {
       "actions": [
