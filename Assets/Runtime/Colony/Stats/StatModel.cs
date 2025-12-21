@@ -8,6 +8,8 @@ namespace Runtime.Colony.Stats
 {
     public class StatModel : ISerializeModel, IDeserializeModel
     {
+        public event Action<float> ValueChanged;
+        
         public StatDescription Stat { get; }
         
         public float Value { get; private set; }
@@ -22,6 +24,7 @@ namespace Runtime.Colony.Stats
         {
             Value +=  delta;
             Value = Math.Clamp(Value, Stat.Min, Stat.Max);
+            ValueChanged?.Invoke(Value);
         }
         
         public Dictionary<string, object> Serialize()

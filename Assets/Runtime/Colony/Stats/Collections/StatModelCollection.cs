@@ -1,10 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using Runtime.Descriptions.Stats;
 using Runtime.Extensions;
 
-namespace Runtime.Colony.Stats
+namespace Runtime.Colony.Stats.Collections
 {
-    public class StatModelCollection
+    public class StatModelCollection : IEnumerable<StatModel>
     {
         private readonly Dictionary<string, StatModel> _stats;
         
@@ -41,6 +42,16 @@ namespace Runtime.Colony.Stats
             {
                 _stats[data.Key].Deserialize(statsData.GetNode(data.Key));
             }
+        }
+
+        public IEnumerator<StatModel> GetEnumerator()
+        {
+            return _stats.Values.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

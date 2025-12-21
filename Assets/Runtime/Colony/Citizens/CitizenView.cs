@@ -1,9 +1,8 @@
-using System;
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
 using Runtime.Colony.Citizens.Movement;
+using Runtime.Colony.Stats.Collections;
 using UnityEngine;
-using Action = Unity.Plastic.Antlr3.Runtime.Misc.Action;
 
 namespace Runtime.Colony.Citizens
 {
@@ -13,11 +12,15 @@ namespace Runtime.Colony.Citizens
         public CitizenAnimatorView CitizenAnimatorView => _citizenAnimatorView;
         
         public CitizenDebugView CitizenDebugView => _citizenDebugView;
+        
+        public StatViewCollection StatViewCollection => _statViewCollection;
 
         [SerializeField] private CitizenMovementView _citizenMovementView;
 
         [SerializeField] private CitizenAnimatorView _citizenAnimatorView;
         
         [SerializeField] private CitizenDebugView _citizenDebugView;
+        
+        [SerializeField] private StatViewCollection _statViewCollection;
     }
 }

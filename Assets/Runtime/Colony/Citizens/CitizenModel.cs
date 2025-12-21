@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Runtime.Colony.StateMachine;
-using Runtime.Colony.Stats;
+using Runtime.Colony.Stats.Collections;
 using Runtime.Descriptions.Citizens;
 using Runtime.Extensions;
 using UnityEngine;

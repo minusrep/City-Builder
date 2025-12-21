@@ -3,6 +3,7 @@ using Runtime.AsyncLoad;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Inventory;
+using Runtime.ViewDescriptions.Stats;
 
 namespace Runtime.Services.SaveLoadSteps
 {
@@ -21,12 +22,15 @@ namespace Runtime.Services.SaveLoadSteps
         {
             var buildingViewLoad = _addressableModel.Load<BuildingViewDescriptionCollection>("BuildingViewDescriptionCollection");
             var inventoryViewLoad = _addressableModel.Load<InventoryViewDescription>("InventoryViewDescription");
+            var statViewLoad = _addressableModel.Load<StatViewDescriptionCollection>("StatViewDescriptionCollection");
 
             await buildingViewLoad.LoadAwaiter;
             await inventoryViewLoad.LoadAwaiter;
+            await statViewLoad.LoadAwaiter;
 
             _worldViewDescriptions.BuildingViewDescriptions = buildingViewLoad.Result;
             _worldViewDescriptions.InventoryViewDescription = inventoryViewLoad.Result;
+            _worldViewDescriptions.StatViewDescriptions = statViewLoad.Result;
         }
     }
 }

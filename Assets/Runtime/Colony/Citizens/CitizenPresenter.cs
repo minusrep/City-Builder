@@ -1,7 +1,9 @@
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
 using Runtime.Colony.Citizens.Movement;
+using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
+using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Citizens
 {
@@ -12,18 +14,24 @@ namespace Runtime.Colony.Citizens
         private CitizenAnimatorPresenter _citizenAnimatorPresenter;
         
         private CitizenDebugPresenter _citizenDebugPresenter;
+        
+        private StatPresenterCollection _statPresenterCollection;
 
         private readonly CitizenModel _model;
         
         private readonly World _world;
         
+        private readonly WorldViewDescriptions _viewDescriptions;
+        
         private readonly CitizenView _view;
         
-        public CitizenPresenter(CitizenView view,  CitizenModel model, World world)
+        public CitizenPresenter(CitizenView view,  CitizenModel model, World world, WorldViewDescriptions viewDescriptions)
         {
             _view =  view;
             
             _world =  world;
+            
+            _viewDescriptions = viewDescriptions;
             
             _model = model;
 
@@ -37,6 +45,9 @@ namespace Runtime.Colony.Citizens
             _citizenAnimatorPresenter = new CitizenAnimatorPresenter(_view.CitizenAnimatorView, _model);
             
             _citizenDebugPresenter = new CitizenDebugPresenter(_view.CitizenDebugView, _model);
+
+            _statPresenterCollection = new StatPresenterCollection(_model.Stats, _view.StatViewCollection,
+                _viewDescriptions.StatViewDescriptions);
             
             _citizenMovementPresenter.Enable();
             
@@ -44,11 +55,15 @@ namespace Runtime.Colony.Citizens
             
             _citizenDebugPresenter.Enable();
             
+            _statPresenterCollection.Enable();
+            
             ExecuteActions();
         }
 
         public void Disable()
         {
+            _statPresenterCollection.Disable();
+            
             _citizenMovementPresenter.Disable();
 
             _citizenAnimatorPresenter.Disable();

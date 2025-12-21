@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: ViewDescriptions
   m_GUID: baaff44265523304c856762b41cd906e
   m_SerializeEntries:
+  - m_GUID: 1584e0d013b56114aa3ad6cbaec90fd2
+    m_Address: StatViewDescriptionCollection
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1dcbe1689025f1a4bb4951680941bb1c
     m_Address: InventoryViewDescription
     m_ReadOnly: 0

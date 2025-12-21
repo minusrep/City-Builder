@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132f74cce9584d0ea58e593f55b6d1af, type: 3}
+  m_Name: Satiety
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Stats.StatViewDescription
+  StatViewAsset: {fileID: 9197481963319205126, guid: b812b74c4b0104f48b050b11b6194323, type: 3}
+  StyleSheet: {fileID: 7433441132597879392, guid: 7e08058cccc72794d8bf3ef32e41f4f1, type: 3}
