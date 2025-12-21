@@ -78,7 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6030165305410528423}
   - component: {fileID: 7811179642611185603}
-  - component: {fileID: 6755391009514622948}
+  - component: {fileID: 5016655931405627063}
   m_Layer: 0
   m_Name: Sawmill
   m_TagString: Untagged
@@ -95,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 5389820821820916020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.35, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Production.ProductionBuildingView
   _uiDocument: {fileID: 1338904815707915831}
---- !u!208 &6755391009514622948
+--- !u!208 &5016655931405627063
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,11 +126,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 5, y: 2.5, z: 2.5}
+  m_Extents: {x: 4.165, y: 3.72, z: 3.08}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 4, y: 0, z: 2.5}
+  m_Center: {x: 3.8, y: 0.39, z: 2.48}
   m_TimeToStationary: 0.5
 --- !u!1001 &5916918246736835767
 PrefabInstance:

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6030165305410528423}
   - component: {fileID: 6383710204673921016}
-  - component: {fileID: 8081416311589593526}
+  - component: {fileID: 9209555602295748971}
   m_Layer: 0
   m_Name: Latern
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdc2d5e87e34c538184856218c0a9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!208 &8081416311589593526
+--- !u!208 &9209555602295748971
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,11 +56,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 1.25, z: 0.5}
+  m_Extents: {x: 0.225, y: 1.445, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.25, z: 0}
+  m_Center: {x: 0, y: 1.2, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1001 &280047462245302889
 PrefabInstance:
