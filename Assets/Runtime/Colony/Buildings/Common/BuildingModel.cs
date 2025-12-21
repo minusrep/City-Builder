@@ -14,7 +14,7 @@ namespace Runtime.Colony.Buildings.Common
         
         public string Id { get; }
 
-        public Vector3 Position
+        public Vector2 Position
         {
             get => _position;
             private set

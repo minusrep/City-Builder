@@ -40,7 +40,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 }
             }
                 
-            model.SetPointOfInterest(BuildingPointOfInterest, new Vector3(buildingPosition.x, 0, buildingPosition.z));
+            model.SetPointOfInterest(BuildingPointOfInterest, new Vector3(buildingPosition.x, 0, buildingPosition.y));
         }
     }
 }
