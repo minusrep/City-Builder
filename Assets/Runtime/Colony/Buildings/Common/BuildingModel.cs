@@ -14,7 +14,7 @@ namespace Runtime.Colony.Buildings.Common
         
         public string Id { get; }
 
-        public Vector3 Position
+        public Vector2 Position
         {
             get => _position;
             private set
@@ -34,16 +34,6 @@ namespace Runtime.Colony.Buildings.Common
             Id = id;    
             Position = position;
             BaseDescription = baseDescription;
-        }
-
-        public virtual void Enter(CitizenModel citizen)
-        {
-            
-        }
-
-        public virtual void Work(CitizenModel citizen)
-        {
-            
         }
         
         public virtual Dictionary<string, object> Serialize()
