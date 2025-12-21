@@ -4,7 +4,6 @@ using Runtime.ModelCollections;
 using Runtime.Extensions;
 using UnityEngine;
 using System;
-using Runtime.Colony.Citizens;
 
 namespace Runtime.Colony.Buildings.Common
 {

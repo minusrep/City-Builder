@@ -1,5 +1,4 @@
 using Runtime.Common;
-using UnityEngine;
 
 namespace Runtime.Colony.Citizens.Animations
 {
@@ -28,7 +27,6 @@ namespace Runtime.Colony.Citizens.Animations
 
         private void OnInvokeAnimation(string animation)
         {
-            Debug.Log(animation);
             _view.Animator.Play(animation);
         }
     }
