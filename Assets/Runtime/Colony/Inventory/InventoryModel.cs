@@ -139,7 +139,7 @@ namespace Runtime.Colony.Inventory
 
         private bool IsSameItem(ResourceDescription itemA, ResourceDescription itemB)
         {
-            return itemA.Type == itemB.Type;
+            return itemA.Id == itemB.Id;
         }
     }
 }
