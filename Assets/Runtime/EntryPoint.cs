@@ -8,6 +8,7 @@ using Runtime.Descriptions;
 using Runtime.GameSystems;
 using Runtime.Services.SaveLoadSteps;
 using Runtime.ViewDescriptions;
+using UnityEditor;
 using UnityEngine;
 
 namespace Runtime
@@ -48,6 +49,12 @@ namespace Runtime
             {
                 await step.Run();
             }
+            
+            Application.quitting += OnQuit;
+
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
         }
 
         private void Update()
@@ -55,13 +62,38 @@ namespace Runtime
             _gameSystems.Update(Time.deltaTime);
         }
 
-        private void OnApplicationQuit()
+#if UNITY_EDITOR
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
         {
+            if (state == PlayModeStateChange.ExitingPlayMode)
+            {
+                Dispose();
+            }
+        }
+#endif
+
+        private void OnQuit()
+        {
+            Dispose();
+        }
+
+        private async void Dispose()
+        {
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+#endif
+            Application.quitting -= OnQuit;
+
+            var saving = new WorldSaveStep(_world);
+            var savingTask = saving.Run();
+            
             _presenters.Reverse();
             foreach (var presenter in _presenters)
             {
                 presenter.Disable();
             }
+
+            await savingTask;
         }
     }
 }
