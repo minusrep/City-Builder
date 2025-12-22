@@ -1,4 +1,4 @@
-﻿using Runtime.AsyncLoad;
+using Runtime.AsyncLoad;
 using Runtime.CameraControl;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
@@ -10,6 +10,7 @@ using Runtime.Input;
 using Runtime.Services.SaveLoadSteps;
 using Runtime.ViewDescriptions;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Runtime
@@ -61,6 +62,12 @@ namespace Runtime
             _cameraControlModel = new CameraControlModel(_playerControls);
             _cameraControlPresenter = new CameraControlPresenter(_cameraControlModel, _cameraControlView, _worldDescription.CameraControlDescription, _gameSystems);
             _cameraControlPresenter.Enable();
+            
+            Application.quitting += OnQuit;
+
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
         }
 
         private void Update()
@@ -68,13 +75,38 @@ namespace Runtime
             _gameSystems.Update(Time.deltaTime);
         }
 
-        private void OnApplicationQuit()
+#if UNITY_EDITOR
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
         {
+            if (state == PlayModeStateChange.ExitingPlayMode)
+            {
+                Dispose();
+            }
+        }
+#endif
+
+        private void OnQuit()
+        {
+            Dispose();
+        }
+
+        private async void Dispose()
+        {
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+#endif
+            Application.quitting -= OnQuit;
+
+            var saving = new WorldSaveStep(_world);
+            var savingTask = saving.Run();
+            
             _presenters.Reverse();
             foreach (var presenter in _presenters)
             {
                 presenter.Disable();
             }
+
+            await savingTask;
         }
     }
 }

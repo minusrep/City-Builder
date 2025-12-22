@@ -2,28 +2,213 @@
   "citizens": {
     "models": {
       "citizen_0": {
+        "id": 0,
         "name": null,
-        "position": [
-          0,
-          0,
-          0
-        ],
         "spawned_from_building_id": "shelter_2",
-        "points_of_interest": {},
+        "position": [
+          39.28466,
+          0.2519829,
+          24.34999
+        ],
+        "points_of_interest": {
+          "tavern": {
+            "x": 10.9,
+            "y": 0,
+            "z": 23.8
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": 39.3,
+            "y": 0,
+            "z": 25.5
+          }
+        },
         "flags": {},
         "stats": {
           "satiety": {
             "stat": "satiety",
-            "value": 50
+            "value": 40.65588
           },
           "energy": {
             "stat": "energy",
-            "value": 25
+            "value": 7.512934
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "sleep_start"
+        }
+      },
+      "citizen_1": {
+        "id": 1,
+        "name": null,
+        "spawned_from_building_id": "shelter_2",
+        "position": [
+          0,
+          0.2519829,
+          0
+        ],
+        "points_of_interest": {
+          "tavern": {
+            "x": 10.9,
+            "y": 0,
+            "z": 23.8
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": 39.3,
+            "y": 0,
+            "z": 25.5
+          }
+        },
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 26.88645
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 36.46825
           }
         },
         "timers": {},
         "state_machine": {
           "current_state": "idle"
+        }
+      },
+      "citizen_2": {
+        "id": 2,
+        "name": null,
+        "spawned_from_building_id": "shelter_2",
+        "position": [
+          39.68629,
+          0.2519829,
+          24.35
+        ],
+        "points_of_interest": {
+          "tavern": {
+            "x": 10.9,
+            "y": 0,
+            "z": 23.8
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": 39.3,
+            "y": 0,
+            "z": 25.5
+          }
+        },
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 0
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 86.32414
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "sleep_start"
+        }
+      },
+      "citizen_3": {
+        "id": 3,
+        "name": null,
+        "spawned_from_building_id": "shelter_2",
+        "position": [
+          8.858972,
+          0.2519829,
+          16.49779
+        ],
+        "points_of_interest": {
+          "tavern": {
+            "x": 10.9,
+            "y": 0,
+            "z": 23.8
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": 39.3,
+            "y": 0,
+            "z": 25.5
+          }
+        },
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 51.52854
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 49.66466
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        }
+      },
+      "citizen_4": {
+        "id": 4,
+        "name": null,
+        "spawned_from_building_id": "shelter_2",
+        "position": [
+          21.6441,
+          0.2519829,
+          18.82059
+        ],
+        "points_of_interest": {
+          "tavern": {
+            "x": 10.9,
+            "y": 0,
+            "z": 23.8
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": 39.3,
+            "y": 0,
+            "z": 25.5
+          }
+        },
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 0
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 81.27663
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "walk_to_tavern"
         }
       }
     }
@@ -36,8 +221,9 @@
           26.8,
           0.3
         ],
-        "is_active": false,
-        "produced_amount": 0,
+        "is_active": true,
+        "start_production_time": 1766428722970,
+        "save_time": 1766428728561,
         "inventory": {
           "models": {
             "wood": {
@@ -46,7 +232,17 @@
           }
         },
         "orders": {
-          "models": {}
+          "models": {
+            "0": {
+              "id": 0
+            },
+            "1": {
+              "id": 1
+            },
+            "2": {
+              "id": 2
+            }
+          }
         }
       },
       "shelter_2": {

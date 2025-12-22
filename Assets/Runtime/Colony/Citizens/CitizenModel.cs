@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.StateMachine;
 using Runtime.Colony.Stats.Collections;
 using Runtime.Descriptions.Citizens;
@@ -40,7 +41,7 @@ namespace Runtime.Colony.Citizens
 
         public Dictionary<string, long> Timers { get; private set; }
 
-        public Dictionary<string, Vector3> PointsOfInterest { get; set; }
+        public PointOfInterestCollection PointsOfInterest { get; set; }
         
         public Dictionary<string, bool> Flags { get; private set; }
 
@@ -57,7 +58,7 @@ namespace Runtime.Colony.Citizens
             Id = id;
             Description = description;
             Position = new Vector2(0, 0);
-            PointsOfInterest = new Dictionary<string, Vector3>();
+            PointsOfInterest = new PointOfInterestCollection();
             Flags = new Dictionary<string, bool>();
             Stats = new StatModelCollection(description.Stats);
             Timers = new Dictionary<string, long>();
@@ -73,7 +74,7 @@ namespace Runtime.Colony.Citizens
                 { NameKey, Name },
                 { SpawnedFromBuildingID, SpawnedFromBuildingId },
                 { PositionKey, Position.ToList() },
-                { PointsOfInterestKey, PointsOfInterest },
+                { PointsOfInterestKey, PointsOfInterest.Serialize() },
                 { FlagsKey, Flags },
                 { StatsKey, Stats.Serialize() },
                 { TimerKey, Timers },
@@ -87,7 +88,7 @@ namespace Runtime.Colony.Citizens
             Name = data.GetString(NameKey);
             Position = data.GetVector3(PositionKey);
             SpawnedFromBuildingId = data.GetString(SpawnedFromBuildingID);
-            PointsOfInterest = data.GetDictionary<string, Vector3>(PointsOfInterestKey);
+            PointsOfInterest.Deserialize(data.GetNode(PointsOfInterestKey));
             Flags = data.GetDictionary<string, bool>(FlagsKey);
             Stats.Deserialize(data.GetNode(StatsKey));
             Timers = data.GetDictionary<string, long>(TimerKey);
