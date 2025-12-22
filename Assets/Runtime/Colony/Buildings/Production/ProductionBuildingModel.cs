@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Inventory;
 using Runtime.Colony.Orders;
@@ -59,6 +60,8 @@ namespace Runtime.Colony.Buildings.Production
             var dictionary = new Dictionary<string, object>(base.Serialize())
             {
                 { "is_active", IsActive },
+                { "start_production_time", StartProductionTime },
+                { "save_time", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() },
                 { "inventory", Inventory.Serialize() },
                 { "orders", _orders.Serialize() }
             };
@@ -69,6 +72,9 @@ namespace Runtime.Colony.Buildings.Production
         public override void Deserialize(Dictionary<string, object> data)
         {
             IsActive = data.GetBool("is_active");
+            StartProductionTime = data.GetLong("start_production_time");
+            StartProductionTime += DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - data.GetLong("save_time");
+            
             Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
 
