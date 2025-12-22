@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
 using Runtime.AsyncLoad;
+using Runtime.CameraControl;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
+using Runtime.Input;
 using Runtime.Services.SaveLoadSteps;
 using Runtime.ViewDescriptions;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,6 +20,8 @@ namespace Runtime
         [SerializeField] private BuildingCollectionView _buildingCollectionView;
 
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
+
+        [SerializeField] private CameraControlView _cameraControlView;
 
         private readonly WorldDescription _worldDescription = new();
         
@@ -30,6 +34,10 @@ namespace Runtime
         private readonly AddressableModel _addressableModel = new();
         
         private readonly List<IPresenter> _presenters = new();
+
+        private PlayerControls _playerControls;
+        private CameraControlModel _cameraControlModel;
+        private CameraControlPresenter _cameraControlPresenter;
 
         private async void Start()
         {
@@ -49,6 +57,11 @@ namespace Runtime
             {
                 await step.Run();
             }
+
+            _playerControls = new PlayerControls();
+            _cameraControlModel = new CameraControlModel(_playerControls);
+            _cameraControlPresenter = new CameraControlPresenter(_cameraControlModel, _cameraControlView, _worldDescription.CameraControlDescription, _gameSystems);
+            _cameraControlPresenter.Enable();
             
             Application.quitting += OnQuit;
 

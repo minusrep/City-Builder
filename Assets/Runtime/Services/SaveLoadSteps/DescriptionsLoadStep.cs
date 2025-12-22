@@ -31,12 +31,17 @@ namespace Runtime.Services.SaveLoadSteps
                 JSON.ToObject <Dictionary<string, object>>(
                     Resources.Load<TextAsset>("Descriptions/points_of_interest_description").text);
 
+            var cameraControl =
+                JSON.ToObject<Dictionary<string, object>>(
+                    Resources.Load<TextAsset>("Descriptions/camera_control").text);
+
             var data = new Dictionary<string, object>
             {
                 { "buildings", buildingDescriptions },
                 { "citizens", citizensDescriptions },
                 { "resources", resourcesDescriptions },
-                { "points_of_interest", pointsOfInterest}
+                { "points_of_interest", pointsOfInterest},
+                { "camera_control", cameraControl}
             };
 
             _worldDescription.SetData(data);

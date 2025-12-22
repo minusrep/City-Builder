@@ -1,8 +1,9 @@
 ﻿using Runtime.Descriptions.Buildings;
+using Runtime.Descriptions.CameraControl;
 using Runtime.Descriptions.Citizens;
-using System.Collections.Generic;
 using Runtime.Descriptions.Items;
 using Runtime.Extensions;
+using System.Collections.Generic;
 
 namespace Runtime.Descriptions
 {
@@ -13,7 +14,9 @@ namespace Runtime.Descriptions
         public ResourceDescriptionCollection ResourceCollection { get; private set; }
         
         public CitizensDescription Citizens { get; private set; }
-  
+
+        public CameraControlDescription CameraControlDescription { get; private set; }
+
         public PointOfInterestDescriptionCollection PointOfInterestCollection { get; private set; }
         
         private DescriptionFactory Factory { get; set; }
@@ -29,6 +32,7 @@ namespace Runtime.Descriptions
             BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
             ResourceCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
             Citizens = new CitizensDescription(data.GetNode("citizens"));
+            CameraControlDescription = new CameraControlDescription(data.GetNode("camera_control"));
             PointOfInterestCollection = new PointOfInterestDescriptionCollection(data.GetNode("points_of_interest"));
         }
     }
