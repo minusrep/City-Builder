@@ -15,6 +15,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string EnterBuildingKey = "enter_buidling";
         private const string RegisterSystemKey = "register_system";
         private const string UnregisterSystemKey = "unregister_system";
+        private const string TakeResourceKey = "take_resource";
+        private const string PutResourceKey = "put_resource";
         
         public static ActionDescription ToActionDescription(this Dictionary<string, object> data)
         {
@@ -28,6 +30,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 RegisterSystemKey => new RegisterSystemActionDescription(data),
                 UnregisterSystemKey => new UnregisterSystemActionDescription(data),
                 InvokeAnimationKey => new InvokeAnimationDescription(data),
+                TakeResourceKey => new TakeResourceActionDescription(data),
+                PutResourceKey => new PutResourceActionDescription(data),
                 _ =>  throw new NotImplementedException()
             };
         }
