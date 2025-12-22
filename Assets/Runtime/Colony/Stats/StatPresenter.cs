@@ -29,7 +29,7 @@ namespace Runtime.Colony.Stats
 
         private void OnStatValueChanged(float value)
         {
-            _statView.Value = (_stat.Stat.Min + value) / _stat.Stat.Max * 100;
+            _statView.Value = (value - _stat.Stat.Min) / (_stat.Stat.Max - _stat.Stat.Min) * 100;
         }
     }
 }
