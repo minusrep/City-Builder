@@ -62,7 +62,8 @@ namespace Runtime.Colony.Inventory.Cell
 
         public Dictionary<string, object> Serialize() => new()
         {
-            { "amount", Amount }
+            { "amount", Amount },
+            { "resource", Resource == null ? "wood" : Resource.Id },
         };
     }
 }

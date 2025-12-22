@@ -55,12 +55,16 @@ namespace Runtime.Colony.Citizens
         
         public string SpawnedFromBuildingId { get; set; }
         
-        public InventoryModel Inventory { get; }
+        public InventoryModel Inventory { get; private set; }
+        
+        private WorldDescription _description;
 
         private string Name { get; set; }
         
         public CitizenModel(int id, WorldDescription description)
         {
+            _description = description;
+            
             Id = id;
             Description = description.Citizens;
             Position = new Vector2(0, 0);
@@ -102,6 +106,8 @@ namespace Runtime.Colony.Citizens
             Stats.Deserialize(data.GetNode(StatsKey));
             Timers = data.GetDictionary<string, long>(TimerKey);
             StateMachine.Deserialize(data.GetNode(StateMachineKey));
+            
+            Inventory = new InventoryModel(1, 1, _description.ResourceCollection);
             Inventory.Deserialize(data.GetNode(InventoryKey));
         }
 
