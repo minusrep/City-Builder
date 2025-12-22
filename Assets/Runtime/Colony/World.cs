@@ -28,7 +28,7 @@ namespace Runtime.Colony
         {
             WorldDescription = worldDescription;
 
-            Citizens = new CitizenModelCollection(worldDescription.Citizens);
+            Citizens = new CitizenModelCollection(worldDescription);
 
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
             

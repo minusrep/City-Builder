@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Colony.Inventory;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.StateMachine;
 using Runtime.Colony.Stats.Collections;
+using Runtime.Descriptions;
 using Runtime.Descriptions.Citizens;
 using Runtime.Extensions;
 using UnityEngine;
@@ -28,6 +30,8 @@ namespace Runtime.Colony.Citizens
         private const string TimerKey = "timers";
         
         private const string StateMachineKey = "state_machine";
+        
+        private const string InventoryKey = "inventory";
 
         public event Action<string> OnStartMove;
 
@@ -50,20 +54,24 @@ namespace Runtime.Colony.Citizens
         public StateMachineModel StateMachine { get; }
         
         public string SpawnedFromBuildingId { get; set; }
+        
+        public InventoryModel Inventory { get; }
 
         private string Name { get; set; }
         
-        public CitizenModel(int id, CitizensDescription description)
+        public CitizenModel(int id, WorldDescription description)
         {
             Id = id;
-            Description = description;
+            Description = description.Citizens;
             Position = new Vector2(0, 0);
             PointsOfInterest = new PointOfInterestCollection();
             Flags = new Dictionary<string, bool>();
-            Stats = new StatModelCollection(description.Stats);
+            Stats = new StatModelCollection(description.Citizens.Stats);
             Timers = new Dictionary<string, long>();
+            Inventory = new InventoryModel(1, 1, description.ResourceCollection);
+            Inventory.Create();
 
-            StateMachine = new StateMachineModel(description.States);
+            StateMachine = new StateMachineModel(description.Citizens.States);
         }
 
         public Dictionary<string, object> Serialize()
@@ -79,6 +87,7 @@ namespace Runtime.Colony.Citizens
                 { StatsKey, Stats.Serialize() },
                 { TimerKey, Timers },
                 { StateMachineKey, StateMachine.Serialize()},
+                { InventoryKey, Inventory.Serialize() }
             };
         }
 
@@ -93,6 +102,7 @@ namespace Runtime.Colony.Citizens
             Stats.Deserialize(data.GetNode(StatsKey));
             Timers = data.GetDictionary<string, long>(TimerKey);
             StateMachine.Deserialize(data.GetNode(StateMachineKey));
+            Inventory.Deserialize(data.GetNode(InventoryKey));
         }
 
         public void SetPointOfInterest(string key, Vector3 point)

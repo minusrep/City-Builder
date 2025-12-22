@@ -1,12 +1,13 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Stats.Collections
 {
     public class StatViewCollection : MonoBehaviour
     {
-        [SerializeField] private UIDocument _uiDocument;
+        [FormerlySerializedAs("_uiDocument")] public UIDocument UiDocument;
         
-        public VisualElement Root => _uiDocument.rootVisualElement;
+        public VisualElement Root => UiDocument.rootVisualElement;
     }
 }
