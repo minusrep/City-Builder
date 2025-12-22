@@ -34,6 +34,9 @@ namespace Runtime.Colony.Inventory.Cell
             
             _view.Amount.style.display = DisplayStyle.Flex;
             
+            if (_model.Resource == null)
+                return;
+            
             var itemViewDescription = _viewDescription.ItemViewDescriptions.Get(_model.Resource.ViewId);
             
             _view.Image.style.backgroundImage = itemViewDescription.Image.texture;
