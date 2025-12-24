@@ -131,15 +131,16 @@ namespace Runtime.Colony.Inventory
             var cell = new CellModel();
             
             var amount = data.GetInt("amount");
-
-            cell.TryAdd(_resourceDescriptions.Descriptions[id], amount, _maxStackSize);
+            var resourceId = data.GetString("resource");
+            
+            cell.TryAdd(_resourceDescriptions.Descriptions[resourceId], amount, _maxStackSize);
 
             return cell;
         }
 
         private bool IsSameItem(ResourceDescription itemA, ResourceDescription itemB)
         {
-            return itemA.Type == itemB.Type;
+            return itemA.Id == itemB.Id;
         }
     }
 }

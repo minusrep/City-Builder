@@ -55,6 +55,14 @@
           "operation": "lesser",
           "counter": "energy",
           "value": 10
+        },
+        "walk_to_warehouse": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "true"
+        },
+        "walk_to_sawmill": {
+          "type": "true"
         }
       }
     },
@@ -191,6 +199,142 @@
       "transitions": {
         "idle": {
           "type": "true"
+        }
+      }
+    },
+    "walk_to_sawmill" : {
+      "actions": [
+        {
+          "type": "set_point_of_interest_building",
+          "point_of_interest": "sawmill"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "sawmill"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "start_take_resource": {
+          "type": "distance",
+          "value": 1.5,
+          "point_of_interest": "sawmill"
+        }
+      }
+    },
+    "start_take_resource": {
+      "actions": [
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
+        "try_take_resource": {
+          "type": "true"
+        }
+      }
+    },
+    "try_take_resource" : {
+      "actions": [
+        {
+          "type": "take_resource",
+          "point_of_interest": "sawmill"
+        }
+      ],
+      "transitions": {
+        "walk_to_tavern": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "satiety",
+          "value": 20
+        },
+        "walk_to_shelter": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "energy",
+          "value": 10
+        },
+        "walk_to_warehouse": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "true"
+        },
+        "try_take_resource": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "false"
+        }
+      }
+    },
+    "walk_to_warehouse" : {
+      "actions": [
+        {
+          "type": "set_point_of_interest_building",
+          "point_of_interest": "warehouse"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "warehouse"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "start_put_resource": {
+          "type": "distance",
+          "value": 1.5,
+          "point_of_interest": "warehouse"
+        }
+      }
+    },
+    "start_put_resource": {
+      "actions": [
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
+        "try_put_resource": {
+          "type": "true"
+        }
+      }
+    },
+    "try_put_resource": {
+      "actions": [
+        {
+          "type": "put_resource",
+          "point_of_interest": "warehouse"
+        }
+      ],
+      "transitions": {
+        "walk_to_tavern": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "satiety",
+          "value": 20
+        },
+        "walk_to_shelter": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "energy",
+          "value": 10
+        },
+        "idle": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "false"
+        },
+        "try_put_resource": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "true"
         }
       }
     }

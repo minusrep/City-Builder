@@ -13,7 +13,7 @@ namespace Runtime.Descriptions.Items
             foreach (var description in descriptions)
             {
                 var dict = (Dictionary<string, object>)description.Value;
-                Descriptions.Add(description.Key, new ResourceDescription(dict));
+                Descriptions.Add(description.Key, new ResourceDescription(description.Key, dict));
             }
         }
     }

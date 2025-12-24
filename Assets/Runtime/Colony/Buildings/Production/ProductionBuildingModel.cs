@@ -16,7 +16,7 @@ namespace Runtime.Colony.Buildings.Production
         public ProductionBuildingDescription Description { get; }
         public InventoryModel Inventory { get; private set; }
         public bool IsActive { get; private set; }
-        private ResourceDescription ResourceDescription { get; }
+        public ResourceDescription ResourceDescription { get; }
         private WorldDescription WorldDescription { get; }
 
         public long StartProductionTime;

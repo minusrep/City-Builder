@@ -1,6 +1,7 @@
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
 using Runtime.Colony.Citizens.Movement;
+using Runtime.Colony.Inventory;
 using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
 using Runtime.ViewDescriptions;
@@ -17,6 +18,8 @@ namespace Runtime.Colony.Citizens
         
         private StatPresenterCollection _statPresenterCollection;
 
+        private InventoryPresenter _inventoryPresenter;
+        
         private readonly CitizenModel _model;
         
         private readonly World _world;
@@ -48,6 +51,9 @@ namespace Runtime.Colony.Citizens
 
             _statPresenterCollection = new StatPresenterCollection(_model.Stats, _view.StatViewCollection,
                 _viewDescriptions.StatViewDescriptions);
+
+            _inventoryPresenter = new InventoryPresenter(_model.Inventory,
+                _view.StatViewCollection.UiDocument, _viewDescriptions);
             
             _citizenMovementPresenter.Enable();
             
@@ -57,11 +63,15 @@ namespace Runtime.Colony.Citizens
             
             _statPresenterCollection.Enable();
             
+            _inventoryPresenter.Enable();
+            
             ExecuteActions();
         }
 
         public void Disable()
         {
+            _inventoryPresenter.Disable();
+            
             _statPresenterCollection.Disable();
             
             _citizenMovementPresenter.Disable();

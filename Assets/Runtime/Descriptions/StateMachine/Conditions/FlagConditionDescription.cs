@@ -28,7 +28,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
                 return false;
             }
             
-            return flagsModel.Flags[Flag] == Value;
+            return flagsModel.Flags.ContainsKey(Flag) && flagsModel.Flags[Flag] == Value;
         }
     }
 }
