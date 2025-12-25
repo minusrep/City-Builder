@@ -21,7 +21,7 @@ namespace Runtime
     public sealed class EntryPoint : MonoBehaviour
     {
         [Header("UI")] [SerializeField] private UIDocument _menuDocument;
-        [SerializeField] private VisualTreeAsset _pauseMenuAsset;
+        [SerializeField] private VisualTreeAsset _inGameMenuAsset;
         [SerializeField] private VisualTreeAsset _loadMenuAsset;
         [SerializeField] private VisualTreeAsset _achievementsMenuAsset;
         
@@ -76,7 +76,7 @@ namespace Runtime
             _menuContent = new MenuContent(_menuDocument);
 
             var pauseMenuModel = new InGameMenuModel(_playerControls);
-            var pauseMenuView = new InGameMenuView(_pauseMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
+            var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);
             _inGameMenuPresenter.Enable();
 
