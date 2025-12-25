@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Stats.StatViewDescription
   StatViewAsset: {fileID: 9197481963319205126, guid: b812b74c4b0104f48b050b11b6194323, type: 3}
   StyleSheet: {fileID: 7433441132597879392, guid: ef4d25bf0cf4ccd4bb8718bac95b156d, type: 3}
+  Icon: {fileID: 21300000, guid: ed8ef41e0593c444f89985400bb18768, type: 3}

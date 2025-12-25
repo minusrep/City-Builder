@@ -1,6 +1,8 @@
 .unity-progress-bar {
     min-width: 140px;
     max-width: 140px;
+    min-height: 30px;
+    max-height: 42px;
 }
 
 .unity-progress-bar__background {
@@ -32,3 +34,8 @@
     margin-bottom: 0;
     margin-right: 0;
 }
+
+.image-tint {
+}
+
+

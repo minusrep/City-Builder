@@ -16,8 +16,6 @@ namespace Runtime.Colony.Stats
 
         public void Enable()
         {
-            _statView.Text = _stat.Stat.Id;
-            
             _stat.ValueChanged += OnStatValueChanged;
             OnStatValueChanged(_stat.Value);
         }

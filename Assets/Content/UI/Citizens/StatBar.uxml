@@ -1,3 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:ProgressBar value="0" title="" name="stat-bar" style="width: 119px; -unity-background-scale-mode: stretch-to-fill; height: 25px; flex-direction: column; align-items: stretch; justify-content: space-between; align-self: center; color: rgb(195, 195, 195); -unity-text-outline-color: rgb(19, 19, 19); -unity-text-outline-width: 1px; font-size: 21px;"/>
+    <Style src="project://database/Assets/Content/UI/Styles/progress-bar-style.uss?fileID=7433441132597879392&amp;guid=94d1fcaa92ea32c45ac52ae3eca472fe&amp;type=3#progress-bar-style"/>
+    <ui:VisualElement name="stat" style="flex-grow: 0; flex-direction: row; align-items: center; justify-content: flex-start; min-width: 180px; max-width: 180px; min-height: 42px; max-height: 42px; align-self: auto; flex-shrink: 0;">
+        <ui:VisualElement name="stat-icon" class="image-tint" style="flex-grow: 1; min-width: 35px; max-width: 35px; max-height: 35px; min-height: 35px; background-image: none; margin-top: 0; margin-right: 5px; margin-bottom: 0; margin-left: 0; background-size: 35px 35px; -unity-background-scale-mode: stretch-to-fill;"/>
+        <ui:ProgressBar value="44.6" title="" name="stat-bar" style="-unity-background-scale-mode: stretch-to-fill; flex-direction: column; align-items: stretch; justify-content: space-between; align-self: center; color: rgb(195, 195, 195); -unity-text-outline-color: rgb(19, 19, 19); -unity-text-outline-width: 1px; font-size: 21px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+    </ui:VisualElement>
 </ui:UXML>

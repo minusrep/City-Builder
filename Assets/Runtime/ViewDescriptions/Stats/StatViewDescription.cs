@@ -8,5 +8,6 @@ namespace Runtime.ViewDescriptions.Stats
     {
         public VisualTreeAsset StatViewAsset;
         public StyleSheet StyleSheet;
+        public Sprite Icon;
     }
 }

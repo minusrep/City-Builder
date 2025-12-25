@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c96dbc86dd94167808c928823c4dae3, type: 3}
   m_Name: CitizenViewDescription
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Citizens.CitizenViewDescription
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 5466327982858300868, guid: 185544215506d724288e301cb095cb6f, type: 3}

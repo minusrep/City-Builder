@@ -15,18 +15,15 @@ namespace Runtime.Colony.Stats
             set => _bar.value = value;
         }
 
-        public string Text
-        {
-            get => _bar.title;
-            set => _bar.title = value;
-        }
-
         public StatView(StatViewDescription description)
         {
-            Root = description.StatViewAsset.CloneTree().Q<VisualElement>("stat-bar");
+            Root = description.StatViewAsset.CloneTree().Q<VisualElement>("stat");
             Root.styleSheets.Add(description.StyleSheet);
             
             _bar = Root.Q<ProgressBar>("stat-bar");
+            
+            var icon = Root.Q<VisualElement>("stat-icon");
+            icon.style.backgroundImage = description.Icon.texture;
         }
     }
 }
