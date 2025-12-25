@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/pause-menu-style.uss?fileID=7433441132597879392&amp;guid=c2f9e313111b5c04f9768c54c6584dcc&amp;type=3#pause-menu-style"/>
+    <ui:VisualElement name="content" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.71); justify-content: flex-start; align-items: flex-start; flex-direction: row;">
+        <ui:VisualElement name="menu" style="flex-grow: 1; min-width: 470px; max-width: 470px; min-height: 100%; max-height: 100%; background-color: rgba(0, 0, 0, 0.9); border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; flex-shrink: 1; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); -unity-background-image-tint-color: rgb(130, 130, 130); -unity-background-scale-mode: scale-and-crop; align-items: center; justify-content: flex-start; margin-left: 80px; margin-right: 80px;">
+            <ui:VisualElement name="buttons-container" style="flex-grow: 1; align-items: center; margin-top: 40px; margin-bottom: 40px; justify-content: center;">
+                <ui:Button text="&#1055;&#1088;&#1086;&#1076;&#1086;&#1083;&#1078;&#1080;&#1090;&#1100;" name="resume-button" class="resume-button"/>
+                <ui:Button text="&#1057;&#1086;&#1093;&#1088;&#1072;&#1085;&#1080;&#1090;&#1100;" name="save-button" class="menu-button" style="margin-top: 30px;"/>
+                <ui:Button text="&#1047;&#1072;&#1075;&#1088;&#1091;&#1079;&#1080;&#1090;&#1100;" name="load-button" class="menu-button"/>
+                <ui:Button text="&#1044;&#1086;&#1089;&#1090;&#1080;&#1078;&#1077;&#1085;&#1080;&#1103;" name="achievements-button" class="menu-button"/>
+                <ui:Button text="&#1042;&#1099;&#1093;&#1086;&#1076;" name="exit-button" class="exit-button" style="margin-top: 30px;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="page-content" style="flex-grow: 1; min-width: auto; max-width: none; min-height: 100%; max-height: 100%; background-color: rgba(0, 0, 0, 0.9); display: flex;"/>
+    </ui:VisualElement>
+</ui:UXML>

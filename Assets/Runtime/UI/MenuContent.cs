@@ -6,7 +6,7 @@ namespace Runtime.UI
     {
         public VisualElement MenuRoot {get; private set;}
         
-        public MenuContent(UIDocument menuDocument, UIDocument worldDocument)
+        public MenuContent(UIDocument menuDocument)
         {
             MenuRoot = menuDocument.rootVisualElement.Q<VisualElement>("content");
         }
