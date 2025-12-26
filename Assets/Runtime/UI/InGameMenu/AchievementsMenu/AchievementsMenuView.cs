@@ -8,7 +8,7 @@ namespace Runtime.UI.InGameMenu.AchievementsMenu
 
         public AchievementsMenuView(VisualTreeAsset asset)
         {
-            Root = asset.CloneTree().Q<VisualElement>("content");
+            Root = asset.CloneTree().Q<VisualElement>("achievements-content");
         }
     }
 }

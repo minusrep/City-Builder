@@ -495,7 +495,7 @@ MonoBehaviour:
   _menuDocument: {fileID: 2061765498}
   _inGameMenuAsset: {fileID: 9197481963319205126, guid: ca62dc2c731d58e4cbe04165d3ff0ce4, type: 3}
   _loadMenuAsset: {fileID: 9197481963319205126, guid: 33043ae5f0504f04885c0572e51c278b, type: 3}
-  _achievementsMenuAsset: {fileID: 9197481963319205126, guid: 9052b553ef082ef4db7c1cae9a3878d5, type: 3}
+  _achievementsMenuAsset: {fileID: 9197481963319205126, guid: a3dda2e779c49434da21210c906fb3a4, type: 3}
   _buildingCollectionView: {fileID: 730573693}
   _citizenViewCollection: {fileID: 1822786099}
   _cameraControlView: {fileID: 330585549}
