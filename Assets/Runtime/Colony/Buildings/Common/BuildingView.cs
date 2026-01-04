@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Buildings.Common
 {
@@ -6,11 +7,21 @@ namespace Runtime.Colony.Buildings.Common
     {
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
+        public ProgressBar ProgressBar { get; private set; }
+        public UIDocument Document => _uiDocument;
 
-        public virtual void Initialize()
+        [SerializeField] private UIDocument _uiDocument;
+
+        public void Initialize()
         {
             Transform = transform;
             GameObject =  gameObject;
+            
+            if (_uiDocument)
+            {
+                var root = _uiDocument.rootVisualElement;
+                ProgressBar = root.Q<ProgressBar>("production-progress");
+            }
         }
     }
 }

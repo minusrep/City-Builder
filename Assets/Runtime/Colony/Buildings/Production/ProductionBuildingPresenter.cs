@@ -1,13 +1,13 @@
 ﻿using System;
 using Runtime.Colony.Buildings.Common;
-using Runtime.Colony.Buildings.Pool;
 using Runtime.Colony.Inventory;
+using Runtime.Common.ObjectPool;
 using Runtime.GameSystems;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Production
 {
-    public class ProductionBuildingPresenter : BuildingPresenter<ProductionBuildingView>
+    public class ProductionBuildingPresenter : BuildingPresenter
     {
         private readonly ProductionBuildingModel _model;
         private readonly GameSystemCollection _systemCollection;
@@ -15,7 +15,7 @@ namespace Runtime.Colony.Buildings.Production
 
         private InventoryPresenter _inventoryPresenter;
 
-        public ProductionBuildingPresenter(ProductionBuildingModel model, IBuildingViewPool viewPool,
+        public ProductionBuildingPresenter(ProductionBuildingModel model, IObjectPool<BuildingView> viewPool,
            WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, worldViewDescriptions)
         {
             _model = model;

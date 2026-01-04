@@ -1,18 +1,18 @@
-﻿using Runtime.Colony.Buildings.Pool;
-using Runtime.Common;
+﻿using Runtime.Common;
+using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Common
 {
-    public class BuildingPresenter<TView> : IPresenter where TView : BuildingView
+    public class BuildingPresenter : IPresenter
     {
         private BuildingModel Model { get; }
         protected WorldViewDescriptions WorldViewDescriptions { get; }
-        private IBuildingViewPool ViewPool { get; }
-        protected TView View { get; private set; }
+        private IObjectPool<BuildingView> ViewPool { get; }
+        protected BuildingView View { get; private set; }
 
-        public BuildingPresenter(BuildingModel model, IBuildingViewPool viewPool, WorldViewDescriptions worldViewDescriptions)
+        public BuildingPresenter(BuildingModel model, IObjectPool<BuildingView> viewPool, WorldViewDescriptions worldViewDescriptions)
         {
             Model = model;
             WorldViewDescriptions = worldViewDescriptions;
@@ -21,7 +21,8 @@ namespace Runtime.Colony.Buildings.Common
 
         public virtual void Enable()
         {
-            View = (TView)ViewPool.Get();
+            View = ViewPool.Get();
+            View.Initialize();
             View.Transform.position = ModelPositionToVector3(Model);
 
             Model.OnPositionChanged += HandlePositionChanged;

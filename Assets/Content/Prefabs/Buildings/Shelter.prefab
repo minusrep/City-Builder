@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &748797845413550398
 GameObject:
@@ -140,9 +140,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5389820821820916020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc961b6af68642bcb15bf68f1231c684, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cdc2d5e87e34c538184856218c0a9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Service.ServiceBuildingView
+  _uiDocument: {fileID: 0}
 --- !u!1001 &3491291869775354885
 PrefabInstance:
   m_ObjectHideFlags: 0

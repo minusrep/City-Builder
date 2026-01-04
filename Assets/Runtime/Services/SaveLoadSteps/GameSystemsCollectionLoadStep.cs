@@ -4,7 +4,6 @@ using Runtime.Colony.Citizens.Systems;
 using Runtime.Colony.StateMachine;
 using Runtime.Descriptions.Citizens;
 using Runtime.GameSystems;
-using UnityEngine;
 
 namespace Runtime.Services.SaveLoadSteps
 {

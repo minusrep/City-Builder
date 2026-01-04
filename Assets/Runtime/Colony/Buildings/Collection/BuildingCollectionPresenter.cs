@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Common.Factories;
-using Runtime.Colony.Buildings.Pool;
 using Runtime.Common;
-using Runtime.Descriptions.Buildings;
+using Runtime.Common.ObjectPool;
 using Runtime.GameSystems;
 using Runtime.ViewDescriptions;
 
@@ -13,20 +12,24 @@ namespace Runtime.Colony.Buildings.Collection
     {
         private readonly World _world;
         private readonly BuildingPresenterFactory _presenterFactory;
-        
+
         private readonly Dictionary<string, IPresenter> _presenters = new();
+        private readonly Dictionary<string, IObjectPool<BuildingView>> _viewPools = new();
 
         public BuildingCollectionPresenter(World world,
             BuildingCollectionView view,
-            BuildingsDescriptionCollection modelDescriptions, 
             WorldViewDescriptions worldViewDescriptions,
             GameSystemCollection gameSystemCollection)
         {
             _world = world;
-            var poolRegistry = new BuildingPoolRegistry();
-            poolRegistry.RegisterAll(worldViewDescriptions.BuildingViewDescriptions, modelDescriptions, view.Transform);
-            
-            _presenterFactory = new BuildingPresenterFactory(world, gameSystemCollection, poolRegistry, worldViewDescriptions);
+
+            foreach (var viewDescriptionBase in worldViewDescriptions.BuildingViewDescriptions.Descriptions)
+            {
+                _viewPools[viewDescriptionBase.Id] =
+                    new ObjectPool<BuildingView>(viewDescriptionBase.Prefab, 2, view.Transform);
+            }
+
+            _presenterFactory = new BuildingPresenterFactory(gameSystemCollection, worldViewDescriptions, _viewPools);
         }
 
         public void Enable()
@@ -57,7 +60,7 @@ namespace Runtime.Colony.Buildings.Collection
             presenter.Enable();
             _presenters.Add(model.Id, presenter);
         }
-        
+
         private void HandleRemoved(BuildingModel model)
         {
             var presenter = _presenters[model.Id];

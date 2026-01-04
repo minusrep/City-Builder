@@ -1,4 +1,5 @@
 ﻿using System;
+using Runtime.Colony.Buildings.Common;
 using Runtime.GameSystems;
 
 namespace Runtime.Colony.Buildings.Production
@@ -6,11 +7,11 @@ namespace Runtime.Colony.Buildings.Production
     public class ProductionBuildingSystem : IGameSystem
     {
         public string Id { get; }
-        
-        private readonly ProductionBuildingModel _model;
-        private readonly ProductionBuildingView _view;
 
-        public ProductionBuildingSystem(string id, ProductionBuildingModel model, ProductionBuildingView view)
+        private readonly ProductionBuildingModel _model;
+        private readonly BuildingView _view;
+
+        public ProductionBuildingSystem(string id, ProductionBuildingModel model, BuildingView view)
         {
             _model = model;
             _view = view;
