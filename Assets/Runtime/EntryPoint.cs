@@ -12,7 +12,6 @@ using Runtime.ViewDescriptions;
 using System.Collections.Generic;
 using Runtime.UI;
 using Runtime.UI.InGameMenu;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -83,7 +82,7 @@ namespace Runtime
             Application.quitting += OnQuit;
 
 #if UNITY_EDITOR
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            UnityEditor.EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
 #endif
         }
 
@@ -93,9 +92,9 @@ namespace Runtime
         }
 
 #if UNITY_EDITOR
-        private void OnPlayModeStateChanged(PlayModeStateChange state)
+        private void OnPlayModeStateChanged(UnityEditor.PlayModeStateChange state)
         {
-            if (state == PlayModeStateChange.ExitingPlayMode)
+            if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
             {
                 Dispose();
             }
@@ -110,7 +109,7 @@ namespace Runtime
         private async void Dispose()
         {
 #if UNITY_EDITOR
-            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            UnityEditor.EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 #endif
             Application.quitting -= OnQuit;
 
