@@ -1,8 +1,7 @@
-﻿using Runtime.Colony.Buildings.Pool;
+﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Production;
-using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
-using Runtime.Common;
+using Runtime.Common.ObjectPool;
 using Runtime.GameSystems;
 using Runtime.ViewDescriptions;
 
@@ -10,34 +9,28 @@ namespace Runtime.Colony.Buildings.Common.Factories
 {
     public class BuildingPresenterFactory
     {
-        private readonly World _world;
         private readonly WorldViewDescriptions _worldViewDescriptions;
-        private readonly BuildingPoolRegistry _pools;
         private readonly GameSystemCollection _gameSystemCollection;
+        private readonly Dictionary<string, IObjectPool<BuildingView>>  _viewPools;
 
-        public BuildingPresenterFactory(World world, GameSystemCollection gameSystemCollection,
-            BuildingPoolRegistry pools, WorldViewDescriptions worldViewDescriptions)
+        public BuildingPresenterFactory(GameSystemCollection gameSystemCollection, WorldViewDescriptions worldViewDescriptions, Dictionary<string, IObjectPool<BuildingView>> viewPools)
         {
-            _world = world;
             _worldViewDescriptions = worldViewDescriptions;
-            _pools = pools;
+            _viewPools = viewPools;
             _gameSystemCollection = gameSystemCollection;
         }
         
-        public IPresenter Create(BuildingModel model)
+        public BuildingPresenter Create(BuildingModel model)
         {
             var viewId = model.BaseDescription.ViewDescriptionId;
-            var pool = _pools.Get(viewId);
+            var pool = _viewPools[viewId];
 
             return model switch
             {
                 ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool,
                     _worldViewDescriptions, _gameSystemCollection),
-                StorageBuildingModel storageModel =>
-                    new StorageBuildingPresenter(storageModel, pool, _worldViewDescriptions),
-                ServiceBuildingModel serviceModel =>
-                    new ServiceBuildingPresenter(serviceModel, pool, _world, _worldViewDescriptions, _gameSystemCollection),
-                _ => new BuildingPresenter<BuildingView>(model, pool, _worldViewDescriptions)
+                StorageBuildingModel storageModel => new StorageBuildingPresenter(storageModel, pool, _worldViewDescriptions),
+                _ => new BuildingPresenter(model, pool, _worldViewDescriptions)
             };
         }
     }
