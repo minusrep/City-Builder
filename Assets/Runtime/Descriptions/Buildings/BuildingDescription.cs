@@ -10,7 +10,7 @@ namespace Runtime.Descriptions.Buildings
         public string Type { get; }
         public string ViewDescriptionId { get; }
         public Vector2Int Size { get; }
-        public IReadOnlyList<Vector2Int> Cells { get; }
+        public List<Vector2Int> Cells { get; } = new();
 
         protected BuildingDescription(string id, Dictionary<string, object> data)
         {
@@ -18,7 +18,14 @@ namespace Runtime.Descriptions.Buildings
             Type = data.GetString("type");
             ViewDescriptionId = data.GetString("view_id");
             Size = data.GetVector2Int("size");
-            Cells = data.GetList<Vector2Int>("cells");
+
+            for (var x = 0; x < Size.x; x++)
+            {
+                for (var y = 0; y < Size.y; y++)
+                {
+                    Cells.Add(new Vector2Int(x, y));
+                }
+            }
         }
     }
 }
