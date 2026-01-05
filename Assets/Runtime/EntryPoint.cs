@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Runtime.AsyncLoad;
 using Runtime.CameraControl;
 using Runtime.Colony;
@@ -6,12 +7,10 @@ using Runtime.Colony.Citizens.Collection;
 using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
-using Runtime.Input;
 using Runtime.Services.SaveLoadSteps;
-using Runtime.ViewDescriptions;
-using System.Collections.Generic;
 using Runtime.UI;
 using Runtime.UI.InGameMenu;
+using Runtime.ViewDescriptions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -41,7 +40,6 @@ namespace Runtime
 
         private readonly List<IPresenter> _presenters = new();
 
-        private PlayerControls _playerControls;
         private CameraControlModel _cameraControlModel;
         private CameraControlPresenter _cameraControlPresenter;
         private MenuContent _menuContent;
@@ -66,15 +64,14 @@ namespace Runtime
                 await step.Run();
             }
 
-            _playerControls = new PlayerControls();
-            _cameraControlModel = new CameraControlModel(_playerControls);
+            _cameraControlModel = new CameraControlModel(_world.PlayerControls);
             _cameraControlPresenter = new CameraControlPresenter(_cameraControlModel, _cameraControlView,
                 _worldDescription.CameraControlDescription, _gameSystems);
             _cameraControlPresenter.Enable();
 
             _menuContent = new MenuContent(_menuDocument);
 
-            var pauseMenuModel = new InGameMenuModel(_playerControls);
+            var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
             var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);
             _inGameMenuPresenter.Enable();
