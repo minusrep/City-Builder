@@ -161,6 +161,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Construction",
+            "id": "2831b226-fe37-4170-8c49-1e29a97172b1",
+            "actions": [
+                {
+                    "name": "MovePreview",
+                    "type": "Value",
+                    "id": "46de0c11-6451-4e2d-88d0-edd7b964f4c3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ae8d87ea-d599-4f69-9256-be2146adaa56",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovePreview",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
