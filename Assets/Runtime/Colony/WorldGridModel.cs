@@ -1,4 +1,7 @@
-﻿using Runtime.Descriptions;
+﻿using Runtime.Colony.Buildings.Common;
+using Runtime.Descriptions;
+using Runtime.Descriptions.Buildings;
+using UnityEngine;
 
 namespace Runtime.Colony
 {
@@ -21,6 +24,48 @@ namespace Runtime.Colony
                     Cells[x, y] = new GridCellModel(x, y);
                 }
             }
+        }
+        
+        public bool CanPlaceBuilding(BuildingDescription description, Vector2Int position)
+        {
+            foreach (var cellOffset in description.Cells)
+            {
+                var x = position.x + cellOffset.x;
+                var y = position.y + cellOffset.y;
+                
+                if (x < 0 || x >= Description.Width || y < 0 || y >= Description.Height)
+                {
+                    return false;
+                }
+
+                if (!Cells[x, y].IsFree)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        public void PlaceBuilding(BuildingModel building, Vector2Int position)
+        {
+            foreach (var cellOffset in building.BaseDescription.Cells)
+            {
+                var x = position.x + cellOffset.x;
+                var y = position.y + cellOffset.y;
+                Cells[x, y].Occupy(building);
+            }
+            building.WorldPosition = GridToWorld(position, building.BaseDescription);
+        }
+        
+        public Vector2 GridToWorld(Vector2Int gridPosition, BuildingDescription description)
+        {
+            var sizeOffset = new Vector2(
+                (description.Size.x - 1) * 0.5f,
+                (description.Size.y - 1) * 0.5f);
+
+            return Description.Origin +
+                   (Vector2)gridPosition * Description.CellSize +
+                   sizeOffset * Description.CellSize;
         }
     }
 }
