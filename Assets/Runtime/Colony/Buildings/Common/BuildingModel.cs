@@ -22,7 +22,8 @@ namespace Runtime.Colony.Buildings.Common
                 OnPositionChanged?.Invoke();
             }
         }
-
+        
+        public Vector2Int GridPosition { get; private set; }
         public BuildingDescription BaseDescription { get; }
         
         private Vector2 _position;
@@ -35,12 +36,17 @@ namespace Runtime.Colony.Buildings.Common
             BaseDescription = baseDescription;
         }
         
+        public void SetGridPosition(Vector2Int gridPosition)
+        {
+            GridPosition = gridPosition;
+        }
+        
         public virtual Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>
             {
                 { "description", BaseDescription.Id },
-                { "position", Position.ToList() }
+                { "grid_position", GridPosition.ToList() }
             };
         }
 
