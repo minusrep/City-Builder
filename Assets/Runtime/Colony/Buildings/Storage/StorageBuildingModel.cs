@@ -19,8 +19,8 @@ namespace Runtime.Colony.Buildings.Storage
         private StorageBuildingDescription Description { get; }
 
         public StorageBuildingModel(string id,
-            Vector2 position,
-            StorageBuildingDescription description, WorldDescription worldDescription) : base(id, position, description)
+            Vector2 worldPosition,
+            StorageBuildingDescription description, WorldDescription worldDescription) : base(id, worldPosition, description)
         {
             WorldDescription = worldDescription;
             Description = description;

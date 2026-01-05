@@ -42,7 +42,7 @@ namespace Runtime.Colony.Buildings.Common
 
         private Vector3 ModelPositionToVector3(BuildingModel model)
         {
-            return new Vector3(model.Position.x, 0f, model.Position.y);
+            return new Vector3(model.WorldPosition.x, 0f, model.WorldPosition.y);
         }
     }
 }

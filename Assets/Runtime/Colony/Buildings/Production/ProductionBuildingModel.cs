@@ -24,8 +24,8 @@ namespace Runtime.Colony.Buildings.Production
         private OrderModelCollection _orders;
 
         public ProductionBuildingModel(string id,
-            Vector2 position,
-            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, position,
+            Vector2 worldPosition,
+            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, worldPosition,
             description)
         {
             WorldDescription = worldDescription;
