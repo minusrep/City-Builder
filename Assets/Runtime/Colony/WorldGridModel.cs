@@ -1,24 +1,24 @@
-﻿namespace Runtime.Colony
+﻿using Runtime.Descriptions;
+
+namespace Runtime.Colony
 {
     public class WorldGridModel
     {
-        public int Width { get; }
-        public int Height { get; }
+        public WorldGridDescription Description { get; }
         
-        private GridCellModel[,] _cells;
+        private GridCellModel[,] Cells { get; }
 
-        public WorldGridModel(int width, int height, float cellSize)
+        public WorldGridModel(WorldGridDescription description)
         {
-            Width = width;
-            Height = height;
+            Description = description;
             
-            _cells = new GridCellModel[width, height];
+            Cells = new GridCellModel[Description.Width, Description.Height];
 
-            for (var x = 0; x < Width; x++)
+            for (var x = 0; x < Description.Width; x++)
             {
-                for (var y = 0; y < Height; y++)
+                for (var y = 0; y < Description.Height; y++)
                 {
-                    _cells[x, y] = new GridCellModel(x, y);
+                    Cells[x, y] = new GridCellModel(x, y);
                 }
             }
         }
