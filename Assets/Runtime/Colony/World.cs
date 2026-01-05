@@ -17,12 +17,12 @@ namespace Runtime.Colony
         public CitizenModelCollection Citizens { get; private set; }
 
         public BuildingModelCollection Buildings { get; private set; }
+        
+        public WorldGridModel Grid { get; private set; }
 
         public WorldDescription WorldDescription { get; private set; }
         
         public GameSystemCollection GameSystems { get; private set; }
-        
-        public PointOfInterestDescriptionCollection PointsOfInterest { get; private set; }
         
         public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider, GameSystemCollection gameSystems)
         {
@@ -31,6 +31,8 @@ namespace Runtime.Colony
             Citizens = new CitizenModelCollection(worldDescription);
 
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
+            
+            Grid = new WorldGridModel(worldDescription.WorldGridDescription);
             
             GameSystems = gameSystems;
         }
