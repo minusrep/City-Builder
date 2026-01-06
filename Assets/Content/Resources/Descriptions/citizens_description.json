@@ -38,6 +38,14 @@
     "feed": {
       "stat": "satiety",
       "change_speed": 50
+    },
+    "stress": {
+      "stat": "happiness",
+      "change_speed": -1
+    },
+    "comfort": {
+      "stat": "happiness",
+      "change_speed": 20
     }
   },
   "states": {
@@ -59,6 +67,12 @@
           "type": "compare",
           "operation": "lesser",
           "counter": "energy",
+          "value": 10
+        },
+        "walk_to_talk": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "happiness",
           "value": 10
         },
         "walk_to_warehouse": {
@@ -207,7 +221,75 @@
         }
       }
     },
-    "walk_to_sawmill" : {
+    "walk_to_talk": {
+      "actions": [
+        {
+          "type": "set_point_of_interest_building",
+          "point_of_interest": "lantern"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "lantern"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "talk_start": {
+          "type": "distance",
+          "value": 1.0,
+          "point_of_interest": "lantern"
+        }
+      }
+    },
+    "talk_start": {
+      "actions": [
+        {
+          "type": "register_system",
+          "system": "comfort"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
+        "talk_end": {
+          "type": "compare",
+          "counter": "happiness",
+          "operation": "greater",
+          "value": 95
+        }
+      }
+    },
+    "talk_end": {
+      "actions": [
+        {
+          "type": "unregister_system",
+          "system": "comfort"
+        },
+        {
+          "type": "set_point_of_interest",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "idle": {
+          "type": "true"
+        }
+      }
+    },
+    "walk_to_sawmill": {
       "actions": [
         {
           "type": "set_point_of_interest_building",
@@ -243,7 +325,7 @@
         }
       }
     },
-    "try_take_resource" : {
+    "try_take_resource": {
       "actions": [
         {
           "type": "take_resource",
@@ -275,7 +357,7 @@
         }
       }
     },
-    "walk_to_warehouse" : {
+    "walk_to_warehouse": {
       "actions": [
         {
           "type": "set_point_of_interest_building",
