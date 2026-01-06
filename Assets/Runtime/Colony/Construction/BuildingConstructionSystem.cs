@@ -28,7 +28,7 @@ namespace Runtime.Colony.Construction
                 if (_groundPlane.Raycast(ray, out var distance))
                 {
                     var worldPosition = ray.GetPoint(distance);
-                    var gridPosition = WorldToGrid(new Vector2(worldPosition.x, worldPosition.z));
+                    var gridPosition = WorldToGrid(worldPosition);
 
                     var canPlace = _world.Grid.CanPlaceBuilding(
                         _model.SelectedBuilding,
@@ -52,7 +52,7 @@ namespace Runtime.Colony.Construction
         {
             var local = worldPosition - _world.Grid.Description.Origin;
             var x = Mathf.FloorToInt(local.x / _world.Grid.Description.CellSize);
-            var y = Mathf.FloorToInt(local.y / _world.Grid.Description.CellSize);
+            var y = Mathf.FloorToInt(local.z / _world.Grid.Description.CellSize);
             return new Vector2Int(x, y);
         }
     }
