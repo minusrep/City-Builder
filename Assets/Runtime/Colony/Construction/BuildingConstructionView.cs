@@ -17,12 +17,10 @@ namespace Runtime.Colony.Construction
         public void SetPreviewRenderer(Renderer previewRenderer)
         {
             PreviewRenderer = previewRenderer;
-            if (PreviewRenderer != null)
-            {
-                PreviewRenderer.transform.SetParent(Transform);
-                PreviewRenderer.transform.localPosition = Vector3.zero;
-                PreviewRenderer.transform.localRotation = Quaternion.identity;
-            }
+            var rendererTransform = previewRenderer.transform;
+            rendererTransform.SetParent(Transform);
+            rendererTransform.localPosition = Vector3.zero;
+            rendererTransform.localRotation = Quaternion.identity;
         }
         
         public void SetValid(bool canPlace)
