@@ -1,7 +1,7 @@
 ﻿using Runtime.Colony.Buildings.Common;
 using UnityEngine;
 
-namespace Runtime.Colony
+namespace Runtime.Colony.Construction
 {
     public class GridCellModel
     {

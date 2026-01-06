@@ -3,7 +3,7 @@ using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
-namespace Runtime.Colony
+namespace Runtime.Colony.Construction
 {
     public class WorldGridModel
     {
@@ -57,14 +57,14 @@ namespace Runtime.Colony
             building.WorldPosition = GridToWorld(position, building.BaseDescription);
         }
         
-        public Vector2 GridToWorld(Vector2Int gridPosition, BuildingDescription description)
+        public Vector3 GridToWorld(Vector2Int gridPosition, BuildingDescription description)
         {
-            var sizeOffset = new Vector2(
+            var sizeOffset = new Vector3(
                 (description.Size.x - 1) * 0.5f,
                 (description.Size.y - 1) * 0.5f);
 
             return Description.Origin +
-                   (Vector2)gridPosition * Description.CellSize +
+                   new Vector3(gridPosition.x, 0, gridPosition.y) * Description.CellSize +
                    sizeOffset * Description.CellSize;
         }
     }
