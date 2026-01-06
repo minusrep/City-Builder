@@ -30,6 +30,7 @@ namespace Runtime
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
         [SerializeField] private CameraControlView _cameraControlView;
         [SerializeField] private BuildingConstructionView _buildingConstructionView;
+        [SerializeField] private WorldGridView _worldGridView;
 
         private readonly WorldDescription _worldDescription = new();
 
@@ -78,6 +79,9 @@ namespace Runtime
             var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);
             _inGameMenuPresenter.Enable();
+
+            var worldGridPresenter = new WorldGridPresenter(_world.Grid, _worldGridView);
+            worldGridPresenter.Enable();
 
             var buildingConstructionModel = new BuildingConstructionModel(_world.PlayerControls);
             var buildingConstructionPresenter = new BuildingConstructionPresenter(buildingConstructionModel,
