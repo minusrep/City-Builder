@@ -67,5 +67,13 @@ namespace Runtime.Colony.Construction
                    new Vector3(gridPosition.x, 0, gridPosition.y) * Description.CellSize +
                    sizeOffset * Description.CellSize;
         }
+
+        public Vector2Int WorldToGrid(Vector3 worldPosition)
+        {
+            var local = worldPosition - Description.Origin;
+            var x = Mathf.FloorToInt(local.x / Description.CellSize);
+            var y = Mathf.FloorToInt(local.z / Description.CellSize);
+            return new Vector2Int(x, y);
+        }
     }
 }
