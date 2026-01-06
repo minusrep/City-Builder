@@ -59,6 +59,7 @@ namespace Runtime.Colony.Construction
             var previewRenderer = Object.Instantiate(viewDescription.Prefab.PreviewRenderer);
 
             _view.SetPreviewRenderer(previewRenderer);
+            ScaleViewToGrid(viewDescription, _world.Grid);
         }
         
         private BuildingViewDescription GetViewDescription()
@@ -66,6 +67,27 @@ namespace Runtime.Colony.Construction
             return _viewDescriptionCollection.Get(
                 _model.SelectedBuilding.ViewDescriptionId
             );
+        }
+
+        private void ScaleViewToGrid(BuildingViewDescription viewDescription,
+            WorldGridModel grid)
+        {
+            var bounds = _view.PreviewRenderer.bounds;
+
+            var targetSize = new Vector3(
+                viewDescription.VisualSizeInCells.x * grid.Description.CellSize,
+                bounds.size.y,
+                viewDescription.VisualSizeInCells.y * grid.Description.CellSize
+            );
+
+            var currentSize = bounds.size;
+
+            var scale = Mathf.Min(
+                targetSize.x / currentSize.x,
+                targetSize.z / currentSize.z
+            );
+
+            _view.Transform.localScale = Vector3.one * scale;
         }
     }
 }
