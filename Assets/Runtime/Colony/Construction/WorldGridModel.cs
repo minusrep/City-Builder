@@ -54,18 +54,13 @@ namespace Runtime.Colony.Construction
                 var y = position.y + cellOffset.y;
                 Cells[x, y].Occupy(building);
             }
-            building.WorldPosition = GridToWorld(position, building.BaseDescription);
+            building.WorldPosition = GridToWorld(position);
         }
         
-        public Vector3 GridToWorld(Vector2Int gridPosition, BuildingDescription description)
+        public Vector3 GridToWorld(Vector2Int gridPosition)
         {
-            var sizeOffset = new Vector3(
-                (description.Size.x - 1) * 0.5f,
-                (description.Size.y - 1) * 0.5f);
-
             return Description.Origin +
-                   new Vector3(gridPosition.x, 0, gridPosition.y) * Description.CellSize +
-                   sizeOffset * Description.CellSize;
+                   new Vector3(gridPosition.x, 0, gridPosition.y) * Description.CellSize;
         }
 
         public Vector2Int WorldToGrid(Vector3 worldPosition)

@@ -35,8 +35,7 @@ namespace Runtime.Colony.Construction
                         gridPosition);
 
                     var previewWorldPosition = _world.Grid.GridToWorld(
-                        gridPosition,
-                        _model.SelectedBuilding);
+                        gridPosition);
 
                     _model.CurrentGridPosition = gridPosition;
                     _model.CurrentWorldPosition = previewWorldPosition;
