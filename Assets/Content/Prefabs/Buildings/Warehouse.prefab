@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1724799382430626500
 GameObject:
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Storage.StorageBuildingView
   _uiDocument: {fileID: 912060516600702519}
+  _previewRenderer: {fileID: 4045495954904008579}
 --- !u!1 &5704163956497761162
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,11 +413,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 64709986120796606, guid: 84097ddad6d7241409e382738aae22bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84097ddad6d7241409e382738aae22bb, type: 3}
+--- !u!23 &4045495954904008579 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23201083757099086, guid: 84097ddad6d7241409e382738aae22bb, type: 3}
+  m_PrefabInstance: {fileID: 4068457319353794509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4069468494179662409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4424883678430596, guid: 84097ddad6d7241409e382738aae22bb, type: 3}

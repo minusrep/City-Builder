@@ -9,8 +9,10 @@ namespace Runtime.Colony.Buildings.Common
         public GameObject GameObject { get; private set; }
         public ProgressBar ProgressBar { get; private set; }
         public UIDocument Document => _uiDocument;
+        public Renderer PreviewRenderer => _previewRenderer;
 
         [SerializeField] private UIDocument _uiDocument;
+        [SerializeField] private Renderer _previewRenderer;
 
         public void Initialize()
         {

@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1675908403076611922
 GameObject:
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Production.ProductionBuildingView
   _uiDocument: {fileID: 1338904815707915831}
+  _previewRenderer: {fileID: 5931209006313124249}
 --- !u!208 &5016655931405627063
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -143,6 +144,10 @@ PrefabInstance:
     - target: {fileID: 1385894361391736, guid: 7d6919505691962458135bc69d38b4bf, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Preset_Shelter_01_Optimized
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385894361391736, guid: 7d6919505691962458135bc69d38b4bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4321403789553202, guid: 7d6919505691962458135bc69d38b4bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -188,6 +193,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23943013625184106, guid: 7d6919505691962458135bc69d38b4bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 64259452572100402, guid: 7d6919505691962458135bc69d38b4bf, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -201,5 +210,10 @@ PrefabInstance:
 --- !u!4 &5913867879732222597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4321403789553202, guid: 7d6919505691962458135bc69d38b4bf, type: 3}
+  m_PrefabInstance: {fileID: 5916918246736835767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5931209006313124249 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23361191487374638, guid: 7d6919505691962458135bc69d38b4bf, type: 3}
   m_PrefabInstance: {fileID: 5916918246736835767}
   m_PrefabAsset: {fileID: 0}
