@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ProductionBuildingViewDescription
   Prefab: {fileID: 7811179642611185603, guid: 436d6bceca5bd464aa7470befbb7c8c2, type: 3}
   VisualSizeInCells: {x: 3, y: 2}
+  AdditionalWorldOffset: {x: -0.15, y: 0, z: 0.1}
