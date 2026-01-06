@@ -33,7 +33,7 @@ namespace Runtime.Colony.Construction
             _viewDescriptionCollection = viewDescriptions.BuildingViewDescriptions;
             _system = new BuildingConstructionSystem(_model, _view, world);
         }
-        
+
         public void Enable()
         {
             _model.IsActive = true;
@@ -50,7 +50,7 @@ namespace Runtime.Colony.Construction
             _systemCollection.Remove(_system);
             _model.IsActive = false;
         }
-        
+
         private void SetupView()
         {
             _view.GameObject.SetActive(true);
@@ -58,10 +58,12 @@ namespace Runtime.Colony.Construction
             var viewDescription = GetViewDescription();
             var previewRenderer = Object.Instantiate(viewDescription.Prefab.PreviewRenderer);
 
+            _model.VisualWorldOffset = CalculateVisualOffset(viewDescription);
+
             _view.SetPreviewRenderer(previewRenderer);
             ScaleViewToGrid(viewDescription, _world.Grid);
         }
-        
+
         private BuildingViewDescription GetViewDescription()
         {
             return _viewDescriptionCollection.Get(
@@ -88,6 +90,25 @@ namespace Runtime.Colony.Construction
             );
 
             _view.Transform.localScale = Vector3.one * scale;
+        }
+
+        private Vector3 CalculateVisualOffset(BuildingViewDescription viewDescription)
+        {
+            var cellSize = _world.Grid.Description.CellSize;
+
+            var footprintWorldSize = new Vector3(
+                viewDescription.VisualSizeInCells.x * cellSize,
+                0f,
+                viewDescription.VisualSizeInCells.y * cellSize
+            );
+
+            var additionalScaled = Vector3.Scale(
+                viewDescription.AdditionalWorldOffset,
+                new Vector3(viewDescription.VisualSizeInCells.x * cellSize, 1f,
+                    viewDescription.VisualSizeInCells.y * cellSize)
+            );
+
+            return footprintWorldSize + additionalScaled;
         }
     }
 }
