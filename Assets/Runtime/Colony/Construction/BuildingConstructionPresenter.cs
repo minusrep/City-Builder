@@ -16,8 +16,8 @@ namespace Runtime.Colony.Construction
         private readonly GameSystemCollection _systemCollection;
         private readonly BuildingsDescriptionCollection _descriptionCollection;
         private readonly BuildingViewDescriptionCollection _viewDescriptionCollection;
+        private readonly BuildingConstructionSystem _system;
 
-        private BuildingConstructionSystem _system;
 
         public BuildingConstructionPresenter(BuildingConstructionModel model, BuildingConstructionView view,
             World world,
@@ -31,18 +31,15 @@ namespace Runtime.Colony.Construction
             _systemCollection = systemCollection;
             _descriptionCollection = descriptions.BuildingCollection;
             _viewDescriptionCollection = viewDescriptions.BuildingViewDescriptions;
+            _system = new BuildingConstructionSystem(_model, _view, world);
         }
         
         public void Enable()
         {
             _model.IsActive = true;
             _model.SelectedBuilding = _descriptionCollection.Descriptions["sawmill"];
-            
-            _view.GameObject.SetActive(true);
-            var viewDescription = _viewDescriptionCollection.Get(_model.SelectedBuilding.ViewDescriptionId);
-            _view.SetPreviewRenderer(Object.Instantiate(viewDescription.Prefab.PreviewRenderer));
 
-            _system = new BuildingConstructionSystem(_model, _view, _world);
+            SetupView();
 
             _systemCollection.Add(_system);
         }
@@ -52,6 +49,23 @@ namespace Runtime.Colony.Construction
             _view.GameObject.SetActive(false);
             _systemCollection.Remove(_system);
             _model.IsActive = false;
+        }
+        
+        private void SetupView()
+        {
+            _view.GameObject.SetActive(true);
+
+            var viewDescription = GetViewDescription();
+            var previewRenderer = Object.Instantiate(viewDescription.Prefab.PreviewRenderer);
+
+            _view.SetPreviewRenderer(previewRenderer);
+        }
+        
+        private BuildingViewDescription GetViewDescription()
+        {
+            return _viewDescriptionCollection.Get(
+                _model.SelectedBuilding.ViewDescriptionId
+            );
         }
     }
 }
