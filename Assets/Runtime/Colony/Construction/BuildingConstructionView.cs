@@ -27,8 +27,6 @@ namespace Runtime.Colony.Construction
         
         public void SetValid(bool canPlace)
         {
-            if (PreviewRenderer == null) return;
-
             var materials = PreviewRenderer.materials;
             foreach (var material in materials)
             {
