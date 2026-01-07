@@ -262,6 +262,15 @@ namespace Runtime.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Build"",
+                    ""type"": ""Button"",
+                    ""id"": ""76aacf6c-648d-4b8d-9b75-09adf12ae4d9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -273,6 +282,17 @@ namespace Runtime.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MovePreview"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a4e8e2c-4183-40dc-9dfb-c4abae0e04b2"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Build"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -293,6 +313,7 @@ namespace Runtime.Input
             // Construction
             m_Construction = asset.FindActionMap("Construction", throwIfNotFound: true);
             m_Construction_MovePreview = m_Construction.FindAction("MovePreview", throwIfNotFound: true);
+            m_Construction_Build = m_Construction.FindAction("Build", throwIfNotFound: true);
         }
 
         ~@PlayerControls()
@@ -601,6 +622,7 @@ namespace Runtime.Input
         private readonly InputActionMap m_Construction;
         private List<IConstructionActions> m_ConstructionActionsCallbackInterfaces = new List<IConstructionActions>();
         private readonly InputAction m_Construction_MovePreview;
+        private readonly InputAction m_Construction_Build;
         /// <summary>
         /// Provides access to input actions defined in input action map "Construction".
         /// </summary>
@@ -616,6 +638,10 @@ namespace Runtime.Input
             /// Provides access to the underlying input action "Construction/MovePreview".
             /// </summary>
             public InputAction @MovePreview => m_Wrapper.m_Construction_MovePreview;
+            /// <summary>
+            /// Provides access to the underlying input action "Construction/Build".
+            /// </summary>
+            public InputAction @Build => m_Wrapper.m_Construction_Build;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -645,6 +671,9 @@ namespace Runtime.Input
                 @MovePreview.started += instance.OnMovePreview;
                 @MovePreview.performed += instance.OnMovePreview;
                 @MovePreview.canceled += instance.OnMovePreview;
+                @Build.started += instance.OnBuild;
+                @Build.performed += instance.OnBuild;
+                @Build.canceled += instance.OnBuild;
             }
 
             /// <summary>
@@ -659,6 +688,9 @@ namespace Runtime.Input
                 @MovePreview.started -= instance.OnMovePreview;
                 @MovePreview.performed -= instance.OnMovePreview;
                 @MovePreview.canceled -= instance.OnMovePreview;
+                @Build.started -= instance.OnBuild;
+                @Build.performed -= instance.OnBuild;
+                @Build.canceled -= instance.OnBuild;
             }
 
             /// <summary>
@@ -757,6 +789,13 @@ namespace Runtime.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnMovePreview(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Build" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnBuild(InputAction.CallbackContext context);
         }
     }
 }
