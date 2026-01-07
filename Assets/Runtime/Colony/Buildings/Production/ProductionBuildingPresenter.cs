@@ -34,9 +34,11 @@ namespace Runtime.Colony.Buildings.Production
 
             _inventoryPresenter.Enable();
             
+            _model.Inventory.OnRemoveItem += HandleRemovedResource;
+            
             _systemCollection.Add(_productionSystem);
         }
-
+        
         public override void Disable()
         {
             _model.StopProduction();
@@ -44,9 +46,20 @@ namespace Runtime.Colony.Buildings.Production
             _inventoryPresenter.Disable();
             _inventoryPresenter = null;
 
+            _model.Inventory.OnRemoveItem -= HandleRemovedResource;
+            
             _systemCollection.Remove(_productionSystem);
             
             base.Disable();
+        }
+
+        private void HandleRemovedResource()
+        {
+            var currentAmount = _model.Inventory.Models[_model.Description.ProductionResource].Amount;
+            if (_model.CapacityLeft() && currentAmount == _model.Description.MaxResource - 1)
+            {
+                _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            }
         }
     }
 }

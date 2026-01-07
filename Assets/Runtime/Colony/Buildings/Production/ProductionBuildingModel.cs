@@ -43,7 +43,7 @@ namespace Runtime.Colony.Buildings.Production
 
         public void StartProduction(long currentTime)
         {
-            if (!IsActive && CapacityLeft())
+            if (CapacityLeft())
             {
                 IsActive = true;
                 StartProductionTime = currentTime;
@@ -88,15 +88,13 @@ namespace Runtime.Colony.Buildings.Production
             if (CapacityLeft())
             {
                 Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
-
-                _orders.Create();
                 return true;
             }
 
             return false;
         }
 
-        private bool CapacityLeft()
+        public bool CapacityLeft()
         {
             return Inventory.CanFit(ResourceDescription, Description.ProductionAmount, out _);
         }
