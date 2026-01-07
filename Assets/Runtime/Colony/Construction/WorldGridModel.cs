@@ -60,7 +60,7 @@ namespace Runtime.Colony.Construction
         public Vector3 GridToWorld(Vector2Int gridPosition)
         {
             return Description.Origin +
-                   new Vector3(gridPosition.x, 0, gridPosition.y) * Description.CellSize;
+                   new Vector3(gridPosition.x, Description.Origin.y, gridPosition.y) * Description.CellSize;
         }
 
         public Vector2Int WorldToGrid(Vector3 worldPosition)
