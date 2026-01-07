@@ -14,7 +14,7 @@ namespace Runtime.Colony.Buildings.Common
         [SerializeField] private UIDocument _uiDocument;
         [SerializeField] private Renderer _previewRenderer;
 
-        public void Initialize()
+        public void OnEnable()
         {
             Transform = transform;
             GameObject =  gameObject;

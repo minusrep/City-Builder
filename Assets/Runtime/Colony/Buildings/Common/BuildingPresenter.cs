@@ -22,7 +22,6 @@ namespace Runtime.Colony.Buildings.Common
         public virtual void Enable()
         {
             View = ViewPool.Get();
-            View.Initialize();
             View.Transform.position = ModelPositionToVector3(Model);
 
             Model.OnPositionChanged += HandlePositionChanged;
