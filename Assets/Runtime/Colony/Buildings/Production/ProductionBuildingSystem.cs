@@ -30,11 +30,10 @@ namespace Runtime.Colony.Buildings.Production
 
                 if (progress >= 1f)
                 {
-                    if (_model.ProduceOnceAndQueue())
-                    {
-                        _model.StartProductionTime += _model.Description.ProductionTime;
-                    }
-                    else
+                    _model.Produce();
+                    _model.StartProductionTime += _model.Description.ProductionTime;
+
+                    if (!_model.CapacityLeft())
                     {
                         _model.StopProduction();
                     }

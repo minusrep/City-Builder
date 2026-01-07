@@ -83,15 +83,9 @@ namespace Runtime.Colony.Buildings.Production
             _orders.Deserialize(data.GetNode("orders"));
         }
 
-        public bool ProduceOnceAndQueue()
+        public void Produce()
         {
-            if (CapacityLeft())
-            {
-                Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
-                return true;
-            }
-
-            return false;
+            Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
         }
 
         public bool CapacityLeft()
