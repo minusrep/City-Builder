@@ -14,7 +14,7 @@ namespace Runtime.Colony.Orders
 
         protected override OrderModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
-            var order = new OrderModel(GetCurrentId(id), _buildingId);
+            var order = new OrderModel(Index, _buildingId);
             order.Deserialize(data);
 
             return order;

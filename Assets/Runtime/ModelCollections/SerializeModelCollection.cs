@@ -3,7 +3,7 @@ using Runtime.Extensions;
 
 namespace Runtime.ModelCollections
 {
-    public abstract class SerializeModelCollection<T> : ModelCollectionBase<string, T> where T : ISerializeModel 
+    public abstract class SerializeModelCollection<T> : ModelCollectionBase<string, T> where T : ISerializeModel
     {
         protected int Index { get; private set; }
 
@@ -32,30 +32,25 @@ namespace Runtime.ModelCollections
                 var modelData = (Dictionary<string, object>)pair.Value;
                 var model = CreateModelFromData(pair.Key, modelData);
                 Add(pair.Key, model);
-                Index++;
             }
         }
 
         protected abstract T CreateModelFromData(string id, Dictionary<string, object> data);
-        
-        protected int GetCurrentId(string key)
-        {
-            if (int.TryParse(key, out var id))
-            {
-                return id;
-            }
 
-            return int.Parse(key.Split('_')[1]);
+        public override void Add(string key, T model)
+        {
+            base.Add(key, model);
+            Index++;
         }
         
         protected string GetCurrentKey()
         {
             if (string.IsNullOrEmpty(DescriptionKey))
             {
-                return Index++.ToString();
+                return Index.ToString();
             }
             
-            return DescriptionKey + "_" + Index++;
+            return DescriptionKey + "_" + Index;
         }
     }
 }

@@ -37,12 +37,12 @@ namespace Runtime.Colony
 
         public Dictionary<string, object> Serialize()
         {
-            var dictionary = new Dictionary<string, object>();
+            var dictionary = new Dictionary<string, object>
+            {
+                [CitizensKey] = Citizens.Serialize(),
+                [BuildingsKey] = Buildings.Serialize()
+            };
 
-            dictionary[CitizensKey] = Citizens.Serialize();
-            
-            dictionary[BuildingsKey] = Buildings.Serialize();
-            
             return dictionary;
         }
 
