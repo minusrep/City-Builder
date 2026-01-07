@@ -54,7 +54,8 @@ namespace Runtime.Colony.Construction
                 var y = position.y + cellOffset.y;
                 Cells[x, y].Occupy(building);
             }
-            building.WorldPosition = GridToWorld(position);
+            var worldPosition = GridToWorld(position);
+            building.WorldPosition =  new Vector2(worldPosition.x, worldPosition.z);
         }
         
         public Vector3 GridToWorld(Vector2Int gridPosition)
