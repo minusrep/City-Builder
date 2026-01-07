@@ -1,4 +1,5 @@
-﻿using Runtime.GameSystems;
+﻿using System.Linq;
+using Runtime.GameSystems;
 using UnityEngine;
 
 namespace Runtime.Colony.Construction
@@ -44,6 +45,22 @@ namespace Runtime.Colony.Construction
                     _view.Transform.position = previewWorldPosition + _model.VisualWorldOffset;
                     _view.SetValid(canPlace);
                 }
+                
+                if (_world.PlayerControls.Construction.Build.WasPressedThisFrame())
+                {
+                    TryPlaceBuilding();
+                }
+            }
+        }
+        
+        private void TryPlaceBuilding()
+        {
+            if (_model.CanPlace)
+            {
+                _world.Buildings.Create(_model.SelectedBuilding.Id);
+                var building = _world.Buildings.Models.Last().Value;
+
+                _world.Grid.PlaceBuilding(building, _model.CurrentGridPosition);
             }
         }
     }
