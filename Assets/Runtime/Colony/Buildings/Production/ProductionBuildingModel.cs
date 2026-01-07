@@ -37,6 +37,7 @@ namespace Runtime.Colony.Buildings.Production
 
             ResourceDescription = worldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
             Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
+            Inventory.Create();
             Inventory.TryAddItem(ResourceDescription, 0);
         }
 

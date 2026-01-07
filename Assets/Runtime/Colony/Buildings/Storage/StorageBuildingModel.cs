@@ -11,8 +11,6 @@ namespace Runtime.Colony.Buildings.Storage
 {
     public class StorageBuildingModel : BuildingModel
     {
-        private const int MaxStackSize = 20;
-
         public InventoryModel Inventory { get; private set; }
         private WorldDescription WorldDescription { get; }
 
@@ -25,11 +23,12 @@ namespace Runtime.Colony.Buildings.Storage
             WorldDescription = worldDescription;
             Description = description;
 
-            Inventory = new InventoryModel(description.StoredResources.Count, MaxStackSize, worldDescription.ResourceCollection);
+            Inventory = new InventoryModel(description.StoredResources.Count, description.MaxResourceAmount, worldDescription.ResourceCollection);
             
             foreach (var resourceDescriptionId in description.StoredResources)
             {
                 var resourceDescription = worldDescription.ResourceCollection.Descriptions[resourceDescriptionId];
+                Inventory.Create();
                 Inventory.TryAddItem(resourceDescription, 0);    
             }
         }
@@ -68,7 +67,7 @@ namespace Runtime.Colony.Buildings.Storage
 
         public override void Deserialize(Dictionary<string, object> data)
         {
-            Inventory = new InventoryModel(1, MaxStackSize, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(1, Description.MaxResourceAmount, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
         }
     }
