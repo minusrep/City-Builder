@@ -18,7 +18,6 @@ namespace Runtime.Colony.Construction
         private readonly BuildingViewDescriptionCollection _viewDescriptionCollection;
         private readonly BuildingConstructionSystem _system;
 
-
         public BuildingConstructionPresenter(BuildingConstructionModel model, BuildingConstructionView view,
             World world,
             GameSystemCollection systemCollection,
@@ -61,6 +60,7 @@ namespace Runtime.Colony.Construction
             _model.VisualWorldOffset = CalculateVisualOffset(viewDescription);
 
             _view.SetPreviewRenderer(previewRenderer);
+
             ScaleViewToGrid(viewDescription, _world.Grid);
         }
 
