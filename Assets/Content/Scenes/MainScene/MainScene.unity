@@ -196,6 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34997825c236425f8ec53052015a8b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Construction.WorldGridView
+  _filter: {fileID: 157871638}
+  _renderer: {fileID: 157871639}
+  _gridColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!33 &157871638
 MeshFilter:
   m_ObjectHideFlags: 0
