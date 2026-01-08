@@ -1,5 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Content/UI/Styles/pause-menu-style.uss?fileID=7433441132597879392&amp;guid=c2f9e313111b5c04f9768c54c6584dcc&amp;type=3#pause-menu-style"/>
-    <Style src="project://database/Assets/Content/UI/Styles/slider-custom-style.uss?fileID=7433441132597879392&amp;guid=d8ca339e57bb8704db73d79b8b29f06a&amp;type=3#slider-custom-style"/>
+    <Style src="project://database/Assets/Content/UI/Styles/slider-style.uss?fileID=7433441132597879392&amp;guid=d8ca339e57bb8704db73d79b8b29f06a&amp;type=3#slider-style"/>
+    <Style src="project://database/Assets/Content/UI/Styles/achievement-style.uss?fileID=7433441132597879392&amp;guid=f7041f123f321414980a0a28dbcaf391&amp;type=3#achievement-style"/>
     <ui:VisualElement name="content" style="flex-grow: 1;"/>
 </ui:UXML>
