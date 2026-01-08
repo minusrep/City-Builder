@@ -1,0 +1,33 @@
+.construction-root {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 160px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.construction-panel {
+    flex-direction: column;
+    padding: 12px;
+}
+
+.construction-title {
+    font-size: 16px;
+    unity-font-style: bold;
+    margin-bottom: 8px;
+}
+
+.construction-list {
+    flex-direction: row;
+    gap: 8px;
+}
+
+.building-button {
+    width: 100px;
+    height: 48px;
+}
+
+.building-button--selected {
+    background-color: rgba(0, 200, 0, 0.5);
+}

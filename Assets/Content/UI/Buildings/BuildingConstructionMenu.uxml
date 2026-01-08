@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Content/UI/Buildings/BuildingConstructionMenu.uss?fileID=7433441132597879392&amp;guid=5287839f7950c5846adcb1e9155ac9cf&amp;type=3#BuildingConstructionMenu"/>
+    <ui:VisualElement name="content" class="construction-root" style="justify-content: flex-start; align-items: auto; flex-direction: row-reverse; align-content: auto;">
+        <ui:VisualElement name="panel" class="construction-panel">
+            <ui:VisualElement name="building-list" class="construction-list"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
