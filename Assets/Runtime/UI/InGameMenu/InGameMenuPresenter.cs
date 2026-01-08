@@ -1,6 +1,8 @@
+using Runtime.Colony;
 using Runtime.Common;
 using Runtime.UI.InGameMenu.AchievementsMenu;
 using Runtime.UI.InGameMenu.LoadMenu;
+using Runtime.ViewDescriptions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -12,14 +14,19 @@ namespace Runtime.UI.InGameMenu
         private readonly InGameMenuView _view;
         private readonly InGameMenuModel _model;
         private readonly MenuContent _menuContent;
+        private readonly World _world;
+        private readonly WorldViewDescriptions _viewDescriptions;
 
         private IPresenter _currentMenuPresenter;
 
-        public InGameMenuPresenter(InGameMenuModel model, InGameMenuView view, MenuContent menuContent)
+        public InGameMenuPresenter(InGameMenuModel model, InGameMenuView view, MenuContent menuContent, World world,
+            WorldViewDescriptions viewDescriptions)
         {
             _model = model;
             _view = view;
             _menuContent = menuContent;
+            _world = world;
+            _viewDescriptions = viewDescriptions;
         }
 
         public void Enable()
@@ -106,7 +113,8 @@ namespace Runtime.UI.InGameMenu
         private void OnAchievementsClicked()
         {
             var achievementsMenuView = new AchievementsMenuView(_view.AchievementsPageAsset);
-            var achievementsMenuPresenter = new AchievementsMenuPresenter(achievementsMenuView);
+            var achievementsMenuPresenter =
+                new AchievementsMenuPresenter(achievementsMenuView, _world, _viewDescriptions);
 
             OpenMenu(achievementsMenuView.Root, achievementsMenuPresenter);
         }
