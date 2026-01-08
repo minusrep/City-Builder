@@ -71,5 +71,16 @@ namespace Runtime.Colony.Construction
             var y = Mathf.FloorToInt(local.z / Description.CellSize);
             return new Vector2Int(x, y);
         }
+        
+        public void Clear()
+        {
+            for (var x = 0; x < Description.Width; x++)
+            {
+                for (var y = 0; y < Description.Height; y++)
+                {
+                    Cells[x, y].Clear();
+                }
+            }
+        }
     }
 }

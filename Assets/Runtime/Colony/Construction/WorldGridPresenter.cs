@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Runtime.Colony.Buildings.Common;
 using Runtime.Common;
 using UnityEngine;
 
@@ -8,11 +9,13 @@ namespace Runtime.Colony.Construction
     {
         private readonly WorldGridModel _model;
         private readonly WorldGridView _view;
+        private readonly World _world;
 
-        public WorldGridPresenter(WorldGridModel model, WorldGridView view)
+        public WorldGridPresenter(WorldGridModel model, WorldGridView view, World world)
         {
             _model = model;
             _view = view;
+            _world = world;
         }
 
         public void Enable()
@@ -20,6 +23,7 @@ namespace Runtime.Colony.Construction
             _view.GameObject.SetActive(true);
             _view.Transform.position = new Vector3(_model.Description.Origin.x, 1f, _model.Description.Origin.z);
             BuildGridMesh();
+            RebuildFromBuildings(_world.Buildings.Models.Values);
         }
 
         public void Disable()
@@ -61,6 +65,23 @@ namespace Runtime.Colony.Construction
             mesh.SetVertices(vertices);
             mesh.SetIndices(indices, MeshTopology.Lines, 0);
             return mesh;
+        }
+        
+        private void RebuildFromBuildings(IEnumerable<BuildingModel> buildings)
+        {
+            _model.Clear();
+
+            foreach (var building in buildings)
+            {
+                var worldPos = new Vector3(
+                    building.WorldPosition.x,
+                    0f,
+                    building.WorldPosition.y);
+
+                var gridPos = _model.WorldToGrid(worldPos);
+
+                _model.PlaceBuilding(building, gridPos);
+            }
         }
     }
 }
