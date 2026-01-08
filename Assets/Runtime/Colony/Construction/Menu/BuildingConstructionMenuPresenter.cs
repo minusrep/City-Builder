@@ -4,6 +4,7 @@ using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -16,13 +17,16 @@ namespace Runtime.Colony.Construction.Menu
         private readonly World _world;
         private readonly MenuContent _menuContent;
         private readonly Dictionary<string, Button> _buttons = new();
+        
         private readonly BuildingConstructionPresenter _constructionPresenter;
         private readonly BuildingConstructionModel _constructionModel;
+        
+        private readonly WorldGridPresenter _worldGridPresenter;
         
         private bool _isConstruction;
         
         public BuildingConstructionMenuPresenter(BuildingConstructionMenuView view,
-            BuildingConstructionView constructionView,
+            BuildingConstructionView constructionView, WorldGridView worldGridView,
             WorldDescription descriptions,
             World world, WorldViewDescriptions viewDescriptions, MenuContent menuContent)
         {
@@ -34,14 +38,13 @@ namespace Runtime.Colony.Construction.Menu
             _constructionModel = new BuildingConstructionModel(world.PlayerControls);
             _constructionPresenter =
                 new BuildingConstructionPresenter(_constructionModel, constructionView, world, viewDescriptions);
+
+            _worldGridPresenter = new WorldGridPresenter(_world.Grid, worldGridView, world);
         }
 
         public void Enable()
         {
             _world.PlayerControls.Construction.Cancel.performed += HandleCancelConstruction;
-            
-            _isConstruction = true;
-            _constructionPresenter.Enable();
             
             _menuContent.MenuRoot.Add(_view.Root);
             
@@ -54,6 +57,7 @@ namespace Runtime.Colony.Construction.Menu
             
             _isConstruction = false;
             _constructionPresenter.Disable();
+            _worldGridPresenter.Disable();
             
             _menuContent.MenuRoot.Remove(_view.Root);
 
@@ -80,8 +84,9 @@ namespace Runtime.Colony.Construction.Menu
         {
             if (!_isConstruction)
             {
-                _constructionPresenter.Enable();
                 _isConstruction = true;
+                _constructionPresenter.Enable();
+                _worldGridPresenter.Enable();
             }
 
             UpdateSelection(description.Id);
@@ -129,6 +134,7 @@ namespace Runtime.Colony.Construction.Menu
         {
             _isConstruction = false;
             _constructionPresenter.Disable();
+            _worldGridPresenter.Disable();
         }
     }
 }

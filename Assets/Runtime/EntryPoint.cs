@@ -80,13 +80,11 @@ namespace Runtime
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);
             _inGameMenuPresenter.Enable();
 
-            var worldGridPresenter = new WorldGridPresenter(_world.Grid, _worldGridView, _world);
-            worldGridPresenter.Enable();
-
             var buildingConstructionMenuView =
                 new BuildingConstructionMenuView(_constructionMenuAsset);
             var buildingConstructionMenuPresenter = new BuildingConstructionMenuPresenter(buildingConstructionMenuView,
-                _buildingConstructionView, _worldDescription, _world, _worldViewDescriptions, _menuContent);
+                _buildingConstructionView, _worldGridView, _worldDescription, _world, _worldViewDescriptions,
+                _menuContent);
             buildingConstructionMenuPresenter.Enable();
 
             Application.quitting += OnQuit;
