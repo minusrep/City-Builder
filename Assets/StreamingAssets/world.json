@@ -1,1 +1,149 @@
-{"citizens":{"models":{"citizen_0":{"id":0,"name":null,"spawned_from_building_id":"shelter_1","position":[32.2194,0.2519829,16.62305],"points_of_interest":{"sawmill":{"x":26.8,"y":0,"z":0.3},"warehouse":{"x":7.1,"y":0,"z":10.4},"tavern":{"x":10.9,"y":0,"z":23.8},"spawn":{"x":0,"y":0,"z":0},"shelter":{"x":39.3,"y":0,"z":25.5}},"flags":{"is_carrying":true},"stats":{"satiety":{"stat":"satiety","value":0},"energy":{"stat":"energy","value":88.32847}},"timers":{},"state_machine":{"current_state":"walk_to_tavern"},"inventory":{"models":{"0":{"amount":1,"resource":"wood"}}}},"citizen_1":{"id":1,"name":null,"spawned_from_building_id":"shelter_1","position":[11.29,0.251983,23.8],"points_of_interest":{"sawmill":{"x":26.8,"y":0,"z":0.3},"warehouse":{"x":7.1,"y":0,"z":10.4},"tavern":{"x":10.9,"y":0,"z":23.8},"spawn":{"x":0,"y":0,"z":0},"shelter":{"x":39.3,"y":0,"z":25.5}},"flags":{"is_carrying":true},"stats":{"satiety":{"stat":"satiety","value":14.8355},"energy":{"stat":"energy","value":74.63892}},"timers":{},"state_machine":{"current_state":"eat_start"},"inventory":{"models":{"0":{"amount":1,"resource":"wood"}}}},"citizen_2":{"id":2,"name":null,"spawned_from_building_id":"shelter_1","position":[37.31151,0.2519829,22.36075],"points_of_interest":{"sawmill":{"x":26.8,"y":0,"z":0.3},"tavern":{"x":10.9,"y":0,"z":23.8},"spawn":{"x":0,"y":0,"z":0},"warehouse":{"x":7.1,"y":0,"z":10.4},"shelter":{"x":39.3,"y":0,"z":25.5}},"flags":{"is_carrying":true},"stats":{"satiety":{"stat":"satiety","value":0},"energy":{"stat":"energy","value":93.15668}},"timers":{},"state_machine":{"current_state":"walk_to_tavern"},"inventory":{"models":{"0":{"amount":1,"resource":"wood"}}}},"citizen_3":{"id":3,"name":null,"spawned_from_building_id":"shelter_1","position":[39.3,0.2519829,24.35],"points_of_interest":{"sawmill":{"x":26.8,"y":0,"z":0.3},"tavern":{"x":10.9,"y":0,"z":23.8},"spawn":{"x":0,"y":0,"z":0},"warehouse":{"x":7.1,"y":0,"z":10.4},"shelter":{"x":39.3,"y":0,"z":25.5}},"flags":{"is_carrying":true},"stats":{"satiety":{"stat":"satiety","value":10.57801},"energy":{"stat":"energy","value":15.34134}},"timers":{},"state_machine":{"current_state":"sleep_start"},"inventory":{"models":{"0":{"amount":1,"resource":"wood"}}}},"citizen_4":{"id":4,"name":null,"spawned_from_building_id":"shelter_1","position":[20.25973,0.2519829,19.48739],"points_of_interest":{"sawmill":{"x":26.8,"y":0,"z":0.3},"tavern":{"x":10.9,"y":0,"z":23.8},"spawn":{"x":0,"y":0,"z":0},"shelter":{"x":39.3,"y":0,"z":25.5},"warehouse":{"x":7.1,"y":0,"z":10.4}},"flags":{"is_carrying":true},"stats":{"satiety":{"stat":"satiety","value":0},"energy":{"stat":"energy","value":81.44745}},"timers":{},"state_machine":{"current_state":"walk_to_tavern"},"inventory":{"models":{"0":{"amount":1,"resource":"wood"}}}}}},"buildings":{"models":{"sawmill_0":{"description":"sawmill","position":[26.8,0.3],"is_active":false,"start_production_time":105990,"save_time":1767814227968,"inventory":{"models":{"wood":{"amount":5,"resource":"wood"}}},"orders":{"models":{"0":{"id":0},"1":{"id":1},"2":{"id":2},"3":{"id":3},"4":{"id":4},"5":{"id":5},"6":{"id":6},"7":{"id":7},"8":{"id":8},"9":{"id":9},"10":{"id":10},"11":{"id":11},"12":{"id":12},"13":{"id":13},"14":{"id":14},"30":{"id":30},"31":{"id":31},"34":{"id":34},"35":{"id":35},"19":{"id":19}}}},"shelter_1":{"description":"shelter","position":[39.3,25.5],"is_active":false,"in_service":{},"waiting_queue":[]},"tavern_2":{"description":"tavern","position":[10.9,23.8],"is_active":false,"in_service":{},"waiting_queue":[]},"warehouse_3":{"description":"warehouse","position":[7.1,10.4],"inventory":{"models":{"wood":{"amount":20,"resource":"wood"},"iron":{"amount":12,"resource":"iron"}}}},"lantern_4":{"description":"lantern","position":[19.6,12.8]}}}}
+{
+  "citizens": {
+    "models": { }
+  },
+  "buildings": {
+    "models": {
+      "sawmill_0": {
+        "description": "sawmill",
+        "position": [
+          26.8,
+          0.3
+        ],
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "worker": {
+              "amount": 0,
+              "resource": null
+            },
+            "wood": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        },
+        "orders": {
+          "models": { }
+        }
+      },
+      "shelter_2": {
+        "description": "shelter",
+        "position": [
+          39.3,
+          25.5
+        ],
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "tavern_3": {
+        "description": "tavern",
+        "position": [
+          10.9,
+          23.8
+        ],
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "warehouse_4": {
+        "description": "warehouse",
+        "position": [
+          7.1,
+          10.4
+        ],
+        "inventory": {
+          "models": {
+            "wood": {
+              "amount": 6,
+              "resource": "wood"
+            },
+            "ore": {
+              "amount": 6,
+              "resource": "ore"
+            },
+            "iron": {
+              "amount": 0,
+              "resource": "iron"
+            }
+          }
+        }
+      },
+      "lantern_5": {
+        "description": "lantern",
+        "position": [
+          19.6,
+          12.8
+        ]
+      },
+      "mine_6": {
+        "description": "mine",
+        "position": [
+          26.8,
+          -10.3
+        ],
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "worker": {
+              "amount": 0,
+              "resource": null
+            },
+            "ore": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        },
+        "orders": {
+          "models": { }
+        }
+      },
+      "smelter_7": {
+        "description": "smelter",
+        "position": [
+          10.8,
+          -15.3
+        ],
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "worker": {
+              "amount": 0,
+              "resource": null
+            },
+            "wood": {
+              "amount": 0,
+              "resource": null
+            },
+            "ore": {
+              "amount": 0,
+              "resource": null
+            },
+            "iron": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        },
+        "orders": {
+          "models": {}
+        }
+      },
+      "shelter_8": {
+        "description": "shelter",
+        "position": [
+          -4.1,
+          25.5
+        ],
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      }
+    }
+  }
+}
