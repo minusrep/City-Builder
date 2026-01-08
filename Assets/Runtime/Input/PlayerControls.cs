@@ -288,7 +288,7 @@ namespace Runtime.Input
                 {
                     ""name"": """",
                     ""id"": ""7a4e8e2c-4183-40dc-9dfb-c4abae0e04b2"",
-                    ""path"": ""<Pointer>/press"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
