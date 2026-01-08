@@ -1,0 +1,62 @@
+using System.Collections.Generic;
+using Runtime.Descriptions.Achievements;
+using Runtime.Extensions;
+using Runtime.ModelCollections;
+
+namespace Runtime.Colony.Achievements.Collection
+{
+    public class AchievementModelCollection : IDeserializeModel, ISerializeModel
+    {
+        public Dictionary<string, AchievementModel> Models { get; } = new();
+
+        private readonly AchievementDescriptionCollection _descriptions;
+
+        public AchievementModelCollection(AchievementDescriptionCollection descriptions)
+        {
+            _descriptions = descriptions;
+
+            Create();
+        }
+
+        public void Create()
+        {
+            foreach (var (id, description) in _descriptions.Descriptions)
+            {
+                var model = new AchievementModel(description);
+                Models.Add(id, model);
+            }
+        }
+
+        public Dictionary<string, object> Serialize()
+        {
+            var data = new Dictionary<string, object>();
+            
+            var models = new Dictionary<string, object>();
+
+            foreach (var (id, model) in Models)
+            {
+                models.Add(id, model.Serialize());
+            }
+            
+            data.Set("models", models);
+
+            return data;
+        }
+
+        public void Deserialize(Dictionary<string, object> data)
+        {
+            var models = data.GetNode("models");
+            
+            foreach (var pair in models)
+            {
+                var achievementId = pair.Key;
+                var achievementData = (Dictionary<string, object>)pair.Value;
+
+                if (Models.TryGetValue(achievementId, out var model))
+                {
+                    model.Deserialize(achievementData);
+                }
+            }
+        }
+    }
+}
