@@ -9,7 +9,6 @@ namespace Runtime.Colony.GameResources
     public class ResourceModel : ISerializeModel, IDeserializeModel
     {
         public ResourceDescription Description { get; }
-        public string Type => Description.Type;
         public int Amount { get; set; }
         public int MaxAmount { get; set; }
 
