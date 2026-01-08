@@ -1,63 +1,61 @@
 {
-  "achievements": {
-    "get_ten_wood": {
-      "type": "associative",
-      "triggers": [
-        {
-          "event": "resource_amount_changed",
-          "resource": "wood"
-        }
-      ],
-      "target": 10,
-      "unlocks": [
-        "get_hundred_wood"
-      ]
-    },
-    "get_hundred_wood": {
-      "type": "associative",
-      "triggers": [
-        {
-          "event": "resource_amount_changed",
-          "resource": "wood"
-        }
-      ],
-      "target": 100
-    },
-    "build_three_shelters": {
-      "type": "counter",
-      "triggers": [
-        {
-          "event": "buildings_count_changed",
-          "resource": "shelter"
-        }
-      ],
-      "target": 3,
-      "unlocks": [
-        "build_five_shelters"
-      ]
-    },
-    "build_five_shelters": {
-      "type": "counter",
-      "triggers": [
-        {
-          "event": "buildings_count_changed",
-          "resource": "shelter"
-        }
-      ],
-      "target": 5,
-      "unlocks": [
-        "build_ten_shelters"
-      ]
-    },
-    "build_ten_shelters": {
-      "type": "counter",
-      "triggers": [
-        {
-          "event": "buildings_count_changed",
-          "resource": "shelter"
-        }
-      ],
-      "target": 10
-    }
+  "get_ten_wood": {
+    "type": "associative",
+    "triggers": [
+      {
+        "event": "resource_amount_changed",
+        "resource": "wood"
+      }
+    ],
+    "target": 10,
+    "unlocks": [
+      "get_hundred_wood"
+    ]
+  },
+  "get_hundred_wood": {
+    "type": "associative",
+    "triggers": [
+      {
+        "event": "resource_amount_changed",
+        "resource": "wood"
+      }
+    ],
+    "target": 100
+  },
+  "build_three_shelters": {
+    "type": "counter",
+    "triggers": [
+      {
+        "event": "buildings_count_changed",
+        "resource": "shelter"
+      }
+    ],
+    "target": 3,
+    "unlocks": [
+      "build_five_shelters"
+    ]
+  },
+  "build_five_shelters": {
+    "type": "counter",
+    "triggers": [
+      {
+        "event": "buildings_count_changed",
+        "resource": "shelter"
+      }
+    ],
+    "target": 5,
+    "unlocks": [
+      "build_ten_shelters"
+    ]
+  },
+  "build_ten_shelters": {
+    "type": "counter",
+    "triggers": [
+      {
+        "event": "buildings_count_changed",
+        "resource": "shelter"
+      }
+    ],
+    "target": 10
   }
 }
