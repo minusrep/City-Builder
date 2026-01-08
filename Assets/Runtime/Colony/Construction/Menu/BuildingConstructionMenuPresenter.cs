@@ -4,6 +4,7 @@ using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Construction.Menu
@@ -12,10 +13,13 @@ namespace Runtime.Colony.Construction.Menu
     {
         private readonly BuildingConstructionMenuView _view;
         private readonly WorldDescription _descriptions;
+        private readonly World _world;
         private readonly MenuContent _menuContent;
         private readonly Dictionary<string, Button> _buttons = new();
         private readonly BuildingConstructionPresenter _constructionPresenter;
         private readonly BuildingConstructionModel _constructionModel;
+        
+        private bool _isConstruction;
         
         public BuildingConstructionMenuPresenter(BuildingConstructionMenuView view,
             BuildingConstructionView constructionView,
@@ -23,6 +27,7 @@ namespace Runtime.Colony.Construction.Menu
             World world, WorldViewDescriptions viewDescriptions, MenuContent menuContent)
         {
             _descriptions = descriptions;
+            _world = world;
             _menuContent = menuContent;
             _view = view;
 
@@ -33,16 +38,25 @@ namespace Runtime.Colony.Construction.Menu
 
         public void Enable()
         {
+            _world.PlayerControls.Construction.Cancel.performed += HandleCancelConstruction;
+            
+            _isConstruction = true;
             _constructionPresenter.Enable();
+            
             _menuContent.MenuRoot.Add(_view.Root);
+            
             BuildButtons();
         }
 
         public void Disable()
         {
-            _menuContent.MenuRoot.Remove(_view.Root);
-            _view.Root.Clear();
+            _world.PlayerControls.Construction.Cancel.performed -= HandleCancelConstruction;
+            
+            _isConstruction = false;
             _constructionPresenter.Disable();
+            
+            _menuContent.MenuRoot.Remove(_view.Root);
+
             ClearSelection();
             _buttons.Clear();
         }
@@ -64,6 +78,12 @@ namespace Runtime.Colony.Construction.Menu
 
         private void StartConstruction(BuildingDescription description)
         {
+            if (!_isConstruction)
+            {
+                _constructionPresenter.Enable();
+                _isConstruction = true;
+            }
+
             UpdateSelection(description.Id);
             _constructionModel.SelectedBuilding = description;
         }
@@ -103,6 +123,12 @@ namespace Runtime.Colony.Construction.Menu
                 button.AddToClassList("building-button--selected");
             else
                 button.RemoveFromClassList("building-button--selected");
+        }
+        
+        private void HandleCancelConstruction(InputAction.CallbackContext obj)
+        {
+            _isConstruction = false;
+            _constructionPresenter.Disable();
         }
     }
 }

@@ -26,6 +26,10 @@ namespace Runtime.Colony.Construction
 
         public void Enable()
         {
+            _world.PlayerControls.UI.Disable();
+            _world.PlayerControls.Construction.Enable();
+            
+            _view.GameObject.SetActive(true);
             _model.OnChangeSelectedBuilding += RebuildView;
 
             _world.GameSystems.Add(_system);
@@ -33,15 +37,18 @@ namespace Runtime.Colony.Construction
 
         public void Disable()
         {
-            _model.OnChangeSelectedBuilding -= RebuildView;
+            _world.PlayerControls.UI.Enable();
+            _world.PlayerControls.Construction.Disable();
+
             _view.GameObject.SetActive(false);
+            _model.OnChangeSelectedBuilding -= RebuildView;
+            
             _world.GameSystems.Remove(_system);
         }
 
         private void RebuildView()
         {
             CleanupPreview();
-            _view.GameObject.SetActive(true);
 
             var viewDescription = GetViewDescription();
 

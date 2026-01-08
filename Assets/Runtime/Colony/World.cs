@@ -42,7 +42,6 @@ namespace Runtime.Colony
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
             Grid = new WorldGridModel(worldDescription.WorldGridDescription);
             PlayerControls = new PlayerControls();
-            PlayerControls.Enable();
         }
 
         public Dictionary<string, object> Serialize()

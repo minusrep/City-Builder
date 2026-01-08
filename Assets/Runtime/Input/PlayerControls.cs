@@ -271,6 +271,15 @@ namespace Runtime.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""99e02a0b-a997-4411-b116-3892290ed6b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -288,11 +297,22 @@ namespace Runtime.Input
                 {
                     ""name"": """",
                     ""id"": ""7a4e8e2c-4183-40dc-9dfb-c4abae0e04b2"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Build"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""941e65c3-f01a-4c00-82cf-4be1b77b0d01"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -314,6 +334,7 @@ namespace Runtime.Input
             m_Construction = asset.FindActionMap("Construction", throwIfNotFound: true);
             m_Construction_MovePreview = m_Construction.FindAction("MovePreview", throwIfNotFound: true);
             m_Construction_Build = m_Construction.FindAction("Build", throwIfNotFound: true);
+            m_Construction_Cancel = m_Construction.FindAction("Cancel", throwIfNotFound: true);
         }
 
         ~@PlayerControls()
@@ -623,6 +644,7 @@ namespace Runtime.Input
         private List<IConstructionActions> m_ConstructionActionsCallbackInterfaces = new List<IConstructionActions>();
         private readonly InputAction m_Construction_MovePreview;
         private readonly InputAction m_Construction_Build;
+        private readonly InputAction m_Construction_Cancel;
         /// <summary>
         /// Provides access to input actions defined in input action map "Construction".
         /// </summary>
@@ -642,6 +664,10 @@ namespace Runtime.Input
             /// Provides access to the underlying input action "Construction/Build".
             /// </summary>
             public InputAction @Build => m_Wrapper.m_Construction_Build;
+            /// <summary>
+            /// Provides access to the underlying input action "Construction/Cancel".
+            /// </summary>
+            public InputAction @Cancel => m_Wrapper.m_Construction_Cancel;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -674,6 +700,9 @@ namespace Runtime.Input
                 @Build.started += instance.OnBuild;
                 @Build.performed += instance.OnBuild;
                 @Build.canceled += instance.OnBuild;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
 
             /// <summary>
@@ -691,6 +720,9 @@ namespace Runtime.Input
                 @Build.started -= instance.OnBuild;
                 @Build.performed -= instance.OnBuild;
                 @Build.canceled -= instance.OnBuild;
+                @Cancel.started -= instance.OnCancel;
+                @Cancel.performed -= instance.OnCancel;
+                @Cancel.canceled -= instance.OnCancel;
             }
 
             /// <summary>
@@ -796,6 +828,13 @@ namespace Runtime.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnBuild(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Cancel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnCancel(InputAction.CallbackContext context);
         }
     }
 }
