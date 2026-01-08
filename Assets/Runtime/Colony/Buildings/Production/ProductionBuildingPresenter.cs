@@ -16,7 +16,9 @@ namespace Runtime.Colony.Buildings.Production
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, IObjectPool<BuildingView> viewPool,
-           WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, worldViewDescriptions)
+            World world,
+            WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool,
+            world, worldViewDescriptions)
         {
             _model = model;
             _systemCollection = systemCollection;
@@ -25,20 +27,20 @@ namespace Runtime.Colony.Buildings.Production
         public override void Enable()
         {
             base.Enable();
-            
+
             _productionSystem = new ProductionBuildingSystem(_model.Id, _model, View);
 
             _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-            
+
             _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
 
             _inventoryPresenter.Enable();
-            
+
             _model.Inventory.OnRemoveItem += HandleRemovedResource;
-            
+
             _systemCollection.Add(_productionSystem);
         }
-        
+
         public override void Disable()
         {
             _model.StopProduction();
@@ -47,9 +49,9 @@ namespace Runtime.Colony.Buildings.Production
             _inventoryPresenter = null;
 
             _model.Inventory.OnRemoveItem -= HandleRemovedResource;
-            
+
             _systemCollection.Remove(_productionSystem);
-            
+
             base.Disable();
         }
 

@@ -56,12 +56,12 @@ namespace Runtime.Colony.Construction
 
             var viewDescription = GetViewDescription();
             var previewRenderer = Object.Instantiate(viewDescription.Prefab.PreviewRenderer);
-
-            _model.VisualWorldOffset = CalculateVisualOffset(viewDescription);
+            _model.VisualWorldOffset =
+                BuildingVisualLayoutService.GetOffset(viewDescription, _world.Grid.Description.CellSize);
 
             _view.SetPreviewRenderer(previewRenderer);
-
-            ScaleViewToGrid(viewDescription, _world.Grid);
+            _view.Transform.localScale = BuildingVisualLayoutService.GetScale(viewDescription, previewRenderer.bounds,
+                _world.Grid.Description.CellSize);
         }
 
         private BuildingViewDescription GetViewDescription()
@@ -69,46 +69,6 @@ namespace Runtime.Colony.Construction
             return _viewDescriptionCollection.Get(
                 _model.SelectedBuilding.ViewDescriptionId
             );
-        }
-
-        private void ScaleViewToGrid(BuildingViewDescription viewDescription,
-            WorldGridModel grid)
-        {
-            var bounds = _view.PreviewRenderer.bounds;
-
-            var targetSize = new Vector3(
-                viewDescription.VisualSizeInCells.x * grid.Description.CellSize,
-                bounds.size.y,
-                viewDescription.VisualSizeInCells.y * grid.Description.CellSize
-            );
-
-            var currentSize = bounds.size;
-
-            var scale = Mathf.Min(
-                targetSize.x / currentSize.x,
-                targetSize.z / currentSize.z
-            );
-
-            _view.Transform.localScale = Vector3.one * scale;
-        }
-
-        private Vector3 CalculateVisualOffset(BuildingViewDescription viewDescription)
-        {
-            var cellSize = _world.Grid.Description.CellSize;
-
-            var footprintWorldSize = new Vector3(
-                viewDescription.VisualSizeInCells.x * cellSize,
-                0f,
-                viewDescription.VisualSizeInCells.y * cellSize
-            );
-
-            var additionalScaled = Vector3.Scale(
-                viewDescription.AdditionalWorldOffset,
-                new Vector3(viewDescription.VisualSizeInCells.x * cellSize, 1f,
-                    viewDescription.VisualSizeInCells.y * cellSize)
-            );
-
-            return footprintWorldSize + additionalScaled;
         }
     }
 }

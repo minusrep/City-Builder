@@ -25,7 +25,7 @@ namespace Runtime.Colony.Construction
             if (_model.IsActive && _model.SelectedBuilding != null)
             {
                 var ray = _world.MainCamera.ScreenPointToRay(_model.CursorPosition);
-                
+
                 if (_groundPlane.Raycast(ray, out var distance))
                 {
                     var worldPosition = ray.GetPoint(distance);
@@ -41,18 +41,18 @@ namespace Runtime.Colony.Construction
                     _model.CurrentGridPosition = gridPosition;
                     _model.CurrentWorldPosition = previewWorldPosition;
                     _model.CanPlace = canPlace;
-                
+
                     _view.Transform.position = previewWorldPosition + _model.VisualWorldOffset;
                     _view.SetValid(canPlace);
                 }
-                
+
                 if (_world.PlayerControls.Construction.Build.WasPressedThisFrame())
                 {
                     TryPlaceBuilding();
                 }
             }
         }
-        
+
         private void TryPlaceBuilding()
         {
             if (_model.CanPlace)
