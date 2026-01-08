@@ -56,12 +56,15 @@
           "counter": "energy",
           "value": 10
         },
-        "walk_to_warehouse": {
+        "walk_to_put_resource": {
           "type": "flag",
           "flag": "is_carrying",
           "value": "true"
         },
-        "walk_to_sawmill": {
+        "select_order": {
+          "type": "order_exists"
+        },
+        "idle": {
           "type": "true"
         }
       }
@@ -98,6 +101,10 @@
         {
           "type": "invoke_animation",
           "animation": "idle"
+        },
+        {
+          "type": "change_visibility",
+          "visible": "false"
         }
       ],
       "transitions": {
@@ -116,16 +123,8 @@
           "system": "feed"
         },
         {
-          "type": "set_point_of_interest",
-          "point_of_interest": "spawn"
-        },
-        {
-          "type": "start_move",
-          "point_of_interest": "spawn"
-        },
-        {
-          "type": "invoke_animation",
-          "animation": "walk"
+          "type": "change_visibility",
+          "visible": "true"
         }
       ],
       "transitions": {
@@ -166,6 +165,10 @@
         {
           "type": "invoke_animation",
           "animation": "idle"
+        },
+        {
+          "type": "change_visibility",
+          "visible": "false"
         }
       ],
       "transitions": {
@@ -184,16 +187,8 @@
           "system": "sleep"
         },
         {
-          "type": "set_point_of_interest",
-          "point_of_interest": "spawn"
-        },
-        {
-          "type": "start_move",
-          "point_of_interest": "spawn"
-        },
-        {
-          "type": "invoke_animation",
-          "animation": "walk"
+          "type": "change_visibility",
+          "visible": "true"
         }
       ],
       "transitions": {
@@ -202,15 +197,28 @@
         }
       }
     },
-    "walk_to_sawmill" : {
+    "select_order": {
       "actions": [
         {
-          "type": "set_point_of_interest_building",
-          "point_of_interest": "sawmill"
+          "type": "take_order"
+        }
+      ],
+      "transitions": {
+        "walk_to_put_resource": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "true"
         },
+        "walk_to_take_resource": {
+          "type": "true"
+        }
+      }
+    },
+    "walk_to_take_resource": {
+      "actions": [
         {
           "type": "start_move",
-          "point_of_interest": "sawmill"
+          "point_of_interest": "resource_source"
         },
         {
           "type": "invoke_animation",
@@ -221,7 +229,7 @@
         "start_take_resource": {
           "type": "distance",
           "value": 1.5,
-          "point_of_interest": "sawmill"
+          "point_of_interest": "resource_source"
         }
       }
     },
@@ -238,11 +246,11 @@
         }
       }
     },
-    "try_take_resource" : {
+    "try_take_resource": {
       "actions": [
         {
           "type": "take_resource",
-          "point_of_interest": "sawmill"
+          "point_of_interest": "resource_source"
         }
       ],
       "transitions": {
@@ -258,7 +266,7 @@
           "counter": "energy",
           "value": 10
         },
-        "walk_to_warehouse": {
+        "walk_to_put_resource": {
           "type": "flag",
           "flag": "is_carrying",
           "value": "true"
@@ -270,15 +278,11 @@
         }
       }
     },
-    "walk_to_warehouse" : {
+    "walk_to_put_resource": {
       "actions": [
         {
-          "type": "set_point_of_interest_building",
-          "point_of_interest": "warehouse"
-        },
-        {
           "type": "start_move",
-          "point_of_interest": "warehouse"
+          "point_of_interest": "resource_target"
         },
         {
           "type": "invoke_animation",
@@ -289,7 +293,7 @@
         "start_put_resource": {
           "type": "distance",
           "value": 1.5,
-          "point_of_interest": "warehouse"
+          "point_of_interest": "resource_target"
         }
       }
     },
@@ -310,10 +314,15 @@
       "actions": [
         {
           "type": "put_resource",
-          "point_of_interest": "warehouse"
+          "point_of_interest": "resource_target"
         }
       ],
       "transitions": {
+        "working": {
+          "type": "flag",
+          "flag": "is_working",
+          "value": "true"
+        },
         "walk_to_tavern": {
           "type": "compare",
           "operation": "lesser",
@@ -335,6 +344,54 @@
           "type": "flag",
           "flag": "is_carrying",
           "value": "true"
+        }
+      }
+    },
+    "working": {
+      "actions": [
+        {
+          "type": "change_visibility",
+          "visible": "false"
+        }
+      ],
+      "transitions": {
+        "work_end": {
+          "type": "or",
+          "conditions": [
+            {
+              "type": "compare",
+              "operation": "lesser",
+              "counter": "satiety",
+              "value": 20
+            },
+            {
+              "type": "compare",
+              "operation": "lesser",
+              "counter": "energy",
+              "value": 10
+            },
+            {
+              "type": "building_working",
+              "value": "false"
+            }
+          ]
+        }
+      }
+    },
+    "work_end": {
+      "actions": [
+        {
+          "type": "take_resource",
+          "point_of_interest": "resource_target"
+        },
+        {
+          "type": "change_visibility",
+          "visible": "true"
+        }
+      ],
+      "transitions": {
+        "idle": {
+          "type": "true"
         }
       }
     }
