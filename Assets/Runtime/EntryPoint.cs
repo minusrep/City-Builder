@@ -5,6 +5,7 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.Construction;
+using Runtime.Colony.Construction.Menu;
 using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
@@ -19,14 +20,13 @@ namespace Runtime
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        [Header("UI")]
-        [SerializeField] private UIDocument _menuDocument;
+        [Header("UI")] [SerializeField] private UIDocument _menuDocument;
         [SerializeField] private VisualTreeAsset _inGameMenuAsset;
         [SerializeField] private VisualTreeAsset _loadMenuAsset;
         [SerializeField] private VisualTreeAsset _achievementsMenuAsset;
+        [SerializeField] private VisualTreeAsset _constructionMenuAsset;
 
-        [Header("View")]
-        [SerializeField] private BuildingCollectionView _buildingCollectionView;
+        [Header("View")] [SerializeField] private BuildingCollectionView _buildingCollectionView;
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
         [SerializeField] private CameraControlView _cameraControlView;
         [SerializeField] private BuildingConstructionView _buildingConstructionView;
@@ -83,10 +83,11 @@ namespace Runtime
             var worldGridPresenter = new WorldGridPresenter(_world.Grid, _worldGridView, _world);
             worldGridPresenter.Enable();
 
-            var buildingConstructionModel = new BuildingConstructionModel(_world.PlayerControls);
-            var buildingConstructionPresenter = new BuildingConstructionPresenter(buildingConstructionModel,
-                _buildingConstructionView, _world, _world.GameSystems, _worldDescription, _worldViewDescriptions);
-            buildingConstructionPresenter.Enable();
+            var buildingConstructionMenuView =
+                new BuildingConstructionMenuView(_constructionMenuAsset);
+            var buildingConstructionMenuPresenter = new BuildingConstructionMenuPresenter(buildingConstructionMenuView,
+                _buildingConstructionView, _worldDescription, _world, _worldViewDescriptions, _menuContent);
+            buildingConstructionMenuPresenter.Enable();
 
             Application.quitting += OnQuit;
 
