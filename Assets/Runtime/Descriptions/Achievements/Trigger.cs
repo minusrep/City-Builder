@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Extensions;
 
-namespace Runtime.Colony.Achievements
+namespace Runtime.Descriptions.Achievements
 {
     public class Trigger
     {
