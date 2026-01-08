@@ -5,6 +5,10 @@
     "production_resource": "wood",
     "production_amount": 1,
     "max_resource": 5,
+    "resources_for_work": { 
+      "worker": 1
+    },
+    "resources_for_production": { },
     "view_id": "Sawmill"
   },
   "shelter": {
@@ -34,5 +38,32 @@
   "lantern": {
     "type": "decor",
     "view_id": "Lantern"
+  },
+  "mine": {
+    "type": "production",
+    "production_time": 10000,
+    "production_resource": "ore",
+    "production_amount": 1,
+    "max_resource": 5,
+    "resources_for_work": {
+      "worker": 1
+    },
+    "resources_for_production": { },
+    "view_id": "Mine"
+  },
+  "smelter": {
+    "type": "production",
+    "production_time": 20000,
+    "production_resource": "iron",
+    "production_amount": 1,
+    "max_resource": 5,
+    "resources_for_work": {
+      "worker": 1
+    },
+    "resources_for_production": { 
+      "wood": 1,
+      "ore": 1
+    },
+    "view_id": "Smelter"
   }
 }
