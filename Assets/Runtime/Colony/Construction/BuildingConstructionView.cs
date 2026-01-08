@@ -6,25 +6,24 @@ namespace Runtime.Colony.Construction
     {
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
-        public Renderer PreviewRenderer { get; set; }
+        public BuildingPreview Preview { get; set; }
 
         private void Awake()
         {
             Transform = transform;
             GameObject = gameObject;
         }
-        
-        public void SetPreviewRenderer(Renderer previewRenderer)
-        {
-            PreviewRenderer = previewRenderer;
-        }
-        
+
         public void SetValid(bool canPlace)
         {
-            var materials = PreviewRenderer.materials;
-            foreach (var material in materials)
+            var color = canPlace ? Color.green : Color.red;
+
+            foreach (var preview in Preview.Renderers)
             {
-                material.color = canPlace ? Color.green : Color.red;
+                foreach (var material in preview.materials)
+                {
+                    material.color = color;
+                }
             }
         }
     }

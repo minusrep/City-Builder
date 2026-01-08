@@ -44,22 +44,29 @@ namespace Runtime.Colony.Construction
             _view.GameObject.SetActive(true);
 
             var viewDescription = GetViewDescription();
-            var previewRenderer = Object.Instantiate(viewDescription.Prefab.PreviewRenderer, _view.Transform, false);
+
+            var previewInstance = Object.Instantiate(
+                viewDescription.Prefab.Preview,
+                _view.Transform,
+                false
+            );
+
+            _view.Preview =  previewInstance;
+
             _model.VisualWorldOffset =
                 BuildingVisualLayoutService.GetOffset(viewDescription, _world.Grid.Description.CellSize);
 
-            _view.SetPreviewRenderer(previewRenderer);
-            _view.Transform.localScale = BuildingVisualLayoutService.GetScale(viewDescription, previewRenderer.bounds,
+            _view.Transform.localScale = BuildingVisualLayoutService.GetScale(viewDescription, _view.Preview.Renderers,
                 _world.Grid.Description.CellSize);
         }
 
         private void CleanupPreview()
         {
             _view.Transform.localScale = Vector3.one;
-            if (_view.PreviewRenderer != null)
+
+            if (_view.Preview != null)
             {
-                Object.Destroy(_view.PreviewRenderer.gameObject);
-                _view.PreviewRenderer = null;
+                Object.Destroy(_view.Preview.GameObject);
             }
         }
 
