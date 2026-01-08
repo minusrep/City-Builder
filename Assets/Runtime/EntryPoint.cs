@@ -55,9 +55,9 @@ namespace Runtime
                 new DescriptionsLoadStep(_worldDescription),
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
                 new WorldLoadStep(_world, _worldDescription, _gameSystems),
-                new GameSystemsCollectionLoadStep(_world, _gameSystems),
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView,
-                    _worldDescription, _worldViewDescriptions, _gameSystems),
+                    _worldDescription, _worldViewDescriptions),
+                new GameSystemsCollectionLoadStep(_world, _gameSystems),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
             };
 

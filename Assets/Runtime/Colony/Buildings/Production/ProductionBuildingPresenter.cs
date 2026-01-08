@@ -10,43 +10,43 @@ namespace Runtime.Colony.Buildings.Production
     public class ProductionBuildingPresenter : BuildingPresenter
     {
         private readonly ProductionBuildingModel _model;
-        private readonly GameSystemCollection _systemCollection;
-        private ProductionBuildingSystem _productionSystem;
 
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, IObjectPool<BuildingView> viewPool,
-           WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, worldViewDescriptions)
+           WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, worldViewDescriptions)
         {
             _model = model;
-            _systemCollection = systemCollection;
         }
 
         public override void Enable()
         {
             base.Enable();
             
-            _productionSystem = new ProductionBuildingSystem(_model.Id, _model, View);
-
-            _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-            
             _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
 
             _inventoryPresenter.Enable();
+
+            _model.OnProgressChanged += OnProgressChanged;
             
-            _systemCollection.Add(_productionSystem);
+            _model.StartProduction();
+            
+            OnProgressChanged(_model.Progress);
         }
 
         public override void Disable()
         {
-            _model.StopProduction();
+            _model.OnProgressChanged -= OnProgressChanged;
 
             _inventoryPresenter.Disable();
             _inventoryPresenter = null;
-
-            _systemCollection.Remove(_productionSystem);
             
             base.Disable();
+        }
+        
+        private void OnProgressChanged(float progress)
+        {
+            View.ProgressBar.value = Math.Clamp(progress, 0f, 1f) * 100f;
         }
     }
 }

@@ -18,8 +18,7 @@ namespace Runtime.Colony.Buildings.Collection
 
         public BuildingCollectionPresenter(World world,
             BuildingCollectionView view,
-            WorldViewDescriptions worldViewDescriptions,
-            GameSystemCollection gameSystemCollection)
+            WorldViewDescriptions worldViewDescriptions)
         {
             _world = world;
 
@@ -29,7 +28,7 @@ namespace Runtime.Colony.Buildings.Collection
                     new ObjectPool<BuildingView>(viewDescriptionBase.Prefab, 2, view.Transform);
             }
 
-            _presenterFactory = new BuildingPresenterFactory(gameSystemCollection, worldViewDescriptions, _viewPools);
+            _presenterFactory = new BuildingPresenterFactory(worldViewDescriptions, _viewPools);
         }
 
         public void Enable()
