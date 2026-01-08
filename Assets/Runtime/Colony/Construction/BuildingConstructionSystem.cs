@@ -22,7 +22,7 @@ namespace Runtime.Colony.Construction
 
         public void Update(float deltaTime)
         {
-            if (_model.IsActive && _model.SelectedBuilding != null)
+            if (_model.SelectedBuilding != null)
             {
                 var ray = _world.MainCamera.ScreenPointToRay(_model.CursorPosition);
 

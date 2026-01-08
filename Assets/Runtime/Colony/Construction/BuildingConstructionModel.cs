@@ -6,7 +6,6 @@ namespace Runtime.Colony.Construction
 {
     public class BuildingConstructionModel
     {
-        public bool IsActive { get; set; }
         public BuildingDescription SelectedBuilding { get; set; }
         public Vector2Int CurrentGridPosition { get; set; }
         public Vector2 CurrentWorldPosition { get; set; }

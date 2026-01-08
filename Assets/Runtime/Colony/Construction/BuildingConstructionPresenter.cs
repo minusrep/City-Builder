@@ -47,7 +47,6 @@ namespace Runtime.Colony.Construction
         {
             _view.GameObject.SetActive(false);
             _systemCollection.Remove(_system);
-            _model.IsActive = false;
         }
 
         private void SetupView()
