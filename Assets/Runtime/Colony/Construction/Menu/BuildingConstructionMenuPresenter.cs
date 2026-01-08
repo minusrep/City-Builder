@@ -15,6 +15,7 @@ namespace Runtime.Colony.Construction.Menu
         private readonly MenuContent _menuContent;
         private readonly Dictionary<string, Button> _buttons = new();
         private readonly BuildingConstructionPresenter _constructionPresenter;
+        private readonly BuildingConstructionModel _constructionModel;
         
         public BuildingConstructionMenuPresenter(BuildingConstructionMenuView view,
             BuildingConstructionView constructionView,
@@ -24,22 +25,25 @@ namespace Runtime.Colony.Construction.Menu
             _descriptions = descriptions;
             _menuContent = menuContent;
             _view = view;
+
+            _constructionModel = new BuildingConstructionModel(world.PlayerControls);
             _constructionPresenter =
-                new BuildingConstructionPresenter(constructionView, world, viewDescriptions);
+                new BuildingConstructionPresenter(_constructionModel, constructionView, world, viewDescriptions);
         }
 
         public void Enable()
         {
+            _constructionPresenter.Enable();
             _menuContent.MenuRoot.Add(_view.Root);
-            Show();
             BuildButtons();
         }
 
         public void Disable()
         {
-            StopConstruction();
-            Hide();
+            _menuContent.MenuRoot.Remove(_view.Root);
             _view.Root.Clear();
+            _constructionPresenter.Disable();
+            ClearSelection();
             _buttons.Clear();
         }
 
@@ -60,17 +64,8 @@ namespace Runtime.Colony.Construction.Menu
 
         private void StartConstruction(BuildingDescription description)
         {
-            StopConstruction();
             UpdateSelection(description.Id);
-            _constructionPresenter.Model.SelectedBuilding = description;
-            _constructionPresenter.Enable();
-        }
-
-        private void StopConstruction()
-        {
-            _constructionPresenter.Disable();
-
-            ClearSelection();
+            _constructionModel.SelectedBuilding = description;
         }
 
         private void UpdateSelection(string selectedId)
@@ -94,7 +89,8 @@ namespace Runtime.Colony.Construction.Menu
             var button = new Button
             {
                 text = title,
-                name = id
+                name = id,
+                focusable = false
             };
 
             button.AddToClassList("building-button");
@@ -108,8 +104,5 @@ namespace Runtime.Colony.Construction.Menu
             else
                 button.RemoveFromClassList("building-button--selected");
         }
-        
-        private void Show() => _view.Root.style.display = DisplayStyle.Flex;
-        private void Hide() => _view.Root.style.display = DisplayStyle.None;
     }
 }

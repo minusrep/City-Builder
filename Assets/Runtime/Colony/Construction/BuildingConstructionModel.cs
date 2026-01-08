@@ -1,4 +1,5 @@
-﻿using Runtime.Descriptions.Buildings;
+﻿using System;
+using Runtime.Descriptions.Buildings;
 using Runtime.Input;
 using UnityEngine;
 
@@ -6,7 +7,18 @@ namespace Runtime.Colony.Construction
 {
     public class BuildingConstructionModel
     {
-        public BuildingDescription SelectedBuilding { get; set; }
+        public event Action OnChangeSelectedBuilding;
+
+        public BuildingDescription SelectedBuilding
+        {
+            get => _selectedBuilding;
+            set
+            {
+                _selectedBuilding = value;
+                OnChangeSelectedBuilding?.Invoke();
+            }
+        }
+
         public Vector2Int CurrentGridPosition { get; set; }
         public Vector2 CurrentWorldPosition { get; set; }
         public Vector3 VisualWorldOffset { get; set; }
@@ -15,6 +27,7 @@ namespace Runtime.Colony.Construction
         public Vector2 CursorPosition => PlayerControls.Construction.MovePreview.ReadValue<Vector2>();
 
         private PlayerControls PlayerControls { get; }
+        private BuildingDescription _selectedBuilding;
 
         public BuildingConstructionModel(PlayerControls playerControls)
         {
