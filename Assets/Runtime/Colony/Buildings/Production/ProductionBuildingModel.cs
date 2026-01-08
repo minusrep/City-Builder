@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Production
 {
-    public class ProductionBuildingModel : BuildingModel
+    public class ProductionBuildingModel : BuildingModel, IInventoryBuilding
     {
         public ProductionBuildingDescription Description { get; }
         public InventoryModel Inventory { get; private set; }
@@ -52,7 +52,42 @@ namespace Runtime.Colony.Buildings.Production
         public void StopProduction()
         {
             IsActive = false;
-            StartProductionTime = 0;
+        }
+
+        public bool TryAddItem(ResourceDescription resourceDescription, int amount)
+        {
+            if (!Inventory.CanFit(resourceDescription, amount, out _))
+            {
+                return false;
+            }
+            
+            Inventory.TryAddItem(resourceDescription, amount);
+
+            if (Orders.Models.ContainsKey(resourceDescription.Id))
+            {
+                Orders.Models[resourceDescription.Id].Done(amount);
+            }
+
+            StartProduction();
+            return true;
+        }
+        
+        public bool TryRemoveItem(ResourceDescription resourceDescription, int amount)
+        {
+            if (!Inventory.CanExtract(resourceDescription, amount, out _))
+            {
+                return false;
+            }
+            
+            Inventory.TryRemoveItem(resourceDescription, amount);
+            
+            if (Orders.Models.ContainsKey(resourceDescription.Id))
+            {
+                Orders.Models[resourceDescription.Id].Done(amount);
+            }
+            
+            StartProduction();
+            return true;
         }
 
         public override Dictionary<string, object> Serialize()

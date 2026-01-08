@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Storage
 {
-    public class StorageBuildingModel : BuildingModel
+    public class StorageBuildingModel : BuildingModel, IInventoryBuilding
     {
         private const int MaxStackSize = 20;
 
@@ -34,12 +34,12 @@ namespace Runtime.Colony.Buildings.Storage
             }
         }
         
-        public bool TryAddResource(ResourceDescription resource, int amount)
+        public bool TryAddItem(ResourceDescription resource, int amount)
         {
             return Inventory.TryAddItem(resource, amount);
         }
         
-        public bool TryTakeResource(ResourceDescription resource, int amount)
+        public bool TryRemoveItem(ResourceDescription resource, int amount)
         {
             return Inventory.TryRemoveItem(resource, amount);
         }
