@@ -16,6 +16,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string Timer = "timer";
         private const string False = "false";
         private const string True = "true";
+        private const string OrderExists = "order_exists";
+        private const string BuildingWorking = "building_working";
         
         public static ConditionDescription ToConditionDescription(this Dictionary<string, object> data)
         {
@@ -29,6 +31,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 Timer => new TimerConditionDescription(data),
                 True => new TrueConditionDescription(data),
                 False => new FalseConditionDescription(data),
+                OrderExists => new OrderExistsConditionDescription(data),
+                BuildingWorking => new BuildingWorkingCondition(data),
                 _ =>  throw new NotImplementedException()
             };
         }

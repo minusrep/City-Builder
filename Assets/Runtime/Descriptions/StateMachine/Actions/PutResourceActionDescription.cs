@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Runtime.Colony;
+using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Colony.Citizens;
 using UnityEngine;
@@ -23,24 +24,24 @@ namespace Runtime.Descriptions.StateMachine.Actions
             model.Flags["is_carrying"] = true;
             
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
-            var building = world.Buildings.Models.First(b => 
-                b.Value.BaseDescription.Id == PointOfInterest &&
+            var inventoryBuilding = world.Buildings.Models.First(b => 
                 b.Value.Position == new Vector2(buildingPosition.x, buildingPosition.z)
-            ).Value;
-
-            if (building is not StorageBuildingModel storageBuilding)
-            {
-                return;
-            }
+            ).Value as IInventoryBuilding;
 
             var resource = model.Inventory.Models.First().Value.Resource;
-            if (!storageBuilding.Inventory.TryAddItem(resource, 1))
+            if (!inventoryBuilding.TryAddItem(resource, 1))
             {
                 return;
             }
 
             model.Inventory.TryRemoveItem(resource, 1);
             model.Flags["is_carrying"] = false;
+
+            if (resource.Id == "worker")
+            {
+                model.Flags["is_working"] = true;
+                model.Inventory.TryAddItem(resource, 0);
+            }
         }
     }
 }

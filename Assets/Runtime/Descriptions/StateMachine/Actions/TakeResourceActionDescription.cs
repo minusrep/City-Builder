@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Runtime.Colony;
-using Runtime.Colony.Buildings.Production;
+using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Buildings.Storage;
 using Runtime.Colony.Citizens;
+using Runtime.Descriptions.Items;
 using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Actions
@@ -23,23 +25,25 @@ namespace Runtime.Descriptions.StateMachine.Actions
             model.Flags["is_carrying"] = false;
             
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
-            var building = world.Buildings.Models.First(b => 
-                b.Value.BaseDescription.Id == PointOfInterest &&
+            var inventoryBuilding = world.Buildings.Models.First(b => 
                 b.Value.Position == new Vector2(buildingPosition.x, buildingPosition.z)
-            ).Value;
+            ).Value as IInventoryBuilding ;
 
-            if (building is not ProductionBuildingModel productionBuilding)
+            ResourceDescription resource = model.Inventory.Models.Values.First().Resource; 
+            if (!inventoryBuilding.TryRemoveItem(resource, 1))
             {
                 return;
             }
-
-            if (!productionBuilding.Inventory.TryRemoveItem(productionBuilding.ResourceDescription, 1))
-            {
-                return;
-            }
-
-            model.Inventory.TryAddItem(productionBuilding.ResourceDescription, 1);
+            
+            model.Inventory.TryAddItem(resource, 1);
             model.Flags["is_carrying"] = true;
+
+            if (resource.Id == "worker")
+            {
+                model.Inventory.TryRemoveItem(resource, 1);
+                model.Flags["is_working"] = false;
+                model.Flags["is_carrying"] = false;
+            }
         }
     }
 }
