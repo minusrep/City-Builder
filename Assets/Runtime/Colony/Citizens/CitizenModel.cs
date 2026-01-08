@@ -37,6 +37,8 @@ namespace Runtime.Colony.Citizens
 
         public event Action<string> OnInvokeAnimation;
         
+        public event Action<bool> OnVisibilityChanged;
+        
         public int Id { get; set; }
 
         public Vector3 Position { get; set; }
@@ -124,6 +126,11 @@ namespace Runtime.Colony.Citizens
         public void InvokeAnimation(string animation)
         {
             OnInvokeAnimation?.Invoke(animation);
+        }
+
+        public void SetVisibility(bool visibility)
+        {
+            OnVisibilityChanged?.Invoke(visibility);
         }
     }
 }

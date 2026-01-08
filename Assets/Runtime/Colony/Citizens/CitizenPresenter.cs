@@ -39,6 +39,8 @@ namespace Runtime.Colony.Citizens
             _model = model;
 
             _model.StateMachine.OnChange += OnChangeState;
+
+            _model.OnVisibilityChanged += OnVisibilityChanged;
         }
 
         public void Enable()
@@ -95,6 +97,22 @@ namespace Runtime.Colony.Citizens
             foreach (var action in _model.StateMachine.CurrentState.Actions)
             {
                 action.Execute(_world, _model);
+            }
+        }
+        
+        private void OnVisibilityChanged(bool visibility)
+        {
+            _view.gameObject.SetActive(visibility);
+            
+            if (visibility)
+            {
+                _statPresenterCollection.Enable();
+                _inventoryPresenter.Enable();
+            }
+            else
+            {
+                _inventoryPresenter.Disable();
+                _statPresenterCollection.Disable();
             }
         }
     }
