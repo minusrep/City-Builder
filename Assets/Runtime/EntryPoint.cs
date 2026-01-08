@@ -24,9 +24,8 @@ namespace Runtime
         [SerializeField] private VisualTreeAsset _inGameMenuAsset;
         [SerializeField] private VisualTreeAsset _loadMenuAsset;
         [SerializeField] private VisualTreeAsset _achievementsMenuAsset;
-        
-        [Header("View")]
-        [SerializeField] private BuildingCollectionView _buildingCollectionView;
+
+        [Header("View")] [SerializeField] private BuildingCollectionView _buildingCollectionView;
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
         [SerializeField] private CameraControlView _cameraControlView;
 
@@ -77,7 +76,8 @@ namespace Runtime
 
             var pauseMenuModel = new InGameMenuModel(_playerControls);
             var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
-            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);
+            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent, _world,
+                _worldViewDescriptions);
             _inGameMenuPresenter.Enable();
 
             Application.quitting += OnQuit;

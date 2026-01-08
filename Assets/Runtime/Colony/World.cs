@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.Colony.Achievements.Collection;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Descriptions;
@@ -13,10 +14,14 @@ namespace Runtime.Colony
         private const string CitizensKey = "citizens";
 
         private const string BuildingsKey = "buildings";
+        
+        private const string AchievementsKey = "achievements";
 
         public CitizenModelCollection Citizens { get; private set; }
 
         public BuildingModelCollection Buildings { get; private set; }
+        
+        public AchievementModelCollection Achievements { get; private set; }
 
         public WorldDescription WorldDescription { get; private set; }
         
@@ -31,6 +36,8 @@ namespace Runtime.Colony
             Citizens = new CitizenModelCollection(worldDescription);
 
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
+
+            Achievements = new AchievementModelCollection(worldDescription.AchievementsCollection);
             
             GameSystems = gameSystems;
         }
@@ -43,6 +50,8 @@ namespace Runtime.Colony
             
             dictionary[BuildingsKey] = Buildings.Serialize();
             
+            dictionary[AchievementsKey] = Achievements.Serialize();
+            
             return dictionary;
         }
 
@@ -51,6 +60,8 @@ namespace Runtime.Colony
             Buildings.Deserialize(data.GetNode(BuildingsKey));
             
             Citizens.Deserialize(data.GetNode(CitizensKey));
+            
+            Achievements.Deserialize(data.GetNode(AchievementsKey));
         }
     }
 }
