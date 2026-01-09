@@ -59,6 +59,7 @@ namespace Runtime
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView,
                     _worldDescription, _worldViewDescriptions, _gameSystems),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
+                new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent)
             };
 
             foreach (var step in loadSteps)
