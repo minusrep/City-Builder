@@ -3,7 +3,7 @@ using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
-namespace Runtime.Colony.Construction
+namespace Runtime.Colony.Buildings.Construction.WorldGrid
 {
     public class WorldGridModel
     {

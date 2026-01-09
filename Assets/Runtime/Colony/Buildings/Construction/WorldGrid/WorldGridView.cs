@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Runtime.Colony.Construction
+namespace Runtime.Colony.Buildings.Construction.WorldGrid
 {
     [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
     public class WorldGridView : MonoBehaviour

@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UIElements;
 
-namespace Runtime.Colony.Construction.Menu
+namespace Runtime.Colony.Buildings.Construction.Menu
 {
     public class BuildingConstructionMenuView
     {

@@ -2,7 +2,7 @@
 using Runtime.ViewDescriptions.Buildings;
 using UnityEngine;
 
-namespace Runtime.Colony.Construction
+namespace Runtime.Colony.Buildings.Construction
 {
     public static class BuildingVisualLayoutService
     {

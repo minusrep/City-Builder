@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Runtime.Colony;
-using Runtime.Colony.Construction;
-using Runtime.Colony.Construction.Menu;
+using Runtime.Colony.Buildings.Construction;
+using Runtime.Colony.Buildings.Construction.Menu;
+using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Descriptions;
 using Runtime.UI;
 using Runtime.ViewDescriptions;

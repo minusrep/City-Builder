@@ -2,7 +2,7 @@
 using Runtime.GameSystems;
 using UnityEngine;
 
-namespace Runtime.Colony.Construction
+namespace Runtime.Colony.Buildings.Construction
 {
     public class BuildingConstructionSystem : IGameSystem
     {

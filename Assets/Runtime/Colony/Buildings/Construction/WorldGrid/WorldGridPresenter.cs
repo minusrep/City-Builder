@@ -3,7 +3,7 @@ using Runtime.Colony.Buildings.Common;
 using Runtime.Common;
 using UnityEngine;
 
-namespace Runtime.Colony.Construction
+namespace Runtime.Colony.Buildings.Construction.WorldGrid
 {
     public class WorldGridPresenter : IPresenter
     {
