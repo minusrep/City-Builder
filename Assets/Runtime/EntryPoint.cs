@@ -5,7 +5,6 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.Construction;
-using Runtime.Colony.Construction.Menu;
 using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
@@ -13,6 +12,7 @@ using Runtime.Services.SaveLoadSteps;
 using Runtime.UI;
 using Runtime.UI.InGameMenu;
 using Runtime.ViewDescriptions;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -51,6 +51,8 @@ namespace Runtime
 
         private async void Start()
         {
+            _menuContent = new MenuContent(_menuDocument);
+            
             IStep[] loadSteps =
             {
                 new AddressableLoadStep(_addressableModel, _presenters),
@@ -58,6 +60,8 @@ namespace Runtime
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
                 new WorldLoadStep(_world, _worldDescription, _gameSystems),
                 new GameSystemsCollectionLoadStep(_world, _gameSystems),
+                new BuildingConstructionLoadStep(_constructionMenuAsset, _buildingConstructionView, _worldGridView,
+                    _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView,
                     _worldDescription, _worldViewDescriptions, _gameSystems),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
@@ -73,24 +77,15 @@ namespace Runtime
                 _worldDescription.CameraControlDescription, _gameSystems);
             _cameraControlPresenter.Enable();
 
-            _menuContent = new MenuContent(_menuDocument);
-
             var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
             var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);
             _inGameMenuPresenter.Enable();
 
-            var buildingConstructionMenuView =
-                new BuildingConstructionMenuView(_constructionMenuAsset);
-            var buildingConstructionMenuPresenter = new BuildingConstructionMenuPresenter(buildingConstructionMenuView,
-                _buildingConstructionView, _worldGridView, _worldDescription, _world, _worldViewDescriptions,
-                _menuContent);
-            buildingConstructionMenuPresenter.Enable();
-
             Application.quitting += OnQuit;
 
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
 #endif
         }
 
@@ -100,9 +95,9 @@ namespace Runtime
         }
 
 #if UNITY_EDITOR
-        private void OnPlayModeStateChanged(UnityEditor.PlayModeStateChange state)
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
         {
-            if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+            if (state == PlayModeStateChange.ExitingPlayMode)
             {
                 Dispose();
             }
@@ -117,7 +112,7 @@ namespace Runtime
         private async void Dispose()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 #endif
             Application.quitting -= OnQuit;
 
