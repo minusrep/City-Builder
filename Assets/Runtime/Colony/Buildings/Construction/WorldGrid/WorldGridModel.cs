@@ -1,4 +1,5 @@
-﻿using Runtime.Colony.Buildings.Common;
+﻿using System.Collections.Generic;
+using Runtime.Colony.Buildings.Common;
 using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
         
         private GridCellModel[,] Cells { get; }
 
-        public WorldGridModel(WorldGridDescription description)
+        public WorldGridModel(World world, WorldGridDescription description)
         {
             Description = description;
             
@@ -54,6 +55,8 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
                 var y = position.y + cellOffset.y;
                 Cells[x, y].Occupy(building);
             }
+
+            building.GridPosition = position;
             var worldPosition = GridToWorld(position);
             building.WorldPosition =  new Vector2(worldPosition.x, worldPosition.z);
         }
@@ -80,6 +83,16 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
                 {
                     Cells[x, y].Clear();
                 }
+            }
+        }
+        
+        public void RebuildFromBuildings(IEnumerable<BuildingModel> buildings)
+        {
+            Clear();
+
+            foreach (var building in buildings)
+            {
+                PlaceBuilding(building, building.GridPosition);
             }
         }
     }

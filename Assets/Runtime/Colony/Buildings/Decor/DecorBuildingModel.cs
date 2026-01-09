@@ -8,9 +8,9 @@ namespace Runtime.Colony.Buildings.Decor
     public class DecorBuildingModel : BuildingModel
     {
         public DecorBuildingModel(string id,
-            Vector2 worldPosition,
+            Vector2Int gridPosition,
             DecorBuildingDescription baseDescription) : base(id,
-            worldPosition,
+            gridPosition,
             baseDescription)
         {
         }

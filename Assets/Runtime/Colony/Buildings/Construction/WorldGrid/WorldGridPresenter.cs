@@ -23,7 +23,6 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             _view.GameObject.SetActive(true);
             _view.Transform.position = new Vector3(_model.Description.Origin.x, 1f, _model.Description.Origin.z);
             BuildGridMesh();
-            RebuildFromBuildings(_world.Buildings.Models.Values);
         }
 
         public void Disable()
@@ -65,23 +64,6 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             mesh.SetVertices(vertices);
             mesh.SetIndices(indices, MeshTopology.Lines, 0);
             return mesh;
-        }
-        
-        private void RebuildFromBuildings(IEnumerable<BuildingModel> buildings)
-        {
-            _model.Clear();
-
-            foreach (var building in buildings)
-            {
-                var worldPos = new Vector3(
-                    building.WorldPosition.x,
-                    0f,
-                    building.WorldPosition.y);
-
-                var gridPos = _model.WorldToGrid(worldPos);
-
-                _model.PlaceBuilding(building, gridPos);
-            }
         }
     }
 }

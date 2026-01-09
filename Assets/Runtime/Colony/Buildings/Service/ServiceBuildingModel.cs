@@ -17,9 +17,9 @@ namespace Runtime.Colony.Buildings.Service
             public bool IsActive;
             
             public ServiceBuildingModel(string id,
-                Vector2 worldPosition,
+                Vector2Int gridPosition,
                 ServiceBuildingDescription description) : base(id,
-                worldPosition,
+                gridPosition,
                 description)
             {
                 Description = description;

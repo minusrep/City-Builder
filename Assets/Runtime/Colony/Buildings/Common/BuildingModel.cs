@@ -13,6 +13,8 @@ namespace Runtime.Colony.Buildings.Common
         
         public string Id { get; }
 
+        public Vector2Int GridPosition { get; set; }
+        
         public Vector2 WorldPosition
         {
             get => _worldPosition;
@@ -27,10 +29,10 @@ namespace Runtime.Colony.Buildings.Common
         
         private Vector2 _worldPosition;
         
-        protected BuildingModel(string id, Vector2 worldPosition, BuildingDescription baseDescription)
+        protected BuildingModel(string id, Vector2Int gridPosition, BuildingDescription baseDescription)
         {
             Id = id;    
-            WorldPosition = worldPosition;
+            GridPosition = gridPosition;
             BaseDescription = baseDescription;
         }
         
@@ -39,7 +41,7 @@ namespace Runtime.Colony.Buildings.Common
             return new Dictionary<string, object>
             {
                 { "description", BaseDescription.Id },
-                { "position", WorldPosition.ToList() }
+                { "position", GridPosition.ToList() }
             };
         }
 

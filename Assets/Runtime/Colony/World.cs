@@ -40,7 +40,7 @@ namespace Runtime.Colony
 
             Citizens = new CitizenModelCollection(worldDescription);
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
-            Grid = new WorldGridModel(worldDescription.WorldGridDescription);
+            Grid = new WorldGridModel(this, worldDescription.WorldGridDescription);
             PlayerControls = new PlayerControls();
         }
 
@@ -60,6 +60,8 @@ namespace Runtime.Colony
             Buildings.Deserialize(data.GetNode(BuildingsKey));
             
             Citizens.Deserialize(data.GetNode(CitizensKey));
+            
+            Grid.RebuildFromBuildings(Buildings.Models.Values);
         }
     }
 }
