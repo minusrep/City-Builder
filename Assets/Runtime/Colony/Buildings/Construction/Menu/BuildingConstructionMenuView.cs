@@ -9,7 +9,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
         public BuildingConstructionMenuView(VisualTreeAsset constructionMenuAsset)
         {
-            Root = constructionMenuAsset.CloneTree().Q<VisualElement>("content");
+            Root = constructionMenuAsset.CloneTree().Q<VisualElement>("construction-content");
             BuildingList = Root.Q<VisualElement>("building-list");
         }
     }

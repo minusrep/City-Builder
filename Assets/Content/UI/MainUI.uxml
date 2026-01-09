@@ -1,10 +1,8 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xnoNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
-         editor-extension-mode="False">
-    <Style
-        src="project://database/Assets/Content/UI/Styles/pause-menu-style.uss?fileID=7433441132597879392&amp;guid=c2f9e313111b5c04f9768c54c6584dcc&amp;type=3#pause-menu-style" />
-    <Style
-        src="project://database/Assets/Content/UI/Styles/main-ui.uss?fileID=7433441132597879392&amp;guid=578fb28f07eb24041a51993ee458df3b&amp;type=3#main-ui" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xnoNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Content/UI/Styles/pause-menu-style.uss?fileID=7433441132597879392&amp;guid=c2f9e313111b5c04f9768c54c6584dcc&amp;type=3#pause-menu-style"/>
+    <Style src="project://database/Assets/Content/UI/Styles/main-ui.uss?fileID=7433441132597879392&amp;guid=578fb28f07eb24041a51993ee458df3b&amp;type=3#main-ui"/>
+    <Style src="project://database/Assets/Content/UI/Buildings/Style/building-construction-menu.uss?fileID=7433441132597879392&amp;guid=5287839f7950c5846adcb1e9155ac9cf&amp;type=3#building-construction-menu"/>
     <ui:VisualElement name="content" style="flex-grow: 1;">
-        <ui:VisualElement name="hud-layer" />
+        <ui:VisualElement name="hud-layer"/>
     </ui:VisualElement>
 </ui:UXML>
