@@ -4,7 +4,6 @@ using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -46,7 +45,7 @@ namespace Runtime.Colony.Construction.Menu
         {
             _world.PlayerControls.Construction.Cancel.performed += HandleCancelConstruction;
             
-            _menuContent.MenuRoot.Add(_view.Root);
+            _menuContent.HudLayer.Add(_view.Root);
             
             BuildButtons();
         }
@@ -59,7 +58,7 @@ namespace Runtime.Colony.Construction.Menu
             _constructionPresenter.Disable();
             _worldGridPresenter.Disable();
             
-            _menuContent.MenuRoot.Remove(_view.Root);
+            _menuContent.HudLayer.Remove(_view.Root);
 
             ClearSelection();
             _buttons.Clear();
