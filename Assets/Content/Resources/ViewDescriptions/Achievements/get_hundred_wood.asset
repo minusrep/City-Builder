@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: get_hundred_wood
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Achievements.AchievementViewDescription
   Icon: {fileID: 21300000, guid: b3a100d8344187049b3f8b5c9e5aba88, type: 3}
-  Title: "\u041C\u0430\u0441\u0442\u0435\u0440 \u0441\u0431\u043E\u0440\u0430"
+  Title: "\u0414\u0435\u0440\u0435\u0432\u044F\u043D\u043D\u044B\u0439 \u043C\u0430\u0441\u0442\u0435\u0440"
   Description: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C 100 \u0434\u0435\u0440\u0435\u0432\u0430"
