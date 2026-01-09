@@ -86,6 +86,7 @@ namespace Runtime.Colony.Buildings.Production
         public void Produce()
         {
             Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
+            _orders.Create();
         }
 
         public bool CapacityLeft()
