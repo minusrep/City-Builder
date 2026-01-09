@@ -4,10 +4,10 @@
     "triggers": [
       {
         "event": "resource_amount_changed",
-        "resource": "wood"
+        "target": "wood"
       }
     ],
-    "target": 10,
+    "target_value": 10,
     "unlocks": [
       "get_hundred_wood"
     ]
@@ -17,20 +17,20 @@
     "triggers": [
       {
         "event": "resource_amount_changed",
-        "resource": "wood"
+        "target": "wood"
       }
     ],
-    "target": 100
+    "target_value": 100
   },
   "build_three_shelters": {
     "type": "counter",
     "triggers": [
       {
         "event": "buildings_count_changed",
-        "resource": "shelter"
+        "target": "shelter"
       }
     ],
-    "target": 3,
+    "target_value": 3,
     "unlocks": [
       "build_five_shelters"
     ]
@@ -40,10 +40,10 @@
     "triggers": [
       {
         "event": "buildings_count_changed",
-        "resource": "shelter"
+        "target": "shelter"
       }
     ],
-    "target": 5,
+    "target_value": 5,
     "unlocks": [
       "build_ten_shelters"
     ]
@@ -53,9 +53,9 @@
     "triggers": [
       {
         "event": "buildings_count_changed",
-        "resource": "shelter"
+        "target": "shelter"
       }
     ],
-    "target": 10
+    "target_value": 10
   }
 }
