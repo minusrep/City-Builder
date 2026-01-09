@@ -135,6 +135,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _isConstruction = false;
             _constructionPresenter.Disable();
             _worldGridPresenter.Disable();
+            ClearSelection();
         }
     }
 }
