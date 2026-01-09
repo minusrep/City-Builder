@@ -6,14 +6,14 @@ namespace Runtime.Descriptions.Achievements
     public class AchievementDescription
     {
         public string Type { get; }
-        public int Target { get; }
+        public int TargetValue { get; }
         public List<Trigger> Triggers { get; } = new();
         public List<string> Unlocks { get; } = new();
 
         public AchievementDescription(Dictionary<string, object> description)
         {
             Type = description.GetString("type");
-            Target = description.GetInt("target");
+            TargetValue = description.GetInt("target_value");
 
             var triggersList = (List<object>)description["triggers"];
             foreach (var triggerObject in triggersList)

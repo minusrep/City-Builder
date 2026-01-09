@@ -6,12 +6,12 @@ namespace Runtime.Descriptions.Achievements
     public class Trigger
     {
         public string Event { get; }
-        public string Resource { get; }
+        public string Target { get; }
 
         public Trigger(Dictionary<string, object> data)
         {
             Event = data.GetString("event");
-            Resource = data.GetString("resource");
+            Target = data.GetString("target");
         }
     }
 }
