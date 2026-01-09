@@ -23,11 +23,10 @@
     "target_value": 100
   },
   "build_three_shelters": {
-    "type": "counter",
+    "type": "buildings_count_counter",
     "triggers": [
       {
-        "event": "buildings_count_changed",
-        "target": "shelter"
+        "building": "shelter"
       }
     ],
     "target_value": 3,

@@ -1,4 +1,6 @@
-﻿using Runtime.Colony.Buildings.Pool;
+﻿using Runtime.Colony.Achievements;
+using Runtime.Colony.Achievements.Events;
+using Runtime.Colony.Buildings.Pool;
 using Runtime.Common;
 using Runtime.ViewDescriptions;
 using UnityEngine;
@@ -24,6 +26,9 @@ namespace Runtime.Colony.Buildings.Common
             View = (TView)ViewPool.Get();
             View.Transform.position = ModelPositionToVector3(Model);
 
+            MessageBroker.Instance.Publish(new BuildingChange(Model.BaseDescription, 1));
+
+            
             Model.OnPositionChanged += HandlePositionChanged;
         }
 
