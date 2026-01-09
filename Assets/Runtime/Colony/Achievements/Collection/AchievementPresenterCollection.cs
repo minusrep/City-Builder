@@ -27,11 +27,11 @@ namespace Runtime.Colony.Achievements.Collection
         {
             foreach (var (id, model) in _model.Models)
             {
-                CreateAchievementPresenter(id, model);
+                CreatePresenter(id, model);
             }
         }
 
-        private void CreateAchievementPresenter(string id, AchievementModel model)
+        private void CreatePresenter(string id, AchievementModel model)
         {
             var view = new AchievementView(_viewDescriptions.AchievementsViewDescription.AchievementAsset);
 

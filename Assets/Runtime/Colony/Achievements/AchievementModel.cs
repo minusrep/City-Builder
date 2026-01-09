@@ -16,6 +16,27 @@ namespace Runtime.Colony.Achievements
         {
             Description = description;
         }
+        
+        public void SetProgress(int value)
+        {
+            if (!IsActive)
+            {
+                return;
+            }
+
+            Progress = value;
+
+            if (Progress >= Description.TargetValue)
+            {
+                Complete();
+            }
+        }
+        
+        private void Complete()
+        {
+            IsCompleted = true;
+            IsActive = false;
+        }
 
         public Dictionary<string, object> Serialize()
         {
