@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Runtime.Colony.Buildings.Construction;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Buildings.Common
@@ -9,10 +10,12 @@ namespace Runtime.Colony.Buildings.Common
         public GameObject GameObject { get; private set; }
         public ProgressBar ProgressBar { get; private set; }
         public UIDocument Document => _uiDocument;
+        public BuildingPreview Preview => _preview;
 
         [SerializeField] private UIDocument _uiDocument;
+        [SerializeField] private BuildingPreview _preview;
 
-        public void Initialize()
+        public void OnEnable()
         {
             Transform = transform;
             GameObject =  gameObject;

@@ -8,14 +8,15 @@ namespace Runtime.Colony.Buildings.Storage
     public class StorageBuildingPresenter : BuildingPresenter
     {
         private readonly StorageBuildingModel _model;
-        
+
         private InventoryPresenter _inventoryPresenter;
-        
-        public StorageBuildingPresenter(StorageBuildingModel model, IObjectPool<BuildingView> viewPool, WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, worldViewDescriptions)
+
+        public StorageBuildingPresenter(StorageBuildingModel model, IObjectPool<BuildingView> viewPool, World world,
+            WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, world, worldViewDescriptions)
         {
             _model = model;
         }
-        
+
         public override void Enable()
         {
             base.Enable();

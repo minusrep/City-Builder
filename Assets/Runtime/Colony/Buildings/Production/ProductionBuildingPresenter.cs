@@ -16,7 +16,9 @@ namespace Runtime.Colony.Buildings.Production
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, IObjectPool<BuildingView> viewPool,
-           WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, worldViewDescriptions)
+            World world,
+            WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool,
+            world, worldViewDescriptions)
         {
             _model = model;
             _systemCollection = systemCollection;
@@ -25,15 +27,17 @@ namespace Runtime.Colony.Buildings.Production
         public override void Enable()
         {
             base.Enable();
-            
+
             _productionSystem = new ProductionBuildingSystem(_model.Id, _model, View);
 
             _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-            
+
             _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
 
             _inventoryPresenter.Enable();
-            
+
+            _model.Inventory.OnRemoveItem += HandleRemovedResource;
+
             _systemCollection.Add(_productionSystem);
         }
 
@@ -44,9 +48,20 @@ namespace Runtime.Colony.Buildings.Production
             _inventoryPresenter.Disable();
             _inventoryPresenter = null;
 
+            _model.Inventory.OnRemoveItem -= HandleRemovedResource;
+
             _systemCollection.Remove(_productionSystem);
-            
+
             base.Disable();
+        }
+
+        private void HandleRemovedResource()
+        {
+            var currentAmount = _model.Inventory.Models[_model.Description.ProductionResource].Amount;
+            if (_model.CapacityLeft() && currentAmount == _model.Description.MaxResource - 1)
+            {
+                _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            }
         }
     }
 }

@@ -24,8 +24,8 @@ namespace Runtime.Colony.Buildings.Production
         private OrderModelCollection _orders;
 
         public ProductionBuildingModel(string id,
-            Vector2 position,
-            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, position,
+            Vector2Int gridPosition,
+            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, gridPosition,
             description)
         {
             WorldDescription = worldDescription;
@@ -37,12 +37,13 @@ namespace Runtime.Colony.Buildings.Production
 
             ResourceDescription = worldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
             Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
+            Inventory.Create();
             Inventory.TryAddItem(ResourceDescription, 0);
         }
 
         public void StartProduction(long currentTime)
         {
-            if (!IsActive && CapacityLeft())
+            if (CapacityLeft())
             {
                 IsActive = true;
                 StartProductionTime = currentTime;
@@ -82,20 +83,13 @@ namespace Runtime.Colony.Buildings.Production
             _orders.Deserialize(data.GetNode("orders"));
         }
 
-        public bool ProduceOnceAndQueue()
+        public void Produce()
         {
-            if (CapacityLeft())
-            {
-                Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
-
-                _orders.Create();
-                return true;
-            }
-
-            return false;
+            Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
+            _orders.Create();
         }
 
-        private bool CapacityLeft()
+        public bool CapacityLeft()
         {
             return Inventory.CanFit(ResourceDescription, Description.ProductionAmount, out _);
         }

@@ -10,6 +10,8 @@ namespace Runtime.Colony.Inventory
 {
     public class InventoryModel : UniformModelCollection<CellModel>
     {
+        public event Action OnRemoveItem;
+        
         public int Size;
 
         private readonly int _maxStackSize;
@@ -67,6 +69,7 @@ namespace Runtime.Colony.Inventory
 
                         if (remaining == 0)
                         {
+                            OnRemoveItem?.Invoke();
                             return true;
                         }
                     }

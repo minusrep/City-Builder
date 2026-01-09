@@ -1,17 +1,19 @@
+using System.Collections.Generic;
 using Runtime.AsyncLoad;
 using Runtime.CameraControl;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
+using Runtime.Colony.Buildings.Construction;
+using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
-using Runtime.Input;
 using Runtime.Services.SaveLoadSteps;
-using Runtime.ViewDescriptions;
-using System.Collections.Generic;
 using Runtime.UI;
 using Runtime.UI.InGameMenu;
+using Runtime.ViewDescriptions;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,11 +25,13 @@ namespace Runtime
         [SerializeField] private VisualTreeAsset _inGameMenuAsset;
         [SerializeField] private VisualTreeAsset _loadMenuAsset;
         [SerializeField] private VisualTreeAsset _achievementsMenuAsset;
-        
-        [Header("View")]
-        [SerializeField] private BuildingCollectionView _buildingCollectionView;
+        [SerializeField] private VisualTreeAsset _constructionMenuAsset;
+
+        [Header("View")] [SerializeField] private BuildingCollectionView _buildingCollectionView;
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
         [SerializeField] private CameraControlView _cameraControlView;
+        [SerializeField] private BuildingConstructionView _buildingConstructionView;
+        [SerializeField] private WorldGridView _worldGridView;
 
         private readonly WorldDescription _worldDescription = new();
 
@@ -41,7 +45,6 @@ namespace Runtime
 
         private readonly List<IPresenter> _presenters = new();
 
-        private PlayerControls _playerControls;
         private CameraControlModel _cameraControlModel;
         private CameraControlPresenter _cameraControlPresenter;
         private MenuContent _menuContent;
@@ -49,6 +52,8 @@ namespace Runtime
 
         private async void Start()
         {
+            _menuContent = new MenuContent(_menuDocument);
+            
             IStep[] loadSteps =
             {
                 new AddressableLoadStep(_addressableModel, _presenters),
@@ -56,6 +61,8 @@ namespace Runtime
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
                 new WorldLoadStep(_world, _worldDescription, _gameSystems),
                 new GameSystemsCollectionLoadStep(_world, _gameSystems),
+                new BuildingConstructionLoadStep(_constructionMenuAsset, _buildingConstructionView, _worldGridView,
+                    _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView,
                     _worldDescription, _worldViewDescriptions, _gameSystems),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
@@ -66,15 +73,12 @@ namespace Runtime
                 await step.Run();
             }
 
-            _playerControls = new PlayerControls();
-            _cameraControlModel = new CameraControlModel(_playerControls);
+            _cameraControlModel = new CameraControlModel(_world.PlayerControls);
             _cameraControlPresenter = new CameraControlPresenter(_cameraControlModel, _cameraControlView,
                 _worldDescription.CameraControlDescription, _gameSystems);
             _cameraControlPresenter.Enable();
 
-            _menuContent = new MenuContent(_menuDocument);
-
-            var pauseMenuModel = new InGameMenuModel(_playerControls);
+            var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
             var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);
             _inGameMenuPresenter.Enable();
@@ -82,7 +86,7 @@ namespace Runtime
             Application.quitting += OnQuit;
 
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
 #endif
         }
 
@@ -92,9 +96,9 @@ namespace Runtime
         }
 
 #if UNITY_EDITOR
-        private void OnPlayModeStateChanged(UnityEditor.PlayModeStateChange state)
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
         {
-            if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+            if (state == PlayModeStateChange.ExitingPlayMode)
             {
                 Dispose();
             }
@@ -109,7 +113,7 @@ namespace Runtime
         private async void Dispose()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 #endif
             Application.quitting -= OnQuit;
 

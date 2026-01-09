@@ -9,6 +9,8 @@ namespace Runtime.Descriptions
 {
     public sealed class WorldDescription
     {
+        public WorldGridDescription WorldGridDescription { get; private set; }
+        
         public BuildingsDescriptionCollection BuildingCollection { get; private set; }
         
         public ResourceDescriptionCollection ResourceCollection { get; private set; }
@@ -29,6 +31,7 @@ namespace Runtime.Descriptions
             Factory.Register<DecorBuildingDescription>("decor");
             Factory.Register<StorageBuildingDescription>("storage");
             
+            WorldGridDescription = new WorldGridDescription(data.GetNode("world_grid"));
             BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
             ResourceCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
             Citizens = new CitizensDescription(data.GetNode("citizens"));
