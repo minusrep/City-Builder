@@ -41,7 +41,7 @@
     },
     "stress": {
       "stat": "happiness",
-      "change_speed": -1
+      "change_speed": -4
     },
     "comfort": {
       "stat": "happiness",
@@ -228,6 +228,11 @@
           "point_of_interest": "lantern"
         },
         {
+          "type": "set_flag",
+          "flag_name": "is_sad",
+          "flag_value": "true"
+        },
+        {
           "type": "start_move",
           "point_of_interest": "lantern"
         },
@@ -238,9 +243,20 @@
       ],
       "transitions": {
         "talk_start": {
-          "type": "distance",
-          "value": 1.0,
-          "point_of_interest": "lantern"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "citizen_distance_with_flag",
+              "distance_value": 1.0,
+              "flag_name": "is_sad",
+              "flag_value": "true"
+            },
+            {
+              "type": "distance",
+              "value": 1.0,
+              "point_of_interest": "lantern"
+            }
+          ]
         }
       }
     },
@@ -269,6 +285,11 @@
         {
           "type": "unregister_system",
           "system": "comfort"
+        },
+        {
+          "type": "set_flag",
+          "flag_name": "is_sad",
+          "flag_value": "false"
         },
         {
           "type": "set_point_of_interest",

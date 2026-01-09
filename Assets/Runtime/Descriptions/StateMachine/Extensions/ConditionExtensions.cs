@@ -1,13 +1,13 @@
+using Runtime.Descriptions.StateMachine.Conditions;
 using System;
 using System.Collections.Generic;
-using Runtime.Descriptions.StateMachine.Conditions;
 
 namespace Runtime.Descriptions.StateMachine.Extensions
 {
     public static class ConditionExtensions
     {
         private const string TypeKey = "type";
-        
+
         private const string CompareKey = "compare";
         private const string FlagKey = "flag";
         private const string Or = "or";
@@ -16,7 +16,9 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string Timer = "timer";
         private const string False = "false";
         private const string True = "true";
-        
+        private const string CitizenDistanceWithFlag = "citizen_distance_with_flag";
+
+
         public static ConditionDescription ToConditionDescription(this Dictionary<string, object> data)
         {
             return data[TypeKey] switch
@@ -29,7 +31,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 Timer => new TimerConditionDescription(data),
                 True => new TrueConditionDescription(data),
                 False => new FalseConditionDescription(data),
-                _ =>  throw new NotImplementedException()
+                CitizenDistanceWithFlag => new CitizenDistanceWithFlagConditionDescription(data),
+                _ => throw new NotImplementedException()
             };
         }
     }

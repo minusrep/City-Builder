@@ -1,6 +1,6 @@
+using Runtime.Descriptions.StateMachine.Actions;
 using System;
 using System.Collections.Generic;
-using Runtime.Descriptions.StateMachine.Actions;
 
 namespace Runtime.Descriptions.StateMachine.Extensions
 {
@@ -17,7 +17,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string UnregisterSystemKey = "unregister_system";
         private const string TakeResourceKey = "take_resource";
         private const string PutResourceKey = "put_resource";
-        
+        private const string SetFlagKey = "set_flag";
+
         public static ActionDescription ToActionDescription(this Dictionary<string, object> data)
         {
             return data[TypeKey] switch
@@ -32,7 +33,8 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 InvokeAnimationKey => new InvokeAnimationDescription(data),
                 TakeResourceKey => new TakeResourceActionDescription(data),
                 PutResourceKey => new PutResourceActionDescription(data),
-                _ =>  throw new NotImplementedException()
+                SetFlagKey => new SetFlagActionDescription(data),
+                _ => throw new NotImplementedException()
             };
         }
     }
