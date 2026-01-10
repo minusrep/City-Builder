@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Runtime.Colony.Buildings.Construction;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Buildings.Common
