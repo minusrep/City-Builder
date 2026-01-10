@@ -36,6 +36,10 @@ namespace Runtime.UI.HUD
 
         private void OnClick(InputAction.CallbackContext context)
         {
+            if (!_model.CanSelect)
+            {
+                return;
+            }
             
             var ray = _view.Camera.ScreenPointToRay(_playerControls.Player.PointerPosition.ReadValue<Vector2>());
             

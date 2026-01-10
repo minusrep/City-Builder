@@ -24,7 +24,7 @@ namespace Runtime.Colony.Buildings.Production
             {
                 var currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
                 
-                var progress = (float)(currentTime - _model.StartProductionTime) / _model.Description.ProductionTime;
+                var progress = (float)(currentTime - _model.StartProductionTime) / _model.ProductionTime;
                 
                 UpdateProgressBar(progress);
 
@@ -32,7 +32,7 @@ namespace Runtime.Colony.Buildings.Production
                 {
                     if (_model.ProduceOnceAndQueue())
                     {
-                        _model.StartProductionTime += _model.Description.ProductionTime;
+                        _model.StartProductionTime += _model.ProductionTime;
                     }
                     else
                     {

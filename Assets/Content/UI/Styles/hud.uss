@@ -1,21 +1,53 @@
-.building-info-field {
+.building-panel-field {
     color: rgb(255, 255, 255);
     font-size: 24px;
     -unity-font-style: normal;
 }
 
-.building-info-title {
+.building-panel-title {
     color: rgb(255, 255, 255);
     font-size: 32px;
     -unity-font-style: bold;
 }
 
-.building-info-disabled {
+.building-panel-disabled {
     translate: -100% 0;
     transition-duration: 0.2s;
 }
 
-.building-info-enabled {
+.building-panel-enabled {
     translate: 0% 0;
     transition-duration: 0.2s;
 }
+
+.building-panel-upgrade-button {
+    -unity-font-style: bold;
+    background-color: rgb(16, 16, 16);
+    font-size: 24px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-left-color: rgb(26, 25, 25);
+    border-right-color: rgb(26, 25, 25);
+    border-top-color: rgb(26, 25, 25);
+    border-bottom-color: rgb(26, 25, 25);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    color: rgb(226, 226, 226);
+    flex-grow: 1;
+    justify-content: center;
+    padding-top: 4px;
+    padding-right: 0;
+    padding-bottom: 4px;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    width: 100%;
+}
+
+

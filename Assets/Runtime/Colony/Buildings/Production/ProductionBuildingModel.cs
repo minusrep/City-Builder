@@ -19,6 +19,11 @@ namespace Runtime.Colony.Buildings.Production
         public ResourceDescription ResourceDescription { get; }
         private WorldDescription WorldDescription { get; }
 
+        public long ProductionTime
+        {
+            get => Description.ProductionTimeByLevel[Level];
+        }
+        
         public long StartProductionTime;
 
         private OrderModelCollection _orders;
@@ -71,6 +76,8 @@ namespace Runtime.Colony.Buildings.Production
 
         public override void Deserialize(Dictionary<string, object> data)
         {
+            base.Deserialize(data);
+            
             IsActive = data.GetBool("is_active");
             StartProductionTime = data.GetLong("start_production_time");
             StartProductionTime += DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - data.GetLong("save_time");

@@ -1,4 +1,6 @@
 using Runtime.Colony;
+using Runtime.Colony.Buildings.Production;
+using Runtime.Colony.Buildings.Service;
 using Runtime.Common;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
@@ -8,13 +10,15 @@ namespace Runtime.UI.HUD.BuildingHUD
 {
     public class BuildingPanelPresenter : IPresenter
     {
-        private const string BuildingInfoKey = "building-info";
+        private const string BuildingPanelKey = "building-panel";
         
-        private const string BuildingInfoEnabledStyleKey = "building-info-enabled";
+        private const string BuildingPanelEnabledStyleKey = "building-panel-enabled";
         
-        private const string BuildingInfoTextFieldStyleKey = "building-info-field";
+        private const string BuildingInfoPanelFieldStyleKey = "building-panel-field";
         
-        private const string BuildingInfoTextTitleStyleKey = "building-info-title";
+        private const string BuildingPanelTextTitleStyleKey = "building-panel-title";
+        
+        private const string BuildingInfoUpgradeButtonStyleKey = "building-panel-upgrade-button";
         
         private readonly HUDView _view;
 
@@ -34,7 +38,10 @@ namespace Runtime.UI.HUD.BuildingHUD
 
         public void Enable()
         {
-            _root = _view.Root.Q<VisualElement>(BuildingInfoKey);
+            _root = _view.Root.Q<VisualElement>(BuildingPanelKey);
+            
+            _root.RegisterCallback<PointerEnterEvent>(OnPointerEnter);
+            _root.RegisterCallback<PointerLeaveEvent>(OnPointerLeave);
             
             _model.OnChange += OnChange;
         }
@@ -46,56 +53,81 @@ namespace Runtime.UI.HUD.BuildingHUD
 
         private void OnChange()
         {
-            var notSelected = string.IsNullOrEmpty(_model.SelectedBuildingId);
+            TogglePanel();
+        }
 
+        private void TogglePanel()
+        {
+            var notSelected = string.IsNullOrEmpty(_model.SelectedBuildingId);
+            
             if (notSelected)
             {
-                _root.RemoveFromClassList(BuildingInfoEnabledStyleKey);
-                
+                _root.RemoveFromClassList(BuildingPanelEnabledStyleKey);
+
                 return;
             }
             
             var buildingModel = _world.Buildings.Get(_model.SelectedBuildingId);
             
-            _root.AddToClassList(BuildingInfoEnabledStyleKey);
+            _root.AddToClassList(BuildingPanelEnabledStyleKey);
             
             _root.Clear();
 
             _root.Add(CreateTitle(buildingModel.BaseDescription.ViewDescriptionId));
 
             _root.Add(CreateField("Type: ", buildingModel.BaseDescription.Type));
+            _root.Add(CreateField("Level: ", buildingModel.Level + 1));
 
-            switch (buildingModel.BaseDescription)
+            switch (buildingModel)
             {
-                case ServiceBuildingDescription serviceBuildingDescription:
-                    _root.Add(CreateField("Resource: ", serviceBuildingDescription.ServiceResource));
+                case ServiceBuildingModel service:
+                    _root.Add(CreateField("Resource: ", service.Description.ServiceResource));
                     break;
+                case ProductionBuildingModel production:
+                    _root.Add(CreateField("Time: ", $"{production.ProductionTime / 1000f}s"));
+                    _root.Add(CreateField("Resource: ", production.Description.ProductionResource));
+                    break;
+            }
+
+            if (buildingModel.CanUpgrade)
+            {
+                var upgradeButton = new Button()
+                {
+                    enableRichText = true,
+                    text = $"Upgrade to <color=#FFD700>{buildingModel.Level + 2}"
+                };
+
+                upgradeButton.clicked += () =>
+                {
+                    buildingModel.Upgrade();
+                    
+                    TogglePanel();
+                };
                 
-                case ProductionBuildingDescription productionBuildingDescription:
-                    _root.Add(CreateField("Time: ", $"{productionBuildingDescription.ProductionResource}s"));
-                    _root.Add(CreateField("Resource: ", productionBuildingDescription.ProductionResource));
-                break;
+                upgradeButton.AddToClassList(BuildingInfoUpgradeButtonStyleKey);
+                
+                _root.Add(upgradeButton);
             }
         }
 
         private TextElement CreateTitle(string value)
         {
-            var title = CreateTextElement(BuildingInfoTextTitleStyleKey);
+            var title = CreateTextElement(BuildingPanelTextTitleStyleKey);
 
             title.text = value;
             
             return title;
         }
-        
+
         private TextElement CreateField<T>(string name, T value)
         {
-            var field = CreateTextElement(BuildingInfoTextFieldStyleKey);
+            var field = CreateTextElement(BuildingInfoPanelFieldStyleKey);
 
             field.text = $"<color=#FFD700>{name}</color>{value.ToString()}";
 
             return field;
         }
-        
+
         private TextElement CreateTextElement(string style)
         {
             var textElement = new TextElement();
@@ -103,6 +135,16 @@ namespace Runtime.UI.HUD.BuildingHUD
             textElement.AddToClassList(style);
             
             return textElement;
+        }
+
+        private void OnPointerEnter(PointerEnterEvent evt)
+        {
+            _model.CanSelect = false;
+        }
+
+        private void OnPointerLeave(PointerLeaveEvent evt)
+        {
+            _model.CanSelect = true;
         }
     }
 }

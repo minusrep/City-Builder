@@ -68,6 +68,8 @@ namespace Runtime.Colony.Buildings.Storage
 
         public override void Deserialize(Dictionary<string, object> data)
         {
+            base.Deserialize(data);
+            
             Inventory = new InventoryModel(1, MaxStackSize, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
         }
