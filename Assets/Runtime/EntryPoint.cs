@@ -79,7 +79,7 @@ namespace Runtime
             _cameraControlPresenter.Enable();
 
             _menuContent = new MenuContent(_menuDocument);
-
+            
             var pauseMenuModel = new InGameMenuModel(_playerControls);
             var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);

@@ -1,0 +1,21 @@
+.building-info-field {
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    -unity-font-style: normal;
+}
+
+.building-info-title {
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    -unity-font-style: bold;
+}
+
+.building-info-disabled {
+    translate: -100% 0;
+    transition-duration: 0.2s;
+}
+
+.building-info-enabled {
+    translate: 0% 0;
+    transition-duration: 0.2s;
+}

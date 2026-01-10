@@ -26,7 +26,7 @@ namespace Runtime.Colony.Buildings.Common
         public void Initialize(string id)
         {
             Id = id;
-            
+
             _outline.enabled = false;
             
             Transform = transform;

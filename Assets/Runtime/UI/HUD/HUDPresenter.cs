@@ -1,6 +1,7 @@
 using Runtime.Colony;
 using Runtime.Common;
 using Runtime.Input;
+using Runtime.UI.HUD.BuildingHUD;
 
 namespace Runtime.UI.HUD
 {
@@ -10,11 +11,13 @@ namespace Runtime.UI.HUD
         
         private readonly HUDModel _model;
 
-        private World _world;
+        private readonly World _world;
 
         private readonly PlayerControls _playerControls;
 
         private BuildingSelectionPresenter _buildingSelectionPresenter;
+
+        private BuildingPanelPresenter _buildingPanelPresenter;
         
         public HUDPresenter(HUDView view, HUDModel model, World world, PlayerControls playerControls)
         {
@@ -28,14 +31,22 @@ namespace Runtime.UI.HUD
         {
             _buildingSelectionPresenter = new BuildingSelectionPresenter(_view.BuildingSelectionView, _model.BuildingSelectionModel, _playerControls);
             
+            _buildingPanelPresenter = new BuildingPanelPresenter(_view, _model.BuildingSelectionModel, _world);
+            
             _buildingSelectionPresenter.Enable();
+            
+            _buildingPanelPresenter.Enable();
         }
 
         public void Disable()
         {
             _buildingSelectionPresenter.Disable();
 
+            _buildingPanelPresenter.Disable();
+            
             _buildingSelectionPresenter = null;
+            
+            _buildingPanelPresenter = null;
         }
     }
 }
