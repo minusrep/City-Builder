@@ -23,22 +23,25 @@ namespace Runtime.Colony.Buildings.Production
             if (_model.IsActive)
             {
                 var currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-                
-                var progress = (float)(currentTime - _model.StartProductionTime) / _model.ProductionTime;
-                
+
+                var progress = (float)(currentTime - _model.StartProductionTime) / _model.Description.ProductionTime;
+
                 UpdateProgressBar(progress);
 
                 if (progress >= 1f)
                 {
-                    if (_model.ProduceOnceAndQueue())
-                    {
-                        _model.StartProductionTime += _model.ProductionTime;
-                    }
-                    else
+                    _model.Produce();
+                    _model.StartProductionTime += _model.Description.ProductionTime;
+
+                    if (!_model.CapacityLeft())
                     {
                         _model.StopProduction();
                     }
                 }
+            }
+            else
+            {
+                UpdateProgressBar(1f);
             }
         }
 

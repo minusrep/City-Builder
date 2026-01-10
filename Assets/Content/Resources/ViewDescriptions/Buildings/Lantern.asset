@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Lantern
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.BaseBuildingViewDescription
   Prefab: {fileID: 6383710204673921016, guid: 7d25b5131c1d4414c892fed21d89d29b, type: 3}
+  VisualSizeInCells: {x: 1, y: 1}
+  AdditionalWorldOffset: {x: 0, y: 0, z: 0}

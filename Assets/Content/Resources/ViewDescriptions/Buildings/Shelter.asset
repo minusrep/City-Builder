@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Shelter
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ServiceBuildingViewDescription
   Prefab: {fileID: 1995736407142382352, guid: bb95363bf246e774094abd04c42eb708, type: 3}
+  VisualSizeInCells: {x: 5, y: 5}
+  AdditionalWorldOffset: {x: 0.3, y: 0, z: 0}

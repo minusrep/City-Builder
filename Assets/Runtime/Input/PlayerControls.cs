@@ -251,48 +251,68 @@ namespace Runtime.Input
             ]
         },
         {
-            ""name"": ""Player"",
-            ""id"": ""5143d878-7275-4d70-b851-13ffb3ea39e2"",
+            ""name"": ""Construction"",
+            ""id"": ""2831b226-fe37-4170-8c49-1e29a97172b1"",
             ""actions"": [
                 {
-                    ""name"": ""Click"",
-                    ""type"": ""Button"",
-                    ""id"": ""bf1cf731-6e27-4e64-80b9-6a9e24924598"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PointerPosition"",
+                    ""name"": ""MovePreview"",
                     ""type"": ""Value"",
-                    ""id"": ""cc99b5d5-b7d9-4cd2-a442-70235a6ae0e6"",
+                    ""id"": ""46de0c11-6451-4e2d-88d0-edd7b964f4c3"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Build"",
+                    ""type"": ""Button"",
+                    ""id"": ""76aacf6c-648d-4b8d-9b75-09adf12ae4d9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""99e02a0b-a997-4411-b116-3892290ed6b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""1ce00aca-8390-4c18-af6b-2496a5c5e8cb"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""ae8d87ea-d599-4f69-9256-be2146adaa56"",
+                    ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Click"",
+                    ""action"": ""MovePreview"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""28a809ce-ed7a-4c4e-923f-9307e13c9634"",
-                    ""path"": ""<Mouse>/position"",
+                    ""id"": ""7a4e8e2c-4183-40dc-9dfb-c4abae0e04b2"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PointerPosition"",
+                    ""action"": ""Build"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""941e65c3-f01a-4c00-82cf-4be1b77b0d01"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -310,17 +330,18 @@ namespace Runtime.Input
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
-            m_Player_PointerPosition = m_Player.FindAction("PointerPosition", throwIfNotFound: true);
+            // Construction
+            m_Construction = asset.FindActionMap("Construction", throwIfNotFound: true);
+            m_Construction_MovePreview = m_Construction.FindAction("MovePreview", throwIfNotFound: true);
+            m_Construction_Build = m_Construction.FindAction("Build", throwIfNotFound: true);
+            m_Construction_Cancel = m_Construction.FindAction("Cancel", throwIfNotFound: true);
         }
 
         ~@PlayerControls()
         {
             UnityEngine.Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, PlayerControls.Camera.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Construction.enabled, "This will cause a leak and performance issues, PlayerControls.Construction.Disable() has not been called.");
         }
 
         /// <summary>
@@ -618,34 +639,39 @@ namespace Runtime.Input
         /// </summary>
         public UIActions @UI => new UIActions(this);
 
-        // Player
-        private readonly InputActionMap m_Player;
-        private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-        private readonly InputAction m_Player_Click;
-        private readonly InputAction m_Player_PointerPosition;
+        // Construction
+        private readonly InputActionMap m_Construction;
+        private List<IConstructionActions> m_ConstructionActionsCallbackInterfaces = new List<IConstructionActions>();
+        private readonly InputAction m_Construction_MovePreview;
+        private readonly InputAction m_Construction_Build;
+        private readonly InputAction m_Construction_Cancel;
         /// <summary>
-        /// Provides access to input actions defined in input action map "Player".
+        /// Provides access to input actions defined in input action map "Construction".
         /// </summary>
-        public struct PlayerActions
+        public struct ConstructionActions
         {
             private @PlayerControls m_Wrapper;
 
             /// <summary>
             /// Construct a new instance of the input action map wrapper class.
             /// </summary>
-            public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public ConstructionActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             /// <summary>
-            /// Provides access to the underlying input action "Player/Click".
+            /// Provides access to the underlying input action "Construction/MovePreview".
             /// </summary>
-            public InputAction @Click => m_Wrapper.m_Player_Click;
+            public InputAction @MovePreview => m_Wrapper.m_Construction_MovePreview;
             /// <summary>
-            /// Provides access to the underlying input action "Player/PointerPosition".
+            /// Provides access to the underlying input action "Construction/Build".
             /// </summary>
-            public InputAction @PointerPosition => m_Wrapper.m_Player_PointerPosition;
+            public InputAction @Build => m_Wrapper.m_Construction_Build;
+            /// <summary>
+            /// Provides access to the underlying input action "Construction/Cancel".
+            /// </summary>
+            public InputAction @Cancel => m_Wrapper.m_Construction_Cancel;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public InputActionMap Get() { return m_Wrapper.m_Construction; }
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
             public void Enable() { Get().Enable(); }
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -653,9 +679,9 @@ namespace Runtime.Input
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
             public bool enabled => Get().enabled;
             /// <summary>
-            /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
+            /// Implicitly converts an <see ref="ConstructionActions" /> to an <see ref="InputActionMap" /> instance.
             /// </summary>
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+            public static implicit operator InputActionMap(ConstructionActions set) { return set.Get(); }
             /// <summary>
             /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
             /// </summary>
@@ -663,17 +689,20 @@ namespace Runtime.Input
             /// <remarks>
             /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
             /// </remarks>
-            /// <seealso cref="PlayerActions" />
-            public void AddCallbacks(IPlayerActions instance)
+            /// <seealso cref="ConstructionActions" />
+            public void AddCallbacks(IConstructionActions instance)
             {
-                if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
-                @PointerPosition.started += instance.OnPointerPosition;
-                @PointerPosition.performed += instance.OnPointerPosition;
-                @PointerPosition.canceled += instance.OnPointerPosition;
+                if (instance == null || m_Wrapper.m_ConstructionActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_ConstructionActionsCallbackInterfaces.Add(instance);
+                @MovePreview.started += instance.OnMovePreview;
+                @MovePreview.performed += instance.OnMovePreview;
+                @MovePreview.canceled += instance.OnMovePreview;
+                @Build.started += instance.OnBuild;
+                @Build.performed += instance.OnBuild;
+                @Build.canceled += instance.OnBuild;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
 
             /// <summary>
@@ -682,24 +711,27 @@ namespace Runtime.Input
             /// <remarks>
             /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
             /// </remarks>
-            /// <seealso cref="PlayerActions" />
-            private void UnregisterCallbacks(IPlayerActions instance)
+            /// <seealso cref="ConstructionActions" />
+            private void UnregisterCallbacks(IConstructionActions instance)
             {
-                @Click.started -= instance.OnClick;
-                @Click.performed -= instance.OnClick;
-                @Click.canceled -= instance.OnClick;
-                @PointerPosition.started -= instance.OnPointerPosition;
-                @PointerPosition.performed -= instance.OnPointerPosition;
-                @PointerPosition.canceled -= instance.OnPointerPosition;
+                @MovePreview.started -= instance.OnMovePreview;
+                @MovePreview.performed -= instance.OnMovePreview;
+                @MovePreview.canceled -= instance.OnMovePreview;
+                @Build.started -= instance.OnBuild;
+                @Build.performed -= instance.OnBuild;
+                @Build.canceled -= instance.OnBuild;
+                @Cancel.started -= instance.OnCancel;
+                @Cancel.performed -= instance.OnCancel;
+                @Cancel.canceled -= instance.OnCancel;
             }
 
             /// <summary>
-            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ConstructionActions.UnregisterCallbacks(IConstructionActions)" />.
             /// </summary>
-            /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
-            public void RemoveCallbacks(IPlayerActions instance)
+            /// <seealso cref="ConstructionActions.UnregisterCallbacks(IConstructionActions)" />
+            public void RemoveCallbacks(IConstructionActions instance)
             {
-                if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_ConstructionActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
@@ -709,21 +741,21 @@ namespace Runtime.Input
             /// <remarks>
             /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
             /// </remarks>
-            /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
-            /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
-            /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
-            public void SetCallbacks(IPlayerActions instance)
+            /// <seealso cref="ConstructionActions.AddCallbacks(IConstructionActions)" />
+            /// <seealso cref="ConstructionActions.RemoveCallbacks(IConstructionActions)" />
+            /// <seealso cref="ConstructionActions.UnregisterCallbacks(IConstructionActions)" />
+            public void SetCallbacks(IConstructionActions instance)
             {
-                foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_ConstructionActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_ConstructionActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
         /// <summary>
-        /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
+        /// Provides a new <see cref="ConstructionActions" /> instance referencing this action map.
         /// </summary>
-        public PlayerActions @Player => new PlayerActions(this);
+        public ConstructionActions @Construction => new ConstructionActions(this);
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Camera" which allows adding and removing callbacks.
         /// </summary>
@@ -776,26 +808,33 @@ namespace Runtime.Input
             void OnPause(InputAction.CallbackContext context);
         }
         /// <summary>
-        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Construction" which allows adding and removing callbacks.
         /// </summary>
-        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
-        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
-        public interface IPlayerActions
+        /// <seealso cref="ConstructionActions.AddCallbacks(IConstructionActions)" />
+        /// <seealso cref="ConstructionActions.RemoveCallbacks(IConstructionActions)" />
+        public interface IConstructionActions
         {
             /// <summary>
-            /// Method invoked when associated input action "Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "MovePreview" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnClick(InputAction.CallbackContext context);
+            void OnMovePreview(InputAction.CallbackContext context);
             /// <summary>
-            /// Method invoked when associated input action "PointerPosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "Build" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnPointerPosition(InputAction.CallbackContext context);
+            void OnBuild(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Cancel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnCancel(InputAction.CallbackContext context);
         }
     }
 }

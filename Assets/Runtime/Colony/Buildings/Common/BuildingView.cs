@@ -9,8 +9,9 @@ namespace Runtime.Colony.Buildings.Common
         public GameObject GameObject { get; private set; }
         public ProgressBar ProgressBar { get; private set; }
         public UIDocument Document => _uiDocument;
+        public BuildingPreview Preview => _preview;
 
-        public string Id { get; private set; }
+        public string Id { get; set; }
 
         public bool SelectedOutline
         {
@@ -20,15 +21,12 @@ namespace Runtime.Colony.Buildings.Common
         }
 
         [SerializeField] private UIDocument _uiDocument;
+        [SerializeField] private BuildingPreview _preview;
 
         [SerializeField] private Outline _outline;
         
-        public void Initialize(string id)
+        public void OnEnable()
         {
-            Id = id;
-
-            _outline.enabled = false;
-            
             Transform = transform;
             GameObject =  gameObject;
             

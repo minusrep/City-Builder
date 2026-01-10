@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Tavern
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ServiceBuildingViewDescription
   Prefab: {fileID: 1686836590681740451, guid: 29c360f540bb3514382bb935bbb9c7f4, type: 3}
+  VisualSizeInCells: {x: 5, y: 6}
+  AdditionalWorldOffset: {x: -0.18, y: 0, z: -0.2}

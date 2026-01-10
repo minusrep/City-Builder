@@ -25,7 +25,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
             var building = world.Buildings.Models.First(b => 
                 b.Value.BaseDescription.Id == PointOfInterest &&
-                b.Value.Position == new Vector2(buildingPosition.x, buildingPosition.z)
+                b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
             ).Value;
 
             if (building is not StorageBuildingModel storageBuilding)

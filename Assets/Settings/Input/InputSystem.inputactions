@@ -163,48 +163,68 @@
             ]
         },
         {
-            "name": "Player",
-            "id": "5143d878-7275-4d70-b851-13ffb3ea39e2",
+            "name": "Construction",
+            "id": "2831b226-fe37-4170-8c49-1e29a97172b1",
             "actions": [
                 {
-                    "name": "Click",
-                    "type": "Button",
-                    "id": "bf1cf731-6e27-4e64-80b9-6a9e24924598",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PointerPosition",
+                    "name": "MovePreview",
                     "type": "Value",
-                    "id": "cc99b5d5-b7d9-4cd2-a442-70235a6ae0e6",
+                    "id": "46de0c11-6451-4e2d-88d0-edd7b964f4c3",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Build",
+                    "type": "Button",
+                    "id": "76aacf6c-648d-4b8d-9b75-09adf12ae4d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "99e02a0b-a997-4411-b116-3892290ed6b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "1ce00aca-8390-4c18-af6b-2496a5c5e8cb",
-                    "path": "<Mouse>/leftButton",
+                    "id": "ae8d87ea-d599-4f69-9256-be2146adaa56",
+                    "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Click",
+                    "action": "MovePreview",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "28a809ce-ed7a-4c4e-923f-9307e13c9634",
-                    "path": "<Mouse>/position",
+                    "id": "7a4e8e2c-4183-40dc-9dfb-c4abae0e04b2",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PointerPosition",
+                    "action": "Build",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "941e65c3-f01a-4c00-82cf-4be1b77b0d01",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

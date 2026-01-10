@@ -17,15 +17,18 @@ namespace Runtime.Colony.Buildings.Common
         
         public string Id { get; }
 
-        public Vector2 Position
+        public Vector2Int GridPosition { get; set; }
+        
+        public Vector2 WorldPosition
         {
-            get => _position;
-            private set
+            get => _worldPosition;
+            set
             {
-                _position = value;
+                _worldPosition = value;
                 OnPositionChanged?.Invoke();
             }
         }
+        
         
         public bool CanUpgrade => Level < BaseDescription.MaxLevel;
         
@@ -33,12 +36,12 @@ namespace Runtime.Colony.Buildings.Common
 
         public BuildingDescription BaseDescription { get; }
         
-        private Vector2 _position;
+        private Vector2 _worldPosition;
         
-        protected BuildingModel(string id, Vector2 position, BuildingDescription baseDescription)
+        protected BuildingModel(string id, Vector2Int gridPosition, BuildingDescription baseDescription)
         {
             Id = id;    
-            Position = position;
+            GridPosition = gridPosition;
             BaseDescription = baseDescription;
         }
 
@@ -57,7 +60,7 @@ namespace Runtime.Colony.Buildings.Common
             return new Dictionary<string, object>
             {
                 { DescriptionKey, BaseDescription.Id },
-                { PositionKey, Position.ToList()},
+                { PositionKey, WorldPosition.ToList()},
                 { LevelKey, Level}
             };
         }

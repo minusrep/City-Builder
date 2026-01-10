@@ -35,7 +35,7 @@ namespace Runtime.Services.SaveLoadSteps
         public async Task Run()
         {
             var buildingCollectionPresenter = new BuildingCollectionPresenter(_world,
-                _buildingCollectionView, _worldViewDescriptions, _gameSystemCollection);
+                _buildingCollectionView, _worldViewDescriptions);
             
             buildingCollectionPresenter.Enable();
             _presenters.Add(buildingCollectionPresenter);

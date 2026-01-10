@@ -12,7 +12,7 @@ namespace Runtime.Colony.Buildings.Common.Factories
 {
     public sealed class BuildingModelFactory
     {
-        private readonly Dictionary<string, Func<string, Vector2, BuildingDescription, BuildingModel>> _constructors
+        private readonly Dictionary<string, Func<string, Vector2Int, BuildingDescription, BuildingModel>> _constructors
             = new();
         private readonly WorldDescription _worldDescription;
 
@@ -44,13 +44,13 @@ namespace Runtime.Colony.Buildings.Common.Factories
         }
 
         private void Register<T>(string type,
-            Func<string, Vector2, BuildingDescription, T> ctor)
+            Func<string, Vector2Int, BuildingDescription, T> ctor)
             where T : BuildingModel
         {
             _constructors[type] = ctor;
         }
 
-        public BuildingModel Create(string type, string id, Vector2 pos, BuildingDescription desc)
+        public BuildingModel Create(string type, string id, Vector2Int pos, BuildingDescription desc)
         {
             return _constructors[type](id, pos, desc);
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Runtime.Extensions;
+using UnityEngine;
 
 namespace Runtime.Descriptions.Buildings
 {
@@ -13,6 +14,8 @@ namespace Runtime.Descriptions.Buildings
         public string Type { get; }
         public string ViewDescriptionId { get; }
         public int MaxLevel { get; }
+        public Vector2Int Size { get; }
+        public List<Vector2Int> Cells { get; } = new();
 
         protected BuildingDescription(string id, Dictionary<string, object> data)
         {
@@ -20,6 +23,15 @@ namespace Runtime.Descriptions.Buildings
             Type = data.GetString(TypeKey);
             ViewDescriptionId = data.GetString(ViewId);
             MaxLevel = data.GetInt(MaxLevelId);
+            Size = data.GetVector2Int("size");
+
+            for (var x = 0; x < Size.x; x++)
+            {
+                for (var y = 0; y < Size.y; y++)
+                {
+                    Cells.Add(new Vector2Int(x, y));
+                }
+            }
         }
     }
 }
