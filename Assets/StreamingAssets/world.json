@@ -1,1 +1,389 @@
-{"citizens":{"models":{"citizen_0":{"id":0,"name":null,"spawned_from_building_id":"shelter_1","position":[-5.129118,0.2519829,34.87865],"points_of_interest":{"sawmill":{"x":40,"y":0,"z":35},"tavern":{"x":-40,"y":0,"z":35},"spawn":{"x":0,"y":0,"z":0},"shelter":{"x":-5,"y":0,"z":35}},"flags":{"is_carrying":false},"stats":{"satiety":{"stat":"satiety","value":0},"energy":{"stat":"energy","value":65.85357}},"timers":{},"state_machine":{"current_state":"sleep_start"},"inventory":{"models":{"0":{"amount":0,"resource":"wood"}}}},"citizen_1":{"id":1,"name":null,"spawned_from_building_id":"shelter_1","position":[-5.122001,0.2519829,34.48032],"points_of_interest":{"sawmill":{"x":40,"y":0,"z":35},"tavern":{"x":-40,"y":0,"z":35},"spawn":{"x":0,"y":0,"z":0},"shelter":{"x":-5,"y":0,"z":35}},"flags":{"is_carrying":false},"stats":{"satiety":{"stat":"satiety","value":0},"energy":{"stat":"energy","value":65.1949}},"timers":{},"state_machine":{"current_state":"sleep_start"},"inventory":{"models":{"0":{"amount":0,"resource":"wood"}}}},"citizen_2":{"id":2,"name":null,"spawned_from_building_id":"shelter_1","position":[-5.152086,0.2519829,35.275],"points_of_interest":{"sawmill":{"x":40,"y":0,"z":35},"tavern":{"x":-40,"y":0,"z":35},"spawn":{"x":0,"y":0,"z":0},"shelter":{"x":-5,"y":0,"z":35}},"flags":{"is_carrying":false},"stats":{"satiety":{"stat":"satiety","value":0},"energy":{"stat":"energy","value":65.48614}},"timers":{},"state_machine":{"current_state":"sleep_start"},"inventory":{"models":{"0":{"amount":0,"resource":"wood"}}}},"citizen_3":{"id":3,"name":null,"spawned_from_building_id":"shelter_1","position":[-4.773556,0.2519829,34.69657],"points_of_interest":{"sawmill":{"x":40,"y":0,"z":35},"tavern":{"x":-40,"y":0,"z":35},"spawn":{"x":0,"y":0,"z":0},"shelter":{"x":-5,"y":0,"z":35}},"flags":{"is_carrying":false},"stats":{"satiety":{"stat":"satiety","value":0},"energy":{"stat":"energy","value":66.12611}},"timers":{},"state_machine":{"current_state":"sleep_start"},"inventory":{"models":{"0":{"amount":0,"resource":"wood"}}}},"citizen_4":{"id":4,"name":null,"spawned_from_building_id":"shelter_1","position":[-4.795976,0.2519829,35.09354],"points_of_interest":{"sawmill":{"x":40,"y":0,"z":35},"tavern":{"x":-40,"y":0,"z":35},"spawn":{"x":0,"y":0,"z":0},"shelter":{"x":-5,"y":0,"z":35}},"flags":{"is_carrying":false},"stats":{"satiety":{"stat":"satiety","value":0},"energy":{"stat":"energy","value":66.24798}},"timers":{},"state_machine":{"current_state":"sleep_start"},"inventory":{"models":{"0":{"amount":0,"resource":"wood"}}}}}},"buildings":{"models":{"sawmill_0":{"description":"sawmill","position":[48,47],"is_active":false,"start_production_time":0,"save_time":1767976022953,"inventory":{"models":{"0":{"amount":5,"resource":"wood"}}},"orders":{"models":{"0":{"id":0},"1":{"id":1},"2":{"id":2},"3":{"id":3},"4":{"id":4},"5":{"id":5},"6":{"id":6}}}},"shelter_1":{"description":"shelter","position":[39,47],"is_active":false,"in_service":{},"waiting_queue":[]},"tavern_2":{"description":"tavern","position":[32,47],"is_active":false,"in_service":{},"waiting_queue":[]},"warehouse_3":{"description":"warehouse","position":[32,39],"inventory":{"models":{"0":{"amount":0,"resource":"wood"},"1":{"amount":0,"resource":"iron"}}}},"lantern_4":{"description":"lantern","position":[41,43]}}}}
+{
+  "citizens": {
+    "models": {
+      "citizen_0": {
+        "id": 0,
+        "name": null,
+        "spawned_from_building_id": "shelter_1",
+        "position": [
+          -5.129118,
+          0.2519829,
+          34.87865
+        ],
+        "points_of_interest": {
+          "sawmill": {
+            "x": 40,
+            "y": 0,
+            "z": 35
+          },
+          "tavern": {
+            "x": -40,
+            "y": 0,
+            "z": 35
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": -5,
+            "y": 0,
+            "z": 35
+          }
+        },
+        "flags": {
+          "is_carrying": false
+        },
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 0
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 65.85357
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "sleep_start"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": "wood"
+            }
+          }
+        }
+      },
+      "citizen_1": {
+        "id": 1,
+        "name": null,
+        "spawned_from_building_id": "shelter_1",
+        "position": [
+          -5.122001,
+          0.2519829,
+          34.48032
+        ],
+        "points_of_interest": {
+          "sawmill": {
+            "x": 40,
+            "y": 0,
+            "z": 35
+          },
+          "tavern": {
+            "x": -40,
+            "y": 0,
+            "z": 35
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": -5,
+            "y": 0,
+            "z": 35
+          }
+        },
+        "flags": {
+          "is_carrying": false
+        },
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 0
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 65.1949
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "sleep_start"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": "wood"
+            }
+          }
+        }
+      },
+      "citizen_2": {
+        "id": 2,
+        "name": null,
+        "spawned_from_building_id": "shelter_1",
+        "position": [
+          -5.152086,
+          0.2519829,
+          35.275
+        ],
+        "points_of_interest": {
+          "sawmill": {
+            "x": 40,
+            "y": 0,
+            "z": 35
+          },
+          "tavern": {
+            "x": -40,
+            "y": 0,
+            "z": 35
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": -5,
+            "y": 0,
+            "z": 35
+          }
+        },
+        "flags": {
+          "is_carrying": false
+        },
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 0
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 65.48614
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "sleep_start"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": "wood"
+            }
+          }
+        }
+      },
+      "citizen_3": {
+        "id": 3,
+        "name": null,
+        "spawned_from_building_id": "shelter_1",
+        "position": [
+          -4.773556,
+          0.2519829,
+          34.69657
+        ],
+        "points_of_interest": {
+          "sawmill": {
+            "x": 40,
+            "y": 0,
+            "z": 35
+          },
+          "tavern": {
+            "x": -40,
+            "y": 0,
+            "z": 35
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": -5,
+            "y": 0,
+            "z": 35
+          }
+        },
+        "flags": {
+          "is_carrying": false
+        },
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 0
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 66.12611
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "sleep_start"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": "wood"
+            }
+          }
+        }
+      },
+      "citizen_4": {
+        "id": 4,
+        "name": null,
+        "spawned_from_building_id": "shelter_1",
+        "position": [
+          -4.795976,
+          0.2519829,
+          35.09354
+        ],
+        "points_of_interest": {
+          "sawmill": {
+            "x": 40,
+            "y": 0,
+            "z": 35
+          },
+          "tavern": {
+            "x": -40,
+            "y": 0,
+            "z": 35
+          },
+          "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "shelter": {
+            "x": -5,
+            "y": 0,
+            "z": 35
+          }
+        },
+        "flags": {
+          "is_carrying": false
+        },
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 0
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 66.24798
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "sleep_start"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": "wood"
+            }
+          }
+        }
+      }
+    }
+  },
+  "buildings": {
+    "models": {
+      "sawmill_0": {
+        "level": 0,
+        "description": "sawmill",
+        "position": [
+          48,
+          47
+        ],
+        "is_active": false,
+        "start_production_time": 0,
+        "save_time": 1767976022953,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 5,
+              "resource": "wood"
+            }
+          }
+        },
+        "orders": {
+          "models": {
+            "0": {
+              "id": 0
+            },
+            "1": {
+              "id": 1
+            },
+            "2": {
+              "id": 2
+            },
+            "3": {
+              "id": 3
+            },
+            "4": {
+              "id": 4
+            },
+            "5": {
+              "id": 5
+            },
+            "6": {
+              "id": 6
+            }
+          }
+        }
+      },
+      "shelter_1": {
+        "level": 0,
+        "description": "shelter",
+        "position": [
+          39,
+          47
+        ],
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "tavern_2": {
+        "level": 0,
+        "description": "tavern",
+        "position": [
+          32,
+          47
+        ],
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "warehouse_3": {
+        "level": 0,
+        "description": "warehouse",
+        "position": [
+          32,
+          39
+        ],
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": "wood"
+            },
+            "1": {
+              "amount": 0,
+              "resource": "iron"
+            }
+          }
+        }
+      },
+      "lantern_4": {
+        "level": 0,
+        "description": "lantern",
+        "position": [
+          41,
+          43
+        ]
+      }
+    }
+  }
+}
