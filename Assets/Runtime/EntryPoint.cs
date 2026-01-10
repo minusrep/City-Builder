@@ -11,6 +11,7 @@ using Runtime.Services.SaveLoadSteps;
 using Runtime.ViewDescriptions;
 using System.Collections.Generic;
 using Runtime.UI;
+using Runtime.UI.HUD;
 using Runtime.UI.InGameMenu;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -28,6 +29,7 @@ namespace Runtime
         [SerializeField] private BuildingCollectionView _buildingCollectionView;
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
         [SerializeField] private CameraControlView _cameraControlView;
+        [SerializeField] private HUDView _hudView;
 
         private readonly WorldDescription _worldDescription = new();
 
@@ -49,6 +51,10 @@ namespace Runtime
 
         private async void Start()
         {
+            _playerControls = new PlayerControls();
+            
+            _playerControls.Enable();
+            
             IStep[] loadSteps =
             {
                 new AddressableLoadStep(_addressableModel, _presenters),
@@ -59,6 +65,7 @@ namespace Runtime
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView,
                     _worldDescription, _worldViewDescriptions, _gameSystems),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
+                new HUDLoadStep(_presenters, _world, _playerControls, _hudView)
             };
 
             foreach (var step in loadSteps)
@@ -66,7 +73,6 @@ namespace Runtime
                 await step.Run();
             }
 
-            _playerControls = new PlayerControls();
             _cameraControlModel = new CameraControlModel(_playerControls);
             _cameraControlPresenter = new CameraControlPresenter(_cameraControlModel, _cameraControlView,
                 _worldDescription.CameraControlDescription, _gameSystems);

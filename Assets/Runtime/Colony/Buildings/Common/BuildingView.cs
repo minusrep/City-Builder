@@ -10,10 +10,25 @@ namespace Runtime.Colony.Buildings.Common
         public ProgressBar ProgressBar { get; private set; }
         public UIDocument Document => _uiDocument;
 
+        public string Id { get; private set; }
+
+        public bool SelectedOutline
+        {
+            get => _outline.enabled;
+            
+            set => _outline.enabled = value;
+        }
+
         [SerializeField] private UIDocument _uiDocument;
 
-        public void Initialize()
+        [SerializeField] private Outline _outline;
+        
+        public void Initialize(string id)
         {
+            Id = id;
+            
+            _outline.enabled = false;
+            
             Transform = transform;
             GameObject =  gameObject;
             
