@@ -75,6 +75,19 @@ namespace Runtime.Colony.Inventory
 
             return false;
         }
+        
+        public (ResourceDescription, int) GetResourceDescriptionAndAmount(string resourceId)
+        {
+            foreach (var cellModel in Models.Values)
+            {
+                if (cellModel.Resource != null && cellModel.Resource.Id == resourceId)
+                {
+                    return (cellModel.Resource, cellModel.Amount);
+                }
+            }
+
+            return (null, 0);
+        }
 
         public bool CanFit(ResourceDescription item, int amount, out List<(CellModel cell, int free)> targets)
         {
