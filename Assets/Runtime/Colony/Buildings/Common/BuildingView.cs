@@ -12,11 +12,23 @@ namespace Runtime.Colony.Buildings.Common
         public UIDocument Document => _uiDocument;
         public BuildingPreview Preview => _preview;
 
+        public string Id { get; set; }
+
+        public bool SelectedOutline
+        {
+            get => _outline.enabled;
+            
+            set => _outline.enabled = value;
+        }
+
         [SerializeField] private UIDocument _uiDocument;
         [SerializeField] private BuildingPreview _preview;
 
+        [SerializeField] private Outline _outline;
+        
         public void OnEnable()
         {
+            SelectedOutline = false;
             Transform = transform;
             GameObject =  gameObject;
             

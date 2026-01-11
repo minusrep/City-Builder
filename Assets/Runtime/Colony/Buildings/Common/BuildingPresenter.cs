@@ -37,6 +37,8 @@ namespace Runtime.Colony.Buildings.Common
             View.Transform.localScale = BuildingVisualLayoutService.GetScale(ViewDescription,
                 View.Preview.Renderers, World.Grid.Description.CellSize);
 
+            View.Id = Model.Id;
+            
             Model.OnPositionChanged += HandlePositionChanged;
         }
 

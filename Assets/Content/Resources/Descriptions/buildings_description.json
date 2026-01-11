@@ -1,7 +1,8 @@
 {
   "sawmill": {
     "type": "production",
-    "production_time": 10000,
+    "production_time": [10000, 9000, 8000, 7000],
+    "max_level": 3,
     "production_resource": "wood",
     "production_amount": 1,
     "max_resource": 5,
@@ -12,6 +13,7 @@
     ]
   },
   "shelter": {
+    "max_level": 0,
     "type": "service",
     "max_time_service": 10000,
     "max_queue": 5,
@@ -24,6 +26,7 @@
     ]
   },
   "tavern": {
+    "max_level": 0,
     "type": "service",
     "max_time_service": 10000,
     "max_queue": 5,
@@ -36,6 +39,7 @@
     ]
   },
   "warehouse": {
+    "max_level": 0,
     "type": "storage",
     "max_resource_amount": 100,
     "stored_resources": [
@@ -48,6 +52,7 @@
     ]
   },
   "lantern": {
+    "max_level": 0,
     "type": "decor",
     "view_id": "Lantern",
     "size": [

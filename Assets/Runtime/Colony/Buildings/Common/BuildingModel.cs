@@ -9,6 +9,10 @@ namespace Runtime.Colony.Buildings.Common
 {
     public abstract class BuildingModel : ISerializeModel, IDeserializeModel
     {
+        private const string LevelKey = "level";
+        private const string PositionKey = "position";
+        private const string DescriptionKey = "description";
+        
         public event Action OnPositionChanged;
         
         public string Id { get; }
@@ -25,6 +29,11 @@ namespace Runtime.Colony.Buildings.Common
             }
         }
         
+        
+        public bool CanUpgrade => Level < BaseDescription.MaxLevel;
+        
+        public int Level { get; private set; }
+
         public BuildingDescription BaseDescription { get; }
         
         private Vector2 _worldPosition;
@@ -35,16 +44,30 @@ namespace Runtime.Colony.Buildings.Common
             GridPosition = gridPosition;
             BaseDescription = baseDescription;
         }
+
+        public void Upgrade()
+        {
+            if (!CanUpgrade)
+            {
+                return;
+            }
+
+            Level++;
+        }
         
         public virtual Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>
             {
-                { "description", BaseDescription.Id },
-                { "position", GridPosition.ToList() }
+                { DescriptionKey, BaseDescription.Id },
+                { PositionKey, GridPosition.ToList()},
+                { LevelKey, Level}
             };
         }
 
-        public abstract void Deserialize(Dictionary<string, object> data);
+        public virtual void Deserialize(Dictionary<string, object> data)
+        {
+            Level = data.GetInt(LevelKey);
+        }
     }
 }

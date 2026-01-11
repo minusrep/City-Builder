@@ -56,6 +56,8 @@ namespace Runtime.Colony.Buildings.Service
 
             public override void Deserialize(Dictionary<string, object> data)
             {
+                base.Deserialize(data);
+                
                 IsActive = data.GetBool("is_active");
                 InService = data.GetDictionary<string, long>("in_service");
                 WaitingQueue = data.GetQueue<string>("waiting_queue");

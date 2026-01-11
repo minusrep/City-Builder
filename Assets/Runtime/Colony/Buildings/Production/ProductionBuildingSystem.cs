@@ -24,14 +24,14 @@ namespace Runtime.Colony.Buildings.Production
             {
                 var currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
-                var progress = (float)(currentTime - _model.StartProductionTime) / _model.Description.ProductionTime;
+                var progress = (float)(currentTime - _model.StartProductionTime) / _model.ProductionTime;
 
                 UpdateProgressBar(progress);
 
                 if (progress >= 1f)
                 {
                     _model.Produce();
-                    _model.StartProductionTime += _model.Description.ProductionTime;
+                    _model.StartProductionTime += _model.ProductionTime;
 
                     if (!_model.CapacityLeft())
                     {

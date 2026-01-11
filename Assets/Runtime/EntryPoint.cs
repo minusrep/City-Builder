@@ -9,8 +9,10 @@ using Runtime.Colony.Citizens.Collection;
 using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
+using Runtime.Input;
 using Runtime.Services.SaveLoadSteps;
 using Runtime.UI;
+using Runtime.UI.HUD;
 using Runtime.UI.InGameMenu;
 using Runtime.ViewDescriptions;
 using UnityEditor;
@@ -32,6 +34,7 @@ namespace Runtime
         [SerializeField] private CameraControlView _cameraControlView;
         [SerializeField] private BuildingConstructionView _buildingConstructionView;
         [SerializeField] private WorldGridView _worldGridView;
+        [SerializeField] private HUDView _hudView;
 
         private readonly WorldDescription _worldDescription = new();
 
@@ -49,23 +52,30 @@ namespace Runtime
         private CameraControlPresenter _cameraControlPresenter;
         private MenuContent _menuContent;
         private InGameMenuPresenter _inGameMenuPresenter;
+        
+        private PlayerControls _playerControls;
 
         private async void Start()
         {
             _menuContent = new MenuContent(_menuDocument);
+
+            _playerControls = new PlayerControls();
+            
+            _playerControls.Enable();
             
             IStep[] loadSteps =
             {
                 new AddressableLoadStep(_addressableModel, _presenters),
                 new DescriptionsLoadStep(_worldDescription),
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
-                new WorldLoadStep(_world, _worldDescription, _gameSystems),
+                new WorldLoadStep(_world, _worldDescription, _gameSystems, _playerControls),
                 new GameSystemsCollectionLoadStep(_world, _gameSystems),
                 new BuildingConstructionLoadStep(_constructionMenuAsset, _buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView,
                     _worldDescription, _worldViewDescriptions, _gameSystems),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
+                new HUDLoadStep(_presenters, _world, _playerControls, _hudView)
             };
 
             foreach (var step in loadSteps)

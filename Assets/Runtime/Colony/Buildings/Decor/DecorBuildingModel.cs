@@ -14,9 +14,5 @@ namespace Runtime.Colony.Buildings.Decor
             baseDescription)
         {
         }
-
-        public override void Deserialize(Dictionary<string, object> data)
-        {
-        }
     }
 }
