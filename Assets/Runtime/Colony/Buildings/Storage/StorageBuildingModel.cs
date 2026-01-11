@@ -23,7 +23,7 @@ namespace Runtime.Colony.Buildings.Storage
             WorldDescription = worldDescription;
             Description = description;
 
-            Inventory = new InventoryModel(description.StoredResources.Count, description.MaxResourceAmount, worldDescription.ResourceCollection);
+            Inventory = new InventoryModel(description.MaxResourceAmount, worldDescription.ResourceCollection);
             
             foreach (var resourceDescriptionId in description.StoredResources)
             {
@@ -67,7 +67,7 @@ namespace Runtime.Colony.Buildings.Storage
 
         public override void Deserialize(Dictionary<string, object> data)
         {
-            Inventory = new InventoryModel(1, Description.MaxResourceAmount, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(Description.MaxResourceAmount, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
         }
     }

@@ -31,14 +31,13 @@ namespace Runtime.Colony.Buildings.Common
         {
             View = ViewPool.Get();
             View.Transform.position = ModelPositionToVector3(Model) +
-                                      BuildingVisualLayoutService.GetOffset(ViewDescription,
+                                      BuildingVisualLayoutHelper.GetOffset(ViewDescription,
                                           World.Grid.Description.CellSize);
-
-            View.Transform.localScale = BuildingVisualLayoutService.GetScale(ViewDescription,
-                View.Preview.Renderers, World.Grid.Description.CellSize);
+            View.Transform.localScale = BuildingVisualLayoutHelper.GetScale(ViewDescription, View.Preview.Renderers,
+                World.Grid.Description.CellSize);
 
             View.Id = Model.Id;
-            
+
             Model.OnPositionChanged += HandlePositionChanged;
         }
 
@@ -52,7 +51,7 @@ namespace Runtime.Colony.Buildings.Common
         private void HandlePositionChanged()
         {
             View.Transform.position = ModelPositionToVector3(Model) +
-                                      BuildingVisualLayoutService.GetOffset(ViewDescription,
+                                      BuildingVisualLayoutHelper.GetOffset(ViewDescription,
                                           World.Grid.Description.CellSize);
         }
 

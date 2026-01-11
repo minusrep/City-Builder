@@ -55,7 +55,7 @@ namespace Runtime.Colony.Buildings.Production
             Orders = new OrderModelCollection(id);
 
             ResourceDescription = WorldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
-            Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
             for (int i = 0; i < Description.ResourcesForProduction.Count + Description.ResourcesForWork.Count + 1; i++)
             {
                 Inventory.Create();
@@ -127,7 +127,7 @@ namespace Runtime.Colony.Buildings.Production
             IsActive = data.GetBool("is_active");
             Progress = data.GetFloat("progress");
             
-            Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
 
             Orders = new OrderModelCollection(Id);

@@ -74,7 +74,7 @@ namespace Runtime.Colony.Citizens
             Flags = new Dictionary<string, bool>();
             Stats = new StatModelCollection(description.Citizens.Stats);
             Timers = new Dictionary<string, long>();
-            Inventory = new InventoryModel(1, 1, description.ResourceCollection);
+            Inventory = new InventoryModel(1, description.ResourceCollection);
             Inventory.Create();
 
             StateMachine = new StateMachineModel(description.Citizens.States);
@@ -109,7 +109,7 @@ namespace Runtime.Colony.Citizens
             Timers = data.GetDictionary<string, long>(TimerKey);
             StateMachine.Deserialize(data.GetNode(StateMachineKey));
             
-            Inventory = new InventoryModel(1, 1, _description.ResourceCollection);
+            Inventory = new InventoryModel(1, _description.ResourceCollection);
             Inventory.Deserialize(data.GetNode(InventoryKey));
         }
 
