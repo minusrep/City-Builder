@@ -17,14 +17,14 @@ namespace Runtime.Colony.Buildings.Construction.Menu
         private readonly World _world;
         private readonly MenuContent _menuContent;
         private readonly Dictionary<string, Button> _buttons = new();
-        
+
         private readonly BuildingConstructionPresenter _constructionPresenter;
         private readonly BuildingConstructionModel _constructionModel;
-        
+
         private readonly WorldGridPresenter _worldGridPresenter;
-        
+
         private bool _isConstruction;
-        
+
         public BuildingConstructionMenuPresenter(BuildingConstructionMenuView view,
             BuildingConstructionView constructionView, WorldGridView worldGridView,
             WorldDescription descriptions,
@@ -36,6 +36,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _view = view;
 
             _constructionModel = new BuildingConstructionModel(world.PlayerControls);
+
             _constructionPresenter =
                 new BuildingConstructionPresenter(_constructionModel, constructionView, world, viewDescriptions);
 
@@ -45,20 +46,20 @@ namespace Runtime.Colony.Buildings.Construction.Menu
         public void Enable()
         {
             _world.PlayerControls.Construction.Cancel.performed += HandleCancelConstruction;
-            
+
             _menuContent.HudLayer.Add(_view.Root);
-            
+
             BuildButtons();
         }
 
         public void Disable()
         {
             _world.PlayerControls.Construction.Cancel.performed -= HandleCancelConstruction;
-            
+
             _isConstruction = false;
             _constructionPresenter.Disable();
             _worldGridPresenter.Disable();
-            
+
             _menuContent.HudLayer.Remove(_view.Root);
 
             ClearSelection();
@@ -108,7 +109,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
                 SetSelectedButton(button, false);
             }
         }
-        
+
         private Button CreateBuildingButton(string id, string title)
         {
             var button = new Button
@@ -129,7 +130,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             else
                 button.RemoveFromClassList("building-button--selected");
         }
-        
+
         private void HandleCancelConstruction(InputAction.CallbackContext obj)
         {
             _isConstruction = false;

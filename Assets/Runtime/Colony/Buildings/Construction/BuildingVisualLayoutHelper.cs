@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Construction
 {
-    public static class BuildingVisualLayoutService
+    public static class BuildingVisualLayoutHelper
     {
         public static Vector3 GetScale(
             BuildingViewDescription description,
@@ -12,7 +12,7 @@ namespace Runtime.Colony.Buildings.Construction
             float cellSize)
         {
             var bounds = CalculateBounds(renderers);
-            
+
             var targetSize = new Vector3(
                 description.VisualSizeInCells.x * cellSize,
                 bounds.size.y,

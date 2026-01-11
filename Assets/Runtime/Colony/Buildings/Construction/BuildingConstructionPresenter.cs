@@ -28,7 +28,7 @@ namespace Runtime.Colony.Buildings.Construction
         {
             _world.PlayerControls.UI.Disable();
             _world.PlayerControls.Construction.Enable();
-            
+
             _view.GameObject.SetActive(true);
             _model.OnChangeSelectedBuilding += RebuildView;
 
@@ -42,7 +42,7 @@ namespace Runtime.Colony.Buildings.Construction
 
             _view.GameObject.SetActive(false);
             _model.OnChangeSelectedBuilding -= RebuildView;
-            
+
             _world.GameSystems.Remove(_system);
         }
 
@@ -58,12 +58,12 @@ namespace Runtime.Colony.Buildings.Construction
                 false
             );
 
-            _view.Preview =  previewInstance;
+            _view.Preview = previewInstance;
 
             _model.VisualWorldOffset =
-                BuildingVisualLayoutService.GetOffset(viewDescription, _world.Grid.Description.CellSize);
+                BuildingVisualLayoutHelper.GetOffset(viewDescription, _world.Grid.Description.CellSize);
 
-            _view.Transform.localScale = BuildingVisualLayoutService.GetScale(viewDescription, _view.Preview.Renderers,
+            _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription, _view.Preview.Renderers,
                 _world.Grid.Description.CellSize);
         }
 
