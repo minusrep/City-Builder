@@ -7,30 +7,29 @@ namespace Runtime.Descriptions.Achievements
     {
         public string Type { get; }
         public int TargetValue { get; }
-        public List<Trigger> Triggers { get; } = new();
+        public List<TriggerDescription> Triggers { get; } = new();
         public List<string> Unlocks { get; } = new();
 
         public AchievementDescription(Dictionary<string, object> description)
         {
             Type = description.GetString("type");
-            TargetValue = description.GetInt("target_value");
+            TargetValue = description.GetInt("target");
 
             var triggersList = (List<object>)description["triggers"];
             foreach (var triggerObject in triggersList)
             {
                 var triggerDict = (Dictionary<string, object>)triggerObject;
-                var trigger = new Trigger(triggerDict);
+                var trigger = new TriggerDescription(triggerDict);
                 
                 Triggers.Add(trigger);
             }
 
-            if (description.TryGetValue("unlocks", out var value))
+            if (!description.TryGetValue("unlocks", out var value)) return;
+            
+            var unlocksList = (List<object>)value;
+            foreach (var unlockObject in unlocksList)
             {
-                var unlocksList = (List<object>)value;
-                foreach (var unlockObject in unlocksList)
-                {
-                    Unlocks.Add(unlockObject.ToString());
-                }
+                Unlocks.Add(unlockObject.ToString());
             }
         }
     }
