@@ -61,10 +61,9 @@ namespace Runtime.Colony.Buildings.Construction
             _view.Preview = previewInstance;
 
             _model.VisualWorldOffset =
-                BuildingVisualLayoutHelper.GetOffset(viewDescription, _world.Grid.Description.CellSize);
+                BuildingVisualLayoutHelper.GetOffset(viewDescription);
 
-            _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription, _view.Preview.Renderers,
-                _world.Grid.Description.CellSize);
+            _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription, _view.Preview.Renderers);
         }
 
         private void CleanupPreview()

@@ -8,15 +8,14 @@ namespace Runtime.Colony.Buildings.Construction
     {
         public static Vector3 GetScale(
             BuildingViewDescription description,
-            IReadOnlyList<Renderer> renderers,
-            float cellSize)
+            IReadOnlyList<Renderer> renderers)
         {
             var bounds = CalculateBounds(renderers);
 
             var targetSize = new Vector3(
-                description.VisualSizeInCells.x * cellSize,
+                description.VisualSizeInCells.x,
                 bounds.size.y,
-                description.VisualSizeInCells.y * cellSize
+                description.VisualSizeInCells.y
             );
 
             var currentSize = bounds.size;
@@ -30,19 +29,18 @@ namespace Runtime.Colony.Buildings.Construction
         }
 
         public static Vector3 GetOffset(
-            BuildingViewDescription description,
-            float cellSize)
+            BuildingViewDescription description)
         {
             var footprintWorldSize = new Vector3(
-                description.VisualSizeInCells.x * cellSize * 0.5f,
+                description.VisualSizeInCells.x * 0.5f,
                 0f,
-                description.VisualSizeInCells.y * cellSize * 0.5f
+                description.VisualSizeInCells.y * 0.5f
             );
 
             var additionalScaled = Vector3.Scale(
                 description.AdditionalWorldOffset,
-                new Vector3(description.VisualSizeInCells.x * cellSize, 1f,
-                    description.VisualSizeInCells.y * cellSize)
+                new Vector3(description.VisualSizeInCells.x, 1f,
+                    description.VisualSizeInCells.y)
             );
 
             return additionalScaled + footprintWorldSize;

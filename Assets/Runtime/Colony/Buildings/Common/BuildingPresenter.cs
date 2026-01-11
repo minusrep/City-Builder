@@ -30,11 +30,9 @@ namespace Runtime.Colony.Buildings.Common
         public virtual void Enable()
         {
             View = ViewPool.Get();
-            View.Transform.position = ModelPositionToVector3(Model) +
-                                      BuildingVisualLayoutHelper.GetOffset(ViewDescription,
-                                          World.Grid.Description.CellSize);
-            View.Transform.localScale = BuildingVisualLayoutHelper.GetScale(ViewDescription, View.Preview.Renderers,
-                World.Grid.Description.CellSize);
+            View.Transform.position =
+                ModelPositionToVector3(Model) + BuildingVisualLayoutHelper.GetOffset(ViewDescription);
+            View.Transform.localScale = BuildingVisualLayoutHelper.GetScale(ViewDescription, View.Preview.Renderers);
 
             View.Id = Model.Id;
 
@@ -50,9 +48,8 @@ namespace Runtime.Colony.Buildings.Common
 
         private void HandlePositionChanged()
         {
-            View.Transform.position = ModelPositionToVector3(Model) +
-                                      BuildingVisualLayoutHelper.GetOffset(ViewDescription,
-                                          World.Grid.Description.CellSize);
+            View.Transform.position =
+                ModelPositionToVector3(Model) + BuildingVisualLayoutHelper.GetOffset(ViewDescription);
         }
 
         private Vector3 ModelPositionToVector3(BuildingModel model)

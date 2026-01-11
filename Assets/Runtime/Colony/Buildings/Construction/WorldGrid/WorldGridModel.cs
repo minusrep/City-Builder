@@ -64,14 +64,14 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
         public Vector3 GridToWorld(Vector2Int gridPosition)
         {
             return Description.Origin +
-                   new Vector3(gridPosition.x, Description.Origin.y, gridPosition.y) * Description.CellSize;
+                   new Vector3(gridPosition.x, Description.Origin.y, gridPosition.y) * WorldGridDescription.CellSize;
         }
 
         public Vector2Int WorldToGrid(Vector3 worldPosition)
         {
             var local = worldPosition - Description.Origin;
-            var x = Mathf.FloorToInt(local.x / Description.CellSize);
-            var y = Mathf.FloorToInt(local.z / Description.CellSize);
+            var x = Mathf.FloorToInt(local.x / WorldGridDescription.CellSize);
+            var y = Mathf.FloorToInt(local.z / WorldGridDescription.CellSize);
             return new Vector2Int(x, y);
         }
         
