@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Runtime.Colony.Achievements.Events;
 
-namespace Runtime.Colony.Achievements
+namespace Runtime.Services
 {
     public class MessageBroker
     {
@@ -17,8 +17,10 @@ namespace Runtime.Colony.Achievements
             {
                 return;
             }
+            
+            var callbacks = new List<Action<GameEvent>>(list);
 
-            foreach (var newEvent in list)
+            foreach (var newEvent in callbacks)
             {
                 newEvent?.Invoke(gameEvent);
             }
