@@ -14,13 +14,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
 
         public override bool Check(World world, IUserConditionModel user)
         {
-            var productionBuildings = world.Buildings.Models.Values
-                .Where(b => b is ProductionBuildingModel)
-                .Cast<ProductionBuildingModel>();
-            
-            return productionBuildings.Any(
-                productionBuilding => productionBuilding.Orders.Models.Count > 0 && 
-                                      productionBuilding.Orders.Models.Values.Any(o => o.FreeAmount > 0));
+            return world.OrderManager.HasOrders();
         }
     }
 }

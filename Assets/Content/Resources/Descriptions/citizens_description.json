@@ -25,15 +25,15 @@
   "systems": {
     "sleep": {
       "stat": "energy",
-      "change_speed": 5
+      "change_speed": 25
     },
     "fatigue": {
       "stat": "energy",
-      "change_speed": -2
+      "change_speed": -0.5
     },
     "hungry": {
       "stat": "satiety",
-      "change_speed": -4
+      "change_speed": -1
     },
     "feed": {
       "stat": "satiety",
@@ -41,11 +41,11 @@
     },
     "stress": {
       "stat": "happiness",
-      "change_speed": -4
+      "change_speed": -1
     },
     "comfort": {
       "stat": "happiness",
-      "change_speed": 20
+      "change_speed": 40
     }
   },
   "states": {

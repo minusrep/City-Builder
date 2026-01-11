@@ -9,9 +9,10 @@ namespace Runtime.Colony.Orders
     public class OrderModel : ISerializeModel, IDeserializeModel
     {
         public Action<OrderModel> OnAmountChanged;
+        public Action<OrderModel> OnSelected;
         
         public string Id { get; set; }
-        public string FromBuildingId { get; }
+        public string FromBuildingId { get; private set; }
 
         public string Type { get; set; }
         public string ResourceId { get; set; }
@@ -40,6 +41,7 @@ namespace Runtime.Colony.Orders
         public Dictionary<string, object> Serialize() => new()
         {
             { "id", Id },
+            { "from_building_id", FromBuildingId },
             { "type", Type },
             { "resource", ResourceId },
             { "amount", Amount },
@@ -49,6 +51,7 @@ namespace Runtime.Colony.Orders
         public void Deserialize(Dictionary<string, object> data)
         {
             Id = data.GetString("id");
+            FromBuildingId =  data.GetString("from_building_id");
             Type = data.GetString("type");
             ResourceId = data.GetString("resource");
             Amount = data.GetInt("amount");
@@ -57,7 +60,8 @@ namespace Runtime.Colony.Orders
 
         public void Select(int amount)
         {
-            _selectedAmount += Math.Min(amount, FreeAmount) ;
+            _selectedAmount += Math.Min(amount, FreeAmount);
+            OnSelected?.Invoke(this);
         }
 
         public void Done(int amount)

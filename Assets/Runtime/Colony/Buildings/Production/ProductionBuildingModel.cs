@@ -20,6 +20,7 @@ namespace Runtime.Colony.Buildings.Production
         public InventoryModel Inventory { get; private set; }
         public bool IsActive { get; private set; }
         public ResourceDescription ResourceDescription { get; }
+        private World World { get; }
         private WorldDescription WorldDescription { get; }
 
         private float _progress;
@@ -42,17 +43,18 @@ namespace Runtime.Colony.Buildings.Production
 
         public ProductionBuildingModel(string id,
             Vector2Int gridPosition,
-            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, gridPosition,
+            ProductionBuildingDescription description, World world) : base(id, gridPosition,
             description)
         {
-            WorldDescription = worldDescription;
+            World = world;
+            WorldDescription = world.WorldDescription;
             Description = description;
 
             IsActive = false;
 
             Orders = new OrderModelCollection(id);
 
-            ResourceDescription = worldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
+            ResourceDescription = WorldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
             Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
             for (int i = 0; i < Description.ResourcesForProduction.Count + Description.ResourcesForWork.Count + 1; i++)
             {
@@ -87,12 +89,7 @@ namespace Runtime.Colony.Buildings.Production
             }
             
             Inventory.TryAddItem(resourceDescription, amount);
-
-            if (Orders.Models.ContainsKey(resourceDescription.Id))
-            {
-                Orders.Models[resourceDescription.Id].Done(amount);
-            }
-
+            CloseOrder(resourceDescription, amount);
             StartProduction();
             return true;
         }
@@ -105,12 +102,7 @@ namespace Runtime.Colony.Buildings.Production
             }
             
             Inventory.TryRemoveItem(resourceDescription, amount);
-            
-            if (Orders.Models.ContainsKey(resourceDescription.Id))
-            {
-                Orders.Models[resourceDescription.Id].Done(amount);
-            }
-            
+            CloseOrder(resourceDescription, amount);
             StartProduction();
             return true;
         }
@@ -161,16 +153,11 @@ namespace Runtime.Colony.Buildings.Production
                     Amount = Description.ProductionAmount
                 };
                 Orders.Add(order.Id, order);
-                
+                World.OrderManager.AddOrder(Orders.Get(order.Id));
                 return true;
             }
 
             return false;
-        }
-
-        public bool HasOrder()
-        {
-            return Orders.Models.Count > 0 && Orders.Models.Values.Any(o => o.FreeAmount > 0);
         }
 
         private bool CapacityLeft()
@@ -201,11 +188,20 @@ namespace Runtime.Colony.Buildings.Production
                     if (!Orders.Models.ContainsKey(order.Id))
                     {
                         Orders.Add(order.Id, order);
+                        World.OrderManager.AddOrder(Orders.Get(order.Id));
                     }
                 }
             }
 
             return hasEnough;
+        }
+
+        private void CloseOrder(ResourceDescription resource, int amount)
+        {
+            if (Orders.Models.ContainsKey(resource.Id))
+            {
+                Orders.Models[resource.Id].Done(amount);
+            }
         }
     }
 }

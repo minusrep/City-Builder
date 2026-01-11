@@ -19,13 +19,9 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         public override void Execute(World world, CitizenModel model)
         {
-            var productionBuildings = world.Buildings.Models.Values
-                .Where(b => b is ProductionBuildingModel)
-                .Cast<ProductionBuildingModel>();
-
-            var productionBuilding = productionBuildings.First(p => p.HasOrder());
-            var order = productionBuilding.Orders.Models.Values.First(o => o.FreeAmount > 0);
-
+            var order = world.OrderManager.TakeOrder();
+            
+            var productionBuilding = world.Buildings.Get(order.FromBuildingId) as ProductionBuildingModel;
             var wareHouse = world.Buildings.Models.Values.First(b => b is StorageBuildingModel) as StorageBuildingModel;
 
             ResourceDescription resource = world.WorldDescription.ResourceCollection.Descriptions[order.ResourceId];

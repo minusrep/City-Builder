@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Colony.Citizens.Collection;
+using Runtime.Colony.Orders;
 using Runtime.Descriptions;
 using Runtime.Extensions;
 using Runtime.GameSystems;
@@ -16,25 +17,30 @@ namespace Runtime.Colony
         private const string CitizensKey = "citizens";
 
         private const string BuildingsKey = "buildings";
-        
+
+        private const string OrderManagerKey = "order_manager";
+
         public Camera MainCamera { get; private set; }
 
         public CitizenModelCollection Citizens { get; private set; }
 
         public BuildingModelCollection Buildings { get; private set; }
-        
+
         public WorldGridModel Grid { get; private set; }
-        
+
         public PlayerControls PlayerControls { get; private set; }
 
         public WorldDescription WorldDescription { get; private set; }
-        
+
         public GameSystemCollection GameSystems { get; private set; }
-        
-        public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider, GameSystemCollection gameSystems, PlayerControls playerControls)
+
+        public OrderManager OrderManager { get; private set; }
+
+        public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider,
+            GameSystemCollection gameSystems, PlayerControls playerControls)
         {
             MainCamera = Camera.main;
-            
+
             WorldDescription = worldDescription;
             GameSystems = gameSystems;
 
@@ -42,6 +48,8 @@ namespace Runtime.Colony
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
             Grid = new WorldGridModel(this, worldDescription.WorldGridDescription);
             PlayerControls = playerControls;
+
+            OrderManager = new OrderManager();
         }
 
         public Dictionary<string, object> Serialize()
@@ -49,7 +57,8 @@ namespace Runtime.Colony
             var dictionary = new Dictionary<string, object>
             {
                 [CitizensKey] = Citizens.Serialize(),
-                [BuildingsKey] = Buildings.Serialize()
+                [BuildingsKey] = Buildings.Serialize(),
+                [OrderManagerKey] = OrderManager.Serialize(),
             };
 
             return dictionary;
@@ -58,8 +67,10 @@ namespace Runtime.Colony
         public void Deserialize(Dictionary<string, object> data)
         {
             Buildings.Deserialize(data.GetNode(BuildingsKey));
-            
+
             Citizens.Deserialize(data.GetNode(CitizensKey));
+
+            OrderManager.Deserialize(data.GetNode(OrderManagerKey));
             
             Grid.RebuildFromBuildings(Buildings.Models.Values);
         }
