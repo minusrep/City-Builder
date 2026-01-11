@@ -28,6 +28,7 @@ namespace Runtime.Colony.Buildings.Common
         
         public void OnEnable()
         {
+            SelectedOutline = false;
             Transform = transform;
             GameObject =  gameObject;
             

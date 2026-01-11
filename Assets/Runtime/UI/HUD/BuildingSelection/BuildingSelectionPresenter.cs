@@ -16,8 +16,7 @@ namespace Runtime.UI.HUD
 
         private BuildingView _cachedBuildingView;
         
-        public 
-            BuildingSelectionPresenter(BuildingSelectionView view, BuildingSelectionModel model, PlayerControls playerControls)
+        public BuildingSelectionPresenter(BuildingSelectionView view, BuildingSelectionModel model, PlayerControls playerControls)
         {
             _playerControls = playerControls;
             _model = model;

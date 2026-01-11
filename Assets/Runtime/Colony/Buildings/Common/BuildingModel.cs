@@ -60,7 +60,7 @@ namespace Runtime.Colony.Buildings.Common
             return new Dictionary<string, object>
             {
                 { DescriptionKey, BaseDescription.Id },
-                { PositionKey, WorldPosition.ToList()},
+                { PositionKey, GridPosition.ToList()},
                 { LevelKey, Level}
             };
         }

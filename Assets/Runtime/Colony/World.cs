@@ -31,7 +31,7 @@ namespace Runtime.Colony
         
         public GameSystemCollection GameSystems { get; private set; }
         
-        public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider, GameSystemCollection gameSystems)
+        public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider, GameSystemCollection gameSystems, PlayerControls playerControls)
         {
             MainCamera = Camera.main;
             
@@ -41,7 +41,7 @@ namespace Runtime.Colony
             Citizens = new CitizenModelCollection(worldDescription);
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
             Grid = new WorldGridModel(this, worldDescription.WorldGridDescription);
-            PlayerControls = new PlayerControls();
+            PlayerControls = playerControls;
         }
 
         public Dictionary<string, object> Serialize()
