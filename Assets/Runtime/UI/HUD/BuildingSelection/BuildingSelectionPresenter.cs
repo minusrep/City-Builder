@@ -4,7 +4,7 @@ using Runtime.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Runtime.UI.HUD
+namespace Runtime.UI.HUD.BuildingSelection
 {
     public class BuildingSelectionPresenter : IPresenter
     {
