@@ -57,7 +57,7 @@ namespace Runtime.Colony.Buildings.Production
 
         private void HandleRemovedResource()
         {
-            var currentAmount = _model.Inventory.Models[_model.Description.ProductionResource].Amount;
+            var currentAmount = _model.Inventory.GetResourceDescriptionAndAmount(_model.ResourceDescription.Id).Item2;
             if (_model.CapacityLeft() && currentAmount == _model.Description.MaxResource - 1)
             {
                 _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
