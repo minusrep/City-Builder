@@ -41,7 +41,7 @@ namespace Runtime.Colony.Buildings.Production
             _orders = new OrderModelCollection(id);
 
             ResourceDescription = worldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
-            Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
             Inventory.Create();
             Inventory.TryAddItem(ResourceDescription, 0);
         }
@@ -83,7 +83,7 @@ namespace Runtime.Colony.Buildings.Production
             StartProductionTime = data.GetLong("start_production_time");
             StartProductionTime += DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - data.GetLong("save_time");
             
-            Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
 
             _orders = new OrderModelCollection(Id);

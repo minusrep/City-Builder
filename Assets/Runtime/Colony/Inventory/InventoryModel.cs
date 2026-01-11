@@ -11,15 +11,12 @@ namespace Runtime.Colony.Inventory
     public class InventoryModel : UniformModelCollection<CellModel>
     {
         public event Action OnRemoveItem;
-        
-        public int Size;
 
         private readonly int _maxStackSize;
         private readonly ResourceDescriptionCollection _resourceDescriptions;
 
-        public InventoryModel(int size, int maxStackSize, ResourceDescriptionCollection resourceDescriptions) : base(null)
+        public InventoryModel(int maxStackSize, ResourceDescriptionCollection resourceDescriptions) : base(null)
         {
-            Size = size;
             _maxStackSize = maxStackSize;
             _resourceDescriptions = resourceDescriptions;
         }
@@ -132,10 +129,10 @@ namespace Runtime.Colony.Inventory
         protected override CellModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
             var cell = new CellModel();
-            
+
             var amount = data.GetInt("amount");
             var resourceId = data.GetString("resource");
-            
+
             cell.TryAdd(_resourceDescriptions.Descriptions[resourceId], amount, _maxStackSize);
 
             return cell;
