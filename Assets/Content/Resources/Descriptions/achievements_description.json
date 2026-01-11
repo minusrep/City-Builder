@@ -1,26 +1,24 @@
 {
   "get_ten_wood": {
-    "type": "associative",
+    "type": "resource_count_counter",
     "triggers": [
       {
-        "event": "resource_amount_changed",
-        "target": "wood"
+        "resource": "wood"
       }
     ],
-    "target_value": 10,
+    "target": 10,
     "unlocks": [
       "get_hundred_wood"
     ]
   },
   "get_hundred_wood": {
-    "type": "associative",
+    "type": "resource_count_counter",
     "triggers": [
       {
-        "event": "resource_amount_changed",
-        "target": "wood"
+        "resource": "wood"
       }
     ],
-    "target_value": 100
+    "target": 100
   },
   "build_three_shelters": {
     "type": "buildings_count_counter",
@@ -29,32 +27,30 @@
         "building": "shelter"
       }
     ],
-    "target_value": 3,
+    "target": 3,
     "unlocks": [
       "build_five_shelters"
     ]
   },
   "build_five_shelters": {
-    "type": "counter",
+    "type": "buildings_count_counter",
     "triggers": [
       {
-        "event": "buildings_count_changed",
-        "target": "shelter"
+        "building": "shelter"
       }
     ],
-    "target_value": 5,
+    "target": 5,
     "unlocks": [
       "build_ten_shelters"
     ]
   },
   "build_ten_shelters": {
-    "type": "counter",
+    "type": "buildings_count_counter",
     "triggers": [
       {
-        "event": "buildings_count_changed",
-        "target": "shelter"
+        "building": "shelter"
       }
     ],
-    "target_value": 10
+    "target": 10
   }
 }
