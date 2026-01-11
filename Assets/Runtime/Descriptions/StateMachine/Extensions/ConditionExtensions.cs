@@ -7,7 +7,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
     public static class ConditionExtensions
     {
         private const string TypeKey = "type";
-        
+
         private const string CompareKey = "compare";
         private const string FlagKey = "flag";
         private const string Or = "or";
@@ -16,6 +16,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string Timer = "timer";
         private const string False = "false";
         private const string True = "true";
+        private const string CitizenDistanceWithFlag = "citizen_distance_with_flag";
         private const string OrderExists = "order_exists";
         private const string BuildingWorking = "building_working";
         
@@ -31,6 +32,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 Timer => new TimerConditionDescription(data),
                 True => new TrueConditionDescription(data),
                 False => new FalseConditionDescription(data),
+                CitizenDistanceWithFlag => new CitizenDistanceWithFlagConditionDescription(data),
                 OrderExists => new OrderExistsConditionDescription(data),
                 BuildingWorking => new BuildingWorkingCondition(data),
                 _ =>  throw new NotImplementedException()

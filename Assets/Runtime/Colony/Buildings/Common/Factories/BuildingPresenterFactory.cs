@@ -11,14 +11,17 @@ namespace Runtime.Colony.Buildings.Common.Factories
     public class BuildingPresenterFactory
     {
         private readonly WorldViewDescriptions _worldViewDescriptions;
-        private readonly Dictionary<string, IObjectPool<BuildingView>>  _viewPools;
+        private readonly World _world;
+        private readonly Dictionary<string, IObjectPool<BuildingView>> _viewPools;
 
-        public BuildingPresenterFactory(WorldViewDescriptions worldViewDescriptions, Dictionary<string, IObjectPool<BuildingView>> viewPools)
+        public BuildingPresenterFactory(World world, Dictionary<string, IObjectPool<BuildingView>> viewPools,
+            WorldViewDescriptions worldViewDescriptions)
         {
             _worldViewDescriptions = worldViewDescriptions;
             _viewPools = viewPools;
+            _world = world;
         }
-        
+
         public BuildingPresenter Create(BuildingModel model)
         {
             var viewId = model.BaseDescription.ViewDescriptionId;
@@ -27,10 +30,12 @@ namespace Runtime.Colony.Buildings.Common.Factories
             return model switch
             {
                 ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool,
+                    _world, _worldViewDescriptions),
+                StorageBuildingModel storageModel => new StorageBuildingPresenter(storageModel, pool, _world,
                     _worldViewDescriptions),
-                StorageBuildingModel storageModel => new StorageBuildingPresenter(storageModel, pool, _worldViewDescriptions),
-                ServiceBuildingModel serviceModel => new ServiceBuildingPresenter(serviceModel, pool, _worldViewDescriptions),
-                _ => new BuildingPresenter(model, pool, _worldViewDescriptions),
+                ServiceBuildingModel serviceModel => new ServiceBuildingPresenter(serviceModel, pool, _world,
+                    _worldViewDescriptions),
+                _ => new BuildingPresenter(model, pool, _world, _worldViewDescriptions)
             };
         }
     }

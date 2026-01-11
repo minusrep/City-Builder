@@ -7,124 +7,19 @@
       "sawmill_0": {
         "description": "sawmill",
         "position": [
-          26.8,
-          0.3
+          48,
+          47
         ],
+        "level": 0,
         "is_active": false,
         "progress": 0,
         "inventory": {
           "models": {
-            "worker": {
+            "0": {
               "amount": 0,
               "resource": null
             },
-            "wood": {
-              "amount": 0,
-              "resource": null
-            }
-          }
-        },
-        "orders": {
-          "models": { }
-        }
-      },
-      "shelter_2": {
-        "description": "shelter",
-        "position": [
-          39.3,
-          25.5
-        ],
-        "is_active": false,
-        "in_service": {},
-        "waiting_queue": []
-      },
-      "tavern_3": {
-        "description": "tavern",
-        "position": [
-          10.9,
-          23.8
-        ],
-        "is_active": false,
-        "in_service": {},
-        "waiting_queue": []
-      },
-      "warehouse_4": {
-        "description": "warehouse",
-        "position": [
-          7.1,
-          10.4
-        ],
-        "inventory": {
-          "models": {
-            "wood": {
-              "amount": 6,
-              "resource": "wood"
-            },
-            "ore": {
-              "amount": 6,
-              "resource": "ore"
-            },
-            "iron": {
-              "amount": 0,
-              "resource": "iron"
-            }
-          }
-        }
-      },
-      "lantern_5": {
-        "description": "lantern",
-        "position": [
-          19.6,
-          12.8
-        ]
-      },
-      "mine_6": {
-        "description": "mine",
-        "position": [
-          26.8,
-          -10.3
-        ],
-        "is_active": false,
-        "progress": 0,
-        "inventory": {
-          "models": {
-            "worker": {
-              "amount": 0,
-              "resource": null
-            },
-            "ore": {
-              "amount": 0,
-              "resource": null
-            }
-          }
-        },
-        "orders": {
-          "models": { }
-        }
-      },
-      "smelter_7": {
-        "description": "smelter",
-        "position": [
-          10.8,
-          -15.3
-        ],
-        "is_active": false,
-        "progress": 0,
-        "inventory": {
-          "models": {
-            "worker": {
-              "amount": 0,
-              "resource": null
-            },
-            "wood": {
-              "amount": 0,
-              "resource": null
-            },
-            "ore": {
-              "amount": 0,
-              "resource": null
-            },
-            "iron": {
+            "1": {
               "amount": 0,
               "resource": null
             }
@@ -134,15 +29,55 @@
           "models": {}
         }
       },
-      "shelter_8": {
+      "shelter_1": {
         "description": "shelter",
         "position": [
-          -4.1,
-          25.5
+          39,
+          47
         ],
+        "level": 0,
         "is_active": false,
         "in_service": {},
         "waiting_queue": []
+      },
+      "tavern_2": {
+        "description": "tavern",
+        "position": [
+          32,
+          47
+        ],
+        "level": 3,
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "warehouse_3": {
+        "description": "warehouse",
+        "position": [
+          32,
+          39
+        ],
+        "level": 0,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": "wood"
+            },
+            "1": {
+              "amount": 0,
+              "resource": "iron"
+            }
+          }
+        }
+      },
+      "lantern_4": {
+        "description": "lantern",
+        "position": [
+          41,
+          43
+        ],
+        "level": 0
       }
     }
   }

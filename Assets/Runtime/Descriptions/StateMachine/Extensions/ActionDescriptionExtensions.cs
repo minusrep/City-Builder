@@ -17,6 +17,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string UnregisterSystemKey = "unregister_system";
         private const string TakeResourceKey = "take_resource";
         private const string PutResourceKey = "put_resource";
+        private const string SetFlagKey = "set_flag";
         private const string TakeOrderKey = "take_order";
         private const string ChangeVisibilityKey = "change_visibility";
         
@@ -34,6 +35,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 InvokeAnimationKey => new InvokeAnimationDescription(data),
                 TakeResourceKey => new TakeResourceActionDescription(data),
                 PutResourceKey => new PutResourceActionDescription(data),
+                SetFlagKey => new SetFlagActionDescription(data),
                 TakeOrderKey => new TakeOrderActionDescription(data),
                 ChangeVisibilityKey => new ChangeVisibilityActionDescription(data),
                 _ =>  throw new NotImplementedException()

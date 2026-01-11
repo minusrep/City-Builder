@@ -13,11 +13,11 @@ namespace Runtime.Colony.Buildings.Production
         {
             if (item.IsActive)
             {
-                item.Progress += deltaTime / item.Description.ProductionTime * 1000f;
+                item.Progress += deltaTime / item.ProductionTime * 1000f;
                 
                 if (item.Progress >= 1f)
                 {
-                    if (item.ProduceOnceAndQueue())
+                    if (item.Produce())
                     {
                         item.Progress = 0;
                         item.StartProduction();

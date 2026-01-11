@@ -59,9 +59,11 @@ namespace Runtime.Colony.Citizens.Collection
             
             var hungrySystem = _world.GameSystems.Get("hungry") as CitizenStatSystem;
             var fatigueSystem = _world.GameSystems.Get("fatigue") as CitizenStatSystem;
-            
+            var stressSystem = _world.GameSystems.Get("stress") as CitizenStatSystem;
+                        
             hungrySystem?.Unregister(citizenModel);
             fatigueSystem?.Unregister(citizenModel);
+            stressSystem?.Unregister(citizenModel);
             
             citizenPresenter.Disable();
             
@@ -78,11 +80,14 @@ namespace Runtime.Colony.Citizens.Collection
 
             var hungrySystem = _world.GameSystems.Get("hungry") as CitizenStatSystem;
             var fatigueSystem = _world.GameSystems.Get("fatigue") as CitizenStatSystem;
+            var stressSystem = _world.GameSystems.Get("stress") as CitizenStatSystem;
             
             hungrySystem?.Register(citizenModel);
             
             fatigueSystem?.Register(citizenModel);
-            
+
+            stressSystem?.Register(citizenModel);
+
             citizenPresenter.Enable();
         }
     }

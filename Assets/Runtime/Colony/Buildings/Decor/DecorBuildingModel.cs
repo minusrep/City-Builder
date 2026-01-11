@@ -8,14 +8,10 @@ namespace Runtime.Colony.Buildings.Decor
     public class DecorBuildingModel : BuildingModel
     {
         public DecorBuildingModel(string id,
-            Vector2 position,
+            Vector2Int gridPosition,
             DecorBuildingDescription baseDescription) : base(id,
-            position,
+            gridPosition,
             baseDescription)
-        {
-        }
-
-        public override void Deserialize(Dictionary<string, object> data)
         {
         }
     }

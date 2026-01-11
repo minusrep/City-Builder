@@ -23,7 +23,6 @@ namespace Runtime.Colony.Buildings.Production
         private WorldDescription WorldDescription { get; }
 
         private float _progress;
-
         public float Progress
         {
             get => _progress;
@@ -33,12 +32,17 @@ namespace Runtime.Colony.Buildings.Production
                 OnProgressChanged?.Invoke(_progress);
             }
         }
+        
+        public long ProductionTime
+        {
+            get => Description.ProductionTimeByLevel[Level];
+        }
 
         public OrderModelCollection Orders { get; private set; }
 
         public ProductionBuildingModel(string id,
-            Vector2 position,
-            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, position,
+            Vector2Int gridPosition,
+            ProductionBuildingDescription description, WorldDescription worldDescription) : base(id, gridPosition,
             description)
         {
             WorldDescription = worldDescription;
@@ -50,7 +54,10 @@ namespace Runtime.Colony.Buildings.Production
 
             ResourceDescription = worldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
             Inventory = new InventoryModel(1, Description.MaxResource, WorldDescription.ResourceCollection);
-            Inventory.TryAddItem(ResourceDescription, 0);
+            for (int i = 0; i < Description.ResourcesForProduction.Count + Description.ResourcesForWork.Count + 1; i++)
+            {
+                Inventory.Create();
+            }
         }
 
         public void StartProduction()
@@ -123,6 +130,8 @@ namespace Runtime.Colony.Buildings.Production
 
         public override void Deserialize(Dictionary<string, object> data)
         {
+            base.Deserialize(data);
+            
             IsActive = data.GetBool("is_active");
             Progress = data.GetFloat("progress");
             
@@ -133,7 +142,7 @@ namespace Runtime.Colony.Buildings.Production
             Orders.Deserialize(data.GetNode("orders"));
         }
 
-        public bool ProduceOnceAndQueue()
+        public bool Produce()
         {
             if (CapacityLeft())
             {

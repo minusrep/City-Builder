@@ -30,7 +30,7 @@ namespace Runtime.Common.ObjectPool
                 return obj;
             }
 
-            return CreateObject();
+            return CreateObject(true);
         }
 
         public void Release(T obj)

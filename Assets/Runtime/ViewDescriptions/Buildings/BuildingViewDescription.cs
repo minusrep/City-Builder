@@ -8,5 +8,9 @@ namespace Runtime.ViewDescriptions.Buildings
         public string Id => name;
         
         public BuildingView Prefab;
+        
+        public Vector2Int VisualSizeInCells = Vector2Int.one;
+        
+        public Vector3 AdditionalWorldOffset;
     }
 }

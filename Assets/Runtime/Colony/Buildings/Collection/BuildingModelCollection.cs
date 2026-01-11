@@ -23,12 +23,12 @@ namespace Runtime.Colony.Buildings.Collection
         {
             DescriptionKey = descriptionKey;
             var description = _descriptions.Descriptions[descriptionKey];
-            return _modelFactory.Create(description.Type, GetCurrentKey(), Vector2.zero, description);
+            return _modelFactory.Create(description.Type, GetCurrentKey(), Vector2Int.zero, description);
         }
 
         protected override BuildingModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
-            var position = data.GetVector2("position");
+            var position = data.GetVector2Int("position");
 
             var descriptionId = data.GetString("description");
             DescriptionKey = descriptionId;

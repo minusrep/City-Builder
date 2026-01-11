@@ -39,7 +39,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                     model.Inventory.TryAddItem(resource, 1);
                     model.Flags["is_carrying"] = true;
                     model.SetPointOfInterest("resource_target",
-                        new Vector3(productionBuilding.Position.x, 0, productionBuilding.Position.y));
+                        new Vector3(productionBuilding.WorldPosition.x, 0, productionBuilding.WorldPosition.y));
                     order.Select(1);
                     return;
                 }
@@ -50,9 +50,9 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
             model.Inventory.TryAddItem(resource, 0);
             model.SetPointOfInterest("resource_source",
-                new Vector3(sourcebuilding.Position.x, 0, sourcebuilding.Position.y));
+                new Vector3(sourcebuilding.WorldPosition.x, 0, sourcebuilding.WorldPosition.y));
             model.SetPointOfInterest("resource_target",
-                new Vector3(targetbuilding.Position.x, 0, targetbuilding.Position.y));
+                new Vector3(targetbuilding.WorldPosition.x, 0, targetbuilding.WorldPosition.y));
 
             order.Select(1);
         }

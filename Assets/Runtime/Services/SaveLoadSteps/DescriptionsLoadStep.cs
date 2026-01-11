@@ -14,7 +14,7 @@ namespace Runtime.Services.SaveLoadSteps
         {
             _worldDescription = worldDescription;
         }
-        
+
         public async Task Run()
         {
             var buildingDescriptions =
@@ -27,25 +27,30 @@ namespace Runtime.Services.SaveLoadSteps
                 JSON.ToObject<Dictionary<string, object>>(
                     Resources.Load<TextAsset>("Descriptions/items_description").text);
 
-            var pointsOfInterest = 
-                JSON.ToObject <Dictionary<string, object>>(
+            var pointsOfInterest =
+                JSON.ToObject<Dictionary<string, object>>(
                     Resources.Load<TextAsset>("Descriptions/points_of_interest_description").text);
 
             var cameraControl =
                 JSON.ToObject<Dictionary<string, object>>(
                     Resources.Load<TextAsset>("Descriptions/camera_control").text);
+            
+            var worldGridDescription =
+                JSON.ToObject<Dictionary<string, object>>(
+                    Resources.Load<TextAsset>("Descriptions/world_grid_description").text);
 
             var data = new Dictionary<string, object>
             {
                 { "buildings", buildingDescriptions },
                 { "citizens", citizensDescriptions },
                 { "resources", resourcesDescriptions },
-                { "points_of_interest", pointsOfInterest},
-                { "camera_control", cameraControl}
+                { "points_of_interest", pointsOfInterest },
+                { "camera_control", cameraControl },
+                { "world_grid", worldGridDescription}
             };
 
             _worldDescription.SetData(data);
-            
+
             await Task.CompletedTask;
         }
     }

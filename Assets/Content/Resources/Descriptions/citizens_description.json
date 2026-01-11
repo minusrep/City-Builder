@@ -14,6 +14,11 @@
       "min": 0,
       "max": 100,
       "view_id": "Energy"
+    },
+    "happiness": {
+      "min": 0,
+      "max": 100,
+      "view_id": "Happiness"
     }
   },
   "start_move_speed": 1,
@@ -33,6 +38,14 @@
     "feed": {
       "stat": "satiety",
       "change_speed": 50
+    },
+    "stress": {
+      "stat": "happiness",
+      "change_speed": -4
+    },
+    "comfort": {
+      "stat": "happiness",
+      "change_speed": 20
     }
   },
   "states": {
@@ -54,6 +67,12 @@
           "type": "compare",
           "operation": "lesser",
           "counter": "energy",
+          "value": 10
+        },
+        "walk_to_talk": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "happiness",
           "value": 10
         },
         "walk_to_put_resource": {
@@ -189,6 +208,95 @@
         {
           "type": "change_visibility",
           "visible": "true"
+        }
+      ],
+      "transitions": {
+        "idle": {
+          "type": "true"
+        }
+      }
+    },
+    "walk_to_talk": {
+      "actions": [
+        {
+          "type": "set_point_of_interest_building",
+          "point_of_interest": "lantern"
+        },
+        {
+          "type": "set_flag",
+          "flag_name": "is_sad",
+          "flag_value": "true"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "lantern"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "talk_start": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "citizen_distance_with_flag",
+              "distance_value": 1.0,
+              "flag_name": "is_sad",
+              "flag_value": "true"
+            },
+            {
+              "type": "distance",
+              "value": 1.0,
+              "point_of_interest": "lantern"
+            }
+          ]
+        }
+      }
+    },
+    "talk_start": {
+      "actions": [
+        {
+          "type": "register_system",
+          "system": "comfort"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
+        "talk_end": {
+          "type": "compare",
+          "counter": "happiness",
+          "operation": "greater",
+          "value": 95
+        }
+      }
+    },
+    "talk_end": {
+      "actions": [
+        {
+          "type": "unregister_system",
+          "system": "comfort"
+        },
+        {
+          "type": "set_flag",
+          "flag_name": "is_sad",
+          "flag_value": "false"
+        },
+        {
+          "type": "set_point_of_interest",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
         }
       ],
       "transitions": {

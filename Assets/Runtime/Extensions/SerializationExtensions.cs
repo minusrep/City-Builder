@@ -76,6 +76,15 @@ namespace Runtime.Extensions
                 Convert.ToSingle(list[1])
             );
         }
+        
+        public static Vector2Int GetVector2Int(this Dictionary<string, object> dictionary, string key)
+        {
+            var list = (List<object>)dictionary[key];
+            return new Vector2Int(
+                Convert.ToInt32(list[0]),
+                Convert.ToInt32(list[1])
+            );
+        }
 
         public static Vector3 GetVector3(this Dictionary<string, object> dictionary, string key)
         {
@@ -103,6 +112,11 @@ namespace Runtime.Extensions
         }
 
         public static List<object> ToList(this Vector2 vector)
+        {
+            return new List<object> { vector.x, vector.y };
+        }
+        
+        public static List<object> ToList(this Vector2Int vector)
         {
             return new List<object> { vector.x, vector.y };
         }

@@ -25,7 +25,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
             var inventoryBuilding = world.Buildings.Models.First(b => 
-                b.Value.Position == new Vector2(buildingPosition.x, buildingPosition.z)
+                b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
             ).Value as IInventoryBuilding;
 
             var resource = model.Inventory.Models.First().Value.Resource;

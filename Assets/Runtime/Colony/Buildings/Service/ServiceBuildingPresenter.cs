@@ -7,7 +7,7 @@ namespace Runtime.Colony.Buildings.Service
 {
     public class ServiceBuildingPresenter : BuildingPresenter
     {
-        public ServiceBuildingPresenter(ServiceBuildingModel model, IObjectPool<BuildingView> viewPool, WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, worldViewDescriptions)
+        public ServiceBuildingPresenter(ServiceBuildingModel model, IObjectPool<BuildingView> viewPool, World world, WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, world, worldViewDescriptions)
         {
 
         }

@@ -24,7 +24,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
             
             var buildingPosition = model.PointsOfInterest["resource_target"];
             var building = world.Buildings.Models.Values.First(b => 
-                b.Position == new Vector2(buildingPosition.x, buildingPosition.z)
+                b.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
             ) as ProductionBuildingModel;
 
             return building != null && building.IsActive == _isWorking;
