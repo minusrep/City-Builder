@@ -14,9 +14,8 @@ namespace Runtime.Colony.Buildings.Common
         private BuildingModel Model { get; }
         private IObjectPool<BuildingView> ViewPool { get; }
         private BuildingViewDescription ViewDescription { get; }
-        private World World { get; }
 
-        public BuildingPresenter(BuildingModel model, IObjectPool<BuildingView> viewPool, World world,
+        public BuildingPresenter(BuildingModel model, IObjectPool<BuildingView> viewPool,
             WorldViewDescriptions worldViewDescriptions)
         {
             Model = model;
@@ -24,7 +23,6 @@ namespace Runtime.Colony.Buildings.Common
             ViewDescription =
                 WorldViewDescriptions.BuildingViewDescriptions.Get(Model.BaseDescription.ViewDescriptionId);
             ViewPool = viewPool;
-            World = world;
         }
 
         public virtual void Enable()

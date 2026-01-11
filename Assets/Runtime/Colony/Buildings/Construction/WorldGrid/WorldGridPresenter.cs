@@ -9,13 +9,11 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
     {
         private readonly WorldGridModel _model;
         private readonly WorldGridView _view;
-        private readonly World _world;
 
-        public WorldGridPresenter(WorldGridModel model, WorldGridView view, World world)
+        public WorldGridPresenter(WorldGridModel model, WorldGridView view)
         {
             _model = model;
             _view = view;
-            _world = world;
         }
 
         public void Enable()

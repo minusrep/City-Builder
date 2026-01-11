@@ -12,7 +12,7 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
         
         private GridCellModel[,] Cells { get; }
 
-        public WorldGridModel(World world, WorldGridDescription description)
+        public WorldGridModel(WorldGridDescription description)
         {
             Description = description;
             
