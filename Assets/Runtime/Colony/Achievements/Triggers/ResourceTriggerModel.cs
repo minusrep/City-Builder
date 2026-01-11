@@ -1,0 +1,36 @@
+using Runtime.Colony.Achievements.Events;
+using Runtime.Descriptions.Achievements;
+using Runtime.Services;
+
+namespace Runtime.Colony.Achievements.Triggers
+{
+    public class ResourceTriggerModel : TriggerModel
+    {
+        public ResourceTriggerModel(TriggerDescription description, AchievementModel model) : base(description, model)
+        {
+        }
+
+        public override void Subscribe()
+        {
+            MessageBroker.Instance.Subscribe("resource_amount_changed", OnEventReceived);
+        }
+
+        public override void Unsubscribe()
+        {
+            MessageBroker.Instance.Unsubscribe("resource_amount_changed", OnEventReceived);
+        }
+
+        protected override void OnEventReceived(GameEvent evt)
+        {
+            if (evt is not ResourceChange resourceEvent)
+            {
+                return;
+            }
+
+            if (Description.Value == resourceEvent.Resource.Id)
+            {
+                Model.SetProgress(resourceEvent.Amount);
+            }
+        }
+    }
+}
