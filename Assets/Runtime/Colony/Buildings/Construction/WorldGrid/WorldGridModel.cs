@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
@@ -8,9 +9,23 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
 {
     public class WorldGridModel
     {
-        public WorldGridDescription Description { get; }
+        public event Action<bool> OnActiveChanged; 
         
+        public WorldGridDescription Description { get; }
+
         private GridCellModel[,] Cells { get; }
+
+        public bool IsActive
+        {
+            get => _isActive;
+            set
+            {
+                _isActive = value;
+                OnActiveChanged?.Invoke(value);
+            }
+        }
+
+        private bool _isActive;
 
         public WorldGridModel(WorldGridDescription description)
         {
@@ -22,11 +37,11 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             {
                 for (var y = 0; y < Description.Height; y++)
                 {
-                    Cells[x, y] = new GridCellModel(x, y);
+                    Cells[x, y] = new GridCellModel();
                 }
             }
         }
-        
+
         public bool CanPlaceBuilding(BuildingDescription description, Vector2Int position)
         {
             foreach (var cellOffset in description.Cells)
@@ -75,17 +90,6 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             return new Vector2Int(x, y);
         }
         
-        public void Clear()
-        {
-            for (var x = 0; x < Description.Width; x++)
-            {
-                for (var y = 0; y < Description.Height; y++)
-                {
-                    Cells[x, y].Clear();
-                }
-            }
-        }
-        
         public void RebuildFromBuildings(IEnumerable<BuildingModel> buildings)
         {
             Clear();
@@ -93,6 +97,17 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             foreach (var building in buildings)
             {
                 PlaceBuilding(building, building.GridPosition);
+            }
+        }
+        
+        private void Clear()
+        {
+            for (var x = 0; x < Description.Width; x++)
+            {
+                for (var y = 0; y < Description.Height; y++)
+                {
+                    Cells[x, y].Clear();
+                }
             }
         }
     }

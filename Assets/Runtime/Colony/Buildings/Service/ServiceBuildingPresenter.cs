@@ -1,6 +1,5 @@
 ﻿using Runtime.Colony.Buildings.Common;
 using Runtime.Common.ObjectPool;
-using Runtime.GameSystems;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Service

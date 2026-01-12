@@ -4,10 +4,9 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Common;
 using Runtime.Descriptions;
-using Runtime.GameSystems;
 using Runtime.ViewDescriptions;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public class BuildingCollectionLoadStep : IStep
     {

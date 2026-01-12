@@ -27,7 +27,7 @@ namespace Runtime.Colony.Buildings.Common.Factories
 
             return model switch
             {
-                ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool, _worldViewDescriptions, _world.GameSystems),
+                ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool, _world, _worldViewDescriptions),
                 StorageBuildingModel storageModel => new StorageBuildingPresenter(storageModel, pool,
                     _worldViewDescriptions),
                 _ => new BuildingPresenter(model, pool, _worldViewDescriptions)

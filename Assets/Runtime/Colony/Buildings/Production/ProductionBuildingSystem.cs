@@ -1,5 +1,4 @@
-﻿using System;
-using Runtime.GameSystems;
+﻿using Runtime.GameSystems;
 
 namespace Runtime.Colony.Buildings.Production
 {

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Colony;
 using Runtime.Colony.StateMachine.Conditions;
-using System.Linq;
-using Runtime.Colony.Buildings.Production;
 
 namespace Runtime.Descriptions.StateMachine.Conditions
 {

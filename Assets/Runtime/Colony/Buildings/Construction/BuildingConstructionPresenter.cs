@@ -1,8 +1,11 @@
-﻿using Runtime.Colony.Buildings.Common;
+﻿using System.Linq;
+using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Buildings.Production;
 using Runtime.Common;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Runtime.Colony.Buildings.Construction
 {
@@ -22,27 +25,24 @@ namespace Runtime.Colony.Buildings.Construction
             _model = model;
             _view = view;
             _viewDescriptionCollection = viewDescriptions.BuildingViewDescriptions;
+
             _system = new BuildingConstructionSystem(_model, _view, world);
         }
 
         public void Enable()
         {
-            _world.PlayerControls.UI.Disable();
-            _world.PlayerControls.Construction.Enable();
-
             _view.GameObject.SetActive(true);
             _model.OnChangeSelectedBuilding += RebuildView;
+            _world.PlayerControls.Construction.Build.performed += TryPlaceBuilding;
 
             _world.GameSystems.Add(_system);
         }
 
         public void Disable()
         {
-            _world.PlayerControls.UI.Enable();
-            _world.PlayerControls.Construction.Disable();
-
             _view.GameObject.SetActive(false);
             _model.OnChangeSelectedBuilding -= RebuildView;
+            _world.PlayerControls.Construction.Build.performed -= TryPlaceBuilding;
 
             _world.GameSystems.Remove(_system);
         }
@@ -51,17 +51,20 @@ namespace Runtime.Colony.Buildings.Construction
         {
             CleanupPreview();
 
-            var viewDescription = GetViewDescription();
+            if (_model.SelectedBuilding != null)
+            {
+                var viewDescription = GetViewDescription();
 
-            var previewInstance = Object.Instantiate(
-                viewDescription.Prefab.Preview,
-                _view.Transform,
-                false
-            );
+                var previewInstance = Object.Instantiate(
+                    viewDescription.Prefab.Preview,
+                    _view.Transform,
+                    false
+                );
 
-            _view.Preview = previewInstance;
+                _view.Preview = previewInstance;
 
-            _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription);
+                _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription);
+            }
         }
 
         private void CleanupPreview()
@@ -79,6 +82,17 @@ namespace Runtime.Colony.Buildings.Construction
             return _viewDescriptionCollection.Get(
                 _model.SelectedBuilding.ViewDescriptionId
             );
+        }
+        
+        private void TryPlaceBuilding(InputAction.CallbackContext callbackContext)
+        {
+            if (_model.CanPlace)
+            {
+                _world.Buildings.Create(_model.SelectedBuilding.Id);
+                var building = _world.Buildings.Models.Last().Value;
+
+                _world.Grid.PlaceBuilding(building, _model.CurrentGridPosition);
+            }
         }
     }
 }

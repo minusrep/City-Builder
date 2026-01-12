@@ -6,7 +6,7 @@ using Runtime.Colony.ShelterCitizenSpawn;
 using Runtime.Common;
 using Runtime.ViewDescriptions;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public class CitizenCollectionLoadStep : IStep
     {

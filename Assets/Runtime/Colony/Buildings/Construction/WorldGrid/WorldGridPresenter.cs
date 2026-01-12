@@ -18,14 +18,20 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
 
         public void Enable()
         {
-            _view.GameObject.SetActive(true);
-            _view.Transform.position = new Vector3(_model.Description.Origin.x, 1f, _model.Description.Origin.z);
             BuildGridMesh();
+            _view.Transform.position = new Vector3(_model.Description.Origin.x, 1f, _model.Description.Origin.z);
+            _model.OnActiveChanged += HandleActiveChanged;
+            _view.GameObject.SetActive(false);
+        }
+
+        private void HandleActiveChanged(bool value)
+        {
+            _view.GameObject.SetActive(value);
         }
 
         public void Disable()
         {
-            _view.GameObject.SetActive(false);
+            _model.OnActiveChanged -= HandleActiveChanged;
         }
 
         private void BuildGridMesh()

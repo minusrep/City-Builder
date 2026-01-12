@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using Runtime.Colony.Buildings.Production;
-using Runtime.GameSystems;
+﻿using Runtime.GameSystems;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Construction
@@ -40,32 +38,10 @@ namespace Runtime.Colony.Buildings.Construction
                         gridPosition);
 
                     _model.CurrentGridPosition = gridPosition;
-                    _model.CurrentWorldPosition = previewWorldPosition;
                     _model.CanPlace = canPlace;
 
                     _view.Transform.position = previewWorldPosition;
                     _view.SetValid(canPlace);
-                }
-
-                if (_world.PlayerControls.Construction.Build.WasPressedThisFrame())
-                {
-                    TryPlaceBuilding();
-                }
-            }
-        }
-
-        private void TryPlaceBuilding()
-        {
-            if (_model.CanPlace)
-            {
-                _world.Buildings.Create(_model.SelectedBuilding.Id);
-                var building = _world.Buildings.Models.Last().Value;
-
-                _world.Grid.PlaceBuilding(building, _model.CurrentGridPosition);
-
-                if (building is ProductionBuildingModel productionBuilding)
-                {
-                    ((ProductionBuildingSystem)_world.GameSystems.Get("production")).Register(productionBuilding);
                 }
             }
         }

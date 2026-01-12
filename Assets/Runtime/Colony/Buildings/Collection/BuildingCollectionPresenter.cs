@@ -3,7 +3,6 @@ using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Common;
 using Runtime.Common.ObjectPool;
-using Runtime.GameSystems;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Collection
