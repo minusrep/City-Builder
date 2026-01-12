@@ -1,19 +1,12 @@
 ﻿using Runtime.Colony.Buildings.Common;
-using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Construction.WorldGrid
 {
     public class GridCellModel
     {
-        public Vector2Int Position { get; }
-        public BuildingModel OccupiedBy { get; private set; }
-
         public bool IsFree => OccupiedBy == null;
         
-        public GridCellModel(int x, int y)
-        {
-            Position = new Vector2Int(x, y);
-        }
+        private BuildingModel OccupiedBy { get; set; }
 
         public void Occupy(BuildingModel building)
         {

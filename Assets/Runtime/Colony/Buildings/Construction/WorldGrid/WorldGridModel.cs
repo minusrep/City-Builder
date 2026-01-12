@@ -22,7 +22,7 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             {
                 for (var y = 0; y < Description.Height; y++)
                 {
-                    Cells[x, y] = new GridCellModel(x, y);
+                    Cells[x, y] = new GridCellModel();
                 }
             }
         }
@@ -75,17 +75,6 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             return new Vector2Int(x, y);
         }
         
-        public void Clear()
-        {
-            for (var x = 0; x < Description.Width; x++)
-            {
-                for (var y = 0; y < Description.Height; y++)
-                {
-                    Cells[x, y].Clear();
-                }
-            }
-        }
-        
         public void RebuildFromBuildings(IEnumerable<BuildingModel> buildings)
         {
             Clear();
@@ -93,6 +82,17 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             foreach (var building in buildings)
             {
                 PlaceBuilding(building, building.GridPosition);
+            }
+        }
+        
+        private void Clear()
+        {
+            for (var x = 0; x < Description.Width; x++)
+            {
+                for (var y = 0; y < Description.Height; y++)
+                {
+                    Cells[x, y].Clear();
+                }
             }
         }
     }
