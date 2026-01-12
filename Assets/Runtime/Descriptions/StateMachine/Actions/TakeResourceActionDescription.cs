@@ -55,13 +55,13 @@ namespace Runtime.Descriptions.StateMachine.Actions
             ).Value;
             
             ResourceDescription resource = model.Inventory.Models.Values.First().Resource; 
-            var order = new OrderModel(resource.Id, targetBuilding.Id)
+            var order = new OrderModel($"{targetBuilding.Id}_{resource.Id}", targetBuilding.Id)
             {
                 Type = "put_resource",
                 ResourceId = resource.Id,
                 Amount = 1
             };
-            world.OrderManager.RestoreOrder(order);
+            world.OrderManager.AddOrder(order);
             model.Inventory.Models.Values.First().TryReduce(0);
         }
     }

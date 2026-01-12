@@ -30,13 +30,13 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
             if (order.Type == "put_resource")
             {
-                if (order.Id == "worker")
+                if (order.ResourceId == "worker")
                 {
                     model.Inventory.TryAddItem(resource, 1);
                     model.Flags["is_carrying"] = true;
                     model.SetPointOfInterest("resource_target",
                         new Vector3(productionBuilding.WorldPosition.x, 0, productionBuilding.WorldPosition.y));
-                    order.Select(1);
+                    order.Amount -= 1;
                     return;
                 }
 
@@ -50,7 +50,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             model.SetPointOfInterest("resource_target",
                 new Vector3(targetbuilding.WorldPosition.x, 0, targetbuilding.WorldPosition.y));
 
-            order.Select(1);
+            order.Amount -= 1;
         }
     }
 }
