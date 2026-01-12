@@ -60,23 +60,23 @@ namespace Runtime
             _menuContent = new MenuContent(_menuDocument);
 
             _playerControls = new PlayerControls();
-            
-            _playerControls.Enable();
-            
+
             IStep[] loadSteps =
             {
                 new AddressableLoadStep(_addressableModel, _presenters),
                 new DescriptionsLoadStep(_worldDescription),
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
                 new WorldLoadStep(_world, _worldDescription, _gameSystems, _playerControls),
+                new GameSystemsCollectionLoadStep(_world, _gameSystems),
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView,
                     _worldDescription, _worldViewDescriptions),
-                new GameSystemsCollectionLoadStep(_world, _gameSystems),
                 new BuildingConstructionLoadStep(_constructionMenuAsset, _buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
                 new HUDLoadStep(_presenters, _world, _playerControls, _hudView)
             };
+            _playerControls.Enable();
+
 
             foreach (var step in loadSteps)
             {

@@ -92,11 +92,6 @@ namespace Runtime.Colony.Buildings.Construction
                 var building = _world.Buildings.Models.Last().Value;
 
                 _world.Grid.PlaceBuilding(building, _model.CurrentGridPosition);
-
-                if (building is ProductionBuildingModel productionBuilding)
-                {
-                    ((ProductionBuildingSystem)_world.GameSystems.Get("production")).Register(productionBuilding);
-                }
             }
         }
     }

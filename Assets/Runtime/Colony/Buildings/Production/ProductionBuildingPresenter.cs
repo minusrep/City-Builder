@@ -2,7 +2,6 @@
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Inventory;
 using Runtime.Common.ObjectPool;
-using Runtime.GameSystems;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Production
@@ -10,23 +9,25 @@ namespace Runtime.Colony.Buildings.Production
     public class ProductionBuildingPresenter : BuildingPresenter
     {
         private readonly ProductionBuildingModel _model;
+        private readonly World _world;
 
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, IObjectPool<BuildingView> viewPool,
-            WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, worldViewDescriptions)
+            World world, WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, worldViewDescriptions)
         {
             _model = model;
+            _world = world;
         }
 
         public override void Enable()
         {
             base.Enable();
-            
             _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
 
             _inventoryPresenter.Enable();
-
+            
+            ((ProductionBuildingSystem)_world.GameSystems.Get("production")).Register(_model);
             _model.OnProgressChanged += OnProgressChanged;
             
             _model.StartProduction();
