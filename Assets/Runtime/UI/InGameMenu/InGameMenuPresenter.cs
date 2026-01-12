@@ -1,5 +1,6 @@
 using Runtime.Colony;
 using Runtime.Common;
+using Runtime.Services.SaveLoadSteps;
 using Runtime.UI.InGameMenu.AchievementsMenu;
 using Runtime.UI.InGameMenu.LoadMenu;
 using Runtime.ViewDescriptions;
@@ -96,10 +97,18 @@ namespace Runtime.UI.InGameMenu
         {
             _view.Root.RemoveFromHierarchy();
         }
-
-        //TODO: Save logic
+        
         private void OnSaveClicked()
         {
+            Save();
+        }
+
+        private async void Save()
+        {
+            var saving = new WorldSaveStep(_world);
+            var savingTask = saving.Run();
+            
+            await savingTask;
         }
 
         private void OnLoadClicked()
