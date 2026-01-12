@@ -10,6 +10,8 @@ using Runtime.Input;
 using Runtime.Services.SaveLoadSteps;
 using Runtime.ViewDescriptions;
 using System.Collections.Generic;
+using System.Linq;
+using Runtime.Colony.Achievements;
 using Runtime.UI;
 using Runtime.UI.InGameMenu;
 using UnityEditor;
@@ -20,7 +22,9 @@ namespace Runtime
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        [Header("UI")] [SerializeField] private UIDocument _menuDocument;
+        [Header("UI")] 
+        [SerializeField] private UIDocument _menuDocument;
+        [SerializeField] private UIDocument _popupDocument;
         [SerializeField] private VisualTreeAsset _inGameMenuAsset;
         [SerializeField] private VisualTreeAsset _loadMenuAsset;
         [SerializeField] private VisualTreeAsset _achievementsMenuAsset;
@@ -46,9 +50,11 @@ namespace Runtime
         private CameraControlPresenter _cameraControlPresenter;
         private MenuContent _menuContent;
         private InGameMenuPresenter _inGameMenuPresenter;
-
+        
         private async void Start()
         {
+            _menuContent = new MenuContent(_menuDocument, _popupDocument);
+            
             IStep[] loadSteps =
             {
                 new AddressableLoadStep(_addressableModel, _presenters),
@@ -73,14 +79,11 @@ namespace Runtime
                 _worldDescription.CameraControlDescription, _gameSystems);
             _cameraControlPresenter.Enable();
 
-            _menuContent = new MenuContent(_menuDocument);
-
             var pauseMenuModel = new InGameMenuModel(_playerControls);
             var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent, _world,
                 _worldViewDescriptions);
             _inGameMenuPresenter.Enable();
-
             Application.quitting += OnQuit;
 
 #if UNITY_EDITOR
@@ -108,16 +111,13 @@ namespace Runtime
             Dispose();
         }
 
-        private async void Dispose()
+        private void Dispose()
         {
 #if UNITY_EDITOR
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 #endif
             Application.quitting -= OnQuit;
-
-            var saving = new WorldSaveStep(_world);
-            var savingTask = saving.Run();
-
+            
             _presenters.Reverse();
             foreach (var presenter in _presenters)
             {
@@ -125,8 +125,6 @@ namespace Runtime
             }
 
             _inGameMenuPresenter.Disable();
-
-            await savingTask;
         }
     }
 }
