@@ -145,7 +145,7 @@ namespace Runtime.Colony.Buildings.Production
                 
                 Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
                 
-                var order = new OrderModel(ResourceDescription.Id, Id)
+                var order = new OrderModel($"{Id}_{ResourceDescription.Id}", Id)
                 {
                     Type = "take_resource",
                     ResourceId = ResourceDescription.Id,
@@ -178,7 +178,7 @@ namespace Runtime.Colony.Buildings.Production
                 if (!Inventory.CanExtract(WorldDescription.ResourceCollection.Descriptions[resource.Key], resource.Value, out _))
                 {
                     hasEnough = false;
-                    var order = new OrderModel(resource.Key, Id)
+                    var order = new OrderModel($"{Id}_{resource.Key}", Id)
                     {
                         Type = "put_resource",
                         ResourceId = resource.Key,

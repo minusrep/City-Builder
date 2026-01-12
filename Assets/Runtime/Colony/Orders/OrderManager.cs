@@ -10,36 +10,21 @@ namespace Runtime.Colony.Orders
 
         public void AddOrder(OrderModel order)
         {
-            var currentOrder = _orders.FirstOrDefault(o => o.Id == order.Id && o.FromBuildingId == order.FromBuildingId);
+            var existingOrder = _orders.FirstOrDefault(o => o.Id == order.Id);
 
-            if (currentOrder != null)
+            if (existingOrder != null)
             {
-                currentOrder.Amount = order.Amount;
+                existingOrder.Amount += order.Amount;
+                return;
             }
-            else
-            {
-                _orders.Enqueue(order);
-                order.OnSelected += OnOrderSelected;    
-            }
+            
+            _orders.Enqueue(order);
+            order.OnAmountChanged += OnAmountChanged;
         }
-        
+
         public OrderModel TakeOrder()
         {
             return _orders.Peek();
-        }
-
-        public void RestoreOrder(OrderModel order)
-        {
-            var currentOrder = _orders.FirstOrDefault(o => o.Id == order.Id && o.FromBuildingId == order.FromBuildingId);
-
-            if (currentOrder != null)
-            {
-                currentOrder.Deselect(order.Amount);
-            }
-            else
-            {
-                AddOrder(order);
-            }
         }
 
         public bool HasOrders()
@@ -64,17 +49,17 @@ namespace Runtime.Colony.Orders
             _orders = new Queue<OrderModel>();
             foreach (var orderRaw in ordersRaw)
             {
-                var order = new OrderModel("", "");
+                var order = new OrderModel();
                 order.Deserialize((Dictionary<string, object>)orderRaw);
                 AddOrder(order);
             }
         }
-
-        private void OnOrderSelected(OrderModel order)
+        
+        private void OnAmountChanged(OrderModel order)
         {
-            if (order == _orders.Peek() && order.FreeAmount <= 0)
+            if (order.Id == _orders.Peek().Id && order.Amount <= 0)
             {
-                order.OnSelected -= OnOrderSelected;
+                order.OnAmountChanged -= OnAmountChanged;
                 _orders.Dequeue();
             }
         }
