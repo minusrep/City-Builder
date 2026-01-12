@@ -70,8 +70,8 @@ namespace Runtime.UI.InGameMenu.AchievementsMenu
         {
             MessageBroker.Instance.Unsubscribe("achievement-complete", Update);
 
+            _view.Root.RemoveFromHierarchy();
             _achievements.Clear();
-            _view.Container.Clear();
         }
     }
 }

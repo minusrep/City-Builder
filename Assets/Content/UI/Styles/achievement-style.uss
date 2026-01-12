@@ -18,7 +18,7 @@
     border-right-color: rgb(255, 170, 0);
     border-top-color: rgb(255, 170, 0);
     border-bottom-color: rgb(255, 170, 0);
-    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(255, 176, 0);
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out-sine;
 }
@@ -39,11 +39,11 @@
     border-top-right-radius: 60px;
     border-bottom-right-radius: 60px;
     border-bottom-left-radius: 60px;
-    border-left-color: rgb(172, 172, 172);
-    border-right-color: rgb(172, 172, 172);
-    border-top-color: rgb(172, 172, 172);
-    border-bottom-color: rgb(172, 172, 172);
-    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-left-color: rgb(185, 185, 185);
+    border-right-color: rgb(185, 185, 185);
+    border-top-color: rgb(185, 185, 185);
+    border-bottom-color: rgb(185, 185, 185);
+    -unity-background-image-tint-color: rgb(188, 188, 188);
 }
 
 .achievement {
