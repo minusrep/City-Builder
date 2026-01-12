@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6030165305410528423}
   - component: {fileID: 8364319867359400544}
   - component: {fileID: 5501538418256578026}
+  - component: {fileID: 5326944264105613301}
   m_Layer: 0
   m_Name: Warehouse
   m_TagString: Untagged
@@ -2371,6 +2372,27 @@ MonoBehaviour:
     - {x: 0.20833878, y: -0.5493225, z: 0.8092216}
     - {x: 0.80922127, y: -0.5493226, z: 0.20834008}
     - {x: 0.80037796, y: -0.45143476, z: 0.39446384}
+--- !u!65 &5326944264105613301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9068785, y: 4.765278, z: 1}
+  m_Center: {x: 2.7795177, y: 1.721038, z: 0}
 --- !u!1 &5704163956497761162
 GameObject:
   m_ObjectHideFlags: 0

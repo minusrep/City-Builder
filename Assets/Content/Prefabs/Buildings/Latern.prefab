@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6383710204673921016}
   - component: {fileID: 9209555602295748971}
   - component: {fileID: 7194554740882999641}
+  - component: {fileID: 856994199522728835}
   m_Layer: 0
   m_Name: Latern
   m_TagString: Untagged
@@ -2386,6 +2387,27 @@ MonoBehaviour:
     - {x: 0.20833878, y: -0.5493225, z: 0.8092216}
     - {x: 0.80922127, y: -0.5493226, z: 0.20834008}
     - {x: 0.80037796, y: -0.45143476, z: 0.39446384}
+--- !u!65 &856994199522728835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1824028, y: 10.074532, z: 1.0456009}
+  m_Center: {x: 2.5080366, y: 4.1268597, z: 2.4852357}
 --- !u!1001 &280047462245302889
 PrefabInstance:
   m_ObjectHideFlags: 0

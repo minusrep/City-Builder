@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 6030165305410528423}
   - component: {fileID: 7811179642611185603}
   - component: {fileID: 8686346696335662861}
+  - component: {fileID: 871794443086009019}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -2439,6 +2440,27 @@ MonoBehaviour:
     - {x: 0.20833878, y: -0.5493225, z: 0.8092216}
     - {x: 0.80922127, y: -0.5493226, z: 0.20834008}
     - {x: 0.80037796, y: -0.45143476, z: 0.39446384}
+--- !u!65 &871794443086009019
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.486413, y: 4.9047813, z: 2.9523911}
+  m_Center: {x: 2.579945, y: 1.7432065, z: 2.5799453}
 --- !u!1 &5521934936045358098
 GameObject:
   m_ObjectHideFlags: 0
