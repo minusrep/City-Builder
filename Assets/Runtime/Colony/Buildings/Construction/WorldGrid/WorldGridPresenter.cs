@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Runtime.Common;
-using Runtime.Descriptions;
+﻿using Runtime.Common;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Construction.WorldGrid
@@ -18,7 +16,6 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
 
         public void Enable()
         {
-            BuildGridMesh();
             _view.Transform.position = new Vector3(_model.Description.Origin.x, 1f, _model.Description.Origin.z);
             _model.OnActiveChanged += HandleActiveChanged;
             _view.GameObject.SetActive(false);
@@ -32,42 +29,6 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
         public void Disable()
         {
             _model.OnActiveChanged -= HandleActiveChanged;
-        }
-
-        private void BuildGridMesh()
-        {
-            var mesh = Build(_model);
-            _view.Filter.mesh = mesh;
-        }
-
-        private Mesh Build(WorldGridModel grid)
-        {
-            var mesh = new Mesh();
-            var vertices = new List<Vector3>();
-            var indices = new List<int>();
-
-            var index = 0;
-            for (var x = 0; x <= grid.Description.Width; x++)
-            {
-                vertices.Add(new Vector3(x * WorldGridDescription.CellSize, 0, 0));
-                vertices.Add(new Vector3(x * WorldGridDescription.CellSize, 0,
-                    grid.Description.Height * WorldGridDescription.CellSize));
-                indices.Add(index++);
-                indices.Add(index++);
-            }
-
-            for (var y = 0; y <= grid.Description.Height; y++)
-            {
-                vertices.Add(new Vector3(0, 0, y * WorldGridDescription.CellSize));
-                vertices.Add(new Vector3(grid.Description.Width * WorldGridDescription.CellSize, 0,
-                    y * WorldGridDescription.CellSize));
-                indices.Add(index++);
-                indices.Add(index++);
-            }
-
-            mesh.SetVertices(vertices);
-            mesh.SetIndices(indices, MeshTopology.Lines, 0);
-            return mesh;
         }
     }
 }
