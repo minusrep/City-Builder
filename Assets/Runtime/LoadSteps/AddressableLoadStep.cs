@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Runtime.AsyncLoad;
 using Runtime.Common;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public class AddressableLoadStep : IStep
     {

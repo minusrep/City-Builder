@@ -5,7 +5,7 @@ using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Inventory;
 using Runtime.ViewDescriptions.Stats;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public class ViewDescriptionsLoadStep : IStep
     {

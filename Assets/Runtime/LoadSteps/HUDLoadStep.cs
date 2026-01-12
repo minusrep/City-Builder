@@ -5,7 +5,7 @@ using Runtime.Common;
 using Runtime.Input;
 using Runtime.UI.HUD;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public class HUDLoadStep : IStep
     {

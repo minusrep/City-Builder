@@ -6,7 +6,7 @@ using Runtime.Colony.StateMachine;
 using Runtime.Descriptions.Citizens;
 using Runtime.GameSystems;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public class GameSystemsCollectionLoadStep : IStep
     {

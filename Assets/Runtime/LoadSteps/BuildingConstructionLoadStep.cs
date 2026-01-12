@@ -8,7 +8,7 @@ using Runtime.UI;
 using Runtime.ViewDescriptions;
 using UnityEngine.UIElements;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public class BuildingConstructionLoadStep : IStep
     {

@@ -1,7 +1,7 @@
 ﻿using Runtime.Colony;
 using Runtime.Descriptions;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public abstract class SaveLoadStrategy
     {
