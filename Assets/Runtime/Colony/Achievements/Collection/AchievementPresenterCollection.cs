@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Runtime.Colony.Achievements.Events;
 using Runtime.Common;
+using Runtime.Services;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
 
@@ -8,11 +10,8 @@ namespace Runtime.Colony.Achievements.Collection
     public class AchievementPresenterCollection : IPresenter
     {
         private readonly Dictionary<string, AchievementPresenter> _presenters = new();
-
         private readonly AchievementModelCollection _model;
-
         private readonly WorldViewDescriptions _viewDescriptions;
-
         private readonly MenuContent _content;
 
         public AchievementPresenterCollection(AchievementModelCollection model, WorldViewDescriptions viewDescriptions,
@@ -29,24 +28,45 @@ namespace Runtime.Colony.Achievements.Collection
             {
                 CreatePresenter(id, model);
             }
+            
+            MessageBroker.Instance.Subscribe("achievement_complete", Complete);
+        }
+        
+        public void Disable()
+        {
+            MessageBroker.Instance.Unsubscribe("achievement_complete", Complete);
+            
+            foreach (var presenter in _presenters.Values)
+            {
+                presenter.Disable();
+            }
         }
 
         private void CreatePresenter(string id, AchievementModel model)
         {
             var view = new AchievementView(_viewDescriptions.AchievementsViewDescription.AchievementAsset);
-
-            var achievementPresenter = new AchievementPresenter(model, view, _content);
+            var achievementPresenter = new AchievementPresenter(model, view, _content, _viewDescriptions);
 
             _presenters.Add(id, achievementPresenter);
-
-            achievementPresenter.Enable();
+            
+            if (model.IsActive)
+            {
+                achievementPresenter.Enable();
+            }
         }
 
-        public void Disable()
+        private void Complete(GameEvent gameEvent)
         {
-            foreach (var presenter in _presenters.Values)
+            if (gameEvent is not AchievementCompleteEvent achievementCompleteEvent)
             {
-                presenter.Disable();
+                return;
+            }
+
+            foreach (var achievement  in achievementCompleteEvent.Description.Unlocks)
+            {
+                _presenters.TryGetValue(achievement, out var presenter);
+                
+                presenter?.Enable();
             }
         }
     }

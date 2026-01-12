@@ -1,41 +1,42 @@
+using System;
 using System.Collections.Generic;
+using Runtime.Colony.Achievements.Events;
+using Runtime.Colony.Achievements.Triggers;
 using Runtime.Descriptions.Achievements;
 using Runtime.Extensions;
 using Runtime.ModelCollections;
+using Runtime.Services;
 
 namespace Runtime.Colony.Achievements
 {
     public class AchievementModel : ISerializeModel, IDeserializeModel
     {
-        public bool IsActive { get; private set; }
-        public bool IsCompleted { get; private set;}
-        public int Progress { get; private set;}
+        public bool IsActive { get; set; }
+        public bool IsCompleted { get; private set; }
+        public int Progress { get; private set; }
         public AchievementDescription Description { get; }
+        public List<TriggerModel> Triggers { get; } = new();
+        public event Action OnCompleted;
 
         public AchievementModel(AchievementDescription description)
         {
             Description = description;
-        }
-        
-        public void SetProgress(int value)
-        {
-            if (!IsActive)
+
+            foreach (var triggerDescription in Description.Triggers)
             {
-                return;
+                var trigger = TriggerFactory.Create(triggerDescription, this);
+                Triggers.Add(trigger);
             }
+        }
 
-            Progress = value;
+        public void AddProgress(int value)
+        {
+            Progress += value;
 
-            if (Progress >= Description.TargetValue)
+            if (Progress >= Description.Target)
             {
                 Complete();
             }
-        }
-        
-        private void Complete()
-        {
-            IsCompleted = true;
-            IsActive = false;
         }
 
         public Dictionary<string, object> Serialize()
@@ -53,6 +54,15 @@ namespace Runtime.Colony.Achievements
             IsActive = data.GetBool("is_active");
             IsCompleted = data.GetBool("is_completed");
             Progress = data.GetInt("progress");
+        }
+
+        private void Complete()
+        {
+            IsCompleted = true;
+            IsActive = false;
+
+            MessageBroker.Instance.Publish(new AchievementCompleteEvent(Description));
+            OnCompleted?.Invoke();
         }
     }
 }

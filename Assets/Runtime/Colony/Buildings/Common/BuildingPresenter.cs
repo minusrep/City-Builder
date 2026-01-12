@@ -25,10 +25,6 @@ namespace Runtime.Colony.Buildings.Common
         {
             View = (TView)ViewPool.Get();
             View.Transform.position = ModelPositionToVector3(Model);
-
-            MessageBroker.Instance.Publish(new BuildingChange(Model.BaseDescription, 1));
-
-            
             Model.OnPositionChanged += HandlePositionChanged;
         }
 

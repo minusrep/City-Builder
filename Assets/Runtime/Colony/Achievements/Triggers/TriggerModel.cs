@@ -16,6 +16,6 @@ namespace Runtime.Colony.Achievements.Triggers
 
         public abstract void Subscribe();
         public abstract void Unsubscribe();
-        protected abstract void OnEventReceived(GameEvent evt);
+        protected abstract void OnEventReceived(GameEvent gameEvent);
     }
 }

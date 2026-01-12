@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.Achievements;
 using Runtime.Colony.Achievements.Events;
 using Runtime.Descriptions.Items;
 using Runtime.ModelCollections;
+using Runtime.Services;
 
 namespace Runtime.Colony.Inventory.Cell
 {
@@ -32,7 +32,7 @@ namespace Runtime.Colony.Inventory.Cell
 
             Amount += amount;
             
-            MessageBroker.Instance.Publish(new ResourceChange(resource, Amount));
+            MessageBroker.Instance.Publish(new ResourceChangeEvent(resource, Amount));
             
             OnChanged?.Invoke();
             

@@ -20,14 +20,14 @@ namespace Runtime.Colony.Achievements.Triggers
             MessageBroker.Instance.Unsubscribe("buildings_count_changed", OnEventReceived);
         }
 
-        protected override void OnEventReceived(GameEvent evt)
+        protected override void OnEventReceived(GameEvent gameEvent)
         {
-            if (evt is not BuildingChange buildingEvent)
+            if (gameEvent is not BuildingChangeEvent buildingChangeEvent)
             {
                 return;
             }
 
-            if (Description.Value == buildingEvent.Building.Type)
+            if (Description.Value == buildingChangeEvent.Building.Type)
             {
                 
             }
