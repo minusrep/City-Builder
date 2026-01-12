@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Runtime.Colony.Buildings.Common;
-using Runtime.Colony.Buildings.Production;
 using Runtime.Common;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;

@@ -39,7 +39,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
                     continue;
                 }
 
-                if (citizen.Flags.TryGetValue(_flagName, out bool value))
+                if (citizen.Flags.TryGetValue(_flagName, out var value))
                 {
                     if (value == _flagValue && Vector3.Distance(from, citizen.Position) <= _distanceValue)
                     {

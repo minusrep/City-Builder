@@ -55,7 +55,7 @@ namespace Runtime.Colony.Buildings.Production
 
             ResourceDescription = WorldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
             Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
-            for (int i = 0; i < Description.ResourcesForProduction.Count + Description.ResourcesForWork.Count + 1; i++)
+            for (var i = 0; i < Description.ResourcesForProduction.Count + Description.ResourcesForWork.Count + 1; i++)
             {
                 Inventory.Create();
             }
@@ -171,7 +171,7 @@ namespace Runtime.Colony.Buildings.Production
         
         private bool HasResources(Dictionary<string, int> resources)
         {
-            bool hasEnough = true;
+            var hasEnough = true;
             
             foreach (var resource in resources)
             {

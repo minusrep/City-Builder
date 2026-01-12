@@ -6,7 +6,6 @@ using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Colony.Citizens;
-using Runtime.Descriptions.Items;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
@@ -24,7 +23,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             var productionBuilding = world.Buildings.Get(order.FromBuildingId) as ProductionBuildingModel;
             var wareHouse = world.Buildings.Models.Values.First(b => b is StorageBuildingModel) as StorageBuildingModel;
 
-            ResourceDescription resource = world.WorldDescription.ResourceCollection.Descriptions[order.ResourceId];
+            var resource = world.WorldDescription.ResourceCollection.Descriptions[order.ResourceId];
             BuildingModel targetbuilding = wareHouse;
             BuildingModel sourcebuilding = productionBuilding;
 

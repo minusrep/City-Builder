@@ -42,10 +42,8 @@ namespace Runtime.UI.HUD.BuildingSelection
             
             var ray = _view.Camera.ScreenPointToRay(_playerControls.Player.PointerPosition.ReadValue<Vector2>());
             
-            var success = Physics.Raycast(ray, out RaycastHit hitInfo);
+            var success = Physics.Raycast(ray, out var hitInfo);
 
-            BuildingView foundedBuildingView = null; 
-            
             if (_cachedBuildingView != null)
             {
                 _cachedBuildingView.SelectedOutline = false;
@@ -53,7 +51,7 @@ namespace Runtime.UI.HUD.BuildingSelection
                 _model.ClearSelectedBuilding();
             }
             
-            if (!success || !hitInfo.collider.TryGetComponent(out foundedBuildingView))
+            if (!success || !hitInfo.collider.TryGetComponent(out BuildingView foundedBuildingView))
             {
                 _cachedBuildingView = null;
                 
