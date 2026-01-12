@@ -1,9 +1,11 @@
-﻿using Runtime.Colony.Buildings.Common;
-using Runtime.Colony.Buildings.Construction.WorldGrid;
+﻿using System.Linq;
+using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Buildings.Production;
 using Runtime.Common;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Runtime.Colony.Buildings.Construction
 {
@@ -31,6 +33,7 @@ namespace Runtime.Colony.Buildings.Construction
         {
             _view.GameObject.SetActive(true);
             _model.OnChangeSelectedBuilding += RebuildView;
+            _world.PlayerControls.Construction.Build.performed += TryPlaceBuilding;
 
             _world.GameSystems.Add(_system);
         }
@@ -39,6 +42,7 @@ namespace Runtime.Colony.Buildings.Construction
         {
             _view.GameObject.SetActive(false);
             _model.OnChangeSelectedBuilding -= RebuildView;
+            _world.PlayerControls.Construction.Build.performed -= TryPlaceBuilding;
 
             _world.GameSystems.Remove(_system);
         }
@@ -78,6 +82,22 @@ namespace Runtime.Colony.Buildings.Construction
             return _viewDescriptionCollection.Get(
                 _model.SelectedBuilding.ViewDescriptionId
             );
+        }
+        
+        private void TryPlaceBuilding(InputAction.CallbackContext callbackContext)
+        {
+            if (_model.CanPlace)
+            {
+                _world.Buildings.Create(_model.SelectedBuilding.Id);
+                var building = _world.Buildings.Models.Last().Value;
+
+                _world.Grid.PlaceBuilding(building, _model.CurrentGridPosition);
+
+                if (building is ProductionBuildingModel productionBuilding)
+                {
+                    ((ProductionBuildingSystem)_world.GameSystems.Get("production")).Register(productionBuilding);
+                }
+            }
         }
     }
 }
