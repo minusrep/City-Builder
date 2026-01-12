@@ -64,11 +64,15 @@ namespace Runtime.Colony.Orders
             OnSelected?.Invoke(this);
         }
 
+        public void Deselect(int amount)
+        {
+            _selectedAmount -= Math.Min(amount, _selectedAmount);
+        }
+        
         public void Done(int amount)
         {
-            amount = Math.Min(amount, _selectedAmount);
-            _selectedAmount -= amount;
-            Amount -= amount;
+            _selectedAmount -= Math.Min(amount, _selectedAmount);;
+            Amount -= Math.Min(amount, Amount);
         }
     }
 }

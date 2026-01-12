@@ -29,11 +29,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             ).Value as IInventoryBuilding;
 
             var resource = model.Inventory.Models.First().Value.Resource;
-            if (!inventoryBuilding.TryAddItem(resource, 1))
-            {
-                return;
-            }
-
+            inventoryBuilding.TryAddItem(resource, 1);
             model.Inventory.TryRemoveItem(resource, 1);
             model.Flags["is_carrying"] = false;
 

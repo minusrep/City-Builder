@@ -29,6 +29,20 @@ namespace Runtime.Colony.Orders
             return _orders.Peek();
         }
 
+        public void RestoreOrder(OrderModel order)
+        {
+            var currentOrder = _orders.FirstOrDefault(o => o.Id == order.Id && o.FromBuildingId == order.FromBuildingId);
+
+            if (currentOrder != null)
+            {
+                currentOrder.Deselect(order.Amount);
+            }
+            else
+            {
+                AddOrder(order);
+            }
+        }
+
         public bool HasOrders()
         {
             return _orders.Count > 0;

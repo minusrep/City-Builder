@@ -379,10 +379,8 @@
           "flag": "is_carrying",
           "value": "true"
         },
-        "try_take_resource": {
-          "type": "flag",
-          "flag": "is_carrying",
-          "value": "false"
+        "idle": {
+          "type": "true"
         }
       }
     },
