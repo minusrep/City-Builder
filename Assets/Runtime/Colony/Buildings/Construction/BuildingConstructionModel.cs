@@ -21,7 +21,6 @@ namespace Runtime.Colony.Buildings.Construction
 
         public Vector2Int CurrentGridPosition { get; set; }
         public Vector2 CurrentWorldPosition { get; set; }
-        public Vector3 VisualWorldOffset { get; set; }
         public bool CanPlace { get; set; }
 
         public Vector2 CursorPosition => PlayerControls.Construction.MovePreview.ReadValue<Vector2>();

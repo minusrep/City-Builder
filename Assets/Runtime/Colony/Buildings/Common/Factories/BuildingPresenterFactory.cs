@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Production;
-using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Common.ObjectPool;
-using Runtime.GameSystems;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Common.Factories
@@ -29,13 +27,10 @@ namespace Runtime.Colony.Buildings.Common.Factories
 
             return model switch
             {
-                ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool,
-                    _world, _worldViewDescriptions),
-                StorageBuildingModel storageModel => new StorageBuildingPresenter(storageModel, pool, _world,
+                ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool, _worldViewDescriptions, _world.GameSystems),
+                StorageBuildingModel storageModel => new StorageBuildingPresenter(storageModel, pool,
                     _worldViewDescriptions),
-                ServiceBuildingModel serviceModel => new ServiceBuildingPresenter(serviceModel, pool, _world,
-                    _worldViewDescriptions),
-                _ => new BuildingPresenter(model, pool, _world, _worldViewDescriptions)
+                _ => new BuildingPresenter(model, pool, _worldViewDescriptions)
             };
         }
     }

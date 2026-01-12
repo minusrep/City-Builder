@@ -43,7 +43,7 @@ namespace Runtime.Colony.Buildings.Construction
                     _model.CurrentWorldPosition = previewWorldPosition;
                     _model.CanPlace = canPlace;
 
-                    _view.Transform.position = previewWorldPosition + _model.VisualWorldOffset;
+                    _view.Transform.position = previewWorldPosition;
                     _view.SetValid(canPlace);
                 }
 

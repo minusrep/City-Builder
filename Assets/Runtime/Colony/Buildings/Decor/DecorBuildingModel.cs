@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Runtime.Colony.Buildings.Common;
+﻿using Runtime.Colony.Buildings.Common;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 

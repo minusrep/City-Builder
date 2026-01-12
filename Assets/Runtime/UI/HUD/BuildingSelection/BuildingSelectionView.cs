@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Runtime.UI.HUD
+namespace Runtime.UI.HUD.BuildingSelection
 {
     public class BuildingSelectionView : MonoBehaviour
     {

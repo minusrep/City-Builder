@@ -46,7 +46,7 @@ namespace Runtime.Colony
 
             Citizens = new CitizenModelCollection(worldDescription);
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
-            Grid = new WorldGridModel(this, worldDescription.WorldGridDescription);
+            Grid = new WorldGridModel(worldDescription.WorldGridDescription);
             PlayerControls = playerControls;
 
             OrderManager = new OrderManager();

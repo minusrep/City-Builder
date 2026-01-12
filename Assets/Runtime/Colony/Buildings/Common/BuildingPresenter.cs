@@ -1,5 +1,4 @@
-﻿using Runtime.Colony.Buildings.Construction;
-using Runtime.Common;
+﻿using Runtime.Common;
 using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
@@ -14,9 +13,8 @@ namespace Runtime.Colony.Buildings.Common
         private BuildingModel Model { get; }
         private IObjectPool<BuildingView> ViewPool { get; }
         private BuildingViewDescription ViewDescription { get; }
-        private World World { get; }
 
-        public BuildingPresenter(BuildingModel model, IObjectPool<BuildingView> viewPool, World world,
+        public BuildingPresenter(BuildingModel model, IObjectPool<BuildingView> viewPool,
             WorldViewDescriptions worldViewDescriptions)
         {
             Model = model;
@@ -24,17 +22,13 @@ namespace Runtime.Colony.Buildings.Common
             ViewDescription =
                 WorldViewDescriptions.BuildingViewDescriptions.Get(Model.BaseDescription.ViewDescriptionId);
             ViewPool = viewPool;
-            World = world;
         }
 
         public virtual void Enable()
         {
             View = ViewPool.Get();
-            View.Transform.position = ModelPositionToVector3(Model) +
-                                      BuildingVisualLayoutHelper.GetOffset(ViewDescription,
-                                          World.Grid.Description.CellSize);
-            View.Transform.localScale = BuildingVisualLayoutHelper.GetScale(ViewDescription, View.Preview.Renderers,
-                World.Grid.Description.CellSize);
+            HandlePositionChanged();
+            View.Transform.localScale = BuildingVisualLayoutHelper.GetScale(ViewDescription);
 
             View.Id = Model.Id;
 
@@ -50,9 +44,7 @@ namespace Runtime.Colony.Buildings.Common
 
         private void HandlePositionChanged()
         {
-            View.Transform.position = ModelPositionToVector3(Model) +
-                                      BuildingVisualLayoutHelper.GetOffset(ViewDescription,
-                                          World.Grid.Description.CellSize);
+            View.Transform.position = ModelPositionToVector3(Model);
         }
 
         private Vector3 ModelPositionToVector3(BuildingModel model)

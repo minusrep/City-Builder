@@ -1,3 +1,5 @@
+using Runtime.UI.HUD.BuildingSelection;
+
 namespace Runtime.UI.HUD
 {
     public class HUDModel

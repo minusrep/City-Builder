@@ -1,6 +1,5 @@
 ﻿using Runtime.Colony;
 using Runtime.Colony.StateMachine.Conditions;
-using Runtime.Descriptions.StateMachine.Conditions;
 using Runtime.Extensions;
 using System.Collections.Generic;
 using UnityEngine;

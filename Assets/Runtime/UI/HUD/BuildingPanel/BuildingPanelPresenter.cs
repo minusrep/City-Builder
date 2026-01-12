@@ -2,11 +2,10 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Common;
-using Runtime.Descriptions.Buildings;
-using UnityEngine;
+using Runtime.UI.HUD.BuildingSelection;
 using UnityEngine.UIElements;
 
-namespace Runtime.UI.HUD.BuildingHUD
+namespace Runtime.UI.HUD.BuildingPanel
 {
     public class BuildingPanelPresenter : IPresenter
     {
