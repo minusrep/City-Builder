@@ -40,7 +40,6 @@ namespace Runtime.Colony.Buildings.Construction
                         gridPosition);
 
                     _model.CurrentGridPosition = gridPosition;
-                    _model.CurrentWorldPosition = previewWorldPosition;
                     _model.CanPlace = canPlace;
 
                     _view.Transform.position = previewWorldPosition;
