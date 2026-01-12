@@ -8,8 +8,8 @@ namespace Runtime.ViewDescriptions.Achievements
         menuName = "ViewDescription/Achievements/AchievementViewDescriptionCollection")]
     public class AchievementViewDescriptionCollection : ScriptableObject
     {
-        public VisualTreeAsset AchievementAsset { get; }
-        public int Duration { get; }
+        public VisualTreeAsset AchievementAsset;
+        public int Duration;
 
         [SerializeField] private List<AchievementViewDescription> _descriptions;
 
