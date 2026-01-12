@@ -1,4 +1,5 @@
 ﻿using Runtime.Colony.Buildings.Common;
+using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Common;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
@@ -22,14 +23,12 @@ namespace Runtime.Colony.Buildings.Construction
             _model = model;
             _view = view;
             _viewDescriptionCollection = viewDescriptions.BuildingViewDescriptions;
+
             _system = new BuildingConstructionSystem(_model, _view, world);
         }
 
         public void Enable()
         {
-            _world.PlayerControls.UI.Disable();
-            _world.PlayerControls.Construction.Enable();
-
             _view.GameObject.SetActive(true);
             _model.OnChangeSelectedBuilding += RebuildView;
 
@@ -38,9 +37,6 @@ namespace Runtime.Colony.Buildings.Construction
 
         public void Disable()
         {
-            _world.PlayerControls.UI.Enable();
-            _world.PlayerControls.Construction.Disable();
-
             _view.GameObject.SetActive(false);
             _model.OnChangeSelectedBuilding -= RebuildView;
 
@@ -51,17 +47,20 @@ namespace Runtime.Colony.Buildings.Construction
         {
             CleanupPreview();
 
-            var viewDescription = GetViewDescription();
+            if (_model.SelectedBuilding != null)
+            {
+                var viewDescription = GetViewDescription();
 
-            var previewInstance = Object.Instantiate(
-                viewDescription.Prefab.Preview,
-                _view.Transform,
-                false
-            );
+                var previewInstance = Object.Instantiate(
+                    viewDescription.Prefab.Preview,
+                    _view.Transform,
+                    false
+                );
 
-            _view.Preview = previewInstance;
+                _view.Preview = previewInstance;
 
-            _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription);
+                _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription);
+            }
         }
 
         private void CleanupPreview()

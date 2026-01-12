@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
@@ -8,9 +9,23 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
 {
     public class WorldGridModel
     {
-        public WorldGridDescription Description { get; }
+        public event Action<bool> OnActiveChanged; 
         
+        public WorldGridDescription Description { get; }
+
         private GridCellModel[,] Cells { get; }
+
+        public bool IsActive
+        {
+            get => _isActive;
+            set
+            {
+                _isActive = value;
+                OnActiveChanged?.Invoke(value);
+            }
+        }
+
+        private bool _isActive;
 
         public WorldGridModel(WorldGridDescription description)
         {
@@ -26,7 +41,7 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
                 }
             }
         }
-        
+
         public bool CanPlaceBuilding(BuildingDescription description, Vector2Int position)
         {
             foreach (var cellOffset in description.Cells)

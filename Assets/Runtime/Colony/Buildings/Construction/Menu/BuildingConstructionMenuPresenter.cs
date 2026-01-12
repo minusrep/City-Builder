@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.UI;
-using Runtime.ViewDescriptions;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -18,29 +16,15 @@ namespace Runtime.Colony.Buildings.Construction.Menu
         private readonly MenuContent _menuContent;
         private readonly Dictionary<string, Button> _buttons = new();
 
-        private readonly BuildingConstructionPresenter _constructionPresenter;
-        private readonly BuildingConstructionModel _constructionModel;
-
-        private readonly WorldGridPresenter _worldGridPresenter;
-
-        private bool _isConstruction;
-
         public BuildingConstructionMenuPresenter(BuildingConstructionMenuView view,
-            BuildingConstructionView constructionView, WorldGridView worldGridView,
+            World world,
             WorldDescription descriptions,
-            World world, WorldViewDescriptions viewDescriptions, MenuContent menuContent)
+            MenuContent menuContent)
         {
             _descriptions = descriptions;
             _world = world;
             _menuContent = menuContent;
             _view = view;
-
-            _constructionModel = new BuildingConstructionModel(world.PlayerControls);
-
-            _constructionPresenter =
-                new BuildingConstructionPresenter(_constructionModel, constructionView, world, viewDescriptions);
-
-            _worldGridPresenter = new WorldGridPresenter(_world.Grid, worldGridView);
         }
 
         public void Enable()
@@ -55,10 +39,6 @@ namespace Runtime.Colony.Buildings.Construction.Menu
         public void Disable()
         {
             _world.PlayerControls.Construction.Cancel.performed -= HandleCancelConstruction;
-
-            _isConstruction = false;
-            _constructionPresenter.Disable();
-            _worldGridPresenter.Disable();
 
             _menuContent.HudLayer.Remove(_view.Root);
 
@@ -83,15 +63,12 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
         private void StartConstruction(BuildingDescription description)
         {
-            if (!_isConstruction)
-            {
-                _isConstruction = true;
-                _constructionPresenter.Enable();
-                _worldGridPresenter.Enable();
-            }
+            _world.PlayerControls.UI.Disable();
+            _world.PlayerControls.Construction.Enable();
 
             UpdateSelection(description.Id);
-            _constructionModel.SelectedBuilding = description;
+            _world.BuildingConstructionModel.SelectedBuilding = description;
+            _world.Grid.IsActive = true;
         }
 
         private void UpdateSelection(string selectedId)
@@ -133,9 +110,10 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
         private void HandleCancelConstruction(InputAction.CallbackContext obj)
         {
-            _isConstruction = false;
-            _constructionPresenter.Disable();
-            _worldGridPresenter.Disable();
+            _world.PlayerControls.UI.Enable();
+            _world.PlayerControls.Construction.Disable();
+            _world.BuildingConstructionModel.SelectedBuilding = null;
+            _world.Grid.IsActive = false;
             ClearSelection();
         }
     }

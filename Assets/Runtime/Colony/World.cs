@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Colony.Buildings.Collection;
+using Runtime.Colony.Buildings.Construction;
 using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.Orders;
@@ -27,6 +28,8 @@ namespace Runtime.Colony
         public BuildingModelCollection Buildings { get; private set; }
 
         public WorldGridModel Grid { get; private set; }
+        
+        public BuildingConstructionModel BuildingConstructionModel { get; private set; }
 
         public PlayerControls PlayerControls { get; private set; }
 
@@ -47,8 +50,9 @@ namespace Runtime.Colony
             Citizens = new CitizenModelCollection(worldDescription);
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
             Grid = new WorldGridModel(worldDescription.WorldGridDescription);
+            
             PlayerControls = playerControls;
-
+            BuildingConstructionModel = new BuildingConstructionModel(PlayerControls);
             OrderManager = new OrderManager();
         }
 

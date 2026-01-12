@@ -20,7 +20,10 @@ namespace Runtime.Services.SaveLoadSteps
         private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly MenuContent _menuContent;
 
-        public BuildingConstructionLoadStep(VisualTreeAsset constructionMenuAsset, BuildingConstructionView buildingConstructionView, WorldGridView worldGridView, WorldDescription worldDescription, World world, WorldViewDescriptions worldViewDescriptions, MenuContent menuContent)
+        public BuildingConstructionLoadStep(VisualTreeAsset constructionMenuAsset,
+            BuildingConstructionView buildingConstructionView, WorldGridView worldGridView,
+            WorldDescription worldDescription, World world, WorldViewDescriptions worldViewDescriptions,
+            MenuContent menuContent)
         {
             _constructionMenuAsset = constructionMenuAsset;
             _buildingConstructionView = buildingConstructionView;
@@ -33,11 +36,17 @@ namespace Runtime.Services.SaveLoadSteps
 
         public async Task Run()
         {
+            var worldGridPresenter = new WorldGridPresenter(_world.Grid, _worldGridView);
+            worldGridPresenter.Enable();
+            
+            var buildingConstructionPresenter = new BuildingConstructionPresenter(_world.BuildingConstructionModel,
+                _buildingConstructionView, _world, _worldViewDescriptions);
+            buildingConstructionPresenter.Enable();
+
             var buildingConstructionMenuView =
                 new BuildingConstructionMenuView(_constructionMenuAsset);
-            var buildingConstructionMenuPresenter = new BuildingConstructionMenuPresenter(buildingConstructionMenuView,
-                _buildingConstructionView, _worldGridView, _worldDescription, _world, _worldViewDescriptions,
-                _menuContent);
+            var buildingConstructionMenuPresenter = new BuildingConstructionMenuPresenter(buildingConstructionMenuView, _world,
+                _worldDescription, _menuContent);
             buildingConstructionMenuPresenter.Enable();
             await Task.CompletedTask;
         }
