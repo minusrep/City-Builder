@@ -2,7 +2,7 @@
 using Runtime.ViewDescriptions.Buildings;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Construction
+namespace Runtime.Colony.Buildings.Common
 {
     public static class BuildingVisualLayoutHelper
     {

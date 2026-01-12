@@ -1,5 +1,4 @@
-﻿using Runtime.Colony.Buildings.Construction;
-using Runtime.Common;
+﻿using Runtime.Common;
 using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
