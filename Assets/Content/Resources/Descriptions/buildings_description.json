@@ -6,6 +6,10 @@
     "production_resource": "wood",
     "production_amount": 1,
     "max_resource": 5,
+    "resources_for_work": { 
+      "worker": 1
+    },
+    "resources_for_production": { },
     "view_id": "Sawmill",
     "size": [
       2,
@@ -58,6 +62,43 @@
     "size": [
       1,
       1
+    ]
+  },
+  "mine": {
+    "type": "production",
+    "production_time": [10000, 9000, 8000, 7000],
+    "max_level": 3,
+    "production_resource": "ore",
+    "production_amount": 1,
+    "max_resource": 5,
+    "resources_for_work": {
+      "worker": 1
+    },
+    "resources_for_production": { },
+    "view_id": "Mine",
+    "size": [
+      3,
+      2
+    ]
+  },
+  "smelter": {
+    "type": "production",
+    "production_time": [20000, 18000, 16000, 14000],
+    "max_level": 3,
+    "production_resource": "iron",
+    "production_amount": 1,
+    "max_resource": 5,
+    "resources_for_work": {
+      "worker": 1
+    },
+    "resources_for_production": { 
+      "wood": 1,
+      "ore": 1
+    },
+    "view_id": "Smelter",
+    "size": [
+      3,
+      2
     ]
   }
 }

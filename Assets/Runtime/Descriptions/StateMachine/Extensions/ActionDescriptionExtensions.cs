@@ -1,6 +1,6 @@
-using Runtime.Descriptions.StateMachine.Actions;
 using System;
 using System.Collections.Generic;
+using Runtime.Descriptions.StateMachine.Actions;
 
 namespace Runtime.Descriptions.StateMachine.Extensions
 {
@@ -18,7 +18,9 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string TakeResourceKey = "take_resource";
         private const string PutResourceKey = "put_resource";
         private const string SetFlagKey = "set_flag";
-
+        private const string TakeOrderKey = "take_order";
+        private const string ChangeVisibilityKey = "change_visibility";
+        
         public static ActionDescription ToActionDescription(this Dictionary<string, object> data)
         {
             return data[TypeKey] switch
@@ -34,7 +36,9 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 TakeResourceKey => new TakeResourceActionDescription(data),
                 PutResourceKey => new PutResourceActionDescription(data),
                 SetFlagKey => new SetFlagActionDescription(data),
-                _ => throw new NotImplementedException()
+                TakeOrderKey => new TakeOrderActionDescription(data),
+                ChangeVisibilityKey => new ChangeVisibilityActionDescription(data),
+                _ =>  throw new NotImplementedException()
             };
         }
     }

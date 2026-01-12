@@ -1,53 +1,33 @@
 ﻿using System;
-using Runtime.Colony.Buildings.Common;
 using Runtime.GameSystems;
 
 namespace Runtime.Colony.Buildings.Production
 {
-    public class ProductionBuildingSystem : IGameSystem
+    public class ProductionBuildingSystem : RegisterGameSystem<ProductionBuildingModel>
     {
-        public string Id { get; }
-
-        private readonly ProductionBuildingModel _model;
-        private readonly BuildingView _view;
-
-        public ProductionBuildingSystem(string id, ProductionBuildingModel model, BuildingView view)
+        public ProductionBuildingSystem(string id) : base(id)
         {
-            _model = model;
-            _view = view;
-            Id = id;
         }
 
-        public void Update(float deltaTime)
+        protected override void Update(ProductionBuildingModel item, float deltaTime)
         {
-            if (_model.IsActive)
+            if (item.IsActive)
             {
-                var currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-
-                var progress = (float)(currentTime - _model.StartProductionTime) / _model.ProductionTime;
-
-                UpdateProgressBar(progress);
-
-                if (progress >= 1f)
+                item.Progress += deltaTime / item.ProductionTime * 1000f;
+                
+                if (item.Progress >= 1f)
                 {
-                    _model.Produce();
-                    _model.StartProductionTime += _model.ProductionTime;
-
-                    if (!_model.CapacityLeft())
+                    if (item.Produce())
                     {
-                        _model.StopProduction();
+                        item.Progress = 0;
+                        item.StartProduction();
+                    }
+                    else
+                    {
+                        item.StopProduction();
                     }
                 }
             }
-            else
-            {
-                UpdateProgressBar(1f);
-            }
-        }
-
-        private void UpdateProgressBar(float progress)
-        {
-            _view.ProgressBar.value = Math.Clamp(progress, 0f, 1f) * 100f;
         }
     }
 }

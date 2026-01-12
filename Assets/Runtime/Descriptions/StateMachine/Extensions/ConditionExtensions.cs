@@ -1,6 +1,6 @@
-using Runtime.Descriptions.StateMachine.Conditions;
 using System;
 using System.Collections.Generic;
+using Runtime.Descriptions.StateMachine.Conditions;
 
 namespace Runtime.Descriptions.StateMachine.Extensions
 {
@@ -17,8 +17,9 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string False = "false";
         private const string True = "true";
         private const string CitizenDistanceWithFlag = "citizen_distance_with_flag";
-
-
+        private const string OrderExists = "order_exists";
+        private const string BuildingWorking = "building_working";
+        
         public static ConditionDescription ToConditionDescription(this Dictionary<string, object> data)
         {
             return data[TypeKey] switch
@@ -32,7 +33,9 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 True => new TrueConditionDescription(data),
                 False => new FalseConditionDescription(data),
                 CitizenDistanceWithFlag => new CitizenDistanceWithFlagConditionDescription(data),
-                _ => throw new NotImplementedException()
+                OrderExists => new OrderExistsConditionDescription(data),
+                BuildingWorking => new BuildingWorkingCondition(data),
+                _ =>  throw new NotImplementedException()
             };
         }
     }

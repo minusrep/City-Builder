@@ -14,18 +14,18 @@ namespace Runtime.Colony.Buildings.Common.Factories
     {
         private readonly Dictionary<string, Func<string, Vector2Int, BuildingDescription, BuildingModel>> _constructors
             = new();
-        private readonly WorldDescription _worldDescription;
+        private readonly World _world;
 
-        public BuildingModelFactory(WorldDescription worldDescription)
+        public BuildingModelFactory(World world)
         {
-            _worldDescription = worldDescription;
+            _world = world;
         }
 
         public void RegisterAll()
         {
             Register("production",
                 (id, position, description) => new ProductionBuildingModel(id, position,
-                    (ProductionBuildingDescription)description, _worldDescription));
+                    (ProductionBuildingDescription)description, _world));
 
             Register("service",
                 (id, position, description) =>
@@ -35,7 +35,7 @@ namespace Runtime.Colony.Buildings.Common.Factories
             {
                 var storageDescription = (StorageBuildingDescription)description;
                 
-                return new StorageBuildingModel(id, position, storageDescription, _worldDescription);
+                return new StorageBuildingModel(id, position, storageDescription, _world.WorldDescription);
             });
 
             Register("decor",

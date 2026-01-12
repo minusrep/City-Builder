@@ -32,7 +32,7 @@ namespace Runtime.Services.SaveLoadSteps
         public async Task Run()
         {
             var resourceFactory = new ResourceFactory(_worldDescription.ResourceCollection);
-            var buildingModelFactory = new BuildingModelFactory(_worldDescription);
+            var buildingModelFactory = new BuildingModelFactory(_world);
 
             buildingModelFactory.RegisterAll();
             var factoryProvider = new FactoryProvider(resourceFactory, buildingModelFactory);

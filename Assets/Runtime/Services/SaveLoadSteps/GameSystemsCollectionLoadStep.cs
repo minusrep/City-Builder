@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Runtime.Colony;
+using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Citizens.Systems;
 using Runtime.Colony.StateMachine;
 using Runtime.Descriptions.Citizens;
@@ -32,6 +33,17 @@ namespace Runtime.Services.SaveLoadSteps
             var stateMachineSystem = new StateMachineSystem(_world);
             
             _gameSystems.Add(stateMachineSystem);
+            
+            var productionBuildingSystem = new ProductionBuildingSystem("production");
+            foreach (var building in _world.Buildings.Models.Values)
+            {
+                if (building is ProductionBuildingModel productionBuilding)
+                {
+                    productionBuildingSystem.Register(productionBuilding);
+                }
+            }
+            
+            _gameSystems.Add(productionBuildingSystem);
             
             await Task.CompletedTask;
         }

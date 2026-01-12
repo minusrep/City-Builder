@@ -17,18 +17,16 @@ namespace Runtime.Services.SaveLoadSteps
         private readonly BuildingCollectionView _buildingCollectionView;
         private readonly WorldDescription _worldDescription;
         private readonly WorldViewDescriptions _worldViewDescriptions;
-        private readonly GameSystemCollection _gameSystemCollection;
 
         public BuildingCollectionLoadStep(List<IPresenter> presenters, World world, 
             BuildingCollectionView buildingCollectionView, WorldDescription worldDescription, 
-            WorldViewDescriptions worldViewDescriptions, GameSystemCollection gameSystemCollection)
+            WorldViewDescriptions worldViewDescriptions)
         {
             _presenters = presenters;
             _world = world;
             _buildingCollectionView = buildingCollectionView;
             _worldDescription = worldDescription;
             _worldViewDescriptions = worldViewDescriptions;
-            _gameSystemCollection = gameSystemCollection;
         }
 
 
