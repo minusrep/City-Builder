@@ -1,4 +1,5 @@
-﻿using Runtime.Common;
+﻿using Runtime.Colony.Buildings.Common;
+using Runtime.Common;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
 using UnityEngine;
@@ -60,11 +61,7 @@ namespace Runtime.Colony.Buildings.Construction
 
             _view.Preview = previewInstance;
 
-            _model.VisualWorldOffset =
-                BuildingVisualLayoutHelper.GetOffset(viewDescription, _world.Grid.Description.CellSize);
-
-            _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription, _view.Preview.Renderers,
-                _world.Grid.Description.CellSize);
+            _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription);
         }
 
         private void CleanupPreview()

@@ -12,7 +12,7 @@ namespace Runtime.Colony.Buildings.Service
 
         public ServiceBuildingPresenter(ServiceBuildingModel model, IObjectPool<BuildingView> viewPool, World world,
             WorldViewDescriptions worldViewDescriptions, GameSystemCollection gameSystemCollection) : base(model,
-            viewPool, world, worldViewDescriptions)
+            viewPool, worldViewDescriptions)
         {
             _gameSystemCollection = gameSystemCollection;
             _serviceSystem = new ServiceBuildingSystem(model.Id, model, world.Citizens);

@@ -8,7 +8,7 @@
     "max_resource": 5,
     "view_id": "Sawmill",
     "size": [
-      3,
+      2,
       2
     ]
   },
@@ -35,7 +35,7 @@
     "view_id": "Tavern",
     "size": [
       5,
-      6
+      5
     ]
   },
   "warehouse": {
@@ -48,7 +48,7 @@
     "view_id": "Warehouse",
     "size": [
       5,
-      7
+      6
     ]
   },
   "lantern": {

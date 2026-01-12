@@ -11,8 +11,8 @@ namespace Runtime.Colony.Buildings.Storage
 
         private InventoryPresenter _inventoryPresenter;
 
-        public StorageBuildingPresenter(StorageBuildingModel model, IObjectPool<BuildingView> viewPool, World world,
-            WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, world, worldViewDescriptions)
+        public StorageBuildingPresenter(StorageBuildingModel model, IObjectPool<BuildingView> viewPool,
+            WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, worldViewDescriptions)
         {
             _model = model;
         }

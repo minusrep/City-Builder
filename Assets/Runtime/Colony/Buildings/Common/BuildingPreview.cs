@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Construction
+namespace Runtime.Colony.Buildings.Common
 {
     public class BuildingPreview : MonoBehaviour
     {

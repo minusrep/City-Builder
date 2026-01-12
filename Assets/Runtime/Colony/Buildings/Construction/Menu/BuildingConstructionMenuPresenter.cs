@@ -40,7 +40,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _constructionPresenter =
                 new BuildingConstructionPresenter(_constructionModel, constructionView, world, viewDescriptions);
 
-            _worldGridPresenter = new WorldGridPresenter(_world.Grid, worldGridView, world);
+            _worldGridPresenter = new WorldGridPresenter(_world.Grid, worldGridView);
         }
 
         public void Enable()

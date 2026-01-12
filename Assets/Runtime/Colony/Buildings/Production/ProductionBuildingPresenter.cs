@@ -16,9 +16,7 @@ namespace Runtime.Colony.Buildings.Production
         private InventoryPresenter _inventoryPresenter;
 
         public ProductionBuildingPresenter(ProductionBuildingModel model, IObjectPool<BuildingView> viewPool,
-            World world,
-            WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool,
-            world, worldViewDescriptions)
+            WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, worldViewDescriptions)
         {
             _model = model;
             _systemCollection = systemCollection;

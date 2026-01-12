@@ -10,7 +10,5 @@ namespace Runtime.ViewDescriptions.Buildings
         public BuildingView Prefab;
         
         public Vector2Int VisualSizeInCells = Vector2Int.one;
-        
-        public Vector3 AdditionalWorldOffset;
     }
 }

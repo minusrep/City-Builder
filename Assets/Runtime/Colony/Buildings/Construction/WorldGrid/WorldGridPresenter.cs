@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Runtime.Colony.Buildings.Common;
 using Runtime.Common;
+using Runtime.Descriptions;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Construction.WorldGrid
@@ -9,13 +9,11 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
     {
         private readonly WorldGridModel _model;
         private readonly WorldGridView _view;
-        private readonly World _world;
 
-        public WorldGridPresenter(WorldGridModel model, WorldGridView view, World world)
+        public WorldGridPresenter(WorldGridModel model, WorldGridView view)
         {
             _model = model;
             _view = view;
-            _world = world;
         }
 
         public void Enable()
@@ -45,18 +43,18 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             var index = 0;
             for (var x = 0; x <= grid.Description.Width; x++)
             {
-                vertices.Add(new Vector3(x * grid.Description.CellSize, 0, 0));
-                vertices.Add(new Vector3(x * grid.Description.CellSize, 0,
-                    grid.Description.Height * grid.Description.CellSize));
+                vertices.Add(new Vector3(x * WorldGridDescription.CellSize, 0, 0));
+                vertices.Add(new Vector3(x * WorldGridDescription.CellSize, 0,
+                    grid.Description.Height * WorldGridDescription.CellSize));
                 indices.Add(index++);
                 indices.Add(index++);
             }
 
             for (var y = 0; y <= grid.Description.Height; y++)
             {
-                vertices.Add(new Vector3(0, 0, y * grid.Description.CellSize));
-                vertices.Add(new Vector3(grid.Description.Width * grid.Description.CellSize, 0,
-                    y * grid.Description.CellSize));
+                vertices.Add(new Vector3(0, 0, y * WorldGridDescription.CellSize));
+                vertices.Add(new Vector3(grid.Description.Width * WorldGridDescription.CellSize, 0,
+                    y * WorldGridDescription.CellSize));
                 indices.Add(index++);
                 indices.Add(index++);
             }
