@@ -35,13 +35,6 @@ namespace Runtime.LoadSteps
             _gameSystems.Add(stateMachineSystem);
             
             var productionBuildingSystem = new ProductionBuildingSystem("production");
-            foreach (var building in _world.Buildings.Models.Values)
-            {
-                if (building is ProductionBuildingModel productionBuilding)
-                {
-                    productionBuildingSystem.Register(productionBuilding);
-                }
-            }
             
             _gameSystems.Add(productionBuildingSystem);
             
