@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Runtime.Common;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
@@ -11,7 +12,8 @@ namespace Runtime.Colony.Achievements
         private readonly WorldViewDescriptions _viewDescriptions;
         private readonly MenuContent _content;
 
-        public AchievementPresenter(AchievementModel model, AchievementView view, MenuContent content, WorldViewDescriptions viewDescriptions)
+        public AchievementPresenter(AchievementModel model, AchievementView view, MenuContent content,
+            WorldViewDescriptions viewDescriptions)
         {
             _model = model;
             _view = view;
@@ -22,35 +24,47 @@ namespace Runtime.Colony.Achievements
         public void Enable()
         {
             _model.IsActive = true;
-            _model.OnCompleted += Complete;
-            
+            _model.OnCompleted += Show;
+
             foreach (var trigger in _model.Triggers)
             {
                 trigger.Subscribe();
             }
         }
-        
+
         public void Disable()
         {
-            _model.OnCompleted -= Complete;
-            
+            _model.OnCompleted -= Show;
+
             foreach (var trigger in _model.Triggers)
             {
                 trigger.Unsubscribe();
             }
         }
-        
-        private void Complete()
+
+        private async void Show()
         {
-            Disable();
-            
             var viewDescription = _viewDescriptions.AchievementsViewDescription.Get(_model.Description.Id);
-            
+
             _view.Icon.style.backgroundImage = viewDescription.Icon.texture;
             _view.Title.text = viewDescription.Title;
             _view.Description.text = viewDescription.Description;
-            
+
             _content.PopupRoot.Add(_view.Root);
+            
+            await Task.Delay(1); //TODO: Без - не работает анимация
+            _view.Root.AddToClassList("show");
+
+            await _view.AwaitTransitionAsync();
+            _view.Icon.RemoveFromClassList("not-completed");
+            _view.Icon.AddToClassList("completed");
+
+            await Task.Delay(_viewDescriptions.AchievementsViewDescription.Duration);
+            _view.Root.RemoveFromClassList("show");
+
+            await _view.AwaitTransitionAsync();
+            _content.PopupRoot.Clear();
+            Disable();
         }
     }
 }

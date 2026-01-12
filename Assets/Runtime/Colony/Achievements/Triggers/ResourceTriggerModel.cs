@@ -8,7 +8,6 @@ namespace Runtime.Colony.Achievements.Triggers
     {
         public ResourceTriggerModel(TriggerDescription description, AchievementModel model) : base(description, model)
         {
-            
         }
 
         public override void Subscribe()
@@ -23,14 +22,17 @@ namespace Runtime.Colony.Achievements.Triggers
 
         protected override void OnEventReceived(GameEvent gameEvent)
         {
-            if (gameEvent is not ResourceChangeEvent resourceChangeEvent)
+            if (Model.IsActive == false)
             {
                 return;
             }
 
-            if (Description.Value == resourceChangeEvent.Resource.Id)
+            if (gameEvent is ResourceChangeEvent resourceChangeEvent)
             {
-                Model.AddProgress(resourceChangeEvent.Amount);
+                if (Description.Value == resourceChangeEvent.Resource.Id)
+                {
+                    Model.AddProgress(resourceChangeEvent.Amount);
+                }
             }
         }
     }
