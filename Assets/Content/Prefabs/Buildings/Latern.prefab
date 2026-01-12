@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6030165305410528423}
-  - component: {fileID: 6524846366308442568}
   - component: {fileID: 6383710204673921016}
   - component: {fileID: 9209555602295748971}
   - component: {fileID: 7194554740882999641}
@@ -36,27 +35,6 @@ Transform:
   - {fileID: 284418670426891787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6524846366308442568
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5389820821820916020}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.45, y: 2.89, z: 1}
-  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!114 &6383710204673921016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,11 +60,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.225, y: 1.445, z: 0.5}
+  m_Extents: {x: 0.57, y: 4.99, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.2, z: 0}
+  m_Center: {x: 2.52, y: 4.14, z: 2.48}
   m_TimeToStationary: 0.5
 --- !u!114 &7194554740882999641
 MonoBehaviour:
