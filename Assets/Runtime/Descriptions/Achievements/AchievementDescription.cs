@@ -5,13 +5,15 @@ namespace Runtime.Descriptions.Achievements
 {
     public class AchievementDescription
     {
+        public string Id { get; }
         public string Type { get; }
         public int Target { get; }
         public List<TriggerDescription> Triggers { get; } = new();
         public List<string> Unlocks { get; } = new();
 
-        public AchievementDescription(Dictionary<string, object> description)
+        public AchievementDescription(string id, Dictionary<string, object> description)
         {
+            Id = id;
             Type = description.GetString("type");
             Target = description.GetInt("target");
 

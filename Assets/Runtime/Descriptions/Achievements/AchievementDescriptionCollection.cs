@@ -11,7 +11,7 @@ namespace Runtime.Descriptions.Achievements
             foreach (var pair in descriptions)
             {
                 var descriptionDict = (Dictionary<string, object>)pair.Value;
-                var description = new AchievementDescription(descriptionDict);
+                var description = new AchievementDescription(pair.Key, descriptionDict);
                 Descriptions.Add(pair.Key, description);
             }
         }
