@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using Runtime.Colony.Buildings.Production;
-using Runtime.GameSystems;
+﻿using Runtime.GameSystems;
 using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Construction
