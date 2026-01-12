@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Content/UI/Buildings/Style/building-construction-menu.uss?fileID=7433441132597879392&amp;guid=5287839f7950c5846adcb1e9155ac9cf&amp;type=3#building-construction-menu"/>
     <ui:VisualElement name="construction-content" class="construction-content">
-        <ui:VisualElement name="construction-panel" class="construction-panel">
+        <ui:VisualElement name="construction-panel" class="construction-panel" style="width: auto;">
             <ui:VisualElement name="construction-header" class="construction-header" style="flex-direction: row-reverse;">
                 <ui:Label name="construction-title" text="&#1042;&#1099;&#1073;&#1086;&#1088; &#1087;&#1086;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1080;" class="construction-title"/>
             </ui:VisualElement>
