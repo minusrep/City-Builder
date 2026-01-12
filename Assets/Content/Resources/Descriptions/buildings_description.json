@@ -77,7 +77,7 @@
     "resources_for_production": { },
     "view_id": "Mine",
     "size": [
-      3,
+      2,
       2
     ]
   },
@@ -97,7 +97,7 @@
     },
     "view_id": "Smelter",
     "size": [
-      3,
+      2,
       2
     ]
   }

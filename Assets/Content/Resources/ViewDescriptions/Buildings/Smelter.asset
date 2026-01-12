@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Smelter
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ProductionBuildingViewDescription
   Prefab: {fileID: 7811179642611185603, guid: c657e3fa35e3dad47b62d20969bf8ba5, type: 3}
-  VisualSizeInCells: {x: 3, y: 2}
-  AdditionalWorldOffset: {x: -0.35, y: 0, z: -0.35}
+  VisualSizeInCells: {x: 2, y: 2}
