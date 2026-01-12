@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65465e44e2144c687ffde33e53f7f57, type: 3}
   m_Name: AchievementViewDescriptionCollection
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Achievements.AchievementViewDescriptionCollection
-  AchievementAsset: {fileID: 9197481963319205126, guid: f1b562803d5d9ae4f88ed0e8ab7d6969, type: 3}
   _descriptions:
   - {fileID: 11400000, guid: 1e6d9a62268574f4983a12068d18c036, type: 2}
   - {fileID: 11400000, guid: 5566e63809a99284b97ed3271c7bbc6e, type: 2}
