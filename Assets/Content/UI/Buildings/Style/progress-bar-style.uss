@@ -15,13 +15,25 @@
     border-right-width: 5px;
     border-bottom-width: 5px;
     border-left-width: 5px;
-    border-radius: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
     min-height: 30px;
     max-height: 30px;
 }
 
 .unity-progress-bar__progress {
-    background-color: rgb(255, 170, 45);
-    border-radius: 2px;
-    margin: 0;
+    background-color: rgb(255, 162, 0);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+.image-tint {
 }

@@ -23,13 +23,16 @@ namespace Runtime
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        [Header("UI")] [SerializeField] private UIDocument _menuDocument;
+        [Header("UI")] 
+        [SerializeField] private UIDocument _menuDocument;
+        [SerializeField] private UIDocument _popupDocument;
         [SerializeField] private VisualTreeAsset _inGameMenuAsset;
         [SerializeField] private VisualTreeAsset _loadMenuAsset;
         [SerializeField] private VisualTreeAsset _achievementsMenuAsset;
         [SerializeField] private VisualTreeAsset _constructionMenuAsset;
 
-        [Header("View")] [SerializeField] private BuildingCollectionView _buildingCollectionView;
+        [Header("View")] 
+        [SerializeField] private BuildingCollectionView _buildingCollectionView;
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
         [SerializeField] private CameraControlView _cameraControlView;
         [SerializeField] private BuildingConstructionView _buildingConstructionView;
@@ -54,11 +57,10 @@ namespace Runtime
         private InGameMenuPresenter _inGameMenuPresenter;
         
         private PlayerControls _playerControls;
-
+        
         private async void Start()
         {
-            _menuContent = new MenuContent(_menuDocument);
-
+            _menuContent = new MenuContent(_menuDocument, _popupDocument);
             _playerControls = new PlayerControls();
 
             IStep[] loadSteps =
@@ -73,11 +75,12 @@ namespace Runtime
                 new BuildingConstructionLoadStep(_constructionMenuAsset, _buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
-                new HUDLoadStep(_presenters, _world, _playerControls, _hudView)
+                new HUDLoadStep(_presenters, _world, _playerControls, _hudView),
+                new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent)
             };
+            
             _playerControls.Enable();
-
-
+            
             foreach (var step in loadSteps)
             {
                 await step.Run();
@@ -90,9 +93,9 @@ namespace Runtime
 
             var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
             var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
-            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent);
+            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent, _world,
+                _worldViewDescriptions);
             _inGameMenuPresenter.Enable();
-
             Application.quitting += OnQuit;
 
 #if UNITY_EDITOR
@@ -120,16 +123,13 @@ namespace Runtime
             Dispose();
         }
 
-        private async void Dispose()
+        private void Dispose()
         {
 #if UNITY_EDITOR
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 #endif
             Application.quitting -= OnQuit;
-
-            var saving = new WorldSaveStep(_world);
-            var savingTask = saving.Run();
-
+            
             _presenters.Reverse();
             foreach (var presenter in _presenters)
             {
@@ -137,8 +137,6 @@ namespace Runtime
             }
 
             _inGameMenuPresenter.Disable();
-
-            await savingTask;
         }
     }
 }

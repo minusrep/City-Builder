@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.Colony.Achievements.Collection;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Construction;
 using Runtime.Colony.Buildings.Construction.WorldGrid;
@@ -16,27 +17,19 @@ namespace Runtime.Colony
     public class World : ISerializeModel, IDeserializeModel
     {
         private const string CitizensKey = "citizens";
-
         private const string BuildingsKey = "buildings";
-
         private const string OrderManagerKey = "order_manager";
+        private const string AchievementsKey = "achievements";
 
         public Camera MainCamera { get; private set; }
-
         public CitizenModelCollection Citizens { get; private set; }
-
         public BuildingModelCollection Buildings { get; private set; }
-
+        public AchievementModelCollection Achievements { get; private set; }
         public WorldGridModel Grid { get; private set; }
-        
         public BuildingConstructionModel BuildingConstructionModel { get; private set; }
-
         public PlayerControls PlayerControls { get; private set; }
-
         public WorldDescription WorldDescription { get; private set; }
-
         public GameSystemCollection GameSystems { get; private set; }
-
         public OrderManager OrderManager { get; private set; }
 
         public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider,
@@ -49,6 +42,7 @@ namespace Runtime.Colony
 
             Citizens = new CitizenModelCollection(worldDescription);
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
+            Achievements = new AchievementModelCollection(worldDescription.AchievementsCollection);
             Grid = new WorldGridModel(worldDescription.WorldGridDescription);
             
             PlayerControls = playerControls;
@@ -63,6 +57,7 @@ namespace Runtime.Colony
                 [CitizensKey] = Citizens.Serialize(),
                 [BuildingsKey] = Buildings.Serialize(),
                 [OrderManagerKey] = OrderManager.Serialize(),
+                [AchievementsKey] = Achievements.Serialize()
             };
 
             return dictionary;
@@ -71,9 +66,8 @@ namespace Runtime.Colony
         public void Deserialize(Dictionary<string, object> data)
         {
             Buildings.Deserialize(data.GetNode(BuildingsKey));
-
             Citizens.Deserialize(data.GetNode(CitizensKey));
-
+            Achievements.Deserialize(data.GetNode(AchievementsKey));
             OrderManager.Deserialize(data.GetNode(OrderManagerKey));
             
             Grid.RebuildFromBuildings(Buildings.Models.Values);

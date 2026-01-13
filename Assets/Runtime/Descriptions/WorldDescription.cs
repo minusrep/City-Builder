@@ -4,6 +4,7 @@ using Runtime.Descriptions.Citizens;
 using Runtime.Descriptions.Items;
 using Runtime.Extensions;
 using System.Collections.Generic;
+using Runtime.Descriptions.Achievements;
 
 namespace Runtime.Descriptions
 {
@@ -14,6 +15,8 @@ namespace Runtime.Descriptions
         public BuildingsDescriptionCollection BuildingCollection { get; private set; }
         
         public ResourceDescriptionCollection ResourceCollection { get; private set; }
+        
+        public AchievementDescriptionCollection AchievementsCollection { get; private set; }
         
         public CitizensDescription Citizens { get; private set; }
 
@@ -34,6 +37,7 @@ namespace Runtime.Descriptions
             WorldGridDescription = new WorldGridDescription(data.GetNode("world_grid"));
             BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
             ResourceCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
+            AchievementsCollection = new AchievementDescriptionCollection(data.GetNode("achievements"));
             Citizens = new CitizensDescription(data.GetNode("citizens"));
             CameraControlDescription = new CameraControlDescription(data.GetNode("camera_control"));
             PointOfInterestCollection = new PointOfInterestDescriptionCollection(data.GetNode("points_of_interest"));

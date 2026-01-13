@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65465e44e2144c687ffde33e53f7f57, type: 3}
+  m_Name: AchievementViewDescriptionCollection
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Achievements.AchievementViewDescriptionCollection
+  AchievementAsset: {fileID: 9197481963319205126, guid: f1b562803d5d9ae4f88ed0e8ab7d6969, type: 3}
+  Duration: 3000
+  _descriptions:
+  - {fileID: 11400000, guid: 1e6d9a62268574f4983a12068d18c036, type: 2}
+  - {fileID: 11400000, guid: 5566e63809a99284b97ed3271c7bbc6e, type: 2}
+  - {fileID: 11400000, guid: 31f9b040773662f459f015f59c7a9c30, type: 2}
+  - {fileID: 11400000, guid: fbb96daa7d13ebc479b2ad3382da2f86, type: 2}
+  - {fileID: 11400000, guid: 0e4ac4bd7caa6114290466884275913a, type: 2}

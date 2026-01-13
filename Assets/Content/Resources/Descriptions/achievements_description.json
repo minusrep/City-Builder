@@ -1,0 +1,56 @@
+{
+  "get_ten_wood": {
+    "type": "resource_count_counter",
+    "triggers": [
+      {
+        "resource": "wood"
+      }
+    ],
+    "target": 10,
+    "unlocks": [
+      "get_hundred_wood"
+    ]
+  },
+  "get_hundred_wood": {
+    "type": "resource_count_counter",
+    "triggers": [
+      {
+        "resource": "wood"
+      }
+    ],
+    "target": 100
+  },
+  "build_three_shelters": {
+    "type": "buildings_count_counter",
+    "triggers": [
+      {
+        "building": "shelter"
+      }
+    ],
+    "target": 3,
+    "unlocks": [
+      "build_five_shelters"
+    ]
+  },
+  "build_five_shelters": {
+    "type": "buildings_count_counter",
+    "triggers": [
+      {
+        "building": "shelter"
+      }
+    ],
+    "target": 5,
+    "unlocks": [
+      "build_ten_shelters"
+    ]
+  },
+  "build_ten_shelters": {
+    "type": "buildings_count_counter",
+    "triggers": [
+      {
+        "building": "shelter"
+      }
+    ],
+    "target": 10
+  }
+}

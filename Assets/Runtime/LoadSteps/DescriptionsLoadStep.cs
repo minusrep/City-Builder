@@ -14,7 +14,7 @@ namespace Runtime.LoadSteps
         {
             _worldDescription = worldDescription;
         }
-
+        
         public async Task Run()
         {
             var buildingDescriptions =
@@ -26,6 +26,9 @@ namespace Runtime.LoadSteps
             var resourcesDescriptions =
                 JSON.ToObject<Dictionary<string, object>>(
                     Resources.Load<TextAsset>("Descriptions/items_description").text);
+            var achievementsDescriptions = 
+                JSON.ToObject<Dictionary<string, object>>(
+                    Resources.Load<TextAsset>("Descriptions/achievements_description").text);
 
             var pointsOfInterest =
                 JSON.ToObject<Dictionary<string, object>>(
@@ -44,6 +47,7 @@ namespace Runtime.LoadSteps
                 { "buildings", buildingDescriptions },
                 { "citizens", citizensDescriptions },
                 { "resources", resourcesDescriptions },
+                { "achievements", achievementsDescriptions },
                 { "points_of_interest", pointsOfInterest },
                 { "camera_control", cameraControl },
                 { "world_grid", worldGridDescription}
