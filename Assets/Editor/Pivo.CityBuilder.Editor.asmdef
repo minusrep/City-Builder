@@ -1,7 +1,9 @@
 {
     "name": "Pivo.CityBuilder.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:c19d80a018416d84e81aa66550f38117"
+    ],
     "includePlatforms": [
         "Editor"
     ],

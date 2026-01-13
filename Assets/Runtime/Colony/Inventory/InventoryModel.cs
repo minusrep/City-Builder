@@ -10,14 +10,13 @@ namespace Runtime.Colony.Inventory
 {
     public class InventoryModel : UniformModelCollection<CellModel>
     {
-        public int Size;
+        public event Action OnRemoveItem;
 
         private readonly int _maxStackSize;
         private readonly ResourceDescriptionCollection _resourceDescriptions;
 
-        public InventoryModel(int size, int maxStackSize, ResourceDescriptionCollection resourceDescriptions) : base(null)
+        public InventoryModel(int maxStackSize, ResourceDescriptionCollection resourceDescriptions) : base(null)
         {
-            Size = size;
             _maxStackSize = maxStackSize;
             _resourceDescriptions = resourceDescriptions;
         }
@@ -49,31 +48,22 @@ namespace Runtime.Colony.Inventory
 
         public bool TryRemoveItem(ResourceDescription item, int amount)
         {
+            if (!CanExtract(item, amount, out var targets))
+            {
+                return false;
+            }
+            
             var remaining = amount;
 
-            for (var i = Models.Count - 1; i >= 0; i--)
+            foreach (var (cell, free) in targets)
             {
-                var cell = Models.ElementAt(i).Value;
-
-                if (cell.Resource != null && IsSameItem(cell.Resource, item))
-                {
-                    var toRemove = Math.Min(cell.Amount, remaining);
-
-                    if (toRemove > 0)
-                    {
-                        cell.TryReduce(toRemove);
-
-                        remaining -= toRemove;
-
-                        if (remaining == 0)
-                        {
-                            return true;
-                        }
-                    }
-                }
+                var toRemove = Math.Min(free, remaining);
+                cell.TryReduce(toRemove);
+                remaining -= toRemove;
             }
-
-            return false;
+            
+            OnRemoveItem?.Invoke();
+            return true;
         }
 
         public bool CanFit(ResourceDescription item, int amount, out List<(CellModel cell, int free)> targets)
@@ -119,6 +109,35 @@ namespace Runtime.Colony.Inventory
             return false;
         }
 
+        public bool CanExtract(ResourceDescription item, int amount, out List<(CellModel cell, int amount)> targets)
+        {
+            targets = new List<(CellModel, int)>();
+            var remaining = amount;
+
+            for (var i = Models.Count - 1; i >= 0; i--)
+            {
+                var cell = Models.ElementAt(i).Value;
+
+                if (cell.Resource != null && IsSameItem(cell.Resource, item))
+                {
+                    var toRemove = Math.Min(cell.Amount, remaining);
+
+                    if (toRemove > 0)
+                    {
+                        targets.Add((cell, toRemove));
+                        remaining -= toRemove;
+
+                        if (remaining == 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+        
         protected override CellModel CreateModel()
         {
             var cell = new CellModel();
@@ -129,11 +148,14 @@ namespace Runtime.Colony.Inventory
         protected override CellModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
             var cell = new CellModel();
-            
+
             var amount = data.GetInt("amount");
             var resourceId = data.GetString("resource");
-            
-            cell.TryAdd(_resourceDescriptions.Descriptions[resourceId], amount, _maxStackSize);
+
+            if (resourceId != null)
+            {
+                cell.TryAdd(_resourceDescriptions.Descriptions[resourceId], amount, _maxStackSize);
+            }
 
             return cell;
         }

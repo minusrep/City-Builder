@@ -1,52 +1,53 @@
 ﻿using System;
 using Runtime.Colony.Buildings.Common;
-using Runtime.Colony.Buildings.Pool;
 using Runtime.Colony.Inventory;
-using Runtime.GameSystems;
+using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Buildings.Production
 {
-    public class ProductionBuildingPresenter : BuildingPresenter<ProductionBuildingView>
+    public class ProductionBuildingPresenter : BuildingPresenter
     {
         private readonly ProductionBuildingModel _model;
-        private readonly GameSystemCollection _systemCollection;
-        private ProductionBuildingSystem _productionSystem;
+        private readonly World _world;
 
         private InventoryPresenter _inventoryPresenter;
 
-        public ProductionBuildingPresenter(ProductionBuildingModel model, IBuildingViewPool viewPool,
-           WorldViewDescriptions worldViewDescriptions, GameSystemCollection systemCollection) : base(model, viewPool, worldViewDescriptions)
+        public ProductionBuildingPresenter(ProductionBuildingModel model, IObjectPool<BuildingView> viewPool,
+            World world, WorldViewDescriptions worldViewDescriptions) : base(model, viewPool, worldViewDescriptions)
         {
             _model = model;
-            _systemCollection = systemCollection;
+            _world = world;
         }
 
         public override void Enable()
         {
             base.Enable();
-            
-            _productionSystem = new ProductionBuildingSystem(_model.Id, _model, View);
-
-            _model.StartProduction(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-            
             _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
 
             _inventoryPresenter.Enable();
             
-            _systemCollection.Add(_productionSystem);
+            ((ProductionBuildingSystem)_world.GameSystems.Get("production")).Register(_model);
+            _model.OnProgressChanged += OnProgressChanged;
+            
+            _model.StartProduction();
+            
+            OnProgressChanged(_model.Progress);
         }
 
         public override void Disable()
         {
-            _model.StopProduction();
+            _model.OnProgressChanged -= OnProgressChanged;
 
             _inventoryPresenter.Disable();
             _inventoryPresenter = null;
-
-            _systemCollection.Remove(_productionSystem);
             
             base.Disable();
+        }
+        
+        private void OnProgressChanged(float progress)
+        {
+            View.ProgressBar.value = Math.Clamp(progress, 0f, 1f) * 100f;
         }
     }
 }

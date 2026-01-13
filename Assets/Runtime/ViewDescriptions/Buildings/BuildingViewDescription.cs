@@ -1,16 +1,14 @@
 ﻿using Runtime.Colony.Buildings.Common;
+using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Buildings
 {
-    public abstract class BuildingViewDescription<TView> : BuildingViewDescriptionBase where TView : BuildingView
+    public class BuildingViewDescription : ScriptableObject
     {
-        public TView Prefab;
-
-        public override BuildingView GetViewDescription()
-        {
-            return Prefab;
-        }
-
-        public override string Id => name;
+        public string Id => name;
+        
+        public BuildingView Prefab;
+        
+        public Vector2Int VisualSizeInCells = Vector2Int.one;
     }
 }

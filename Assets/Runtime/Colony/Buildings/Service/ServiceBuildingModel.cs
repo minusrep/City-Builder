@@ -17,9 +17,9 @@ namespace Runtime.Colony.Buildings.Service
             public bool IsActive;
             
             public ServiceBuildingModel(string id,
-                Vector2 position,
+                Vector2Int gridPosition,
                 ServiceBuildingDescription description) : base(id,
-                position,
+                gridPosition,
                 description)
             {
                 Description = description;
@@ -56,6 +56,8 @@ namespace Runtime.Colony.Buildings.Service
 
             public override void Deserialize(Dictionary<string, object> data)
             {
+                base.Deserialize(data);
+                
                 IsActive = data.GetBool("is_active");
                 InService = data.GetDictionary<string, long>("in_service");
                 WaitingQueue = data.GetQueue<string>("waiting_queue");

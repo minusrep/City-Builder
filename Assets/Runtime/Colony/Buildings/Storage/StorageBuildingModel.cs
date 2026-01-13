@@ -9,37 +9,36 @@ using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Storage
 {
-    public class StorageBuildingModel : BuildingModel
+    public class StorageBuildingModel : BuildingModel, IInventoryBuilding
     {
-        private const int MaxStackSize = 20;
-
         public InventoryModel Inventory { get; private set; }
         private WorldDescription WorldDescription { get; }
 
         private StorageBuildingDescription Description { get; }
 
         public StorageBuildingModel(string id,
-            Vector2 position,
-            StorageBuildingDescription description, WorldDescription worldDescription) : base(id, position, description)
+            Vector2Int gridPosition,
+            StorageBuildingDescription description, WorldDescription worldDescription) : base(id, gridPosition, description)
         {
             WorldDescription = worldDescription;
             Description = description;
 
-            Inventory = new InventoryModel(description.StoredResources.Count, MaxStackSize, worldDescription.ResourceCollection);
+            Inventory = new InventoryModel(description.MaxResourceAmount, worldDescription.ResourceCollection);
             
             foreach (var resourceDescriptionId in description.StoredResources)
             {
                 var resourceDescription = worldDescription.ResourceCollection.Descriptions[resourceDescriptionId];
+                Inventory.Create();
                 Inventory.TryAddItem(resourceDescription, 0);    
             }
         }
         
-        public bool TryAddResource(ResourceDescription resource, int amount)
+        public bool TryAddItem(ResourceDescription resource, int amount)
         {
             return Inventory.TryAddItem(resource, amount);
         }
         
-        public bool TryTakeResource(ResourceDescription resource, int amount)
+        public bool TryRemoveItem(ResourceDescription resource, int amount)
         {
             return Inventory.TryRemoveItem(resource, amount);
         }
@@ -68,7 +67,7 @@ namespace Runtime.Colony.Buildings.Storage
 
         public override void Deserialize(Dictionary<string, object> data)
         {
-            Inventory = new InventoryModel(1, MaxStackSize, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(Description.MaxResourceAmount, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
         }
     }

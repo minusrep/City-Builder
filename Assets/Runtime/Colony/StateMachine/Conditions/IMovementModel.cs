@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Runtime.Colony.Citizens.Collection;
 using UnityEngine;
 

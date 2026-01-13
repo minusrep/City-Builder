@@ -22,5 +22,17 @@
     "reduction_time": 30,
     "reduction_amount": 1,
     "view_id": "Energy"
+  },
+  "worker": {
+    "type": "resource",
+    "reduction_time": 0,
+    "reduction_amount": 0,
+    "view_id": "Worker"
+  },
+  "ore": {
+    "type": "resource",
+    "reduction_time": 0,
+    "reduction_amount": 0,
+    "view_id": "Ore"
   }
 }

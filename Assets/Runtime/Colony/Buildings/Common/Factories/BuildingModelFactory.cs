@@ -4,7 +4,6 @@ using Runtime.Colony.Buildings.Decor;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
-using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using UnityEngine;
 
@@ -12,20 +11,20 @@ namespace Runtime.Colony.Buildings.Common.Factories
 {
     public sealed class BuildingModelFactory
     {
-        private readonly Dictionary<string, Func<string, Vector2, BuildingDescription, BuildingModel>> _constructors
+        private readonly Dictionary<string, Func<string, Vector2Int, BuildingDescription, BuildingModel>> _constructors
             = new();
-        private readonly WorldDescription _worldDescription;
+        private readonly World _world;
 
-        public BuildingModelFactory(WorldDescription worldDescription)
+        public BuildingModelFactory(World world)
         {
-            _worldDescription = worldDescription;
+            _world = world;
         }
 
         public void RegisterAll()
         {
             Register("production",
                 (id, position, description) => new ProductionBuildingModel(id, position,
-                    (ProductionBuildingDescription)description, _worldDescription));
+                    (ProductionBuildingDescription)description, _world));
 
             Register("service",
                 (id, position, description) =>
@@ -35,7 +34,7 @@ namespace Runtime.Colony.Buildings.Common.Factories
             {
                 var storageDescription = (StorageBuildingDescription)description;
                 
-                return new StorageBuildingModel(id, position, storageDescription, _worldDescription);
+                return new StorageBuildingModel(id, position, storageDescription, _world.WorldDescription);
             });
 
             Register("decor",
@@ -44,13 +43,13 @@ namespace Runtime.Colony.Buildings.Common.Factories
         }
 
         private void Register<T>(string type,
-            Func<string, Vector2, BuildingDescription, T> ctor)
+            Func<string, Vector2Int, BuildingDescription, T> ctor)
             where T : BuildingModel
         {
             _constructors[type] = ctor;
         }
 
-        public BuildingModel Create(string type, string id, Vector2 pos, BuildingDescription desc)
+        public BuildingModel Create(string type, string id, Vector2Int pos, BuildingDescription desc)
         {
             return _constructors[type](id, pos, desc);
         }

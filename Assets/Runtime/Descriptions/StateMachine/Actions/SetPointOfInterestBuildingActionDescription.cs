@@ -24,17 +24,17 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
             var targetBuildings = buildings.Where(a => BuildingPointOfInterest == a.BaseDescription.Id).ToList();
 
-            var buildingPosition = targetBuildings[0].Position;
+            var buildingPosition = targetBuildings[0].WorldPosition;
                 
             var minDistance = Vector3.Distance(buildingPosition, model.Position);
                 
             foreach (var building in targetBuildings)
             {
-                var distance = Vector3.Distance(model.Position, building.Position);
+                var distance = Vector3.Distance(model.Position, building.WorldPosition);
                     
                 if (distance < minDistance)
                 {
-                    buildingPosition = building.Position;
+                    buildingPosition = building.WorldPosition;
                         
                     minDistance = distance;
                 }
