@@ -24,7 +24,7 @@ namespace Runtime.Colony.Achievements
         public void Enable()
         {
             _model.IsActive = true;
-            _model.OnCompleted += Show;
+            _model.OnCompleted += Complete;
 
             foreach (var trigger in _model.Triggers)
             {
@@ -34,15 +34,35 @@ namespace Runtime.Colony.Achievements
 
         public void Disable()
         {
-            _model.OnCompleted -= Show;
+            _model.OnCompleted -= Complete;
 
             foreach (var trigger in _model.Triggers)
             {
                 trigger.Unsubscribe();
             }
         }
+        
+        private async void Complete()
+        {
+            await ShowAchievementAsync();
+            
+            Disable();
+        }
+        
+        private async Task ShowAchievementAsync()
+        {
+            await ShowPopupAsync();
+            
+            _view.Icon.RemoveFromClassList("not-completed");
+            _view.Icon.AddToClassList("completed"); 
+            await Task.Delay(_viewDescriptions.AchievementsViewDescription.Duration);
+            
+            _view.Root.RemoveFromClassList("show");
+            await _view.AwaitTransitionAsync();
+            _content.PopupRoot.Clear();
+        }
 
-        private async void Show()
+        private async Task ShowPopupAsync()
         {
             var viewDescription = _viewDescriptions.AchievementsViewDescription.Get(_model.Description.Id);
 
@@ -51,20 +71,10 @@ namespace Runtime.Colony.Achievements
             _view.Description.text = viewDescription.Description;
 
             _content.PopupRoot.Add(_view.Root);
+            await UnityAwaiter.NextFrame();
             
-            await Task.Delay(1); //TODO: Без - не работает анимация
             _view.Root.AddToClassList("show");
-
             await _view.AwaitTransitionAsync();
-            _view.Icon.RemoveFromClassList("not-completed");
-            _view.Icon.AddToClassList("completed");
-
-            await Task.Delay(_viewDescriptions.AchievementsViewDescription.Duration);
-            _view.Root.RemoveFromClassList("show");
-
-            await _view.AwaitTransitionAsync();
-            _content.PopupRoot.Clear();
-            Disable();
         }
     }
 }
