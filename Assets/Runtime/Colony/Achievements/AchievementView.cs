@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Achievements
@@ -19,19 +18,28 @@ namespace Runtime.Colony.Achievements
             Description = Root.Q<Label>("description");
         }
         
-        public Task AwaitTransitionAsync()
+        public void Show()
         {
-            var taskCompletionSource = new TaskCompletionSource<bool>();
+            Root.AddToClassList("show");
+        }
 
-            void OnEnd(TransitionEndEvent evt)
+        public void SetCompletedState(bool isCompleted)
+        {
+            if (isCompleted)
             {
-                Root.UnregisterCallback<TransitionEndEvent>(OnEnd);
-                taskCompletionSource.TrySetResult(true);
+                Icon.RemoveFromClassList("not-completed");
+                Icon.AddToClassList("completed");
             }
-
-            Root.RegisterCallback<TransitionEndEvent>(OnEnd);
-
-            return taskCompletionSource.Task;
+            else
+            {
+                Icon.RemoveFromClassList("completed");
+                Icon.AddToClassList("not-completed");
+            }
+        }
+    
+        public void Hide()
+        {
+            Root.RemoveFromClassList("show");
         }
     }
 }

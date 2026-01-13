@@ -1,8 +1,9 @@
 using Runtime.Colony.Achievements.Events;
+using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Descriptions.Achievements;
 using Runtime.Services;
 
-namespace Runtime.Colony.Achievements.Triggers
+namespace Runtime.Colony.Achievements.Triggers.Types
 {
     public class BuildingTriggerModel : TriggerModel
     {
@@ -22,14 +23,19 @@ namespace Runtime.Colony.Achievements.Triggers
 
         protected override void OnEventReceived(GameEvent gameEvent)
         {
-            if (gameEvent is not BuildingChangeEvent buildingChangeEvent)
+            if (Model.IsActive == false)
             {
                 return;
             }
 
+            if (gameEvent is not BuildingChangeEvent buildingChangeEvent)
+            {
+                return;
+            }
+            
             if (Description.Value == buildingChangeEvent.Building.Type)
             {
-                
+                Model.AddProgress(buildingChangeEvent.Amount);
             }
         }
     }

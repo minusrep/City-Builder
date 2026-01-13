@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Colony.Achievements.Events;
+using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Common;
 using Runtime.Services;
 using Runtime.UI;
@@ -10,62 +11,62 @@ namespace Runtime.Colony.Achievements.Collection
     public class AchievementPresenterCollection : IPresenter
     {
         private readonly Dictionary<string, AchievementPresenter> _presenters = new();
-        private readonly AchievementModelCollection _model;
+        private readonly AchievementModelCollection _modelCollection;
         private readonly WorldViewDescriptions _viewDescriptions;
         private readonly MenuContent _content;
 
-        public AchievementPresenterCollection(AchievementModelCollection model, WorldViewDescriptions viewDescriptions,
-            MenuContent content)
+        public AchievementPresenterCollection(AchievementModelCollection modelCollection,
+            WorldViewDescriptions viewDescriptions, MenuContent content)
         {
-            _model = model;
+            _modelCollection = modelCollection;
             _viewDescriptions = viewDescriptions;
             _content = content;
         }
 
         public void Enable()
         {
-            foreach (var (id, model) in _model.Models)
+            foreach (var (id, model) in _modelCollection.Models)
             {
-                CreatePresenter(id, model);
+                Create(id, model);
             }
-            
-            MessageBroker.Instance.Subscribe("achievement_complete", Complete);
+
+            MessageBroker.Instance.Subscribe("achievement_complete", Unlock);
         }
-        
+
         public void Disable()
         {
-            MessageBroker.Instance.Unsubscribe("achievement_complete", Complete);
-            
+            MessageBroker.Instance.Unsubscribe("achievement_complete", Unlock);
+
             foreach (var presenter in _presenters.Values)
             {
                 presenter.Disable();
             }
         }
 
-        private void CreatePresenter(string id, AchievementModel model)
+        private void Create(string id, AchievementModel model)
         {
             var view = new AchievementView(_viewDescriptions.AchievementsViewDescription.AchievementAsset);
             var achievementPresenter = new AchievementPresenter(model, view, _content, _viewDescriptions);
 
             _presenters.Add(id, achievementPresenter);
-            
+
             if (model.IsActive)
             {
                 achievementPresenter.Enable();
             }
         }
 
-        private void Complete(GameEvent gameEvent)
+        private void Unlock(GameEvent gameEvent)
         {
             if (gameEvent is not AchievementCompleteEvent achievementCompleteEvent)
             {
                 return;
             }
 
-            foreach (var achievement  in achievementCompleteEvent.Description.Unlocks)
+            foreach (var achievement in achievementCompleteEvent.Description.Unlocks)
             {
                 _presenters.TryGetValue(achievement, out var presenter);
-                
+
                 presenter?.Enable();
             }
         }

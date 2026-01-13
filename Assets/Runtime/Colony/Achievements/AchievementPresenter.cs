@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Runtime.Common;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
+using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Achievements
 {
@@ -53,12 +54,11 @@ namespace Runtime.Colony.Achievements
         {
             await ShowPopupAsync();
             
-            _view.Icon.RemoveFromClassList("not-completed");
-            _view.Icon.AddToClassList("completed"); 
+            _view.SetCompletedState(true);
             await Task.Delay(_viewDescriptions.AchievementsViewDescription.Duration);
             
-            _view.Root.RemoveFromClassList("show");
-            await _view.AwaitTransitionAsync();
+            _view.Hide();
+            await AwaitTransitionAsync(_view.Root);
             _content.PopupRoot.Clear();
         }
 
@@ -73,8 +73,23 @@ namespace Runtime.Colony.Achievements
             _content.PopupRoot.Add(_view.Root);
             await UnityAwaiter.NextFrame();
             
-            _view.Root.AddToClassList("show");
-            await _view.AwaitTransitionAsync();
+            _view.Show();
+            await AwaitTransitionAsync(_view.Root);
+        }
+        
+        private async Task AwaitTransitionAsync(VisualElement element)
+        {
+            var taskCompletionSource = new TaskCompletionSource<bool>();
+
+            element.RegisterCallback<TransitionEndEvent>(OnEnd);
+            await taskCompletionSource.Task;
+            return;
+
+            void OnEnd(TransitionEndEvent evt)
+            {
+                element.UnregisterCallback<TransitionEndEvent>(OnEnd);
+                taskCompletionSource.TrySetResult(true);
+            }
         }
     }
 }

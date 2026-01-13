@@ -1,6 +1,6 @@
 using Runtime.Descriptions.Items;
 
-namespace Runtime.Colony.Achievements.Events
+namespace Runtime.Colony.Achievements.Events.Types
 {
     public class ResourceChangeEvent : GameEvent
     {

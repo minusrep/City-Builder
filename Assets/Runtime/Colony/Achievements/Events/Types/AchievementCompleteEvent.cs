@@ -1,6 +1,6 @@
 using Runtime.Descriptions.Achievements;
 
-namespace Runtime.Colony.Achievements.Events
+namespace Runtime.Colony.Achievements.Events.Types
 {
     public class AchievementCompleteEvent : GameEvent
     {

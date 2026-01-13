@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using Runtime.Colony;
 using Runtime.Colony.Achievements;
 using Runtime.Colony.Achievements.Events;
+using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Common;
 using Runtime.Services;
 using Runtime.ViewDescriptions;
-using UnityEngine;
 
 namespace Runtime.UI.InGameMenu.AchievementsMenu
 {
@@ -36,20 +36,14 @@ namespace Runtime.UI.InGameMenu.AchievementsMenu
         private void CreateAchievement(string id, AchievementModel model)
         {
             var achievement = _view.DrawAchievement(_viewDescriptions);
-
             var achievementViewDescription = _viewDescriptions.AchievementsViewDescription.Get(id);
 
             achievement.Icon.style.backgroundImage = achievementViewDescription.Icon.texture;
             achievement.Title.text = achievementViewDescription.Title;
             achievement.Description.text = achievementViewDescription.Description;
 
-            if (model.IsCompleted)
-            {
-                achievement.Icon.RemoveFromClassList("not-completed");
-                achievement.Icon.AddToClassList("completed");
-            }
-
-            achievement.Root.AddToClassList("show");
+            achievement.SetCompletedState(model.IsCompleted);
+            achievement.Show();
 
             _view.Container.Add(achievement.Root);
             _achievements.Add(id, achievement);
@@ -57,13 +51,14 @@ namespace Runtime.UI.InGameMenu.AchievementsMenu
         
         private void Update(GameEvent gameEvent)
         {
-            if (gameEvent is AchievementCompleteEvent achievementCompleteEvent)
+            if (gameEvent is not AchievementCompleteEvent achievementCompleteEvent)
             {
-                _achievements.TryGetValue(achievementCompleteEvent.Description.Id, out var achievementView);
+                return;
                 
-                achievementView?.Icon.RemoveFromClassList("not-completed");
-                achievementView?.Icon.AddToClassList("completed");
             }
+            _achievements.TryGetValue(achievementCompleteEvent.Description.Id, out var achievementView);
+                
+            achievementView?.SetCompletedState(true);
         }
 
         public void Disable()

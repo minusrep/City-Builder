@@ -1,4 +1,5 @@
 using System;
+using Runtime.Colony.Achievements.Triggers.Types;
 using Runtime.Descriptions.Achievements;
 
 namespace Runtime.Colony.Achievements.Triggers

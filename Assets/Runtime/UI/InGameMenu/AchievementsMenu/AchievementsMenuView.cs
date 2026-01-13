@@ -18,7 +18,6 @@ namespace Runtime.UI.InGameMenu.AchievementsMenu
         public AchievementView DrawAchievement(WorldViewDescriptions worldViewDescriptions)
         {
             var achievementAsset = worldViewDescriptions.AchievementsViewDescription.AchievementAsset;
-            
             var achievementView = new AchievementView(achievementAsset);
 
             return achievementView;

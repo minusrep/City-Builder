@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.Achievements.Events;
+using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Colony.Achievements.Triggers;
 using Runtime.Descriptions.Achievements;
 using Runtime.Extensions;

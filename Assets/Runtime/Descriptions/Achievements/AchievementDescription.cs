@@ -18,6 +18,7 @@ namespace Runtime.Descriptions.Achievements
             Target = description.GetInt("target");
 
             var triggersList = (List<object>)description["triggers"];
+            
             foreach (var triggerObject in triggersList)
             {
                 var triggerDict = (Dictionary<string, object>)triggerObject;
@@ -26,9 +27,13 @@ namespace Runtime.Descriptions.Achievements
                 Triggers.Add(trigger);
             }
 
-            if (!description.TryGetValue("unlocks", out var value)) return;
+            if (!description.TryGetValue("unlocks", out var value))
+            {
+                return;
+            }
             
             var unlocksList = (List<object>)value;
+            
             foreach (var unlockObject in unlocksList)
             {
                 Unlocks.Add(unlockObject.ToString());

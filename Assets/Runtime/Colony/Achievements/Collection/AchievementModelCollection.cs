@@ -18,7 +18,7 @@ namespace Runtime.Colony.Achievements.Collection
             Create();
         }
 
-        public void Create()
+        private void Create()
         {
             foreach (var (id, description) in _descriptions.Descriptions)
             {
@@ -30,29 +30,26 @@ namespace Runtime.Colony.Achievements.Collection
         public Dictionary<string, object> Serialize()
         {
             var data = new Dictionary<string, object>();
-            
             var models = new Dictionary<string, object>();
 
             foreach (var (id, model) in Models)
             {
                 models.Add(id, model.Serialize());
             }
-            
-            data.Set("models", models);
 
+            data.Set("models", models);
             return data;
         }
 
         public void Deserialize(Dictionary<string, object> data)
         {
             var models = data.GetNode("models");
-            
-            foreach (var pair in models)
-            {
-                var achievementId = pair.Key;
-                var achievementData = (Dictionary<string, object>)pair.Value;
 
-                if (Models.TryGetValue(achievementId, out var model))
+            foreach (var (id, value) in models)
+            {
+                var achievementData = (Dictionary<string, object>)value;
+
+                if (Models.TryGetValue(id, out var model))
                 {
                     model.Deserialize(achievementData);
                 }

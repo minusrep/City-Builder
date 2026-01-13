@@ -1,8 +1,9 @@
 using Runtime.Colony.Achievements.Events;
+using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Descriptions.Achievements;
 using Runtime.Services;
 
-namespace Runtime.Colony.Achievements.Triggers
+namespace Runtime.Colony.Achievements.Triggers.Types
 {
     public class ResourceTriggerModel : TriggerModel
     {
@@ -27,12 +28,14 @@ namespace Runtime.Colony.Achievements.Triggers
                 return;
             }
 
-            if (gameEvent is ResourceChangeEvent resourceChangeEvent)
+            if (gameEvent is not ResourceChangeEvent resourceChangeEvent)
             {
-                if (Description.Value == resourceChangeEvent.Resource.Id)
-                {
-                    Model.AddProgress(resourceChangeEvent.Amount);
-                }
+                return;
+            }
+            
+            if (Description.Value == resourceChangeEvent.Resource.Id)
+            {
+                Model.AddProgress(resourceChangeEvent.Amount);
             }
         }
     }
