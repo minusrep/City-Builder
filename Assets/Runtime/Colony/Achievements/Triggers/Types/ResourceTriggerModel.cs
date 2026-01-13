@@ -1,7 +1,6 @@
 using Runtime.Colony.Achievements.Events;
 using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Descriptions.Achievements;
-using Runtime.Services;
 
 namespace Runtime.Colony.Achievements.Triggers.Types
 {

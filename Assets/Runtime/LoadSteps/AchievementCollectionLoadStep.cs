@@ -6,7 +6,7 @@ using Runtime.Common;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
 
-namespace Runtime.Services.SaveLoadSteps
+namespace Runtime.LoadSteps
 {
     public class AchievementCollectionLoadStep : IStep
     {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Descriptions.Items;
 using Runtime.ModelCollections;
-using Runtime.Services;
 
 namespace Runtime.Colony.Inventory.Cell
 {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Runtime.Colony.Achievements.Events;
 
-namespace Runtime.Services
+namespace Runtime
 {
     public class MessageBroker
     {

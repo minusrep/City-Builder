@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 019bacb98bf14cac8fa1a72fcfbc7f8e, type: 3}
   m_Name: build_five_shelters
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Achievements.AchievementViewDescription
-  Icon: {fileID: 21300000, guid: bf693fa78bbee3c4088f8993ac382f69, type: 3}
+  Icon: {fileID: 21300000, guid: 2849474eeff698b4cb8e1a81b37c1645, type: 3}
   Title: "\u0423\u043C\u0435\u043B\u044B\u0439 \u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C"
   Description: "\u041F\u043E\u0441\u0442\u0440\u043E\u0438\u0442\u044C 5 \u0443\u0431\u0435\u0436\u0438\u0449"
