@@ -1,7 +1,6 @@
 ﻿using Runtime.Descriptions.CameraControl;
 using Runtime.GameSystems;
 using System;
-using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Runtime.CameraControl
@@ -34,9 +33,9 @@ namespace Runtime.CameraControl
 
         private void UpdateZoom(float deltaTime)
         {
-            InputAxis axis = _cameraControlView.OrbitalFollow.RadialAxis;
+            var axis = _cameraControlView.OrbitalFollow.RadialAxis;
 
-            float targetZoomSpeed = 0f;
+            var targetZoomSpeed = 0f;
 
             if (Math.Abs(_cameraControlModel.ZoomValue.y) >= 0.01f)
             {
@@ -53,11 +52,11 @@ namespace Runtime.CameraControl
 
         private void UpdateOrbit(float deltaTime)
         {
-            Vector2 targetOrbitSpeed = Vector2.zero;
+            var targetOrbitSpeed = Vector2.zero;
 
             if (_cameraControlModel.MiddleClickValue)
             {
-                Vector2 orbit = _cameraControlModel.LookValue;
+                var orbit = _cameraControlModel.LookValue;
                 targetOrbitSpeed = orbit * _cameraControlDescription.LookSpeed;
             }
             else
@@ -68,8 +67,8 @@ namespace Runtime.CameraControl
             _currentOrbitSpeed.x = Mathf.Lerp(_currentOrbitSpeed.x, targetOrbitSpeed.x, _cameraControlDescription.LookSmoothihg * deltaTime);
             _currentOrbitSpeed.y = Mathf.Lerp(_currentOrbitSpeed.y, targetOrbitSpeed.y, _cameraControlDescription.LookSmoothihg * deltaTime);
 
-            InputAxis horizontalAxis = _cameraControlView.OrbitalFollow.HorizontalAxis;
-            InputAxis verticalAxis = _cameraControlView.OrbitalFollow.VerticalAxis;
+            var horizontalAxis = _cameraControlView.OrbitalFollow.HorizontalAxis;
+            var verticalAxis = _cameraControlView.OrbitalFollow.VerticalAxis;
 
             horizontalAxis.Value += _currentOrbitSpeed.x;
             verticalAxis.Value -= _currentOrbitSpeed.y;
@@ -83,16 +82,16 @@ namespace Runtime.CameraControl
 
         private void UpdateMovement(float deltaTime)
         {
-            Vector2 moveValue = _cameraControlModel.MoveValue;
-            Vector3 forward = _cameraControlView.CameraMainTransform.forward;
+            var moveValue = _cameraControlModel.MoveValue;
+            var forward = _cameraControlView.CameraMainTransform.forward;
             forward.y = 0f;
             forward.Normalize();
 
-            Vector3 right = _cameraControlView.CameraMainTransform.right;
+            var right = _cameraControlView.CameraMainTransform.right;
             right.y = 0f;
             right.Normalize();
 
-            Vector3 targetMoovSpeed = (forward * moveValue.y + right * moveValue.x) * _cameraControlDescription.MoveSpeed;
+            var targetMoovSpeed = (forward * moveValue.y + right * moveValue.x) * _cameraControlDescription.MoveSpeed;
 
             if (moveValue.sqrMagnitude > 0.01f)
             {
@@ -103,7 +102,7 @@ namespace Runtime.CameraControl
                 _currentMoovSpeed = Vector3.Lerp(_currentMoovSpeed, Vector3.zero, _cameraControlDescription.MoveSmoothihg * deltaTime);
             }
 
-            Vector3 motion = _currentMoovSpeed * deltaTime;
+            var motion = _currentMoovSpeed * deltaTime;
 
             _cameraControlView.Transform.position += motion;
         }

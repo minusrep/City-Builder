@@ -4,7 +4,6 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Citizens;
 using Runtime.Colony.Orders;
-using Runtime.Descriptions.Items;
 using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Actions
@@ -29,7 +28,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
             ).Value as IInventoryBuilding ;
 
-            ResourceDescription resource = model.Inventory.Models.Values.First().Resource; 
+            var resource = model.Inventory.Models.Values.First().Resource; 
             if (!inventoryBuilding.TryRemoveItem(resource, 1))
             {
                 RestoreOrder(world, model);
@@ -54,7 +53,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
             ).Value;
             
-            ResourceDescription resource = model.Inventory.Models.Values.First().Resource; 
+            var resource = model.Inventory.Models.Values.First().Resource; 
             var order = new OrderModel($"{targetBuilding.Id}_{resource.Id}", targetBuilding.Id)
             {
                 Type = "put_resource",
