@@ -4,17 +4,11 @@ namespace Runtime.Colony.Citizens.Collection
 {
     public class CitizenViewCollection : MonoBehaviour
     {
-        public Transform Transform => _transform;
+        public Transform Transform { get; private set; }
 
-        public CitizenView  CitizenViewPrefab => _citizenViewPrefab;
-        
-        [SerializeField] private Transform _transform;
-
-        [SerializeField] private CitizenView _citizenViewPrefab;
-
-        public CitizenView InstantiateCitizenView()
+        private void Awake()
         {
-            return Instantiate(_citizenViewPrefab, _transform);
+            Transform = transform;
         }
     }
 }
