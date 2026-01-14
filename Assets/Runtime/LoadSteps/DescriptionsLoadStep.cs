@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using fastJSON;
 using Runtime.AsyncLoad;
@@ -32,16 +33,16 @@ namespace Runtime.LoadSteps
         public async Task Run()
         {
             var data = new Dictionary<string, object>();
-            
-            foreach (var kvp in _keys)
+
+            var tasks = _keys.Select(async kvp =>
             {
                 var loadModel = _addressableModel.Load<TextAsset>(kvp.Value);
-
                 await loadModel.LoadAwaiter;
-
                 var parsed = JSON.ToObject<Dictionary<string, object>>(loadModel.Result.text);
                 data[kvp.Key] = parsed;
-            }
+            }).ToArray();
+            
+            await Task.WhenAll(tasks);
             
             _worldDescription.SetData(data);
         }

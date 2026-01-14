@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Runtime.AsyncLoad;
 using Runtime.ViewDescriptions;
@@ -5,6 +8,7 @@ using Runtime.ViewDescriptions.Achievements;
 using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Inventory;
 using Runtime.ViewDescriptions.Stats;
+using Object = UnityEngine.Object;
 
 namespace Runtime.LoadSteps
 {
@@ -12,29 +16,47 @@ namespace Runtime.LoadSteps
     {
         private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly AddressableModel _addressableModel;
+        private readonly Dictionary<string, Action<Object>> _loadMap;
 
         public ViewDescriptionsLoadStep(WorldViewDescriptions worldViewDescriptions, AddressableModel addressableModel)
         {
             _worldViewDescriptions = worldViewDescriptions;
             _addressableModel = addressableModel;
+
+            _loadMap = new Dictionary<string, Action<Object>>
+            {
+                {
+                    "BuildingViewDescriptionCollection",
+                    obj => _worldViewDescriptions.BuildingViewDescriptions = obj as BuildingViewDescriptionCollection
+                },
+                {
+                    "InventoryViewDescription",
+                    obj => _worldViewDescriptions.InventoryViewDescription = obj as InventoryViewDescription
+                },
+                {
+                    "StatViewDescriptionCollection",
+                    obj => _worldViewDescriptions.StatViewDescriptions = obj as StatViewDescriptionCollection
+                },
+                {
+                    "AchievementViewDescriptionCollection",
+                    obj => _worldViewDescriptions.AchievementsViewDescription =
+                        obj as AchievementViewDescriptionCollection
+                }
+            };
         }
 
         public async Task Run()
         {
-            var buildingViewLoad = _addressableModel.Load<BuildingViewDescriptionCollection>("BuildingViewDescriptionCollection");
-            var inventoryViewLoad = _addressableModel.Load<InventoryViewDescription>("InventoryViewDescription");
-            var statViewLoad = _addressableModel.Load<StatViewDescriptionCollection>("StatViewDescriptionCollection");
-            var achievementViewLoad = _addressableModel.Load<AchievementViewDescriptionCollection>("AchievementViewDescriptionCollection");
+            var tasks = _loadMap.Select(async kvp =>
+            {
+                var model = _addressableModel.Load<Object>(kvp.Key);
 
-            await buildingViewLoad.LoadAwaiter;
-            await inventoryViewLoad.LoadAwaiter;
-            await statViewLoad.LoadAwaiter;
-            await achievementViewLoad.LoadAwaiter;
+                await model.LoadAwaiter;
 
-            _worldViewDescriptions.BuildingViewDescriptions = buildingViewLoad.Result;
-            _worldViewDescriptions.InventoryViewDescription = inventoryViewLoad.Result;
-            _worldViewDescriptions.StatViewDescriptions = statViewLoad.Result;
-            _worldViewDescriptions.AchievementsViewDescription = achievementViewLoad.Result;
+                kvp.Value(model.Result);
+            }).ToArray();
+
+            await Task.WhenAll(tasks);
         }
     }
 }
