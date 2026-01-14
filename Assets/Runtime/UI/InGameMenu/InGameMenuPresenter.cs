@@ -13,22 +13,22 @@ namespace Runtime.UI.InGameMenu
 {
     public class InGameMenuPresenter : IPresenter
     {
-        private readonly InGameMenuView _view;
         private readonly InGameMenuModel _model;
         private readonly MenuContent _menuContent;
         private readonly World _world;
         private readonly WorldViewDescriptions _viewDescriptions;
-
+        
+        private readonly InGameMenuView _view;
         private IPresenter _currentMenuPresenter;
 
         public InGameMenuPresenter(InGameMenuModel model, InGameMenuView view, MenuContent menuContent, World world,
             WorldViewDescriptions viewDescriptions)
         {
             _model = model;
-            _view = view;
             _menuContent = menuContent;
             _world = world;
             _viewDescriptions = viewDescriptions;
+            _view = view;
         }
 
         public void Enable()
@@ -101,7 +101,7 @@ namespace Runtime.UI.InGameMenu
         
         private void OnSaveClicked()
         {
-            var saveMenuView = new SaveMenuView(_view.SavePageAsset);
+            var saveMenuView = new SaveMenuView(_viewDescriptions.MenuViewDescription.SaveAsset);
             var saveMenuPresenter = new SaveMenuPresenter(saveMenuView, _world, CloseMenu);
 
             OpenMenu(saveMenuView.Root, saveMenuPresenter);
@@ -109,7 +109,7 @@ namespace Runtime.UI.InGameMenu
 
         private void OnLoadClicked()
         {
-            var loadMenuView = new LoadMenuView(_view.LoadPageAsset);
+            var loadMenuView = new LoadMenuView(_viewDescriptions.MenuViewDescription.LoadAsset);
             var loadMenuPresenter = new LoadMenuPresenter(loadMenuView, OnLoadSaveSelected, _viewDescriptions);
 
             OpenMenu(loadMenuView.Root, loadMenuPresenter);
@@ -127,7 +127,7 @@ namespace Runtime.UI.InGameMenu
 
         private void OnAchievementsClicked()
         {
-            var achievementsMenuView = new AchievementsMenuView(_view.AchievementsPageAsset);
+            var achievementsMenuView = new AchievementsMenuView(_viewDescriptions.MenuViewDescription.AchievementsMenuAsset);
             var achievementsMenuPresenter =
                 new AchievementsMenuPresenter(achievementsMenuView, _world, _viewDescriptions);
 

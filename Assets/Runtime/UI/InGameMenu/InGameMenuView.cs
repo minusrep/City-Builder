@@ -6,21 +6,15 @@ namespace Runtime.UI.InGameMenu
     {
         public VisualElement Root { get; }
         public VisualElement PageContent { get; }
-        public VisualTreeAsset LoadPageAsset { get; }
-        public VisualTreeAsset SavePageAsset { get; }
-        public VisualTreeAsset AchievementsPageAsset { get; }
         public Button ResumeButton { get; }
         public Button SaveButton { get; }
         public Button LoadButton { get; }
         public Button AchievementsButton { get; }
         public Button ExitButton { get; }
 
-        public InGameMenuView(VisualTreeAsset asset, VisualTreeAsset loadPageAsset, VisualTreeAsset savePageAsset, VisualTreeAsset achievementsPageAsset)
+        public InGameMenuView(VisualTreeAsset inGameMenuAsset)
         {
-            LoadPageAsset = loadPageAsset;
-            SavePageAsset = savePageAsset;
-            AchievementsPageAsset = achievementsPageAsset;
-            Root = asset.CloneTree().Q<VisualElement>(InGameMenuConstants.Content);
+            Root = inGameMenuAsset.CloneTree().Q<VisualElement>(InGameMenuConstants.Content);
             
             PageContent = Root.Q<VisualElement>(InGameMenuConstants.PageContent);
             
