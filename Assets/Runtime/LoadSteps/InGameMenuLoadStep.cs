@@ -1,0 +1,31 @@
+﻿using System.Threading.Tasks;
+using Runtime.Colony;
+using Runtime.UI;
+using Runtime.UI.InGameMenu;
+using Runtime.ViewDescriptions;
+
+namespace Runtime.LoadSteps
+{
+    public class InGameMenuLoadStep : IStep
+    {
+        private readonly World _world;
+        private readonly WorldViewDescriptions _worldViewDescriptions;
+        private readonly MenuContent _menuContent;
+
+        public InGameMenuLoadStep(World world, WorldViewDescriptions worldViewDescriptions, MenuContent menuContent)
+        {
+            _world = world;
+            _worldViewDescriptions = worldViewDescriptions;
+            _menuContent = menuContent;
+        }
+
+        public Task Run()
+        {
+            var inGameMenuView = new InGameMenuView(_worldViewDescriptions.MenuViewDescription.InGameMenuAsset);
+            var inGameMenuPresenter = new InGameMenuPresenter(_world.InGameMenuModel, inGameMenuView, _menuContent, _world,
+                _worldViewDescriptions);
+            inGameMenuPresenter.Enable();
+            return Task.CompletedTask;
+        }
+    }
+}
