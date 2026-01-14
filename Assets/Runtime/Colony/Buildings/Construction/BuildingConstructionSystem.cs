@@ -21,7 +21,7 @@ namespace Runtime.Colony.Buildings.Construction
 
         public void Update(float deltaTime)
         {
-            if (_model.SelectedBuilding != null)
+            if (_model.SelectedBuilding != null && _view.IsReady)
             {
                 var ray = _world.MainCamera.ScreenPointToRay(_model.CursorPosition);
 

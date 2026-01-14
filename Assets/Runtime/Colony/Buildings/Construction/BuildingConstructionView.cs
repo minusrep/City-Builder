@@ -8,6 +8,7 @@ namespace Runtime.Colony.Buildings.Construction
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
         public BuildingPreview Preview { get; set; }
+        public bool IsReady;
 
         private void Awake()
         {
@@ -19,11 +20,14 @@ namespace Runtime.Colony.Buildings.Construction
         {
             var color = canPlace ? Color.green : Color.red;
 
-            foreach (var preview in Preview.Renderers)
+            if (IsReady)
             {
-                foreach (var material in preview.materials)
+                foreach (var preview in Preview.Renderers)
                 {
-                    material.color = color;
+                    foreach (var material in preview.materials)
+                    {
+                        material.color = color;
+                    }
                 }
             }
         }

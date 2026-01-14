@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using fastJSON;
+using Runtime.AsyncLoad;
 using Runtime.Descriptions;
 using UnityEngine;
 
@@ -9,53 +11,40 @@ namespace Runtime.LoadSteps
     public class DescriptionsLoadStep : IStep
     {
         private readonly WorldDescription _worldDescription;
+        private readonly AddressableModel _addressableModel;
+        
+        private readonly Dictionary<string, string> _keys = new()
+        {
+            { "buildings", "buildings_description" },
+            { "citizens", "citizens_description" },
+            { "resources", "items_description" },
+            { "achievements", "achievements_description" },
+            { "points_of_interest", "points_of_interest_description" },
+            { "camera_control", "camera_control" },
+            { "world_grid", "world_grid_description" }
+        };
 
-        public DescriptionsLoadStep(WorldDescription worldDescription)
+        public DescriptionsLoadStep(WorldDescription worldDescription, AddressableModel addressableModel)
         {
             _worldDescription = worldDescription;
+            _addressableModel = addressableModel;
         }
-        
+
         public async Task Run()
         {
-            var buildingDescriptions =
-                JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/buildings_description").text);
-            var citizensDescriptions =
-                JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/citizens_description").text);
-            var resourcesDescriptions =
-                JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/items_description").text);
-            var achievementsDescriptions = 
-                JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/achievements_description").text);
+            var data = new Dictionary<string, object>();
 
-            var pointsOfInterest =
-                JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/points_of_interest_description").text);
-
-            var cameraControl =
-                JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/camera_control").text);
-            
-            var worldGridDescription =
-                JSON.ToObject<Dictionary<string, object>>(
-                    Resources.Load<TextAsset>("Descriptions/world_grid_description").text);
-
-            var data = new Dictionary<string, object>
+            var tasks = _keys.Select(async kvp =>
             {
-                { "buildings", buildingDescriptions },
-                { "citizens", citizensDescriptions },
-                { "resources", resourcesDescriptions },
-                { "achievements", achievementsDescriptions },
-                { "points_of_interest", pointsOfInterest },
-                { "camera_control", cameraControl },
-                { "world_grid", worldGridDescription}
-            };
-
+                var loadModel = _addressableModel.Load<TextAsset>(kvp.Value);
+                await loadModel.LoadAwaiter;
+                var parsed = JSON.ToObject<Dictionary<string, object>>(loadModel.Result.text);
+                data[kvp.Key] = parsed;
+            }).ToArray();
+            
+            await Task.WhenAll(tasks);
+            
             _worldDescription.SetData(data);
-
-            await Task.CompletedTask;
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Runtime
             IStep[] loadSteps =
             {
                 new AddressableLoadStep(_addressableModel, _presenters),
-                new DescriptionsLoadStep(_worldDescription),
+                new DescriptionsLoadStep(_worldDescription, _addressableModel),
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
                 new WorldLoadStep(_world, _worldDescription, _gameSystems, _playerControls),
                 new GameSystemsCollectionLoadStep(_world, _gameSystems),

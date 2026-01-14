@@ -1,5 +1,5 @@
-﻿using Runtime.Colony.Buildings.Common;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Runtime.ViewDescriptions.Buildings
 {
@@ -7,7 +7,7 @@ namespace Runtime.ViewDescriptions.Buildings
     {
         public string Id => name;
         
-        public BuildingView Prefab;
+        public AssetReferenceT<GameObject> Prefab;
         
         public Vector2Int VisualSizeInCells = Vector2Int.one;
     }
