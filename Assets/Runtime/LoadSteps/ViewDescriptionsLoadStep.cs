@@ -8,6 +8,7 @@ using Runtime.ViewDescriptions.Achievements;
 using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Citizens;
 using Runtime.ViewDescriptions.Inventory;
+using Runtime.ViewDescriptions.Load;
 using Runtime.ViewDescriptions.Stats;
 using Object = UnityEngine.Object;
 
@@ -20,31 +21,34 @@ namespace Runtime.LoadSteps
 
         public ViewDescriptionsLoadStep(WorldViewDescriptions worldViewDescriptions, AddressableModel addressableModel)
         {
-            var worldViewDescriptions1 = worldViewDescriptions;
             _addressableModel = addressableModel;
 
             _loadMap = new Dictionary<string, Action<Object>>
             {
                 {
                     "BuildingViewDescriptionCollection",
-                    obj => worldViewDescriptions1.BuildingViewDescriptions = obj as BuildingViewDescriptionCollection
+                    obj => worldViewDescriptions.BuildingViewDescriptions = obj as BuildingViewDescriptionCollection
                 },
                 {
                     "CitizenViewDescription",
-                    obj => worldViewDescriptions1.CitizenViewDescription = obj as CitizenViewDescription
+                    obj => worldViewDescriptions.CitizenViewDescription = obj as CitizenViewDescription
                 },
                 {
                     "InventoryViewDescription",
-                    obj => worldViewDescriptions1.InventoryViewDescription = obj as InventoryViewDescription
+                    obj => worldViewDescriptions.InventoryViewDescription = obj as InventoryViewDescription
                 },
                 {
                     "StatViewDescriptionCollection",
-                    obj => worldViewDescriptions1.StatViewDescriptions = obj as StatViewDescriptionCollection
+                    obj => worldViewDescriptions.StatViewDescriptions = obj as StatViewDescriptionCollection
                 },
                 {
                     "AchievementViewDescriptionCollection",
-                    obj => worldViewDescriptions1.AchievementsViewDescription =
+                    obj => worldViewDescriptions.AchievementsViewDescription =
                         obj as AchievementViewDescriptionCollection
+                },
+                {
+                    "LoadViewDescription",
+                    obj => worldViewDescriptions.LoadViewDescription = obj as LoadViewDescription
                 }
             };
         }
