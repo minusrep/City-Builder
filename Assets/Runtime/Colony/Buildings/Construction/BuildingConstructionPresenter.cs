@@ -67,6 +67,7 @@ namespace Runtime.Colony.Buildings.Construction
 
         private void CleanupPreview()
         {
+            _view.IsReady = false;
             _view.Transform.localScale = Vector3.one;
             _view.Transform.localPosition = Vector3.zero;
 
