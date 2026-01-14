@@ -31,8 +31,8 @@ namespace Runtime.Colony.Achievements.Triggers.Types
             {
                 return;
             }
-            
-            if (Description.Value == buildingChangeEvent.Building.Type)
+
+            if (Description.Value == buildingChangeEvent.Building.Id)
             {
                 Model.AddProgress(buildingChangeEvent.Amount);
             }

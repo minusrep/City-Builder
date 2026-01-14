@@ -59,7 +59,7 @@ namespace Runtime.Colony.Achievements
             
             _view.Hide();
             await AwaitTransitionAsync(_view.Root);
-            _content.PopupRoot.Clear();
+            _view.Root.RemoveFromHierarchy();
         }
 
         private async Task ShowPopupAsync()

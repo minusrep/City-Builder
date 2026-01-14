@@ -31,8 +31,6 @@ namespace Runtime.Colony.Inventory.Cell
 
             Amount += amount;
             
-            MessageBroker.Instance.Publish(new ResourceChangeEvent(resource, Amount));
-            
             OnChanged?.Invoke();
             
             return true;

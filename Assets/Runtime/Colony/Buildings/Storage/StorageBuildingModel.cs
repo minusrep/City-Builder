@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Inventory;
 using Runtime.Descriptions;
@@ -35,6 +36,8 @@ namespace Runtime.Colony.Buildings.Storage
         
         public bool TryAddItem(ResourceDescription resource, int amount)
         {
+            MessageBroker.Instance.Publish(new ResourceChangeEvent(resource, amount));
+            
             return Inventory.TryAddItem(resource, amount);
         }
         

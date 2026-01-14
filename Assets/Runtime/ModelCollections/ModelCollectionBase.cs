@@ -25,6 +25,7 @@ namespace Runtime.ModelCollections
         public virtual void Add(TKey key, TValue model)
         {
             Models.Add(key, model);
+            
             OnAdded?.Invoke(model);
         }
 

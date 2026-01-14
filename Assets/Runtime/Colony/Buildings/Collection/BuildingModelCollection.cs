@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Common.Factories;
 using Runtime.Descriptions.Buildings;
@@ -26,6 +27,13 @@ namespace Runtime.Colony.Buildings.Collection
             return _modelFactory.Create(description.Type, GetCurrentKey(), Vector2Int.zero, description);
         }
 
+        public override void Add(string key, BuildingModel model)
+        {
+            base.Add(key, model);
+            
+            MessageBroker.Instance.Publish(new BuildingChangeEvent(model.BaseDescription, 1));
+        }
+
         protected override BuildingModel CreateModelFromData(string id, Dictionary<string, object> data)
         {
             var position = data.GetVector2Int("position");
@@ -36,6 +44,8 @@ namespace Runtime.Colony.Buildings.Collection
             var description = _descriptions.Descriptions[descriptionId];
 
             var building = _modelFactory.Create(description.Type, GetCurrentKey(), position, description);
+            
+            MessageBroker.Instance.Publish(new BuildingChangeEvent(description, 1));
             
             building.Deserialize(data);
             

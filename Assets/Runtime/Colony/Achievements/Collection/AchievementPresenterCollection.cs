@@ -40,6 +40,8 @@ namespace Runtime.Colony.Achievements.Collection
             {
                 presenter.Disable();
             }
+            
+            _presenters.Clear();
         }
 
         private void Create(string id, AchievementModel model)
