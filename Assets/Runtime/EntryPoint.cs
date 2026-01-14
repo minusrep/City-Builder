@@ -49,7 +49,6 @@ namespace Runtime
         private readonly List<IPresenter> _presenters = new();
 
         private MenuContent _menuContent;
-        private InGameMenuPresenter _inGameMenuPresenter;
         
         private PlayerControls _playerControls;
         
@@ -72,19 +71,15 @@ namespace Runtime
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
                 new HUDLoadStep(_presenters, _world, _hudView),
                 new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent),
-                new CameraControlLoadStep(_world, _cameraControlView, _worldDescription)
+                new CameraControlLoadStep(_world, _cameraControlView, _worldDescription),
+                new InGameMenuLoadStep(_world, _worldViewDescriptions, _menuContent)
             };
             
             foreach (var step in loadSteps)
             {
                 await step.Run();
             }
-
-            var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
-            var inGameMenuView = new InGameMenuView(_worldViewDescriptions.MenuViewDescription.InGameMenuAsset);
-            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, inGameMenuView, _menuContent, _world,
-                _worldViewDescriptions);
-            _inGameMenuPresenter.Enable();
+            
             Application.quitting += OnQuit;
 
 #if UNITY_EDITOR
@@ -124,8 +119,6 @@ namespace Runtime
             {
                 presenter.Disable();
             }
-
-            _inGameMenuPresenter.Disable();
         }
     }
 }

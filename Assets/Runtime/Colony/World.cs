@@ -11,6 +11,7 @@ using Runtime.Extensions;
 using Runtime.GameSystems;
 using Runtime.Input;
 using Runtime.ModelCollections;
+using Runtime.UI.InGameMenu;
 using UnityEngine;
 
 namespace Runtime.Colony
@@ -33,6 +34,7 @@ namespace Runtime.Colony
         public GameSystemCollection GameSystems { get; private set; }
         public OrderManager OrderManager { get; private set; }
         public CameraControlModel MainCameraControl { get; private set; }
+        public InGameMenuModel InGameMenuModel { get; private set; }
 
         public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider,
             GameSystemCollection gameSystems, PlayerControls playerControls)
@@ -51,6 +53,7 @@ namespace Runtime.Colony
             BuildingConstructionModel = new BuildingConstructionModel(PlayerControls);
             OrderManager = new OrderManager();
             MainCameraControl = new CameraControlModel(PlayerControls);
+            InGameMenuModel = new InGameMenuModel(PlayerControls);
         }
 
         public Dictionary<string, object> Serialize()
