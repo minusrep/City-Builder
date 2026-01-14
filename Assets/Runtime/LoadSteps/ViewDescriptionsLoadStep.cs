@@ -8,8 +8,9 @@ using Runtime.ViewDescriptions.Achievements;
 using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Citizens;
 using Runtime.ViewDescriptions.Inventory;
-using Runtime.ViewDescriptions.Load;
 using Runtime.ViewDescriptions.Stats;
+using Runtime.ViewDescriptions.UI.BuildingConstruction;
+using Runtime.ViewDescriptions.UI.Load;
 using Object = UnityEngine.Object;
 
 namespace Runtime.LoadSteps
@@ -47,8 +48,12 @@ namespace Runtime.LoadSteps
                         obj as AchievementViewDescriptionCollection
                 },
                 {
-                    "LoadViewDescription",
-                    obj => worldViewDescriptions.LoadViewDescription = obj as LoadViewDescription
+                    "MenuViewDescription",
+                    obj => worldViewDescriptions.MenuViewDescription = obj as MenuViewDescription
+                },
+                {
+                    "BuildingConstructionMenuViewDescription",
+                    obj => worldViewDescriptions.BuildingConstructionMenuViewDescription = obj as BuildingConstructionMenuViewDescription
                 }
             };
         }

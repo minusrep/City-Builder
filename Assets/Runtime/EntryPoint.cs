@@ -26,11 +26,7 @@ namespace Runtime
         [Header("UI")] 
         [SerializeField] private UIDocument _menuDocument;
         [SerializeField] private UIDocument _popupDocument;
-        [SerializeField] private VisualTreeAsset _inGameMenuAsset;
-        [SerializeField] private VisualTreeAsset _loadMenuAsset;
-        [SerializeField] private VisualTreeAsset _saveMenuAsset;
-        [SerializeField] private VisualTreeAsset _achievementsMenuAsset;
-        [SerializeField] private VisualTreeAsset _constructionMenuAsset;
+        [SerializeField] private UIDocument _hudDocument;
 
         [Header("View")] 
         [SerializeField] private BuildingCollectionView _buildingCollectionView;
@@ -73,7 +69,7 @@ namespace Runtime
                 new WorldLoadStep(_world, _worldDescription, _gameSystems, _playerControls),
                 new GameSystemsCollectionLoadStep(_world, _gameSystems),
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView, _worldViewDescriptions),
-                new BuildingConstructionLoadStep(_constructionMenuAsset, _buildingConstructionView, _worldGridView,
+                new BuildingConstructionLoadStep(_buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
                 new HUDLoadStep(_presenters, _world, _playerControls, _hudView),
@@ -93,8 +89,8 @@ namespace Runtime
             _cameraControlPresenter.Enable();
 
             var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
-            var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _saveMenuAsset, _achievementsMenuAsset);
-            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent, _world,
+            var inGameMenuView = new InGameMenuView(_worldViewDescriptions.MenuViewDescription.InGameMenuAsset);
+            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, inGameMenuView, _menuContent, _world,
                 _worldViewDescriptions);
             _inGameMenuPresenter.Enable();
             Application.quitting += OnQuit;

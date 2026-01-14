@@ -25,13 +25,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3101db79ef527d94e84677b6356a6249
+    m_Address: BuildingConstructionMenuViewDescription
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d454d152ba9c4740a12741802126973
     m_Address: CitizenViewDescription
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b65e5d8a5f71904d918d95b0371578d
-    m_Address: LoadViewDescription
+    m_Address: MenuViewDescription
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

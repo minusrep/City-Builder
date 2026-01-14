@@ -6,13 +6,11 @@ using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Descriptions;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
-using UnityEngine.UIElements;
 
 namespace Runtime.LoadSteps
 {
     public class BuildingConstructionLoadStep : IStep
     {
-        private readonly VisualTreeAsset _constructionMenuAsset;
         private readonly BuildingConstructionView _buildingConstructionView;
         private readonly WorldGridView _worldGridView;
         private readonly WorldDescription _worldDescription;
@@ -20,12 +18,10 @@ namespace Runtime.LoadSteps
         private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly MenuContent _menuContent;
 
-        public BuildingConstructionLoadStep(VisualTreeAsset constructionMenuAsset,
-            BuildingConstructionView buildingConstructionView, WorldGridView worldGridView,
+        public BuildingConstructionLoadStep(BuildingConstructionView buildingConstructionView, WorldGridView worldGridView,
             WorldDescription worldDescription, World world, WorldViewDescriptions worldViewDescriptions,
             MenuContent menuContent)
         {
-            _constructionMenuAsset = constructionMenuAsset;
             _buildingConstructionView = buildingConstructionView;
             _worldGridView = worldGridView;
             _worldDescription = worldDescription;
@@ -44,7 +40,7 @@ namespace Runtime.LoadSteps
             buildingConstructionPresenter.Enable();
 
             var buildingConstructionMenuView =
-                new BuildingConstructionMenuView(_constructionMenuAsset);
+                new BuildingConstructionMenuView(_worldViewDescriptions.BuildingConstructionMenuViewDescription.ConstructionMenuAsset);
             var buildingConstructionMenuPresenter = new BuildingConstructionMenuPresenter(buildingConstructionMenuView, _world,
                 _worldDescription, _menuContent);
             buildingConstructionMenuPresenter.Enable();
