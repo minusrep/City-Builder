@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Descriptions
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Descriptions
+  m_GUID: 2412a7597fd3de941aaa13c36838fbf9
+  m_SerializeEntries:
+  - m_GUID: 4a0ea41e48e641728ab08e4015285682
+    m_Address: Assets/Content/Descriptions/points_of_interest_description.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 567343a91387434994c68c245df69122
+    m_Address: Assets/Content/Descriptions/achievements_description.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b7e2693663449b59f18ad965f150a67
+    m_Address: Assets/Content/Descriptions/items_description.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 828bfb4aaa5a4024cbe04956a46065d7
+    m_Address: Assets/Content/Descriptions/camera_control.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9b1313dd3a2438483882f4de5e9600f
+    m_Address: Assets/Content/Descriptions/buildings_description.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be28a9a04073e7e4da93eab2e24f4a43
+    m_Address: Assets/Content/Descriptions/world_grid_description.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea6c6e8053254022ab5cc597539194bd
+    m_Address: Assets/Content/Descriptions/citizens_description.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5870ca5a51afee640ada8608be70eb1d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3b010e500b5d5bd43a72f271c651f581, type: 2}
+    - {fileID: 11400000, guid: 6fbb59847f8f72e4a873cc63f2532efa, type: 2}
