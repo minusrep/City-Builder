@@ -16,12 +16,12 @@ MonoBehaviour:
   m_GUID: 7cde52294261c1d4ca5b85a6c20be3cc
   m_SerializeEntries:
   - m_GUID: 29c360f540bb3514382bb935bbb9c7f4
-    m_Address: Assets/Content/Prefabs/Buildings/Tavern.prefab
+    m_Address: Tavern
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 436d6bceca5bd464aa7470befbb7c8c2
-    m_Address: Assets/Content/Prefabs/Buildings/Sawmill.prefab
+    m_Address: Sawmill
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,27 +31,27 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d3d64af25b15b843a2c7015b2b2378b
-    m_Address: Assets/Content/Prefabs/Buildings/Warehouse.prefab
+    m_Address: Warehouse
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 72aae8735852d5c4081313db4a53fce0
-    m_Address: Assets/Content/Prefabs/Buildings/Mine.prefab
+    m_Address: Mine
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7d25b5131c1d4414c892fed21d89d29b
-    m_Address: Assets/Content/Prefabs/Buildings/Latern.prefab
+    m_Address: Latern
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bb95363bf246e774094abd04c42eb708
-    m_Address: Assets/Content/Prefabs/Buildings/Shelter.prefab
+    m_Address: Shelter
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c657e3fa35e3dad47b62d20969bf8ba5
-    m_Address: Assets/Content/Prefabs/Buildings/Smelter.prefab
+    m_Address: Smelter
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
