@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b65e5d8a5f71904d918d95b0371578d
+    m_Address: LoadViewDescription
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a574d05d7d18ca7408d4d8210dacfe1e
     m_Address: AchievementViewDescriptionCollection
     m_ReadOnly: 0

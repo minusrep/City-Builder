@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17bdf0d34d64d639390eb9c5e8cd581, type: 3}
   m_Name: LoadViewDescription
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Load.LoadViewDescription
-  LoadAsset: {fileID: 9197481963319205126, guid: 5d3b3708a5a8c6744bc9c760777398d3, type: 3}
+  LoadAsset: {fileID: 9197481963319205126, guid: 33043ae5f0504f04885c0572e51c278b, type: 3}
   SaveAsset: {fileID: 0}
