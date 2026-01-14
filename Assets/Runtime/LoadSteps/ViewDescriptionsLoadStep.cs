@@ -6,6 +6,7 @@ using Runtime.AsyncLoad;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Achievements;
 using Runtime.ViewDescriptions.Buildings;
+using Runtime.ViewDescriptions.Citizens;
 using Runtime.ViewDescriptions.Inventory;
 using Runtime.ViewDescriptions.Stats;
 using Object = UnityEngine.Object;
@@ -14,32 +15,35 @@ namespace Runtime.LoadSteps
 {
     public class ViewDescriptionsLoadStep : IStep
     {
-        private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly AddressableModel _addressableModel;
         private readonly Dictionary<string, Action<Object>> _loadMap;
 
         public ViewDescriptionsLoadStep(WorldViewDescriptions worldViewDescriptions, AddressableModel addressableModel)
         {
-            _worldViewDescriptions = worldViewDescriptions;
+            var worldViewDescriptions1 = worldViewDescriptions;
             _addressableModel = addressableModel;
 
             _loadMap = new Dictionary<string, Action<Object>>
             {
                 {
                     "BuildingViewDescriptionCollection",
-                    obj => _worldViewDescriptions.BuildingViewDescriptions = obj as BuildingViewDescriptionCollection
+                    obj => worldViewDescriptions1.BuildingViewDescriptions = obj as BuildingViewDescriptionCollection
+                },
+                {
+                    "CitizenViewDescription",
+                    obj => worldViewDescriptions1.CitizenViewDescription = obj as CitizenViewDescription
                 },
                 {
                     "InventoryViewDescription",
-                    obj => _worldViewDescriptions.InventoryViewDescription = obj as InventoryViewDescription
+                    obj => worldViewDescriptions1.InventoryViewDescription = obj as InventoryViewDescription
                 },
                 {
                     "StatViewDescriptionCollection",
-                    obj => _worldViewDescriptions.StatViewDescriptions = obj as StatViewDescriptionCollection
+                    obj => worldViewDescriptions1.StatViewDescriptions = obj as StatViewDescriptionCollection
                 },
                 {
                     "AchievementViewDescriptionCollection",
-                    obj => _worldViewDescriptions.AchievementsViewDescription =
+                    obj => worldViewDescriptions1.AchievementsViewDescription =
                         obj as AchievementViewDescriptionCollection
                 }
             };
