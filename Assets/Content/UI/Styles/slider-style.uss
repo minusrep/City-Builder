@@ -10,7 +10,6 @@
 }
 
 .unity-base-slider__tracker {
-    background-color: magenta;
 }
 
 .unity-base-slider--vertical .unity-base-slider__tracker {
@@ -76,7 +75,7 @@
 }
 
 .unity-base-slider .unity-base-slider__dragger {
-    background-color: rgb(255, 180, 0);
+    background-color: rgb(255, 199, 49);
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;

@@ -1,12 +1,12 @@
 .menu-button {
-    min-height: 80px;
-    max-height: 80px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    min-height: 75px;
+    max-height: 75px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     -unity-font-definition: url("project://database/Assets/Content/Fonts/Onest-Bold.ttf?fileID=12800000&guid=739e3c8cb2824ed43b983e0f7077a4a1&type=3#Onest-Bold");
-    font-size: 24px;
+    font-size: 26px;
     min-width: 400px;
     max-width: 400px;
     -unity-font-style: normal;
@@ -15,105 +15,99 @@
     border-right-width: 5px;
     border-bottom-width: 5px;
     border-left-width: 5px;
-    border-left-color: rgb(132, 132, 135);
-    border-right-color: rgb(132, 132, 135);
-    border-top-color: rgb(132, 132, 135);
-    border-bottom-color: rgb(132, 132, 135);
+    border-left-color: rgb(185, 185, 185);
+    border-right-color: rgb(185, 185, 185);
+    border-top-color: rgb(185, 185, 185);
+    border-bottom-color: rgb(185, 185, 185);
     margin-top: 0;
     margin-bottom: 20px;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-in-out;
+    transition-duration: 0.05s;
+    transition-timing-function: ease-out-bounce;
     transition-property: all;
     transition-delay: 0s;
     -unity-background-scale-mode: scale-and-crop;
     background-position-x: center;
     background-image: none;
     background-color: rgb(55, 55, 63);
+    letter-spacing: 5px;
 }
 
 .menu-button:hover {
-    min-height: 80px;
-    max-height: 80px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    min-height: 75px;
+    max-height: 75px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     -unity-font-definition: url("project://database/Assets/Content/Fonts/Onest-Bold.ttf?fileID=12800000&guid=739e3c8cb2824ed43b983e0f7077a4a1&type=3#Onest-Bold");
     font-size: 26px;
     min-width: 400px;
     max-width: 400px;
     -unity-font-style: normal;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    background-color: rgb(255, 199, 49);
+    color: rgb(36, 36, 41);
     border-top-width: 5px;
     border-right-width: 5px;
     border-bottom-width: 5px;
     border-left-width: 5px;
-    border-left-color: rgb(255, 255, 255);
-    border-right-color: rgb(255, 255, 255);
-    border-top-color: rgb(255, 255, 255);
-    border-bottom-color: rgb(255, 255, 255);
+    border-left-color: rgb(255, 199, 49);
+    border-right-color: rgb(255, 199, 49);
+    border-top-color: rgb(255, 199, 49);
+    border-bottom-color: rgb(255, 199, 49);
     margin-top: 0;
     margin-bottom: 20px;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-in-out-sine;
+    transition-duration: 0.05s;
+    transition-timing-function: ease-out-bounce;
     transition-property: all;
     transition-delay: 0s;
     -unity-background-scale-mode: scale-and-crop;
     background-position-x: center;
     background-image: none;
+    letter-spacing: 5px;
 }
 
 .menu-button:active {
-    min-height: 80px;
-    max-height: 80px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    min-height: 75px;
+    max-height: 75px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     -unity-font-definition: url("project://database/Assets/Content/Fonts/Onest-Bold.ttf?fileID=12800000&guid=739e3c8cb2824ed43b983e0f7077a4a1&type=3#Onest-Bold");
-    font-size: 24px;
-    min-width: 400px;
-    max-width: 400px;
+    font-size: 26px;
+    min-width: 395px;
+    max-width: 395px;
     -unity-font-style: normal;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    background-color: rgb(255, 199, 49);
+    color: rgb(36, 36, 41);
     border-top-width: 5px;
     border-right-width: 5px;
     border-bottom-width: 5px;
     border-left-width: 5px;
-    border-left-color: rgb(255, 255, 255);
-    border-right-color: rgb(255, 255, 255);
-    border-top-color: rgb(255, 255, 255);
-    border-bottom-color: rgb(255, 255, 255);
+    border-left-color: rgb(238, 187, 50);
+    border-right-color: rgb(238, 187, 50);
+    border-top-color: rgb(238, 187, 50);
+    border-bottom-color: rgb(238, 187, 50);
     margin-top: 0;
     margin-bottom: 20px;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-in-out-sine;
+    transition-duration: 0.05s;
+    transition-timing-function: ease-in-bounce;
     transition-property: all;
     transition-delay: 0s;
     -unity-background-scale-mode: scale-and-crop;
     background-position-x: center;
+    background-image: none;
+    letter-spacing: 0;
 }
-
-
-
-
-
-
-
-
-
-
