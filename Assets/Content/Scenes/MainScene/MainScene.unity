@@ -1210,8 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b392b834ba940e887bca6cd8527609e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Citizens.CitizenCollectionView
-  _transform: {fileID: 1822786098}
-  _citizenViewPrefab: {fileID: 3165262886286983944, guid: 185544215506d724288e301cb095cb6f, type: 3}
 --- !u!1 &1829929929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ca7c45105a42f5ac0a82b3a644e50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Construction.BuildingConstructionView
+  IsReady: 0
 --- !u!1 &1995766814148727
 GameObject:
   m_ObjectHideFlags: 0
