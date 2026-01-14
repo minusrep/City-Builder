@@ -596,12 +596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01aba48a1f425788c23f5993c6f83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuDocument: {fileID: 1829929930}
-  _popupDocument: {fileID: 1829929930}
-  _inGameMenuAsset: {fileID: 9197481963319205126, guid: ca62dc2c731d58e4cbe04165d3ff0ce4, type: 3}
-  _loadMenuAsset: {fileID: 9197481963319205126, guid: 33043ae5f0504f04885c0572e51c278b, type: 3}
-  _saveMenuAsset: {fileID: 9197481963319205126, guid: ed8fc4ee038da5d498fbe63bbdc8bbed, type: 3}
-  _achievementsMenuAsset: {fileID: 9197481963319205126, guid: a3dda2e779c49434da21210c906fb3a4, type: 3}
+  _menuDocument: {fileID: 2126681101}
+  _popupDocument: {fileID: 1261220359}
+  _hudDocument: {fileID: 725573876}
   _constructionMenuAsset: {fileID: 9197481963319205126, guid: 00b1984865fcfe64e8d5d798e54e58a3, type: 3}
   _buildingCollectionView: {fileID: 730573693}
   _citizenViewCollection: {fileID: 1822786099}
@@ -721,7 +718,7 @@ GameObject:
   - component: {fileID: 725573876}
   - component: {fileID: 725573875}
   - component: {fileID: 725573874}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: '[HUD]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,12 +783,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725573873}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1829929931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &730573691
 GameObject:
@@ -931,8 +928,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1261220358}
   - component: {fileID: 1261220359}
-  m_Layer: 0
-  m_Name: '[Popup]'
+  m_Layer: 5
+  m_Name: '[POPUP]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -951,7 +948,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1829929931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1261220359
 MonoBehaviour:
@@ -968,7 +965,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: e39cfe1351f7c2147ba6e833703dcf07, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 9cad400c85663f44bb7ee6c63716255e, type: 3}
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Position: 1
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -1219,7 +1216,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1829929931}
-  - component: {fileID: 1829929930}
   m_Layer: 5
   m_Name: '[INTERFACE]'
   m_TagString: Untagged
@@ -1227,29 +1223,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1829929930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829929929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: e39cfe1351f7c2147ba6e833703dcf07, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 14778297056843d489e35fec70187a49, type: 3}
-  m_SortingOrder: 0
-  m_Position: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
 --- !u!4 &1829929931
 Transform:
   m_ObjectHideFlags: 0
@@ -1262,7 +1235,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1261220358}
+  - {fileID: 2126681100}
+  - {fileID: 725573877}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1858668569
@@ -1396,6 +1372,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Construction.BuildingConstructionView
   IsReady: 0
+--- !u!1 &2126681099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2126681100}
+  - component: {fileID: 2126681101}
+  m_Layer: 5
+  m_Name: '[MENU]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2126681100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126681099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1829929931}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2126681101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126681099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: e39cfe1351f7c2147ba6e833703dcf07, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 14778297056843d489e35fec70187a49, type: 3}
+  m_SortingOrder: 1
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!1 &1995766814148727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,5 +1549,3 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1858668570}
   - {fileID: 1829929931}
-  - {fileID: 1261220358}
-  - {fileID: 725573877}
