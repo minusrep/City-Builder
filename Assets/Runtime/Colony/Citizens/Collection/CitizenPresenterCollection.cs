@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Colony.Citizens.Systems;
 using Runtime.Common;
+using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Citizens.Collection
@@ -16,6 +17,8 @@ namespace Runtime.Colony.Citizens.Collection
         private readonly World _world;
 
         private readonly WorldViewDescriptions _viewDescriptions;
+        
+        private IObjectPool<CitizenView> _viewPool;
 
         public CitizenPresenterCollection(CitizenViewCollection view, CitizenModelCollection model, 
             World world,  WorldViewDescriptions viewDescriptions)
@@ -29,8 +32,14 @@ namespace Runtime.Colony.Citizens.Collection
             _viewDescriptions = viewDescriptions;
         }
 
-        public void Enable()
+        public async void Enable()
         {
+            var prefab = await _viewDescriptions.CitizenViewDescription.Prefab.LoadAssetAsync().Task;
+            var citizenView = prefab.GetComponent<CitizenView>();
+            _viewPool = new ObjectPool<CitizenView>(citizenView, 20, _view.Transform);
+            
+            _viewDescriptions.CitizenViewDescription.Prefab.ReleaseAsset();
+            
             foreach (var model in _model.Models.Values)
             {
                 CreateCitizenPresenter(model);
@@ -72,7 +81,7 @@ namespace Runtime.Colony.Citizens.Collection
 
         private void CreateCitizenPresenter(CitizenModel citizenModel)
         {
-            var citizenView = _view.InstantiateCitizenView();
+            var citizenView = _viewPool.Get();
 
             var citizenPresenter = new CitizenPresenter(citizenView, citizenModel, _world, _viewDescriptions);
             
