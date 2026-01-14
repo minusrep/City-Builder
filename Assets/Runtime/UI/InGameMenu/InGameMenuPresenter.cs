@@ -3,6 +3,7 @@ using Runtime.Common;
 using Runtime.LoadSteps;
 using Runtime.UI.InGameMenu.AchievementsMenu;
 using Runtime.UI.InGameMenu.LoadMenu;
+using Runtime.UI.InGameMenu.SaveMenu;
 using Runtime.ViewDescriptions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -100,23 +101,28 @@ namespace Runtime.UI.InGameMenu
         
         private void OnSaveClicked()
         {
-            Save();
-        }
+            var saveMenuView = new SaveMenuView(_view.SavePageAsset);
+            var saveMenuPresenter = new SaveMenuPresenter(saveMenuView, _world, CloseMenu);
 
-        private async void Save()
-        {
-            var saving = new WorldSaveStep(_world);
-            var savingTask = saving.Run();
-            
-            await savingTask;
+            OpenMenu(saveMenuView.Root, saveMenuPresenter);
         }
 
         private void OnLoadClicked()
         {
             var loadMenuView = new LoadMenuView(_view.LoadPageAsset);
-            var loadMenuPresenter = new LoadMenuPresenter(loadMenuView);
+            var loadMenuPresenter = new LoadMenuPresenter(loadMenuView, OnLoadSaveSelected, _viewDescriptions);
 
             OpenMenu(loadMenuView.Root, loadMenuPresenter);
+        }
+
+        private async void OnLoadSaveSelected(string saveName)
+        {
+            CloseMenu();
+
+            // TODO: Добавить перезагрузку сцены
+            
+            var loadStep = new WorldLoadStep(_world, _world.WorldDescription, _world.GameSystems, _world.PlayerControls, saveName);
+            await loadStep.Run();
         }
 
         private void OnAchievementsClicked()

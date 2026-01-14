@@ -28,6 +28,7 @@ namespace Runtime
         [SerializeField] private UIDocument _popupDocument;
         [SerializeField] private VisualTreeAsset _inGameMenuAsset;
         [SerializeField] private VisualTreeAsset _loadMenuAsset;
+        [SerializeField] private VisualTreeAsset _saveMenuAsset;
         [SerializeField] private VisualTreeAsset _achievementsMenuAsset;
         [SerializeField] private VisualTreeAsset _constructionMenuAsset;
 
@@ -68,6 +69,7 @@ namespace Runtime
                 new AddressableLoadStep(_addressableModel, _presenters),
                 new DescriptionsLoadStep(_worldDescription, _addressableModel),
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
+                
                 new WorldLoadStep(_world, _worldDescription, _gameSystems, _playerControls),
                 new GameSystemsCollectionLoadStep(_world, _gameSystems),
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView,
@@ -92,7 +94,7 @@ namespace Runtime
             _cameraControlPresenter.Enable();
 
             var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
-            var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _achievementsMenuAsset);
+            var pauseMenuView = new InGameMenuView(_inGameMenuAsset, _loadMenuAsset, _saveMenuAsset, _achievementsMenuAsset);
             _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent, _world,
                 _worldViewDescriptions);
             _inGameMenuPresenter.Enable();

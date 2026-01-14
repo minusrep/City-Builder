@@ -8,6 +8,7 @@ using Runtime.Colony.GameResources;
 using Runtime.Descriptions;
 using Runtime.GameSystems;
 using Runtime.Input;
+using Runtime.SaveSystem;
 using UnityEngine;
 
 namespace Runtime.LoadSteps
@@ -20,13 +21,15 @@ namespace Runtime.LoadSteps
         private readonly WorldDescription _worldDescription;
         private readonly GameSystemCollection _gameSystems;
         private readonly PlayerControls _playerControls;
-
-        public WorldLoadStep(World world, WorldDescription worldDescription, GameSystemCollection gameSystems, PlayerControls playerControls)
+        private readonly string _saveName;
+        
+        public WorldLoadStep(World world, WorldDescription worldDescription, GameSystemCollection gameSystems, PlayerControls playerControls, string saveName = null)
         {
             _world = world;
             _worldDescription = worldDescription;
             _gameSystems = gameSystems;
             _playerControls = playerControls;
+            _saveName = saveName;
         }
         
         public async Task Run()
@@ -38,11 +41,22 @@ namespace Runtime.LoadSteps
             var factoryProvider = new FactoryProvider(resourceFactory, buildingModelFactory);
             
             _world.SetData(_worldDescription, factoryProvider, _gameSystems, _playerControls);
+
+            string loadPath;
             
-            if (File.Exists(WorldDataPath))
+            if (!string.IsNullOrEmpty(_saveName))
             {
-                 var json = await File.ReadAllTextAsync(WorldDataPath);
-                
+                loadPath = SaveFileManager.GetSaveFilePath(_saveName);
+            }
+            else
+            {
+                loadPath = WorldDataPath;
+            }
+
+            if (File.Exists(loadPath))
+            {
+                 var json = await File.ReadAllTextAsync(loadPath);
+
                 var dictionary = JSON.ToObject<Dictionary<string, object>>(json);
                 
                 _world.Deserialize(dictionary);

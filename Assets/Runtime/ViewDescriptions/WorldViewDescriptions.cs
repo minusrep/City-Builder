@@ -2,6 +2,7 @@
 using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Citizens;
 using Runtime.ViewDescriptions.Inventory;
+using Runtime.ViewDescriptions.Load;
 using Runtime.ViewDescriptions.Stats;
 
 namespace Runtime.ViewDescriptions
@@ -17,5 +18,7 @@ namespace Runtime.ViewDescriptions
         public StatViewDescriptionCollection StatViewDescriptions { get; set; }
 
         public AchievementViewDescriptionCollection AchievementsViewDescription { get; set; }
+        
+        public LoadViewDescription LoadViewDescription { get; set; }
     }
 }
