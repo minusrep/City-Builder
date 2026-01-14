@@ -11,7 +11,8 @@ namespace Runtime.UI.InGameMenu.LoadMenu
         private readonly Action<string> _onLoadSelected;
         private readonly WorldViewDescriptions _worldViewDescriptions;
 
-        public LoadMenuPresenter(LoadMenuView view, Action<string> onLoadSelected, WorldViewDescriptions worldViewDescriptions)
+        public LoadMenuPresenter(LoadMenuView view, Action<string> onLoadSelected,
+            WorldViewDescriptions worldViewDescriptions)
         {
             _view = view;
             _onLoadSelected = onLoadSelected;
@@ -34,18 +35,28 @@ namespace Runtime.UI.InGameMenu.LoadMenu
             _view.SavesList.Clear();
 
             var saves = SaveFileManager.GetAllSaves();
-            
+
             foreach (var save in saves)
             {
-                var loadPanel = new LoadPanel(_worldViewDescriptions.LoadViewDescription.LoadAsset);
-                
-                loadPanel.Title.text = save.DisplayName;
-                loadPanel.Date.text = save.LastModified.ToString("dd.MM.yyyy");
-                loadPanel.Time.text = save.LastModified.ToString("HH:mm");
-                
+                var loadPanel = new LoadPanelView(_worldViewDescriptions.LoadViewDescription.LoadAsset)
+                {
+                    Title =
+                    {
+                        text = save.DisplayName
+                    },
+                    Date =
+                    {
+                        text = save.LastModified.ToString("dd.MM.yyyy")
+                    },
+                    Time =
+                    {
+                        text = save.LastModified.ToString("HH:mm")
+                    }
+                };
+
                 loadPanel.LoadButton.clicked += () => OnLoadClicked(save.FileName);
                 loadPanel.DeleteButton.clicked += () => OnDeleteClicked(save.FileName);
-                
+
                 _view.SavesList.Add(loadPanel.Root);
             }
         }

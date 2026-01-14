@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 
 namespace Runtime.ViewDescriptions
 {
-    public class LoadPanel
+    public class LoadPanelView
     {
         public VisualElement Root { get; }
         public Image Image { get; }
@@ -13,7 +13,7 @@ namespace Runtime.ViewDescriptions
         public Button DeleteButton { get; }
         public Button LoadButton { get; }
 
-        public LoadPanel(VisualTreeAsset asset)
+        public LoadPanelView(VisualTreeAsset asset)
         {
             Root = asset.CloneTree().Q<VisualElement>("load-panel");
 
