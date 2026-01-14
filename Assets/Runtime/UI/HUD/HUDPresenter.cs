@@ -14,23 +14,20 @@ namespace Runtime.UI.HUD
 
         private readonly World _world;
 
-        private readonly PlayerControls _playerControls;
-
         private BuildingSelectionPresenter _buildingSelectionPresenter;
 
         private BuildingPanelPresenter _buildingPanelPresenter;
         
-        public HUDPresenter(HUDView view, HUDModel model, World world, PlayerControls playerControls)
+        public HUDPresenter(HUDView view, HUDModel model, World world)
         {
             _view = view;
             _model = model;
             _world = world;
-            _playerControls = playerControls;
         }
 
         public void Enable()
         {
-            _buildingSelectionPresenter = new BuildingSelectionPresenter(_view.BuildingSelectionView, _model.BuildingSelectionModel, _playerControls);
+            _buildingSelectionPresenter = new BuildingSelectionPresenter(_view.BuildingSelectionView, _model.BuildingSelectionModel, _world);
             
             _buildingPanelPresenter = new BuildingPanelPresenter(_view, _model.BuildingSelectionModel, _world);
             
