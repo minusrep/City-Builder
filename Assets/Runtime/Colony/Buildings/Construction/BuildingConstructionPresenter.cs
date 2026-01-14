@@ -46,7 +46,7 @@ namespace Runtime.Colony.Buildings.Construction
             _world.GameSystems.Remove(_system);
         }
 
-        private void RebuildView()
+        private async void RebuildView()
         {
             CleanupPreview();
 
@@ -54,13 +54,12 @@ namespace Runtime.Colony.Buildings.Construction
             {
                 var viewDescription = GetViewDescription();
 
-                var previewInstance = Object.Instantiate(
-                    viewDescription.Prefab.Preview,
-                    _view.Transform,
-                    false
-                );
-
-                _view.Preview = previewInstance;
+                var prefab = await viewDescription.Prefab.LoadAssetAsync().Task;
+                var buildingView = prefab.GetComponent<BuildingView>();
+                var previews = await Object.InstantiateAsync(buildingView.Preview, _view.Transform);
+                viewDescription.Prefab.ReleaseAsset();
+                _view.Preview = previews[0];
+                _view.IsReady = true;
 
                 _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription);
             }
@@ -69,6 +68,7 @@ namespace Runtime.Colony.Buildings.Construction
         private void CleanupPreview()
         {
             _view.Transform.localScale = Vector3.one;
+            _view.Transform.localPosition = Vector3.zero;
 
             if (_view.Preview != null)
             {

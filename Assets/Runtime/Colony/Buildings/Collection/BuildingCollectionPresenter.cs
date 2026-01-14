@@ -10,6 +10,8 @@ namespace Runtime.Colony.Buildings.Collection
     public class BuildingCollectionPresenter : IPresenter
     {
         private readonly World _world;
+        private readonly BuildingCollectionView _view;
+        private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly BuildingPresenterFactory _presenterFactory;
 
         private readonly Dictionary<string, IPresenter> _presenters = new();
@@ -20,18 +22,24 @@ namespace Runtime.Colony.Buildings.Collection
             WorldViewDescriptions worldViewDescriptions)
         {
             _world = world;
-
-            foreach (var viewDescriptionBase in worldViewDescriptions.BuildingViewDescriptions.Descriptions)
-            {
-                _viewPools[viewDescriptionBase.Id] =
-                    new ObjectPool<BuildingView>(viewDescriptionBase.Prefab, 2, view.Transform);
-            }
+            _view = view;
+            _worldViewDescriptions = worldViewDescriptions;
 
             _presenterFactory = new BuildingPresenterFactory(_world, _viewPools, worldViewDescriptions);
         }
 
-        public void Enable()
+        public async void Enable()
         {
+            foreach (var viewDescriptionBase in _worldViewDescriptions.BuildingViewDescriptions.Descriptions)
+            {
+                var prefab = await viewDescriptionBase.Prefab.LoadAssetAsync().Task;
+                var buildingView = prefab.GetComponent<BuildingView>();
+                _viewPools[viewDescriptionBase.Id] =
+                    new ObjectPool<BuildingView>(buildingView, 2, _view.Transform);
+                
+                viewDescriptionBase.Prefab.ReleaseAsset();
+            }
+            
             _world.Buildings.OnAdded += HandleAdded;
             _world.Buildings.OnRemoved += HandleRemoved;
 
