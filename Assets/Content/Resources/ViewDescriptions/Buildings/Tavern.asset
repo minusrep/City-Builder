@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36a03fbc9cb405f982a32658e56ceb4, type: 3}
   m_Name: Tavern
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ServiceBuildingViewDescription
-  Prefab: {fileID: 1686836590681740451, guid: 29c360f540bb3514382bb935bbb9c7f4, type: 3}
+  Prefab:
+    m_AssetGUID: 29c360f540bb3514382bb935bbb9c7f4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
   VisualSizeInCells: {x: 5, y: 5}
-  AdditionalWorldOffset: {x: 0, y: 0, z: 0}

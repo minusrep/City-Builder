@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36a03fbc9cb405f982a32658e56ceb4, type: 3}
   m_Name: Smelter
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.ProductionBuildingViewDescription
-  Prefab: {fileID: 7811179642611185603, guid: c657e3fa35e3dad47b62d20969bf8ba5, type: 3}
+  Prefab:
+    m_AssetGUID: c657e3fa35e3dad47b62d20969bf8ba5
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
   VisualSizeInCells: {x: 2, y: 2}

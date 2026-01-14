@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36a03fbc9cb405f982a32658e56ceb4, type: 3}
   m_Name: Warehouse
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Buildings.StorageBuildingViewDescription
-  Prefab: {fileID: 8364319867359400544, guid: 5d3d64af25b15b843a2c7015b2b2378b, type: 3}
+  Prefab:
+    m_AssetGUID: 5d3d64af25b15b843a2c7015b2b2378b
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
   VisualSizeInCells: {x: 6, y: 6}
-  AdditionalWorldOffset: {x: 0, y: 0, z: 0}
