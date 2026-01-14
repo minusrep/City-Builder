@@ -48,8 +48,6 @@ namespace Runtime
 
         private readonly List<IPresenter> _presenters = new();
 
-        private CameraControlModel _cameraControlModel;
-        private CameraControlPresenter _cameraControlPresenter;
         private MenuContent _menuContent;
         private InGameMenuPresenter _inGameMenuPresenter;
         
@@ -72,21 +70,15 @@ namespace Runtime
                 new BuildingConstructionLoadStep(_buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
-                new HUDLoadStep(_presenters, _world, _playerControls, _hudView),
-                new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent)
+                new HUDLoadStep(_presenters, _world, _hudView),
+                new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent),
+                new CameraControlLoadStep(_world, _cameraControlView, _worldDescription)
             };
-            
-            _playerControls.Enable();
             
             foreach (var step in loadSteps)
             {
                 await step.Run();
             }
-
-            _cameraControlModel = new CameraControlModel(_world.PlayerControls);
-            _cameraControlPresenter = new CameraControlPresenter(_cameraControlModel, _cameraControlView,
-                _worldDescription.CameraControlDescription, _gameSystems);
-            _cameraControlPresenter.Enable();
 
             var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
             var inGameMenuView = new InGameMenuView(_worldViewDescriptions.MenuViewDescription.InGameMenuAsset);
