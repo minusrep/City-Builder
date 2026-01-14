@@ -6,7 +6,7 @@ namespace Runtime.ViewDescriptions.Stats
     [CreateAssetMenu(fileName = "StatViewDescription", menuName = "ViewDescription/Stats/Collection")]
     public class StatViewDescriptionCollection : ScriptableObject
     {
-        [SerializeField] List<StatViewDescription> _descriptions;
+        [SerializeField] private List<StatViewDescription> _descriptions;
 
         public IReadOnlyList<StatViewDescription> Descriptions => _descriptions;
 

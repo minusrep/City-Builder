@@ -80,7 +80,7 @@ public class Outline : MonoBehaviour {
 
   private bool needsUpdate;
 
-  void Awake() {
+  private void Awake() {
 
     // Cache renderers
     renderers = GetComponentsInChildren<Renderer>();
@@ -99,7 +99,7 @@ public class Outline : MonoBehaviour {
     needsUpdate = true;
   }
 
-  void OnEnable() {
+  private void OnEnable() {
     foreach (var renderer in renderers) {
 
       // Append outline shaders
@@ -112,7 +112,7 @@ public class Outline : MonoBehaviour {
     }
   }
 
-  void OnValidate() {
+  private void OnValidate() {
 
     // Update material properties
     needsUpdate = true;
@@ -129,7 +129,7 @@ public class Outline : MonoBehaviour {
     }
   }
 
-  void Update() {
+  private void Update() {
     if (needsUpdate) {
       needsUpdate = false;
 
@@ -137,7 +137,7 @@ public class Outline : MonoBehaviour {
     }
   }
 
-  void OnDisable() {
+  private void OnDisable() {
     foreach (var renderer in renderers) {
 
       // Remove outline shaders
@@ -150,14 +150,14 @@ public class Outline : MonoBehaviour {
     }
   }
 
-  void OnDestroy() {
+  private void OnDestroy() {
 
     // Destroy material instances
     Destroy(outlineMaskMaterial);
     Destroy(outlineFillMaterial);
   }
 
-  void Bake() {
+  private void Bake() {
 
     // Generate smooth normals for each mesh
     var bakedMeshes = new HashSet<Mesh>();
@@ -177,7 +177,7 @@ public class Outline : MonoBehaviour {
     }
   }
 
-  void LoadSmoothNormals() {
+  private void LoadSmoothNormals() {
 
     // Retrieve or generate smooth normals
     foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
@@ -218,7 +218,7 @@ public class Outline : MonoBehaviour {
     }
   }
 
-  List<Vector3> SmoothNormals(Mesh mesh) {
+  private List<Vector3> SmoothNormals(Mesh mesh) {
 
     // Group vertices by location
     var groups = mesh.vertices.Select((vertex, index) => new KeyValuePair<Vector3, int>(vertex, index)).GroupBy(pair => pair.Key);
@@ -252,7 +252,7 @@ public class Outline : MonoBehaviour {
     return smoothNormals;
   }
 
-  void CombineSubmeshes(Mesh mesh, Material[] materials) {
+  private void CombineSubmeshes(Mesh mesh, Material[] materials) {
 
     // Skip meshes with a single submesh
     if (mesh.subMeshCount == 1) {
@@ -269,7 +269,7 @@ public class Outline : MonoBehaviour {
     mesh.SetTriangles(mesh.triangles, mesh.subMeshCount - 1);
   }
 
-  void UpdateMaterialProperties() {
+  private void UpdateMaterialProperties() {
 
     // Apply properties according to mode
     outlineFillMaterial.SetColor("_OutlineColor", outlineColor);
