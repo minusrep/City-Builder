@@ -56,14 +56,15 @@ namespace Runtime
 
                 new WorldLoadStep(_world, _worldDescription, _gameSystems, _playerControls),
                 new GameSystemsCollectionLoadStep(_world, _gameSystems),
+                
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView, _worldViewDescriptions),
-                new BuildingConstructionLoadStep(_buildingConstructionView, _worldGridView,
+                new BuildingConstructionLoadStep(_presenters, _buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
                 new HUDLoadStep(_presenters, _world, _hudView),
                 new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent),
-                new CameraControlLoadStep(_world, _cameraControlView, _worldDescription),
-                new InGameMenuLoadStep(_world, _worldViewDescriptions, _menuContent)
+                new CameraControlLoadStep(_presenters, _world, _cameraControlView, _worldDescription),
+                new InGameMenuLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent)
             };
 
             foreach (var step in loadSteps)
