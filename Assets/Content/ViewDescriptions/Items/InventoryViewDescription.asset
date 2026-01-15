@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: InventoryViewDescription
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Descriptions.InventoryViewDescription
   CellViewAsset: {fileID: 9197481963319205126, guid: 57c17321542a92440a3e09d059419dca, type: 3}
+  InventoryAsset: {fileID: 9197481963319205126, guid: 859fd50035fd8854ba7eb3b8f959a1a3, type: 3}
   ItemViewDescriptions: {fileID: 11400000, guid: 623f213cb4f429f40b6989aeb93557c7, type: 2}
