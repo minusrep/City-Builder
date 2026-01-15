@@ -1,6 +1,5 @@
 using Runtime.Colony;
 using Runtime.Common;
-using Runtime.Input;
 using Runtime.UI.HUD.BuildingPanel;
 using Runtime.UI.HUD.BuildingSelection;
 
