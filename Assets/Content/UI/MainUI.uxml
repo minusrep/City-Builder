@@ -4,6 +4,7 @@
     <Style src="project://database/Assets/Content/UI/Buildings/Style/building-construction-menu.uss?fileID=7433441132597879392&amp;guid=5287839f7950c5846adcb1e9155ac9cf&amp;type=3#building-construction-menu"/>
     <Style src="project://database/Assets/Content/UI/Styles/achievement-style.uss?fileID=7433441132597879392&amp;guid=f7041f123f321414980a0a28dbcaf391&amp;type=3#achievement-style"/>
     <Style src="project://database/Assets/Content/UI/Styles/slider-style.uss?fileID=7433441132597879392&amp;guid=d8ca339e57bb8704db73d79b8b29f06a&amp;type=3#slider-style"/>
+    <Style src="project://database/Assets/Content/UI/Styles/hud.uss?fileID=7433441132597879392&amp;guid=4d63c9d0436652d439aa9000b5caa88b&amp;type=3#hud"/>
     <ui:VisualElement name="content" picking-mode="Ignore" style="flex-grow: 1; overflow: hidden;">
         <ui:VisualElement name="hud-layer"/>
     </ui:VisualElement>
