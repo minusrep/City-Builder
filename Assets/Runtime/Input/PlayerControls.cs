@@ -91,22 +91,22 @@ namespace Runtime.Input
     ""name"": ""InputSystem"",
     ""maps"": [
         {
-            ""name"": ""Camera"",
-            ""id"": ""c35b9a76-9de7-4285-af10-2f2aca33a6a0"",
+            ""name"": ""Player"",
+            ""id"": ""864f0b5e-d193-45a9-a45f-19c9bb31ac35"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""23418e70-46ad-4613-94e7-1d55e3677f30"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""1da2e10e-debf-4ab9-a6e3-3cb340741d1a"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Look"",
+                    ""name"": ""PointerPosition"",
                     ""type"": ""Value"",
-                    ""id"": ""8f14afaf-c165-4068-a0de-2fade4fb00bf"",
+                    ""id"": ""d503f3d7-f64a-4abe-9831-6c2e93ee0b27"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -115,7 +115,7 @@ namespace Runtime.Input
                 {
                     ""name"": ""Zoom"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""0280f0ed-1ae8-445d-9bed-bc06f4579a7e"",
+                    ""id"": ""69915bf7-b9fd-43b5-90f4-64c5ef77fd70"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -124,83 +124,57 @@ namespace Runtime.Input
                 {
                     ""name"": ""MiddleClick"",
                     ""type"": ""Button"",
-                    ""id"": ""19063247-5b7b-4f2e-a214-00bad302bd68"",
+                    ""id"": ""0ffcdf90-4bc9-4b7d-9922-a511cd2983ce"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""362253c5-382e-4453-aa69-761056fcfb2b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""52dd2c3f-f314-48dd-8e75-af272468f042"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""0a3ad188-4dba-4752-bcd4-0cdb56d2bfb2"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""6f14f489-73c9-4a65-b056-84c5da2a6043"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""972c7add-3d75-494f-9233-7c03ed5b8df4"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""0efb69a7-bb52-4abd-aff2-93011502c3e8"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""2ec07edc-37da-4d0c-b3eb-00f0a3caf9b7"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""0006055c-e2a2-4561-a0c1-9c41f81789a6"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""c91761b6-a367-498a-bb52-765368b6666c"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Look"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""11bd0810-643b-43d1-8a38-bd84e0baf228"",
+                    ""id"": ""f3c356dd-7ff4-4d07-88a4-8d0a6435ce41"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ae5b87a-328d-4c33-9ed3-3a682c83bbba"",
                     ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -211,7 +185,7 @@ namespace Runtime.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""dd2d8dbd-787c-4562-8376-1ef6df97dd87"",
+                    ""id"": ""91787ec6-d527-4f62-86e2-4f3dbc8f13b8"",
                     ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -219,6 +193,72 @@ namespace Runtime.Input
                     ""action"": ""MiddleClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f98d5a4d-949f-43ef-9f44-c56124166892"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""a23e1f43-7a35-4b13-9ce7-778781ba42cd"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ead2abfc-62de-4dc8-95ab-df39102ac92f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0d7a6e48-210d-45db-817b-652660d324f5"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f1394a6a-7b4b-4fc8-b393-d03517e1d593"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""557aaca3-c401-4aa9-b340-73943ee58f94"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -317,64 +357,18 @@ namespace Runtime.Input
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""Player"",
-            ""id"": ""864f0b5e-d193-45a9-a45f-19c9bb31ac35"",
-            ""actions"": [
-                {
-                    ""name"": ""Click"",
-                    ""type"": ""Button"",
-                    ""id"": ""1da2e10e-debf-4ab9-a6e3-3cb340741d1a"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PointerPosition"",
-                    ""type"": ""Value"",
-                    ""id"": ""d503f3d7-f64a-4abe-9831-6c2e93ee0b27"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""c91761b6-a367-498a-bb52-765368b6666c"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f3c356dd-7ff4-4d07-88a4-8d0a6435ce41"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PointerPosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
 }");
-            // Camera
-            m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
-            m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
-            m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
-            m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
-            m_Camera_MiddleClick = m_Camera.FindAction("MiddleClick", throwIfNotFound: true);
+            // Player
+            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+            m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
+            m_Player_PointerPosition = m_Player.FindAction("PointerPosition", throwIfNotFound: true);
+            m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+            m_Player_MiddleClick = m_Player.FindAction("MiddleClick", throwIfNotFound: true);
+            m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+            m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -383,18 +377,13 @@ namespace Runtime.Input
             m_Construction_MovePreview = m_Construction.FindAction("MovePreview", throwIfNotFound: true);
             m_Construction_Build = m_Construction.FindAction("Build", throwIfNotFound: true);
             m_Construction_Cancel = m_Construction.FindAction("Cancel", throwIfNotFound: true);
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
-            m_Player_PointerPosition = m_Player.FindAction("PointerPosition", throwIfNotFound: true);
         }
 
         ~@PlayerControls()
         {
-            UnityEngine.Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, PlayerControls.Camera.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_Construction.enabled, "This will cause a leak and performance issues, PlayerControls.Construction.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
         }
 
         /// <summary>
@@ -467,44 +456,54 @@ namespace Runtime.Input
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Camera
-        private readonly InputActionMap m_Camera;
-        private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
-        private readonly InputAction m_Camera_Move;
-        private readonly InputAction m_Camera_Look;
-        private readonly InputAction m_Camera_Zoom;
-        private readonly InputAction m_Camera_MiddleClick;
+        // Player
+        private readonly InputActionMap m_Player;
+        private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+        private readonly InputAction m_Player_Click;
+        private readonly InputAction m_Player_PointerPosition;
+        private readonly InputAction m_Player_Zoom;
+        private readonly InputAction m_Player_MiddleClick;
+        private readonly InputAction m_Player_Look;
+        private readonly InputAction m_Player_Move;
         /// <summary>
-        /// Provides access to input actions defined in input action map "Camera".
+        /// Provides access to input actions defined in input action map "Player".
         /// </summary>
-        public struct CameraActions
+        public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
 
             /// <summary>
             /// Construct a new instance of the input action map wrapper class.
             /// </summary>
-            public CameraActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             /// <summary>
-            /// Provides access to the underlying input action "Camera/Move".
+            /// Provides access to the underlying input action "Player/Click".
             /// </summary>
-            public InputAction @Move => m_Wrapper.m_Camera_Move;
+            public InputAction @Click => m_Wrapper.m_Player_Click;
             /// <summary>
-            /// Provides access to the underlying input action "Camera/Look".
+            /// Provides access to the underlying input action "Player/PointerPosition".
             /// </summary>
-            public InputAction @Look => m_Wrapper.m_Camera_Look;
+            public InputAction @PointerPosition => m_Wrapper.m_Player_PointerPosition;
             /// <summary>
-            /// Provides access to the underlying input action "Camera/Zoom".
+            /// Provides access to the underlying input action "Player/Zoom".
             /// </summary>
-            public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
+            public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
             /// <summary>
-            /// Provides access to the underlying input action "Camera/MiddleClick".
+            /// Provides access to the underlying input action "Player/MiddleClick".
             /// </summary>
-            public InputAction @MiddleClick => m_Wrapper.m_Camera_MiddleClick;
+            public InputAction @MiddleClick => m_Wrapper.m_Player_MiddleClick;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Look".
+            /// </summary>
+            public InputAction @Look => m_Wrapper.m_Player_Look;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Move".
+            /// </summary>
+            public InputAction @Move => m_Wrapper.m_Player_Move;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
-            public InputActionMap Get() { return m_Wrapper.m_Camera; }
+            public InputActionMap Get() { return m_Wrapper.m_Player; }
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
             public void Enable() { Get().Enable(); }
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -512,9 +511,9 @@ namespace Runtime.Input
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
             public bool enabled => Get().enabled;
             /// <summary>
-            /// Implicitly converts an <see ref="CameraActions" /> to an <see ref="InputActionMap" /> instance.
+            /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
             /// </summary>
-            public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
             /// <summary>
             /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
             /// </summary>
@@ -522,23 +521,29 @@ namespace Runtime.Input
             /// <remarks>
             /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
             /// </remarks>
-            /// <seealso cref="CameraActions" />
-            public void AddCallbacks(ICameraActions instance)
+            /// <seealso cref="PlayerActions" />
+            public void AddCallbacks(IPlayerActions instance)
             {
-                if (instance == null || m_Wrapper.m_CameraActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_CameraActionsCallbackInterfaces.Add(instance);
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
+                if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
+                @PointerPosition.started += instance.OnPointerPosition;
+                @PointerPosition.performed += instance.OnPointerPosition;
+                @PointerPosition.canceled += instance.OnPointerPosition;
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
                 @MiddleClick.started += instance.OnMiddleClick;
                 @MiddleClick.performed += instance.OnMiddleClick;
                 @MiddleClick.canceled += instance.OnMiddleClick;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
 
             /// <summary>
@@ -547,30 +552,36 @@ namespace Runtime.Input
             /// <remarks>
             /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
             /// </remarks>
-            /// <seealso cref="CameraActions" />
-            private void UnregisterCallbacks(ICameraActions instance)
+            /// <seealso cref="PlayerActions" />
+            private void UnregisterCallbacks(IPlayerActions instance)
             {
-                @Move.started -= instance.OnMove;
-                @Move.performed -= instance.OnMove;
-                @Move.canceled -= instance.OnMove;
-                @Look.started -= instance.OnLook;
-                @Look.performed -= instance.OnLook;
-                @Look.canceled -= instance.OnLook;
+                @Click.started -= instance.OnClick;
+                @Click.performed -= instance.OnClick;
+                @Click.canceled -= instance.OnClick;
+                @PointerPosition.started -= instance.OnPointerPosition;
+                @PointerPosition.performed -= instance.OnPointerPosition;
+                @PointerPosition.canceled -= instance.OnPointerPosition;
                 @Zoom.started -= instance.OnZoom;
                 @Zoom.performed -= instance.OnZoom;
                 @Zoom.canceled -= instance.OnZoom;
                 @MiddleClick.started -= instance.OnMiddleClick;
                 @MiddleClick.performed -= instance.OnMiddleClick;
                 @MiddleClick.canceled -= instance.OnMiddleClick;
+                @Look.started -= instance.OnLook;
+                @Look.performed -= instance.OnLook;
+                @Look.canceled -= instance.OnLook;
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
             }
 
             /// <summary>
-            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="CameraActions.UnregisterCallbacks(ICameraActions)" />.
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
             /// </summary>
-            /// <seealso cref="CameraActions.UnregisterCallbacks(ICameraActions)" />
-            public void RemoveCallbacks(ICameraActions instance)
+            /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+            public void RemoveCallbacks(IPlayerActions instance)
             {
-                if (m_Wrapper.m_CameraActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
@@ -580,21 +591,21 @@ namespace Runtime.Input
             /// <remarks>
             /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
             /// </remarks>
-            /// <seealso cref="CameraActions.AddCallbacks(ICameraActions)" />
-            /// <seealso cref="CameraActions.RemoveCallbacks(ICameraActions)" />
-            /// <seealso cref="CameraActions.UnregisterCallbacks(ICameraActions)" />
-            public void SetCallbacks(ICameraActions instance)
+            /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+            /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+            /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+            public void SetCallbacks(IPlayerActions instance)
             {
-                foreach (var item in m_Wrapper.m_CameraActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_CameraActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
         /// <summary>
-        /// Provides a new <see cref="CameraActions" /> instance referencing this action map.
+        /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
         /// </summary>
-        public CameraActions @Camera => new CameraActions(this);
+        public PlayerActions @Player => new PlayerActions(this);
 
         // UI
         private readonly InputActionMap m_UI;
@@ -809,134 +820,27 @@ namespace Runtime.Input
         /// Provides a new <see cref="ConstructionActions" /> instance referencing this action map.
         /// </summary>
         public ConstructionActions @Construction => new ConstructionActions(this);
-
-        // Player
-        private readonly InputActionMap m_Player;
-        private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-        private readonly InputAction m_Player_Click;
-        private readonly InputAction m_Player_PointerPosition;
         /// <summary>
-        /// Provides access to input actions defined in input action map "Player".
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
         /// </summary>
-        public struct PlayerActions
-        {
-            private @PlayerControls m_Wrapper;
-
-            /// <summary>
-            /// Construct a new instance of the input action map wrapper class.
-            /// </summary>
-            public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-            /// <summary>
-            /// Provides access to the underlying input action "Player/Click".
-            /// </summary>
-            public InputAction @Click => m_Wrapper.m_Player_Click;
-            /// <summary>
-            /// Provides access to the underlying input action "Player/PointerPosition".
-            /// </summary>
-            public InputAction @PointerPosition => m_Wrapper.m_Player_PointerPosition;
-            /// <summary>
-            /// Provides access to the underlying input action map instance.
-            /// </summary>
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
-            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
-            public void Enable() { Get().Enable(); }
-            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
-            public void Disable() { Get().Disable(); }
-            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
-            public bool enabled => Get().enabled;
-            /// <summary>
-            /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
-            /// </summary>
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-            /// <summary>
-            /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-            /// </summary>
-            /// <param name="instance">Callback instance.</param>
-            /// <remarks>
-            /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
-            /// </remarks>
-            /// <seealso cref="PlayerActions" />
-            public void AddCallbacks(IPlayerActions instance)
-            {
-                if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
-                @PointerPosition.started += instance.OnPointerPosition;
-                @PointerPosition.performed += instance.OnPointerPosition;
-                @PointerPosition.canceled += instance.OnPointerPosition;
-            }
-
-            /// <summary>
-            /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-            /// </summary>
-            /// <remarks>
-            /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
-            /// </remarks>
-            /// <seealso cref="PlayerActions" />
-            private void UnregisterCallbacks(IPlayerActions instance)
-            {
-                @Click.started -= instance.OnClick;
-                @Click.performed -= instance.OnClick;
-                @Click.canceled -= instance.OnClick;
-                @PointerPosition.started -= instance.OnPointerPosition;
-                @PointerPosition.performed -= instance.OnPointerPosition;
-                @PointerPosition.canceled -= instance.OnPointerPosition;
-            }
-
-            /// <summary>
-            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
-            /// </summary>
-            /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
-            public void RemoveCallbacks(IPlayerActions instance)
-            {
-                if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            /// <summary>
-            /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
-            /// </summary>
-            /// <remarks>
-            /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
-            /// </remarks>
-            /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
-            /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
-            /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
-            public void SetCallbacks(IPlayerActions instance)
-            {
-                foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        /// <summary>
-        /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
-        /// </summary>
-        public PlayerActions @Player => new PlayerActions(this);
-        /// <summary>
-        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Camera" which allows adding and removing callbacks.
-        /// </summary>
-        /// <seealso cref="CameraActions.AddCallbacks(ICameraActions)" />
-        /// <seealso cref="CameraActions.RemoveCallbacks(ICameraActions)" />
-        public interface ICameraActions
+        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+        public interface IPlayerActions
         {
             /// <summary>
-            /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnMove(InputAction.CallbackContext context);
+            void OnClick(InputAction.CallbackContext context);
             /// <summary>
-            /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "PointerPosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnLook(InputAction.CallbackContext context);
+            void OnPointerPosition(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "Zoom" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
@@ -951,6 +855,20 @@ namespace Runtime.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnMiddleClick(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnLook(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnMove(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
@@ -995,28 +913,6 @@ namespace Runtime.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnCancel(InputAction.CallbackContext context);
-        }
-        /// <summary>
-        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
-        /// </summary>
-        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
-        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
-        public interface IPlayerActions
-        {
-            /// <summary>
-            /// Method invoked when associated input action "Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnClick(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "PointerPosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnPointerPosition(InputAction.CallbackContext context);
         }
     }
 }
