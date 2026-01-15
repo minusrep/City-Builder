@@ -58,6 +58,8 @@ namespace Runtime
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView, _worldViewDescriptions),
                 new BuildingConstructionLoadStep(_presenters, _buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
+                new BuildingSelectionLoadStep(_presenters, _world, _worldViewDescriptions),
+                
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
                 new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent),
                 new CameraControlLoadStep(_presenters, _world, _cameraControlView, _worldDescription),
