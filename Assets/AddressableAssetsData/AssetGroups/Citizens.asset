@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Citizens
   m_GUID: ff8e1cc306349834eb30d2a6bc019d43
   m_SerializeEntries:
+  - m_GUID: 1030d864ed34d5540a397e53bdb53300
+    m_Address: CitizenViewDescriptionCollection
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 185544215506d724288e301cb095cb6f
     m_Address: Citizen
     m_ReadOnly: 0

@@ -33,6 +33,8 @@ namespace Runtime.Colony.Citizens
         
         private const string InventoryKey = "inventory";
 
+        private const string ViewDescriptionKey = "view_description";
+        
         public event Action<string> OnStartMove;
 
         public event Action<string> OnInvokeAnimation;
@@ -62,7 +64,8 @@ namespace Runtime.Colony.Citizens
         private readonly WorldDescription _description;
 
         public string Name { get; private set; }
-        
+        public string ViewDescription { get; set; }
+
         public CitizenModel(int id, WorldDescription description)
         {
             _description = description;
@@ -86,6 +89,7 @@ namespace Runtime.Colony.Citizens
             {
                 { IdKey, Id},
                 { NameKey, Name },
+                { ViewDescriptionKey, ViewDescription},
                 { SpawnedFromBuildingID, SpawnedFromBuildingId },
                 { PositionKey, Position.ToList() },
                 { PointsOfInterestKey, PointsOfInterest.Serialize() },
@@ -101,6 +105,7 @@ namespace Runtime.Colony.Citizens
         public void Deserialize(Dictionary<string, object> data)
         {
             Name = data.GetString(NameKey);
+            ViewDescription = data.GetString(ViewDescriptionKey);
             Position = data.GetVector3(PositionKey);
             SpawnedFromBuildingId = data.GetString(SpawnedFromBuildingID);
             PointsOfInterest.Deserialize(data.GetNode(PointsOfInterestKey));

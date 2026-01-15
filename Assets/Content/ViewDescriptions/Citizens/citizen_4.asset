@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c96dbc86dd94167808c928823c4dae3, type: 3}
-  m_Name: CitizenViewDescription
+  m_Name: citizen_4
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Citizens.CitizenViewDescription
   Prefab:
-    m_AssetGUID: 185544215506d724288e301cb095cb6f
+    m_AssetGUID: 822a523981e52c44d9e6ab622253e10b
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

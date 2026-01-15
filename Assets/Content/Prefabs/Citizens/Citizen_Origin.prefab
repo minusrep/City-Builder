@@ -3550,7 +3550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8176559841228476472
 Transform:
   m_ObjectHideFlags: 0
@@ -3760,7 +3760,7 @@ GameObject:
   - component: {fileID: 2835468381680769915}
   - component: {fileID: 6144908692838282703}
   m_Layer: 0
-  m_Name: Citizen
+  m_Name: Citizen_Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

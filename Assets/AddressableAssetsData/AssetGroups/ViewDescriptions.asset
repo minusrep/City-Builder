@@ -30,11 +30,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5d454d152ba9c4740a12741802126973
-    m_Address: CitizenViewDescription
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7020c5b3d5db1934189e077a0823145a
     m_Address: MenuViewDescription
     m_ReadOnly: 0
