@@ -1,6 +1,7 @@
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Common;
+using Runtime.UI;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Buildings.Selection.BuildingPanel
@@ -8,28 +9,27 @@ namespace Runtime.Colony.Buildings.Selection.BuildingPanel
     public class BuildingPanelPresenter : IPresenter
     {
         private const string BuildingPanelEnabledStyleKey = "building-panel-enabled";
-        
         private const string BuildingInfoPanelFieldStyleKey = "building-panel-field";
-        
         private const string BuildingPanelTextTitleStyleKey = "building-panel-title";
-        
         private const string BuildingInfoUpgradeButtonStyleKey = "building-panel-upgrade-button";
         
         private readonly BuildingPanelView _view;
-
         private readonly BuildingSelectionModel _model;
-
         private readonly World _world;
+        private readonly MenuContent _menuContent;
         
-        public BuildingPanelPresenter(BuildingSelectionModel model, BuildingPanelView view, World world)
+        public BuildingPanelPresenter(BuildingSelectionModel model, BuildingPanelView view, World world, MenuContent menuContent)
         {
             _model = model;
             _view = view;
             _world = world;
+            _menuContent = menuContent;
         }
 
         public void Enable()
         {
+            _menuContent.HudLayer.Add(_view.Root);
+            TogglePanel();
             _view.Root.RegisterCallback<PointerEnterEvent>(OnPointerEnter);
             _view.Root.RegisterCallback<PointerLeaveEvent>(OnPointerLeave);
             
@@ -38,6 +38,7 @@ namespace Runtime.Colony.Buildings.Selection.BuildingPanel
 
         public void Disable()
         {
+            _menuContent.HudLayer.Remove(_view.Root);
             _view.Root.UnregisterCallback<PointerEnterEvent>(OnPointerEnter);
             _view.Root.UnregisterCallback<PointerLeaveEvent>(OnPointerLeave);
             
