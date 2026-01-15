@@ -6,7 +6,9 @@ namespace Runtime.Colony.Orders
 {
     public class OrderManager: ISerializeModel, IDeserializeModel 
     {
-        private Queue<OrderModel> _orders = new();
+        private List<OrderModel> _orders = new();
+
+        public OrderModel this[string id] => _orders.First(o => o.Id == id);
 
         public void AddOrder(OrderModel order)
         {
@@ -18,20 +20,26 @@ namespace Runtime.Colony.Orders
                 return;
             }
             
-            _orders.Enqueue(order);
+            _orders.Add(order);
             order.OnAmountChanged += OnAmountChanged;
+            order.OnReservedAmountChanged += OnReservedAmountChanged;
         }
 
         public OrderModel TakeOrder()
         {
-            return _orders.Peek();
+            return _orders.First(o => o.AvailableAmount > 0);
         }
 
         public bool HasOrders()
         {
-            return _orders.Count > 0;
+            return _orders.Any(o => o.AvailableAmount > 0);
         }
 
+        public bool Contains(string id)
+        {
+            return _orders.Any(o => o.Id == id);
+        }
+        
         public Dictionary<string, object> Serialize()
         {
             var orders = _orders.Select(order => order.Serialize()).Cast<object>().ToList();
@@ -46,7 +54,7 @@ namespace Runtime.Colony.Orders
         {
             var ordersRaw = (List<object>)data["orders"];
 
-            _orders = new Queue<OrderModel>();
+            _orders = new List<OrderModel>();
             foreach (var orderRaw in ordersRaw)
             {
                 var order = new OrderModel();
@@ -57,10 +65,19 @@ namespace Runtime.Colony.Orders
         
         private void OnAmountChanged(OrderModel order)
         {
-            if (order.Id == _orders.Peek().Id && order.Amount <= 0)
+            if (order.Amount <= 0)
             {
                 order.OnAmountChanged -= OnAmountChanged;
-                _orders.Dequeue();
+                _orders.Remove(order);
+            }
+        }
+        
+        private void OnReservedAmountChanged(OrderModel order)
+        {
+            if (order.AvailableAmount <= 0)
+            {
+                _orders.Remove(order);
+                _orders.Add(order);
             }
         }
     }

@@ -38,8 +38,6 @@ namespace Runtime.Colony.Buildings.Production
             get => Description.ProductionTimeByLevel[Level];
         }
 
-        public ResourceRequests Orders { get; private set; }
-
         public ProductionBuildingModel(string id,
             Vector2Int gridPosition,
             ProductionBuildingDescription description, World world) : base(id, gridPosition,
@@ -50,8 +48,6 @@ namespace Runtime.Colony.Buildings.Production
             Description = description;
 
             IsActive = false;
-
-            Orders = new ResourceRequests();
 
             ResourceDescription = WorldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
             Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
@@ -112,8 +108,7 @@ namespace Runtime.Colony.Buildings.Production
             {
                 { "is_active", IsActive },
                 { "progress", Progress },
-                { "inventory", Inventory.Serialize() },
-                { "orders", Orders.Serialize() },
+                { "inventory", Inventory.Serialize() }
             };
 
             return dictionary;
@@ -128,9 +123,6 @@ namespace Runtime.Colony.Buildings.Production
             
             Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
-
-            Orders = new ResourceRequests();
-            Orders.Deserialize(data.GetNode("orders"));
         }
 
         public bool Produce()
@@ -151,7 +143,6 @@ namespace Runtime.Colony.Buildings.Production
                     ResourceId = ResourceDescription.Id,
                     Amount = Description.ProductionAmount
                 };
-                Orders.Add(order.ResourceId, order.Amount);
                 World.OrderManager.AddOrder(order);
                 return true;
             }
@@ -184,9 +175,8 @@ namespace Runtime.Colony.Buildings.Production
                         ResourceId = resource.Key,
                         Amount = resource.Value
                     };
-                    if (!Orders.Contains(order.ResourceId))
+                    if (!World.OrderManager.Contains(order.Id))
                     {
-                        Orders.Add(order.ResourceId, order.Amount);
                         World.OrderManager.AddOrder(order);
                     }
                 }
@@ -197,9 +187,9 @@ namespace Runtime.Colony.Buildings.Production
 
         private void CloseOrder(ResourceDescription resource, int amount)
         {
-            if (Orders.Contains(resource.Id))
+            if (World.OrderManager.Contains($"{Id}_{resource.Id}"))
             {
-                Orders.Remove(resource.Id, amount);
+                World.OrderManager[$"{Id}_{resource.Id}"].Complete(amount);
             }
         }
     }

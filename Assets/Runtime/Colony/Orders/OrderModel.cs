@@ -8,6 +8,7 @@ namespace Runtime.Colony.Orders
     public class OrderModel : ISerializeModel, IDeserializeModel
     {
         public event Action<OrderModel> OnAmountChanged;
+        public event Action<OrderModel> OnReservedAmountChanged;
         
         public string Id { get; set; }
         public string FromBuildingId { get; private set; }
@@ -26,6 +27,10 @@ namespace Runtime.Colony.Orders
             }
         }
 
+        private int _reservedAmount;
+        
+        public int AvailableAmount => Amount - _reservedAmount;
+        
         public OrderModel(string id, string fromBuildingId)
         {
             Id = id;
@@ -34,13 +39,33 @@ namespace Runtime.Colony.Orders
 
         public OrderModel() : this("", "") { }
 
+        public void Reserve(int amount)
+        {
+            _reservedAmount += Math.Min(AvailableAmount, amount);
+            OnReservedAmountChanged?.Invoke(this);
+        }
+
+        public void Unreserve(int amount)
+        {
+            _reservedAmount -= Math.Min(_reservedAmount, amount);
+            OnReservedAmountChanged?.Invoke(this);
+        }
+
+        public void Complete(int amount)
+        {
+            amount = Math.Min(_reservedAmount, amount);
+            _reservedAmount -= amount;
+            Amount -= amount;
+        }
+        
         public Dictionary<string, object> Serialize() => new()
         {
             { "id", Id },
             { "from_building_id", FromBuildingId },
             { "type", Type },
             { "resource", ResourceId },
-            { "amount", Amount }
+            { "amount", Amount },
+            { "reserved_amount", _reservedAmount }
         };
 
         public void Deserialize(Dictionary<string, object> data)
@@ -50,6 +75,7 @@ namespace Runtime.Colony.Orders
             Type = data.GetString("type");
             ResourceId = data.GetString("resource");
             Amount = data.GetInt("amount");
+            _reservedAmount = data.GetInt("reserved_amount");
         }
     }
 }

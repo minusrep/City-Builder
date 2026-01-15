@@ -35,7 +35,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                     model.Flags["is_carrying"] = true;
                     model.SetPointOfInterest("resource_target",
                         new Vector3(productionBuilding.WorldPosition.x, 0, productionBuilding.WorldPosition.y));
-                    order.Amount -= 1;
+                    order.Reserve(1);
                     return;
                 }
 
@@ -49,7 +49,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             model.SetPointOfInterest("resource_target",
                 new Vector3(targetbuilding.WorldPosition.x, 0, targetbuilding.WorldPosition.y));
 
-            order.Amount -= 1;
+            order.Reserve(1);
         }
     }
 }
