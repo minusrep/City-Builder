@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace Runtime.ViewDescriptions
+namespace Runtime.UI.InGameMenu.LoadMenu
 {
     public class LoadPanelView
     {
