@@ -67,6 +67,8 @@ namespace Runtime.Colony.Orders
         {
             if (order.Amount <= 0)
             {
+                
+                order.OnReservedAmountChanged -= OnReservedAmountChanged;
                 order.OnAmountChanged -= OnAmountChanged;
                 _orders.Remove(order);
             }
