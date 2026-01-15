@@ -9,8 +9,8 @@ using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Citizens;
 using Runtime.ViewDescriptions.Inventory;
 using Runtime.ViewDescriptions.Stats;
-using Runtime.ViewDescriptions.UI.BuildingConstruction;
-using Runtime.ViewDescriptions.UI.Load;
+using Runtime.ViewDescriptions.UI.Building;
+using Runtime.ViewDescriptions.UI.Menu;
 using Object = UnityEngine.Object;
 
 namespace Runtime.LoadSteps
@@ -52,8 +52,8 @@ namespace Runtime.LoadSteps
                     obj => worldViewDescriptions.MenuViewDescription = obj as MenuViewDescription
                 },
                 {
-                    "BuildingConstructionMenuViewDescription",
-                    obj => worldViewDescriptions.BuildingConstructionMenuViewDescription = obj as BuildingConstructionMenuViewDescription
+                    "BuildingMenuViewDescription",
+                    obj => worldViewDescriptions.BuildingMenuViewDescription = obj as BuildingMenuViewDescription
                 }
             };
         }

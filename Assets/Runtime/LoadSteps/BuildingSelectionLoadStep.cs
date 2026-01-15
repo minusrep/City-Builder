@@ -27,7 +27,7 @@ namespace Runtime.LoadSteps
             buildingSelectionPresenter.Enable();
             _presenters.Add(buildingSelectionPresenter);
 
-            var buildingPanelView = new BuildingPanelView(_worldViewDescriptions.BuildingConstructionMenuViewDescription.BuildingPanelAsset);
+            var buildingPanelView = new BuildingPanelView(_worldViewDescriptions.BuildingMenuViewDescription.BuildingPanelAsset);
             var buildingPanelPresenter = new BuildingPanelPresenter(_world.BuildingSelectionModel, buildingPanelView, _world);
             buildingPanelPresenter.Enable();
             _presenters.Add(buildingPanelPresenter);

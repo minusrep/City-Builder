@@ -3,7 +3,7 @@ using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Citizens;
 using Runtime.ViewDescriptions.Inventory;
 using Runtime.ViewDescriptions.Stats;
-using Runtime.ViewDescriptions.UI.BuildingConstruction;
+using Runtime.ViewDescriptions.UI.Building;
 using Runtime.ViewDescriptions.UI.Menu;
 
 namespace Runtime.ViewDescriptions
@@ -22,6 +22,6 @@ namespace Runtime.ViewDescriptions
         
         public MenuViewDescription MenuViewDescription { get; set; }
         
-        public BuildingConstructionMenuViewDescription BuildingConstructionMenuViewDescription { get; set; }
+        public BuildingMenuViewDescription BuildingMenuViewDescription { get; set; }
     }
 }
