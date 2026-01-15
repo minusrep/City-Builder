@@ -22,6 +22,6 @@ namespace Runtime.ViewDescriptions
         
         public MenuViewDescription MenuViewDescription { get; set; }
         
-        public BuildingMenuViewDescription BuildingMenuViewDescription { get; set; }
+        public SelectionViewDescription SelectionViewDescription { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Runtime.Colony.Stats
 
         public StatView(StatViewDescription description)
         {
-            Root = description.StatViewAsset.CloneTree().Q<VisualElement>("stat");
+            Root = description.StatViewAsset.CloneTree();
             Root.styleSheets.Add(description.StyleSheet);
             
             _bar = Root.Q<ProgressBar>("stat-bar");

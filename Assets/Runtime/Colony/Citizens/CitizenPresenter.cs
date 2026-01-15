@@ -1,3 +1,4 @@
+using Runtime.Colony.Buildings.Selection;
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
 using Runtime.Colony.Citizens.Movement;
@@ -45,6 +46,10 @@ namespace Runtime.Colony.Citizens
 
         public void Enable()
         {
+            _view.Id = _model.Id.ToString();
+
+            _view.Outline.SetOutline(SelectionOutlineType.None);
+            
             _citizenMovementPresenter = new CitizenMovementPresenter(_model, _view.CitizenMovementView);
             
             _citizenAnimatorPresenter = new CitizenAnimatorPresenter(_view.CitizenAnimatorView, _model);

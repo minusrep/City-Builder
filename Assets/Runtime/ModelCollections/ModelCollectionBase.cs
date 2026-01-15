@@ -21,6 +21,11 @@ namespace Runtime.ModelCollections
         {
             return Models[id];
         }
+
+        public bool TryGet(TKey id, out TValue value)
+        {
+            return Models.TryGetValue(id, out value);
+        }
         
         public virtual void Add(TKey key, TValue model)
         {

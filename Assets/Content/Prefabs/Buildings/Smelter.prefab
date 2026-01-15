@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 7811179642611185603}
   - component: {fileID: 5739859068566134591}
   - component: {fileID: 8380361109110103310}
+  - component: {fileID: 8685598275242740271}
   m_Layer: 0
   m_Name: Smelter
   m_TagString: Untagged
@@ -119,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Production.ProductionBuildingView
   _uiDocument: {fileID: 1338904815707915831}
   _preview: {fileID: 3057335552210900068}
-  _outline: {fileID: 5739859068566134591}
+  _outline: {fileID: 8685598275242740271}
 --- !u!114 &5739859068566134591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,6 +2462,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.5327435, y: 6.1224766, z: 4.5621815}
   m_Center: {x: 2.5317993, y: 1.4130974, z: 2.4876394}
+--- !u!114 &8685598275242740271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc2c1a7f5944648bc96df38915d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
+  _outline: {fileID: 5739859068566134591}
 --- !u!1 &6093356242841798775
 GameObject:
   m_ObjectHideFlags: 0

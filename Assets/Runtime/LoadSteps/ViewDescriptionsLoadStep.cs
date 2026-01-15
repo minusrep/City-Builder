@@ -53,8 +53,8 @@ namespace Runtime.LoadSteps
                     obj => worldViewDescriptions.MenuViewDescription = obj as MenuViewDescription
                 },
                 {
-                    "BuildingMenuViewDescription",
-                    obj => worldViewDescriptions.BuildingMenuViewDescription = obj as BuildingMenuViewDescription
+                    "SelectionViewDescription",
+                    obj => worldViewDescriptions.SelectionViewDescription = obj as SelectionViewDescription
                 }
             };
         }
