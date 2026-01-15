@@ -1,8 +1,7 @@
-using Runtime.Colony.Stats.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Runtime.Colony.Citizens
+namespace Runtime.Colony.Citizens.HUD
 {
     public class CitizenHUDView : MonoBehaviour
     {

@@ -1,5 +1,6 @@
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
+using Runtime.Colony.Citizens.HUD;
 using Runtime.Colony.Citizens.Movement;
 using Runtime.Common;
 using Runtime.Selection;
