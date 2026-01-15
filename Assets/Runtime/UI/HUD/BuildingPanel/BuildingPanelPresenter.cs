@@ -1,8 +1,8 @@
 using Runtime.Colony;
+using Runtime.Colony.Buildings.BuildingSelection;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Common;
-using Runtime.UI.HUD.BuildingSelection;
 using UnityEngine.UIElements;
 
 namespace Runtime.UI.HUD.BuildingPanel

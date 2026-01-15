@@ -1,10 +1,9 @@
-using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Runtime.UI.HUD.BuildingSelection
+namespace Runtime.Colony.Buildings.Selection
 {
     public class BuildingSelectionPresenter : IPresenter
     {
