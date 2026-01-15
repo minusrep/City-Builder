@@ -8,6 +8,7 @@ namespace Runtime.ViewDescriptions.UI.Menu
     {
         public VisualTreeAsset InGameMenuAsset;
         public VisualTreeAsset LoadAsset;
+        public VisualTreeAsset LoadPanelAsset;
         public VisualTreeAsset SaveAsset;
         public VisualTreeAsset AchievementsMenuAsset;
     }

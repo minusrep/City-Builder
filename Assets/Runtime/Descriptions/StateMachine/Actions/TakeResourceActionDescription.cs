@@ -23,12 +23,40 @@ namespace Runtime.Descriptions.StateMachine.Actions
         {
             model.Flags["is_carrying"] = false;
             
-            var buildingPosition = model.PointsOfInterest[PointOfInterest];
-            var inventoryBuilding = world.Buildings.Models.First(b => 
-                b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
-            ).Value as IInventoryBuilding ;
+            if (!model.PointsOfInterest.ContainsKey(PointOfInterest))
+            {
+                return;
+            }
 
-            var resource = model.Inventory.Models.Values.First().Resource; 
+            var buildingPosition = model.PointsOfInterest[PointOfInterest];
+            var inventoryBuildingPair = world.Buildings.Models.FirstOrDefault(b =>
+                b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
+            );
+            
+            if (inventoryBuildingPair.Value == null)
+            {
+                return;
+            }
+
+            var inventoryBuilding = inventoryBuildingPair.Value as IInventoryBuilding;
+            
+            if (inventoryBuilding == null)
+            {
+                return;
+            }
+            
+            if (model.Inventory.Models.Values.Count == 0)
+            {
+                return;
+            }
+
+            var resource = model.Inventory.Models.Values.First().Resource;
+            
+            if (resource == null)
+            {
+                return;
+            }
+
             if (!inventoryBuilding.TryRemoveItem(resource, 1))
             {
                 RestoreOrder(world, model);
@@ -48,18 +76,42 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private void RestoreOrder(World world, CitizenModel model)
         {
+            if (!model.PointsOfInterest.ContainsKey("resource_target"))
+            {
+                return;
+            }
+
             var buildingPosition = model.PointsOfInterest["resource_target"];
-            var targetBuilding = world.Buildings.Models.First(b => 
+            var targetBuildingPair = world.Buildings.Models.FirstOrDefault(b =>
                 b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
-            ).Value;
+            );
             
-            var resource = model.Inventory.Models.Values.First().Resource; 
+            if (targetBuildingPair.Value == null)
+            {
+                return;
+            }
+
+            var targetBuilding = targetBuildingPair.Value;
+            
+            if (model.Inventory.Models.Values.Count == 0)
+            {
+                return;
+            }
+
+            var resource = model.Inventory.Models.Values.First().Resource;
+            
+            if (resource == null)
+            {
+                return;
+            }
+
             var order = new OrderModel($"{targetBuilding.Id}_{resource.Id}", targetBuilding.Id)
             {
                 Type = "put_resource",
                 ResourceId = resource.Id,
                 Amount = 1
             };
+            
             world.OrderManager.AddOrder(order);
             model.Inventory.Models.Values.First().TryReduce(0);
         }

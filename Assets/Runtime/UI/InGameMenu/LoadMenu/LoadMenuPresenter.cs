@@ -38,7 +38,7 @@ namespace Runtime.UI.InGameMenu.LoadMenu
 
             foreach (var save in saves)
             {
-                var loadPanel = new LoadPanelView(_worldViewDescriptions.MenuViewDescription.LoadAsset)
+                var loadPanel = new LoadPanelView(_worldViewDescriptions.MenuViewDescription.LoadPanelAsset)
                 {
                     Title =
                     {

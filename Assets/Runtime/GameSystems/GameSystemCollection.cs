@@ -68,5 +68,12 @@ namespace Runtime.GameSystems
                 _pendingAdd.Clear();
             }
         }
+        
+        public void Clear()
+        {
+            _systems.Clear();
+            _pendingAdd.Clear();
+            _pendingRemove.Clear();
+        }
     }
 }

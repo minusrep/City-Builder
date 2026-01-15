@@ -152,7 +152,7 @@ namespace Runtime.Colony.Inventory
             var amount = data.GetInt("amount");
             var resourceId = data.GetString("resource");
 
-            if (resourceId != null)
+            if (!string.IsNullOrEmpty(resourceId) && _resourceDescriptions.Descriptions.ContainsKey(resourceId))
             {
                 cell.TryAdd(_resourceDescriptions.Descriptions[resourceId], amount, _maxStackSize);
             }
@@ -162,6 +162,11 @@ namespace Runtime.Colony.Inventory
 
         private bool IsSameItem(ResourceDescription itemA, ResourceDescription itemB)
         {
+            if (itemA == null || itemB == null)
+            {
+                return false;
+            }
+
             return itemA.Id == itemB.Id;
         }
     }

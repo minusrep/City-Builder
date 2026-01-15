@@ -1,6 +1,7 @@
+using System;
+using System.Threading.Tasks;
 using Runtime.Colony;
 using Runtime.Common;
-using Runtime.LoadSteps;
 using Runtime.UI.InGameMenu.AchievementsMenu;
 using Runtime.UI.InGameMenu.LoadMenu;
 using Runtime.UI.InGameMenu.SaveMenu;
@@ -13,22 +14,24 @@ namespace Runtime.UI.InGameMenu
 {
     public class InGameMenuPresenter : IPresenter
     {
+        private readonly InGameMenuView _view;
         private readonly InGameMenuModel _model;
         private readonly MenuContent _menuContent;
         private readonly World _world;
         private readonly WorldViewDescriptions _viewDescriptions;
+        private readonly Func<string, Task> _reloadSessionCallback;
         
-        private readonly InGameMenuView _view;
         private IPresenter _currentMenuPresenter;
 
         public InGameMenuPresenter(InGameMenuModel model, InGameMenuView view, MenuContent menuContent, World world,
-            WorldViewDescriptions viewDescriptions)
+            WorldViewDescriptions viewDescriptions, Func<string, Task> reloadSessionCallback)
         {
             _model = model;
+            _view = view;
             _menuContent = menuContent;
             _world = world;
             _viewDescriptions = viewDescriptions;
-            _view = view;
+            _reloadSessionCallback = reloadSessionCallback;
         }
 
         public void Enable()
@@ -119,10 +122,7 @@ namespace Runtime.UI.InGameMenu
         {
             CloseMenu();
 
-            // TODO: Добавить перезагрузку сцены
-            
-            var loadStep = new WorldLoadStep(_world, _world.WorldDescription, _world.GameSystems, _world.PlayerControls, saveName);
-            await loadStep.Run();
+            await _reloadSessionCallback(saveName);
         }
 
         private void OnAchievementsClicked()

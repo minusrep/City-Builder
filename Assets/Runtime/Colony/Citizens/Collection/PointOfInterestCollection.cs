@@ -14,6 +14,8 @@ namespace Runtime.Colony.Citizens.Collection
         
         public int Count => _points.Count;
 
+        public bool ContainsKey(string key) => _points.ContainsKey(key);
+
         public Dictionary<string, object> Serialize()
         {
             return _points.ToJson();
