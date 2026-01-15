@@ -25,6 +25,41 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2115cf0e19abe1f4dae8706ab4fd56ab
+    m_Address: Citizen_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 350049e460522a24894dc79fef6838ba
+    m_Address: Citizen_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bbfd388a02d7f14bbea2e6baf4a4cdc
+    m_Address: Citizen_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 822a523981e52c44d9e6ab622253e10b
+    m_Address: Citizen_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9794cdef99766a344a601425b2bcde08
+    m_Address: Citizen_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ada80731b2ffe864e9d40c92d29559f0
+    m_Address: Citizen_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c63075807cf1c3248940e5664ad3c394
+    m_Address: Citizen_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5870ca5a51afee640ada8608be70eb1d, type: 2}
   m_SchemaSet:
