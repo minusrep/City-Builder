@@ -1,10 +1,10 @@
-using Runtime.Colony.Buildings.Selection;
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
 using Runtime.Colony.Citizens.Movement;
 using Runtime.Colony.Inventory;
 using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
+using Runtime.Selection;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.Colony.Citizens

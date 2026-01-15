@@ -1,9 +1,9 @@
+using Runtime.Colony;
 using Runtime.Common;
 using Runtime.UI;
-using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Runtime.Colony.Buildings.Selection.BuildingPanel
+namespace Runtime.Selection.SelectedPanel
 {
     public class SelectedPanelPresenter : IPresenter
     {

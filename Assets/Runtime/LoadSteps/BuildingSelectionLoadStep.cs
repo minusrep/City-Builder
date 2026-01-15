@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Runtime.Colony;
-using Runtime.Colony.Buildings.Selection;
-using Runtime.Colony.Buildings.Selection.BuildingPanel;
 using Runtime.Common;
+using Runtime.Selection;
+using Runtime.Selection.SelectedPanel;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
 

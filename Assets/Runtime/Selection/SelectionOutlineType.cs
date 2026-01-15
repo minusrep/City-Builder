@@ -1,4 +1,4 @@
-namespace Runtime.Colony.Buildings.Selection
+namespace Runtime.Selection
 {
     public enum SelectionOutlineType
     {

@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Runtime.Colony.Buildings.Selection
+namespace Runtime.Selection
 {
     [RequireComponent(typeof(Outline))]
     public class SelectionOutline : MonoBehaviour

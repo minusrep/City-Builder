@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.UIElements;
 
-namespace Runtime.Colony.Buildings.Selection.BuildingPanel
+namespace Runtime.Selection.SelectedPanel
 {
     public static class SelectionPanelUtility
     {

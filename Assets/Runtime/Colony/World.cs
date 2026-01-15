@@ -4,7 +4,6 @@ using Runtime.Colony.Achievements.Collection;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Construction;
 using Runtime.Colony.Buildings.Construction.WorldGrid;
-using Runtime.Colony.Buildings.Selection;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.Orders;
 using Runtime.Descriptions;
@@ -12,6 +11,7 @@ using Runtime.Extensions;
 using Runtime.GameSystems;
 using Runtime.Input;
 using Runtime.ModelCollections;
+using Runtime.Selection;
 using Runtime.UI.InGameMenu;
 using UnityEngine;
 

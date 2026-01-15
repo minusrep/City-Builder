@@ -1,8 +1,9 @@
+using Runtime.Colony;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Common;
 
-namespace Runtime.Colony.Buildings.Selection.BuildingPanel
+namespace Runtime.Selection.SelectedPanel
 {
     public class SelectedBuildingPanelPresenter : IPresenter
     {

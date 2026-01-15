@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Runtime.Colony;
 using Runtime.Colony.Stats;
 using Runtime.Common;
 
-namespace Runtime.Colony.Buildings.Selection.BuildingPanel
+namespace Runtime.Selection.SelectedPanel
 {
     public class SelectedCitizenPanelPresenter : IPresenter
     {

@@ -1,7 +1,7 @@
 ﻿using Runtime.ViewDescriptions.Stats;
 using UnityEngine.UIElements;
 
-namespace Runtime.Colony.Buildings.Selection.BuildingPanel
+namespace Runtime.Selection.SelectedPanel
 {
     public class SelectedPanelView
     {

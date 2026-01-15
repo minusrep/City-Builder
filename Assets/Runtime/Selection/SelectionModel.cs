@@ -1,6 +1,6 @@
 using System;
 
-namespace Runtime.Colony.Buildings.Selection
+namespace Runtime.Selection
 {
     public class SelectionModel
     {

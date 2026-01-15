@@ -1,8 +1,9 @@
+using Runtime.Colony;
 using Runtime.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Runtime.Colony.Buildings.Selection
+namespace Runtime.Selection
 {
     public class SelectionPresenter : IPresenter
     {
