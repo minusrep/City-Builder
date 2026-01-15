@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 1995736407142382352}
   - component: {fileID: 5135881691053956328}
   - component: {fileID: 4399727535457178260}
+  - component: {fileID: 7562982305396718573}
   m_Layer: 0
   m_Name: Shelter
   m_TagString: Untagged
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Service.ServiceBuildingView
   _uiDocument: {fileID: 0}
   _preview: {fileID: 7499586917763970498}
-  _outline: {fileID: 5135881691053956328}
+  _outline: {fileID: 7562982305396718573}
 --- !u!114 &5135881691053956328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2489,6 +2490,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.3545113, y: 4.1715374, z: 4.476493}
   m_Center: {x: 2.5921226, y: 1.3418045, z: 2.49047}
+--- !u!114 &7562982305396718573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc2c1a7f5944648bc96df38915d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
+  _outline: {fileID: 5135881691053956328}
 --- !u!1001 &3491291869775354885
 PrefabInstance:
   m_ObjectHideFlags: 0

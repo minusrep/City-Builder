@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 7811179642611185603}
   - component: {fileID: 8686346696335662861}
   - component: {fileID: 871794443086009019}
+  - component: {fileID: -4516913881714134514}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -119,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Production.ProductionBuildingView
   _uiDocument: {fileID: 1338904815707915831}
   _preview: {fileID: 261454053503555047}
-  _outline: {fileID: 8686346696335662861}
+  _outline: {fileID: -4516913881714134514}
 --- !u!114 &8686346696335662861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,6 +2462,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.486413, y: 4.9047813, z: 2.9523911}
   m_Center: {x: 2.579945, y: 1.7432065, z: 2.5799453}
+--- !u!114 &-4516913881714134514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc2c1a7f5944648bc96df38915d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
+  _outline: {fileID: 8686346696335662861}
 --- !u!1 &5521934936045358098
 GameObject:
   m_ObjectHideFlags: 0

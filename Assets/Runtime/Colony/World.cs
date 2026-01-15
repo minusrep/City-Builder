@@ -4,7 +4,6 @@ using Runtime.Colony.Achievements.Collection;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Construction;
 using Runtime.Colony.Buildings.Construction.WorldGrid;
-using Runtime.Colony.Buildings.Selection;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.Orders;
 using Runtime.Descriptions;
@@ -12,6 +11,7 @@ using Runtime.Extensions;
 using Runtime.GameSystems;
 using Runtime.Input;
 using Runtime.ModelCollections;
+using Runtime.Selection;
 using Runtime.UI.InGameMenu;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ namespace Runtime.Colony
         public CitizenModelCollection Citizens { get; private set; }
         public BuildingModelCollection Buildings { get; private set; }
         public BuildingConstructionModel BuildingConstructionModel { get; private set; }
-        public BuildingSelectionModel BuildingSelectionModel { get; private set; }
+        public SelectionModel SelectionModel { get; private set; }
         public AchievementModelCollection Achievements { get; private set; }
         public WorldGridModel Grid { get; private set; }
         public PlayerControls PlayerControls { get; private set; }
@@ -50,7 +50,7 @@ namespace Runtime.Colony
             
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, this);
             BuildingConstructionModel = new BuildingConstructionModel(PlayerControls);
-            BuildingSelectionModel = new BuildingSelectionModel();
+            SelectionModel = new SelectionModel();
             
             Achievements = new AchievementModelCollection(worldDescription.AchievementsCollection);
             Grid = new WorldGridModel(worldDescription.WorldGridDescription);

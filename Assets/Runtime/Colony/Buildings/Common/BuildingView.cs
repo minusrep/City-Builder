@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Runtime.Selection;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Buildings.Common
 {
-    public class BuildingView : MonoBehaviour
+    public class BuildingView : MonoBehaviour, ISelectableUnit
     {
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
@@ -13,21 +14,17 @@ namespace Runtime.Colony.Buildings.Common
 
         public string Id { get; set; }
 
-        public bool SelectedOutline
-        {
-            get => _outline.enabled;
-            
-            set => _outline.enabled = value;
-        }
+        public SelectionOutline Outline => _outline;
 
         [SerializeField] private UIDocument _uiDocument;
         [SerializeField] private BuildingPreview _preview;
 
-        [SerializeField] private Outline _outline;
+        [SerializeField] private SelectionOutline _outline;
         
         public void OnEnable()
         {
-            SelectedOutline = false;
+            _outline.SetOutline(SelectionOutlineType.None);
+            
             Transform = transform;
             GameObject =  gameObject;
             

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8364319867359400544}
   - component: {fileID: 5501538418256578026}
   - component: {fileID: 5326944264105613301}
+  - component: {fileID: 3811280682995311116}
   m_Layer: 0
   m_Name: Warehouse
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Storage.StorageBuildingView
   _uiDocument: {fileID: 912060516600702519}
   _preview: {fileID: 5690381119704124738}
-  _outline: {fileID: 5501538418256578026}
+  _outline: {fileID: 3811280682995311116}
 --- !u!114 &5501538418256578026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2393,6 +2394,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9068785, y: 4.765278, z: 1}
   m_Center: {x: 2.7795177, y: 1.721038, z: 0}
+--- !u!114 &3811280682995311116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc2c1a7f5944648bc96df38915d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
+  _outline: {fileID: 5501538418256578026}
 --- !u!1 &5704163956497761162
 GameObject:
   m_ObjectHideFlags: 0

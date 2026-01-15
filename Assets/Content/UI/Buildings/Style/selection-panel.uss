@@ -1,26 +1,26 @@
-.building-panel-field {
+.selection-panel-field {
     color: rgb(255, 255, 255);
     font-size: 24px;
     -unity-font-style: normal;
 }
 
-.building-panel-title {
+.selection-panel-title {
     color: rgb(255, 255, 255);
     font-size: 32px;
     -unity-font-style: bold;
 }
 
-.building-panel-disabled {
+.selection-panel-disabled {
     translate: -100% 0;
     transition-duration: 0.2s;
 }
 
-.building-panel-enabled {
+.selection-panel-enabled {
     translate: 0% 0;
     transition-duration: 0.2s;
 }
 
-.building-panel-upgrade-button {
+.selection-panel-upgrade-button {
     -unity-font-style: bold;
     background-color: rgb(16, 16, 16);
     font-size: 24px;
@@ -49,5 +49,3 @@
     margin-left: 0;
     width: 100%;
 }
-
-

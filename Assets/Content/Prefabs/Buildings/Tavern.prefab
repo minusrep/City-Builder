@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 1686836590681740451}
   - component: {fileID: 845393757771583236}
   - component: {fileID: 2194415893376015819}
+  - component: {fileID: 6039640883050581564}
   m_Layer: 0
   m_Name: Tavern
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Service.ServiceBuildingView
   _uiDocument: {fileID: 0}
   _preview: {fileID: 8375665066298431493}
-  _outline: {fileID: 845393757771583236}
+  _outline: {fileID: 6039640883050581564}
 --- !u!114 &845393757771583236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2441,6 +2442,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.6933126, y: 4.2658463, z: 3.616096}
   m_Center: {x: 2.5306034, y: 1.3251472, z: 3.0692112}
+--- !u!114 &6039640883050581564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc2c1a7f5944648bc96df38915d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
+  _outline: {fileID: 845393757771583236}
 --- !u!1001 &3874911447583641983
 PrefabInstance:
   m_ObjectHideFlags: 0

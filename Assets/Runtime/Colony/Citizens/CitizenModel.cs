@@ -59,7 +59,7 @@ namespace Runtime.Colony.Citizens
         
         public InventoryModel Inventory { get; private set; }
         
-        private WorldDescription _description;
+        private readonly WorldDescription _description;
 
         private string Name { get; set; }
         

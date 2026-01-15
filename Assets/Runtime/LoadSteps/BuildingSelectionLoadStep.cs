@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Runtime.Colony;
-using Runtime.Colony.Buildings.Selection;
-using Runtime.Colony.Buildings.Selection.BuildingPanel;
 using Runtime.Common;
+using Runtime.Selection;
+using Runtime.Selection.SelectedPanel;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
 
@@ -27,14 +27,14 @@ namespace Runtime.LoadSteps
 
         public Task Run()
         {
-            var buildingSelectionPresenter = new BuildingSelectionPresenter(_world.BuildingSelectionModel, _world);
+            var buildingSelectionPresenter = new SelectionPresenter(_world.SelectionModel, _world);
             buildingSelectionPresenter.Enable();
             _presenters.Add(buildingSelectionPresenter);
 
             var buildingPanelView =
-                new BuildingPanelView(_worldViewDescriptions.BuildingMenuViewDescription.BuildingPanelAsset);
+                new SelectedPanelView(_worldViewDescriptions.SelectionViewDescription.BuildingPanelAsset, _worldViewDescriptions.StatViewDescriptions);
             var buildingPanelPresenter =
-                new BuildingPanelPresenter(_world.BuildingSelectionModel, buildingPanelView, _world, _menuContent);
+                new SelectedPanelPresenter(buildingPanelView, _world.SelectionModel, _world, _menuContent);
             buildingPanelPresenter.Enable();
             _presenters.Add(buildingPanelPresenter);
 
