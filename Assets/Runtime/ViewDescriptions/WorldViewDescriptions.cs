@@ -4,7 +4,7 @@ using Runtime.ViewDescriptions.Citizens;
 using Runtime.ViewDescriptions.Inventory;
 using Runtime.ViewDescriptions.Stats;
 using Runtime.ViewDescriptions.UI.BuildingConstruction;
-using Runtime.ViewDescriptions.UI.Load;
+using Runtime.ViewDescriptions.UI.Menu;
 
 namespace Runtime.ViewDescriptions
 {
