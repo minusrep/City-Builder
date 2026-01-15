@@ -6,6 +6,7 @@ using Runtime.Selection;
 using Runtime.Selection.SelectedPanel;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
+using UnityEngine.UIElements;
 
 namespace Runtime.LoadSteps
 {
@@ -31,10 +32,18 @@ namespace Runtime.LoadSteps
             buildingSelectionPresenter.Enable();
             _presenters.Add(buildingSelectionPresenter);
 
+            var selectionPanel = _worldViewDescriptions.SelectionViewDescription.SelectionPanelAsset.CloneTree().Q<VisualElement>("selection-panel");
+            
+            _menuContent.HudLayer.Add(selectionPanel);
+            
             var buildingPanelView =
-                new SelectedPanelView(_worldViewDescriptions.SelectionViewDescription.BuildingPanelAsset, _worldViewDescriptions.StatViewDescriptions);
+                new SelectedPanelView(selectionPanel,
+                    _worldViewDescriptions.StatViewDescriptions, 
+                    _worldViewDescriptions.InventoryViewDescription);
             var buildingPanelPresenter =
                 new SelectedPanelPresenter(buildingPanelView, _world.SelectionModel, _world, _menuContent);
+            
+            
             buildingPanelPresenter.Enable();
             _presenters.Add(buildingPanelPresenter);
 

@@ -3758,6 +3758,7 @@ GameObject:
   - component: {fileID: 5940598178733067503}
   - component: {fileID: 2257423503570003781}
   - component: {fileID: 2835468381680769915}
+  - component: {fileID: 6144908692838282703}
   m_Layer: 0
   m_Name: Citizen
   m_TagString: Untagged
@@ -3778,7 +3779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1177064666618494058}
+  - {fileID: 6275697873977005576}
   - {fileID: 4144343542386905895}
   - {fileID: 8176559841228476472}
   - {fileID: 8724448687832750575}
@@ -3841,7 +3842,7 @@ MonoBehaviour:
   _citizenMovementView: {fileID: 4096018201992737936}
   _citizenAnimatorView: {fileID: 5494046401035934219}
   _citizenDebugView: {fileID: 5940598178733067503}
-  _statViewCollection: {fileID: 1499057064897330348}
+  _citizenHUDView: {fileID: 6144908692838282703}
   _outline: {fileID: 2835468381680769915}
 --- !u!114 &4096018201992737936
 MonoBehaviour:
@@ -3957,6 +3958,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
   _outline: {fileID: 435995761914541629}
+--- !u!114 &6144908692838282703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466327982858300868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5df2d26f6d4bfcbd00e4d0e89b43d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Citizens.CitizenHUDView
+  _uiDocument: {fileID: 5672872852443594315}
 --- !u!1 &6334953567024714996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4052,6 +4066,51 @@ Transform:
   - {fileID: 7035903482300015058}
   m_Father: {fileID: 464024885202186817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6644956780229027342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6275697873977005576}
+  - component: {fileID: 8900563467524896805}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6275697873977005576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6644956780229027342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 9.47, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1177064666618494058}
+  m_Father: {fileID: 3296322151259616587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8900563467524896805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6644956780229027342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb5326ba9e441768ae4a608515d4eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.UI.CitizenUIBillboard
 --- !u!1 &6754275320485541913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4886,8 +4945,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1177064666618494058}
   - component: {fileID: 5672872852443594315}
-  - component: {fileID: 2846369788774512779}
-  - component: {fileID: 1499057064897330348}
   m_Layer: 0
   m_Name: Stats
   m_TagString: Untagged
@@ -4903,13 +4960,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8811564586953539095}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 8.06, z: -1.64}
-  m_LocalScale: {x: 0.66, y: 0.66, z: 0.66}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3296322151259616587}
-  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+  m_Father: {fileID: 6275697873977005576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5672872852443594315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4933,31 +4990,6 @@ MonoBehaviour:
   m_PivotReferenceSize: 1
   m_Pivot: 2
   m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &2846369788774512779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8811564586953539095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edebef0775b54db791e84cbba83dfd26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.UI.UIBillboard
---- !u!114 &1499057064897330348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8811564586953539095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c513f9e26e794f31a7009c6dd92bc12d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Stats.Collections.StatViewCollection
-  UiDocument: {fileID: 5672872852443594315}
 --- !u!1 &8990039698318947449
 GameObject:
   m_ObjectHideFlags: 0

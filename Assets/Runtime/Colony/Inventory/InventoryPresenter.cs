@@ -8,29 +8,25 @@ namespace Runtime.Colony.Inventory
 {
     public class InventoryPresenter
     {
-        private InventoryView _view;
+        private readonly InventoryView _view;
         private readonly InventoryModel _model;
-        private readonly UIDocument _uiDocument;
-        private readonly InventoryViewDescription _viewDescriptions;
         private readonly List<CellPresenter> _cellPresenters = new();
 
-        public InventoryPresenter(InventoryModel model, UIDocument uiDocument, WorldViewDescriptions viewDescriptions)
+        public InventoryPresenter(InventoryView view, InventoryModel model)
         {
+            _view = view;
+            
             _model = model;
-            _uiDocument = uiDocument;
-            _viewDescriptions = viewDescriptions.InventoryViewDescription;
         }
 
         public void Enable()
         {
-            _view = new InventoryView(_uiDocument, _viewDescriptions.CellViewAsset);
-
             foreach (var pair in _model.Models)
             {
-                var cellView = new CellView(_view.CellAsset);
+                var cellView = new CellView(_view.CellAsset, _view.ViewDescription.ItemViewDescriptions);
                 _view.Root.Add(cellView.Root);
 
-                var cellPresenter = new CellPresenter(pair.Value, cellView, _viewDescriptions);
+                var cellPresenter = new CellPresenter(pair.Value, cellView);
                 cellPresenter.Enable();
                 
                 _cellPresenters.Add(cellPresenter);

@@ -1,8 +1,7 @@
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
+using Runtime.Colony.Citizens.HUD;
 using Runtime.Colony.Citizens.Movement;
-using Runtime.Colony.Inventory;
-using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
 using Runtime.Selection;
 using Runtime.ViewDescriptions;
@@ -16,11 +15,9 @@ namespace Runtime.Colony.Citizens
         private CitizenAnimatorPresenter _citizenAnimatorPresenter;
         
         private CitizenDebugPresenter _citizenDebugPresenter;
-        
-        private StatPresenterCollection _statPresenterCollection;
 
-        private InventoryPresenter _inventoryPresenter;
-        
+        private CitizenHUDPresenter _citizenHUDPresenter;
+
         private readonly CitizenModel _model;
         
         private readonly World _world;
@@ -28,7 +25,7 @@ namespace Runtime.Colony.Citizens
         private readonly WorldViewDescriptions _viewDescriptions;
         
         private readonly CitizenView _view;
-        
+                
         public CitizenPresenter(CitizenView view,  CitizenModel model, World world, WorldViewDescriptions viewDescriptions)
         {
             _view =  view;
@@ -49,6 +46,8 @@ namespace Runtime.Colony.Citizens
             _view.Id = _model.Id.ToString();
 
             _view.Outline.SetOutline(SelectionOutlineType.None);
+
+            _citizenHUDPresenter = new CitizenHUDPresenter(_view.CitizenHUDView, _model);
             
             _citizenMovementPresenter = new CitizenMovementPresenter(_model, _view.CitizenMovementView);
             
@@ -56,11 +55,7 @@ namespace Runtime.Colony.Citizens
             
             _citizenDebugPresenter = new CitizenDebugPresenter(_view.CitizenDebugView, _model);
 
-            _statPresenterCollection = new StatPresenterCollection(_model.Stats, _view.StatViewCollection,
-                _viewDescriptions.StatViewDescriptions);
-
-            _inventoryPresenter = new InventoryPresenter(_model.Inventory,
-                _view.StatViewCollection.UiDocument, _viewDescriptions);
+            _citizenHUDPresenter.Enable();
             
             _citizenMovementPresenter.Enable();
             
@@ -68,18 +63,12 @@ namespace Runtime.Colony.Citizens
             
             _citizenDebugPresenter.Enable();
             
-            _statPresenterCollection.Enable();
-            
-            _inventoryPresenter.Enable();
-            
             ExecuteActions();
         }
 
         public void Disable()
         {
-            _inventoryPresenter.Disable();
-            
-            _statPresenterCollection.Disable();
+            _citizenHUDPresenter.Disable();
             
             _citizenMovementPresenter.Disable();
 
@@ -111,13 +100,11 @@ namespace Runtime.Colony.Citizens
             
             if (visibility)
             {
-                _statPresenterCollection.Enable();
-                _inventoryPresenter.Enable();
+                _citizenHUDPresenter.Enable();
             }
             else
             {
-                _inventoryPresenter.Disable();
-                _statPresenterCollection.Disable();
+                _citizenHUDPresenter.Disable();
             }
         }
     }

@@ -9,6 +9,8 @@ namespace Runtime.ViewDescriptions.UI.Building
     {
         public VisualTreeAsset BuildingPanelAsset;
 
+        public VisualTreeAsset SelectionPanelAsset;
+        
         public VisualTreeAsset StatAsset;
         
         public VisualTreeAsset ConstructionMenuAsset;

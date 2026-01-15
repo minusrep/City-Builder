@@ -1,9 +1,10 @@
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
+using Runtime.Colony.Citizens.HUD;
 using Runtime.Colony.Citizens.Movement;
-using Runtime.Colony.Stats.Collections;
 using Runtime.Selection;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Runtime.Colony.Citizens
 {
@@ -13,20 +14,20 @@ namespace Runtime.Colony.Citizens
         public CitizenAnimatorView CitizenAnimatorView => _citizenAnimatorView;
         public CitizenDebugView CitizenDebugView => _citizenDebugView;
         
+        public CitizenHUDView CitizenHUDView => _citizenHUDView;
+        
         public string Id { get; set; }
 
         public SelectionOutline Outline => _outline;
         
-        public StatViewCollection StatViewCollection => _statViewCollection;
-
         [SerializeField] private CitizenMovementView _citizenMovementView;
 
         [SerializeField] private CitizenAnimatorView _citizenAnimatorView;
         
         [SerializeField] private CitizenDebugView _citizenDebugView;
         
-        [SerializeField] private StatViewCollection _statViewCollection;
-
+        [SerializeField] private CitizenHUDView _citizenHUDView;
+        
         [SerializeField] private SelectionOutline _outline;
 
     }

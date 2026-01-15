@@ -23,7 +23,10 @@ namespace Runtime.Colony.Buildings.Production
         public override void Enable()
         {
             base.Enable();
-            _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
+            
+            var inventoryView = new InventoryView(View.Document.rootVisualElement, WorldViewDescriptions.InventoryViewDescription);
+            
+            _inventoryPresenter = new InventoryPresenter(inventoryView, _model.Inventory);
 
             _inventoryPresenter.Enable();
             

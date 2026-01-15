@@ -1,4 +1,5 @@
-﻿using Runtime.ViewDescriptions.Stats;
+﻿using Runtime.ViewDescriptions.Inventory;
+using Runtime.ViewDescriptions.Stats;
 using UnityEngine.UIElements;
 
 namespace Runtime.Selection.SelectedPanel
@@ -9,11 +10,14 @@ namespace Runtime.Selection.SelectedPanel
         
         public StatViewDescriptionCollection StatViewDescriptions { get; }
         
-        public SelectedPanelView(VisualTreeAsset buildingPanelAsset, StatViewDescriptionCollection statViewDescriptions)
+        public InventoryViewDescription InventoryViewDescription { get; }
+        
+        public SelectedPanelView(VisualElement root, StatViewDescriptionCollection statViewDescriptions, InventoryViewDescription inventoryViewDescription)
         {
-            Root = buildingPanelAsset.CloneTree().Q<VisualElement>("selection-panel");
+            Root = root;
             
             StatViewDescriptions = statViewDescriptions;
+            InventoryViewDescription = inventoryViewDescription;
         }
     }
 }

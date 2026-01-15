@@ -21,7 +21,9 @@ namespace Runtime.Colony.Buildings.Storage
         {
             base.Enable();
 
-            _inventoryPresenter = new InventoryPresenter(_model.Inventory, View.Document, WorldViewDescriptions);
+            var inventoryView = new InventoryView(View.Document.rootVisualElement, WorldViewDescriptions.InventoryViewDescription);
+            
+            _inventoryPresenter = new InventoryPresenter(inventoryView, _model.Inventory);
 
             _inventoryPresenter.Enable();
         }

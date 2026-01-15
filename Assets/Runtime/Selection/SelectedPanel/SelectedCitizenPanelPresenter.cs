@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Runtime.Colony;
+using Runtime.Colony.Inventory;
 using Runtime.Colony.Stats;
+using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
 
 namespace Runtime.Selection.SelectedPanel
@@ -13,8 +15,9 @@ namespace Runtime.Selection.SelectedPanel
         private readonly SelectionModel _model;
         private readonly World _world;
 
-        private List<StatPresenter> _statPresenters = new List<StatPresenter>();
-
+        private StatPresenterCollection _statPresenterCollection;
+        private InventoryPresenter _inventoryPresenter;
+        
         public SelectedCitizenPanelPresenter(SelectedPanelView view, SelectionModel model, World world)
         {
             _view = view;
@@ -45,31 +48,31 @@ namespace Runtime.Selection.SelectedPanel
             }
             
             SelectionPanelUtility.SetupPanel(_view.Root);
-
-            foreach (var presenters in _statPresenters)
-            {
-                presenters.Disable();
-            }
-
-            _statPresenters = new List<StatPresenter>();
             
+            _statPresenterCollection?.Disable();
+            
+            _inventoryPresenter?.Disable();
+
             _view.Root.Clear();
             
-            _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedCitizen.Id.ToString()));
+            var statViewCollection = new StatViewCollection(_view.Root);
+            
+            _statPresenterCollection =
+                new StatPresenterCollection(statViewCollection, selectedCitizen.Stats, _view.StatViewDescriptions);
+            
+            var inventoryRoot = _view.InventoryViewDescription.InventoryAsset.CloneTree();
+            
+            var inventoryView = new InventoryView(inventoryRoot, _view.InventoryViewDescription);
+            
+            _inventoryPresenter = new InventoryPresenter(inventoryView, selectedCitizen.Inventory);
+            
+            _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedCitizen.Name));
 
-            foreach (var stat in selectedCitizen.Stats)
-            {
-                var statView = new StatView(_view.StatViewDescriptions[stat.Stat.ViewId]);
-                
-                var statPresenter = new StatPresenter(stat, statView);
-                
-                _statPresenters.Add(statPresenter);
-
-                statPresenter.Enable();
-
-                _view.Root.Add(statView.Root);
-            }
+            _statPresenterCollection.Enable();
+            
+            _inventoryPresenter.Enable();
+            
+            _view.Root.Add(inventoryRoot);
         }
-
     }
 }

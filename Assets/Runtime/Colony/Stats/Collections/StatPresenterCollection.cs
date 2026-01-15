@@ -6,28 +6,28 @@ namespace Runtime.Colony.Stats.Collections
 {
     public class StatPresenterCollection : IPresenter
     {
-        private readonly StatModelCollection _stats;
+        private readonly StatModelCollection _model;
         
-        private readonly StatViewCollection _statsView;
+        private readonly StatViewCollection _view;
         
         private readonly StatViewDescriptionCollection _statViewDescriptions;
 
         private readonly List<StatPresenter> _presenters = new List<StatPresenter>() ;
         
-        public StatPresenterCollection(StatModelCollection stats, StatViewCollection statsView,
+        public StatPresenterCollection(StatViewCollection view, StatModelCollection model,
             StatViewDescriptionCollection statViewDescriptions)
         {
-            _stats = stats;
-            _statsView = statsView;
+            _model = model;
+            _view = view;
             _statViewDescriptions = statViewDescriptions;
         }
 
         public void Enable()
         {
-            foreach (var stat in _stats)
+            foreach (var stat in _model)
             {
                 var statView = new StatView(_statViewDescriptions[stat.Stat.ViewId]);
-                _statsView.Root.Add(statView.Root);
+                _view.Root.Add(statView.Root);
                 
                 var statPresenter = new StatPresenter(stat, statView);
                 statPresenter.Enable();
