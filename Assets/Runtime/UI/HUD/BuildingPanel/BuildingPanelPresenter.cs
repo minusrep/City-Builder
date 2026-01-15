@@ -9,8 +9,6 @@ namespace Runtime.UI.HUD.BuildingPanel
 {
     public class BuildingPanelPresenter : IPresenter
     {
-        private const string BuildingPanelKey = "building-panel";
-        
         private const string BuildingPanelEnabledStyleKey = "building-panel-enabled";
         
         private const string BuildingInfoPanelFieldStyleKey = "building-panel-field";
@@ -19,16 +17,13 @@ namespace Runtime.UI.HUD.BuildingPanel
         
         private const string BuildingInfoUpgradeButtonStyleKey = "building-panel-upgrade-button";
         
-        private readonly HUDView _view;
+        private readonly BuildingPanelView _view;
 
         private readonly BuildingSelectionModel _model;
 
         private readonly World _world;
-
-        private VisualElement _root;
-
-
-        public BuildingPanelPresenter(HUDView view, BuildingSelectionModel model, World world)
+        
+        public BuildingPanelPresenter(BuildingPanelView view, BuildingSelectionModel model, World world)
         {
             _model = model;
             _view = view;
@@ -37,16 +32,17 @@ namespace Runtime.UI.HUD.BuildingPanel
 
         public void Enable()
         {
-            _root = _view.Root.Q<VisualElement>(BuildingPanelKey);
-            
-            _root.RegisterCallback<PointerEnterEvent>(OnPointerEnter);
-            _root.RegisterCallback<PointerLeaveEvent>(OnPointerLeave);
+            _view.Root.RegisterCallback<PointerEnterEvent>(OnPointerEnter);
+            _view.Root.RegisterCallback<PointerLeaveEvent>(OnPointerLeave);
             
             _model.OnChange += OnChange;
         }
 
         public void Disable()
         {
+            _view.Root.UnregisterCallback<PointerEnterEvent>(OnPointerEnter);
+            _view.Root.UnregisterCallback<PointerLeaveEvent>(OnPointerLeave);
+            
             _model.OnChange -= OnChange;
         }
 
@@ -61,30 +57,30 @@ namespace Runtime.UI.HUD.BuildingPanel
             
             if (notSelected)
             {
-                _root.RemoveFromClassList(BuildingPanelEnabledStyleKey);
+                _view.Root.RemoveFromClassList(BuildingPanelEnabledStyleKey);
 
                 return;
             }
             
             var buildingModel = _world.Buildings.Get(_model.SelectedBuildingId);
             
-            _root.AddToClassList(BuildingPanelEnabledStyleKey);
+            _view.Root.AddToClassList(BuildingPanelEnabledStyleKey);
             
-            _root.Clear();
+            _view.Root.Clear();
 
-            _root.Add(CreateTitle(buildingModel.BaseDescription.ViewDescriptionId));
+            _view.Root.Add(CreateTitle(buildingModel.BaseDescription.ViewDescriptionId));
 
-            _root.Add(CreateField("Type: ", buildingModel.BaseDescription.Type));
-            _root.Add(CreateField("Level: ", buildingModel.Level + 1));
+            _view.Root.Add(CreateField("Type: ", buildingModel.BaseDescription.Type));
+            _view.Root.Add(CreateField("Level: ", buildingModel.Level + 1));
 
             switch (buildingModel)
             {
                 case ServiceBuildingModel service:
-                    _root.Add(CreateField("Resource: ", service.Description.ServiceResource));
+                    _view.Root.Add(CreateField("Resource: ", service.Description.ServiceResource));
                     break;
                 case ProductionBuildingModel production:
-                    _root.Add(CreateField("Time: ", $"{production.ProductionTime / 1000f}s"));
-                    _root.Add(CreateField("Resource: ", production.Description.ProductionResource));
+                    _view.Root.Add(CreateField("Time: ", $"{production.ProductionTime / 1000f}s"));
+                    _view.Root.Add(CreateField("Resource: ", production.Description.ProductionResource));
                     break;
             }
 
@@ -105,7 +101,7 @@ namespace Runtime.UI.HUD.BuildingPanel
                 
                 upgradeButton.AddToClassList(BuildingInfoUpgradeButtonStyleKey);
                 
-                _root.Add(upgradeButton);
+                _view.Root.Add(upgradeButton);
             }
         }
 
