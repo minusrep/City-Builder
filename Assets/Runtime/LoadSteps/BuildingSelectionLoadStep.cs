@@ -32,7 +32,9 @@ namespace Runtime.LoadSteps
             _presenters.Add(buildingSelectionPresenter);
 
             var buildingPanelView =
-                new SelectedPanelView(_worldViewDescriptions.SelectionViewDescription.BuildingPanelAsset, _worldViewDescriptions.StatViewDescriptions);
+                new SelectedPanelView(_worldViewDescriptions.SelectionViewDescription.BuildingPanelAsset, 
+                    _worldViewDescriptions.StatViewDescriptions, 
+                    _worldViewDescriptions.InventoryViewDescription);
             var buildingPanelPresenter =
                 new SelectedPanelPresenter(buildingPanelView, _world.SelectionModel, _world, _menuContent);
             buildingPanelPresenter.Enable();

@@ -50,17 +50,29 @@ namespace Runtime.Selection.SelectedPanel
             SelectionPanelUtility.SetupPanel(_view.Root);
             
             _statPresenterCollection?.Disable();
+            
+            _inventoryPresenter?.Disable();
 
+            _view.Root.Clear();
+            
             var statViewCollection = new StatViewCollection(_view.Root);
             
             _statPresenterCollection =
                 new StatPresenterCollection(statViewCollection, selectedCitizen.Stats, _view.StatViewDescriptions);
             
-            _view.Root.Clear();
+            var inventoryRoot = _view.InventoryViewDescription.InventoryAsset.CloneTree();
+            
+            var inventoryView = new InventoryView(inventoryRoot, _view.InventoryViewDescription);
+            
+            _inventoryPresenter = new InventoryPresenter(inventoryView, selectedCitizen.Inventory);
             
             _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedCitizen.Id.ToString()));
 
             _statPresenterCollection.Enable();
+            
+            _inventoryPresenter.Enable();
+            
+            _view.Root.Add(inventoryRoot);
         }
     }
 }
