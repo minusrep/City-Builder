@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Selection;
+using Runtime.Colony.Buildings.Selection.BuildingPanel;
 using Runtime.Common;
-using Runtime.UI.HUD.BuildingPanel;
 using Runtime.ViewDescriptions;
 
 namespace Runtime.LoadSteps

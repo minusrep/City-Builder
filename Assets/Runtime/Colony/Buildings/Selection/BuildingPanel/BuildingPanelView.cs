@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UIElements;
 
-namespace Runtime.UI.HUD.BuildingPanel
+namespace Runtime.Colony.Buildings.Selection.BuildingPanel
 {
     public class BuildingPanelView
     {
