@@ -11,7 +11,6 @@ using Runtime.ViewDescriptions.Inventory;
 using Runtime.ViewDescriptions.Stats;
 using Runtime.ViewDescriptions.UI.Building;
 using Runtime.ViewDescriptions.UI.Menu;
-using Object = UnityEngine.Object;
 
 namespace Runtime.LoadSteps
 {
@@ -32,8 +31,8 @@ namespace Runtime.LoadSteps
                     obj => worldViewDescriptions1.BuildingViewDescriptions = obj as BuildingViewDescriptionCollection
                 },
                 {
-                    "CitizenViewDescription",
-                    obj => worldViewDescriptions1.CitizenViewDescription = obj as CitizenViewDescription
+                    "CitizenViewDescriptionCollection",
+                    obj => worldViewDescriptions1.CitizenViewDescriptionCollection = obj as CitizenViewDescriptionCollection
                 },
                 {
                     "InventoryViewDescription",

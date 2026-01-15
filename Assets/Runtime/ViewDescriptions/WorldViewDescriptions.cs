@@ -12,7 +12,7 @@ namespace Runtime.ViewDescriptions
     {
         public BuildingViewDescriptionCollection BuildingViewDescriptions { get; set; }
         
-        public CitizenViewDescription CitizenViewDescription { get; set; }
+        public CitizenViewDescriptionCollection CitizenViewDescriptionCollection { get; set; }
 
         public InventoryViewDescription InventoryViewDescription { get; set; }
 

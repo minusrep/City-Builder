@@ -3,6 +3,7 @@ using Runtime.Colony.Citizens.Systems;
 using Runtime.Common;
 using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
+using UnityEngine;
 
 namespace Runtime.Colony.Citizens.Collection
 {
@@ -18,7 +19,7 @@ namespace Runtime.Colony.Citizens.Collection
 
         private readonly WorldViewDescriptions _viewDescriptions;
         
-        private IObjectPool<CitizenView> _viewPool;
+        private readonly Dictionary<string, ObjectPool<CitizenView>> _pools = new ();
 
         public CitizenPresenterCollection(CitizenViewCollection view, CitizenModelCollection model, 
             World world,  WorldViewDescriptions viewDescriptions)
@@ -34,14 +35,24 @@ namespace Runtime.Colony.Citizens.Collection
 
         public async void Enable()
         {
-            var prefab = await _viewDescriptions.CitizenViewDescription.Prefab.LoadAssetAsync().Task;
-            var citizenView = prefab.GetComponent<CitizenView>();
-            _viewPool = new ObjectPool<CitizenView>(citizenView, 20, _view.Transform);
-            
-            _viewDescriptions.CitizenViewDescription.Prefab.ReleaseAsset();
-            
             foreach (var model in _model.Models.Values)
             {
+                var poolExists = _pools.ContainsKey(model.ViewDescription);
+                
+                if (!poolExists)
+                {
+                    var prefab = 
+                        await _viewDescriptions.CitizenViewDescriptionCollection.Get(model.ViewDescription).Prefab.LoadAssetAsync().Task;
+                    
+                    var citizenView = prefab.GetComponent<CitizenView>();
+                    
+                    var viewPool = new ObjectPool<CitizenView>(citizenView, 10, _view.Transform);
+                    
+                    _pools[model.ViewDescription] = viewPool;
+                    
+                    _viewDescriptions.CitizenViewDescriptionCollection.Get(model.ViewDescription).Prefab.ReleaseAsset();
+                }
+
                 CreateCitizenPresenter(model);
             }
             
@@ -81,7 +92,7 @@ namespace Runtime.Colony.Citizens.Collection
 
         private void CreateCitizenPresenter(CitizenModel citizenModel)
         {
-            var citizenView = _viewPool.Get();
+            var citizenView = _pools[citizenModel.ViewDescription].Get();
 
             var citizenPresenter = new CitizenPresenter(citizenView, citizenModel, _world, _viewDescriptions);
             

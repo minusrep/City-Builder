@@ -4,6 +4,7 @@
       "citizen_0": {
         "id": 0,
         "name": "John",
+        "view_description": "citizen_6",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -53.58895,
@@ -51,6 +52,7 @@
       "citizen_1": {
         "id": 1,
         "name": "Ben",
+        "view_description": "citizen_1",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -43.93377,
@@ -96,6 +98,7 @@
       },
       "citizen_2": {
         "id": 2,
+        "view_description": "citizen_2",
         "name": "Jack",
         "spawned_from_building_id": "shelter_3",
         "position": [
@@ -143,6 +146,7 @@
       "citizen_3": {
         "id": 3,
         "name": "Donald",
+        "view_description": "citizen_3",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -26.21576,
@@ -189,6 +193,7 @@
       "citizen_4": {
         "id": 4,
         "name": "Tony",
+        "view_description": "citizen_4",
         "spawned_from_building_id": "shelter_3",
         "position": [
           0,
