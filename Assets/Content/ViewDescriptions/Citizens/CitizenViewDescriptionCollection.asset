@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CitizenViewDescriptionCollection
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Citizens.CitizenViewDescriptionCollection
   _descriptions:
-  - {fileID: 11400000, guid: 5d454d152ba9c4740a12741802126973, type: 2}
+  - {fileID: 11400000, guid: a3d1f2f0c44be3349b76b10d8ac0bf39, type: 2}
   - {fileID: 11400000, guid: b570c337966a9ba4dad27e86f757f319, type: 2}
   - {fileID: 11400000, guid: 6037ab660f9dc7e489150627f650b8c8, type: 2}
   - {fileID: 11400000, guid: 9ba9db2e522856744922c667c72d644c, type: 2}

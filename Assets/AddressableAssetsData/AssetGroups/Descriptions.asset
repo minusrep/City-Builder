@@ -15,6 +15,21 @@ MonoBehaviour:
   m_GroupName: Descriptions
   m_GUID: 2412a7597fd3de941aaa13c36838fbf9
   m_SerializeEntries:
+  - m_GUID: 2115cf0e19abe1f4dae8706ab4fd56ab
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 350049e460522a24894dc79fef6838ba
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bbfd388a02d7f14bbea2e6baf4a4cdc
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4a0ea41e48e641728ab08e4015285682
     m_Address: points_of_interest_description
     m_ReadOnly: 0
@@ -30,8 +45,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 822a523981e52c44d9e6ab622253e10b
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 828bfb4aaa5a4024cbe04956a46065d7
     m_Address: camera_control
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9794cdef99766a344a601425b2bcde08
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ada80731b2ffe864e9d40c92d29559f0
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_2.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -42,6 +72,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: be28a9a04073e7e4da93eab2e24f4a43
     m_Address: world_grid_description
+цц фцыфв фц    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c63075807cf1c3248940e5664ad3c394
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_5.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
