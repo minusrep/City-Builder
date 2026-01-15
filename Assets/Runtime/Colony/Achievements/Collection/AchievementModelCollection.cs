@@ -55,5 +55,11 @@ namespace Runtime.Colony.Achievements.Collection
                 }
             }
         }
+
+        public void Clear()
+        {
+            Models.Clear();
+            Create();
+        }
     }
 }

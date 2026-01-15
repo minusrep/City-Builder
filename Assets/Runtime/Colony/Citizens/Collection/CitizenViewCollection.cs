@@ -10,5 +10,13 @@ namespace Runtime.Colony.Citizens.Collection
         {
             Transform = transform;
         }
+
+        public void Clear()
+        {
+            for (int i = Transform.childCount - 1; i >= 0; i--)
+            {
+                Destroy(Transform.GetChild(i).gameObject);
+            }
+        }
     }
 }

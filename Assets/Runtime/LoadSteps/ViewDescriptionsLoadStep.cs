@@ -22,29 +22,30 @@ namespace Runtime.LoadSteps
 
         public ViewDescriptionsLoadStep(WorldViewDescriptions worldViewDescriptions, AddressableModel addressableModel)
         {
+            var worldViewDescriptions1 = worldViewDescriptions;
             _addressableModel = addressableModel;
 
             _loadMap = new Dictionary<string, Action<Object>>
             {
                 {
                     "BuildingViewDescriptionCollection",
-                    obj => worldViewDescriptions.BuildingViewDescriptions = obj as BuildingViewDescriptionCollection
+                    obj => worldViewDescriptions1.BuildingViewDescriptions = obj as BuildingViewDescriptionCollection
                 },
                 {
                     "CitizenViewDescription",
-                    obj => worldViewDescriptions.CitizenViewDescription = obj as CitizenViewDescription
+                    obj => worldViewDescriptions1.CitizenViewDescription = obj as CitizenViewDescription
                 },
                 {
                     "InventoryViewDescription",
-                    obj => worldViewDescriptions.InventoryViewDescription = obj as InventoryViewDescription
+                    obj => worldViewDescriptions1.InventoryViewDescription = obj as InventoryViewDescription
                 },
                 {
                     "StatViewDescriptionCollection",
-                    obj => worldViewDescriptions.StatViewDescriptions = obj as StatViewDescriptionCollection
+                    obj => worldViewDescriptions1.StatViewDescriptions = obj as StatViewDescriptionCollection
                 },
                 {
                     "AchievementViewDescriptionCollection",
-                    obj => worldViewDescriptions.AchievementsViewDescription =
+                    obj => worldViewDescriptions1.AchievementsViewDescription =
                         obj as AchievementViewDescriptionCollection
                 },
                 {

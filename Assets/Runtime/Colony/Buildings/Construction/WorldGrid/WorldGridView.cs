@@ -15,5 +15,13 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             Transform = transform;
             GameObject = gameObject;
         }
+
+        public void Clear()
+        {
+            if (_filter != null && _filter.mesh != null)
+            {
+                _filter.mesh.Clear();
+            }
+        }
     }
 }
