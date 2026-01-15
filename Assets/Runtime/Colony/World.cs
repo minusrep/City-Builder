@@ -38,7 +38,7 @@ namespace Runtime.Colony
         public CameraControlModel MainCameraControl { get; private set; }
         public InGameMenuModel InGameMenuModel { get; private set; }
 
-        public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider,
+        public void SetData(WorldDescription worldDescription,
             GameSystemCollection gameSystems, PlayerControls playerControls)
         {
             MainCamera = Camera.main;
@@ -48,7 +48,7 @@ namespace Runtime.Colony
             
             Citizens = new CitizenModelCollection(worldDescription);
             
-            Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
+            Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, this);
             BuildingConstructionModel = new BuildingConstructionModel(PlayerControls);
             BuildingSelectionModel = new BuildingSelectionModel();
             

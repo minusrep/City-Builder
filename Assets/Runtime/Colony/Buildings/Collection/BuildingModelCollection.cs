@@ -14,10 +14,11 @@ namespace Runtime.Colony.Buildings.Collection
         private readonly BuildingsDescriptionCollection _descriptions;
         private readonly BuildingModelFactory _modelFactory;
 
-        public BuildingModelCollection(BuildingsDescriptionCollection descriptions, BuildingModelFactory modelFactory)
+        public BuildingModelCollection(BuildingsDescriptionCollection descriptions, World world)
         {
             _descriptions = descriptions;
-            _modelFactory = modelFactory;
+            _modelFactory = new BuildingModelFactory(world);
+            _modelFactory.RegisterAll();
         }
 
         protected override BuildingModel CreateModel(string descriptionKey)

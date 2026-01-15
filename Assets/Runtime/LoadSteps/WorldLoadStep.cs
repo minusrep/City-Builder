@@ -34,13 +34,7 @@ namespace Runtime.LoadSteps
         
         public async Task Run()
         {
-            var resourceFactory = new ResourceFactory(_worldDescription.ResourceCollection);
-            var buildingModelFactory = new BuildingModelFactory(_world);
-
-            buildingModelFactory.RegisterAll();
-            var factoryProvider = new FactoryProvider(resourceFactory, buildingModelFactory);
-            
-            _world.SetData(_worldDescription, factoryProvider, _gameSystems, _playerControls);
+            _world.SetData(_worldDescription, _gameSystems, _playerControls);
 
             string loadPath;
             
