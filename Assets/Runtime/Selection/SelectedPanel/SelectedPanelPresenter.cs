@@ -26,8 +26,6 @@ namespace Runtime.Selection.SelectedPanel
 
         public void Enable()
         {
-            _menuContent.HudLayer.Add(_view.Root);
-            
             _selectedBuildingPanelPresenter = new SelectedBuildingPanelPresenter(_view, _model, _world);
             
             _selectedCitizenPanelPresenter = new  SelectedCitizenPanelPresenter(_view, _model, _world);
@@ -53,8 +51,6 @@ namespace Runtime.Selection.SelectedPanel
             _selectedBuildingPanelPresenter = null;
 
             _selectedCitizenPanelPresenter = null;
-            
-            _menuContent.HudLayer.Remove(_view.Root);
             
             _view.Root.UnregisterCallback<PointerEnterEvent>(OnPointerEnter);
             _view.Root.UnregisterCallback<PointerLeaveEvent>(OnPointerLeave);

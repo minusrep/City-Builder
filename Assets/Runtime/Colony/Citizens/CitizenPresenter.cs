@@ -1,8 +1,6 @@
 using Runtime.Colony.Citizens.Animations;
 using Runtime.Colony.Citizens.Debugging;
 using Runtime.Colony.Citizens.Movement;
-using Runtime.Colony.Inventory;
-using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
 using Runtime.Selection;
 using Runtime.ViewDescriptions;
@@ -19,8 +17,6 @@ namespace Runtime.Colony.Citizens
 
         private CitizenHUDPresenter _citizenHUDPresenter;
 
-        private InventoryPresenter _inventoryPresenter;
-        
         private readonly CitizenModel _model;
         
         private readonly World _world;
@@ -58,10 +54,6 @@ namespace Runtime.Colony.Citizens
             
             _citizenDebugPresenter = new CitizenDebugPresenter(_view.CitizenDebugView, _model);
 
-            var inventoryView = new InventoryView(_view.CitizenHUDView.Root, _viewDescriptions.InventoryViewDescription);
-            
-            _inventoryPresenter = new InventoryPresenter(inventoryView, _model.Inventory);
-            
             _citizenHUDPresenter.Enable();
             
             _citizenMovementPresenter.Enable();
@@ -70,16 +62,12 @@ namespace Runtime.Colony.Citizens
             
             _citizenDebugPresenter.Enable();
             
-            _inventoryPresenter.Enable();
-            
             ExecuteActions();
         }
 
         public void Disable()
         {
             _citizenHUDPresenter.Disable();
-            
-            _inventoryPresenter.Disable();
             
             _citizenMovementPresenter.Disable();
 
@@ -111,14 +99,10 @@ namespace Runtime.Colony.Citizens
             
             if (visibility)
             {
-                _inventoryPresenter.Enable();
-                
                 _citizenHUDPresenter.Enable();
             }
             else
             {
-                _inventoryPresenter.Disable();
-                
                 _citizenHUDPresenter.Disable();
             }
         }

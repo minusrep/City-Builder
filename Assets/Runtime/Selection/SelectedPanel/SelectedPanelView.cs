@@ -12,9 +12,9 @@ namespace Runtime.Selection.SelectedPanel
         
         public InventoryViewDescription InventoryViewDescription { get; }
         
-        public SelectedPanelView(VisualTreeAsset buildingPanelAsset, StatViewDescriptionCollection statViewDescriptions, InventoryViewDescription inventoryViewDescription)
+        public SelectedPanelView(VisualElement root, StatViewDescriptionCollection statViewDescriptions, InventoryViewDescription inventoryViewDescription)
         {
-            Root = buildingPanelAsset.CloneTree().Q<VisualElement>("selection-panel");
+            Root = root;
             
             StatViewDescriptions = statViewDescriptions;
             InventoryViewDescription = inventoryViewDescription;
