@@ -298,21 +298,20 @@
           36
         ],
         "level": 0,
-        "is_active": true,
-        "progress": 0.1563721,
+        "is_active": false,
+        "progress": 0,
         "inventory": {
           "models": {
             "0": {
-              "amount": 1,
-              "resource": "worker"
+              "amount": 0,
+              "resource": null
             },
             "1": {
               "amount": 0,
               "resource": null
             }
           }
-        },
-        "orders": {}
+        }
       },
       "sawmill_5": {
         "description": "sawmill",
@@ -334,9 +333,6 @@
               "resource": null
             }
           }
-        },
-        "orders": {
-          "worker": 1
         }
       },
       "mine_6": {
@@ -359,9 +355,6 @@
               "resource": null
             }
           }
-        },
-        "orders": {
-          "worker": 1
         }
       },
       "mine_7": {
@@ -384,9 +377,6 @@
               "resource": null
             }
           }
-        },
-        "orders": {
-          "worker": 1
         }
       },
       "smelter_8": {
@@ -417,10 +407,6 @@
               "resource": null
             }
           }
-        },
-        "orders": {
-          "wood": 1,
-          "ore": 1
         }
       },
       "smelter_9": {
@@ -451,45 +437,12 @@
               "resource": null
             }
           }
-        },
-        "orders": {
-          "wood": 1,
-          "ore": 1
         }
       }
     }
   },
   "order_manager": {
-    "orders": [
-      {
-        "id": "smelter_9_ore",
-        "from_building_id": "smelter_9",
-        "type": "put_resource",
-        "resource": "ore",
-        "amount": 1
-      },
-      {
-        "id": "smelter_8_wood",
-        "from_building_id": "smelter_8",
-        "type": "put_resource",
-        "resource": "wood",
-        "amount": 1
-      },
-      {
-        "id": "smelter_8_ore",
-        "from_building_id": "smelter_8",
-        "type": "put_resource",
-        "resource": "ore",
-        "amount": 1
-      },
-      {
-        "id": "smelter_9_wood",
-        "from_building_id": "smelter_9",
-        "type": "put_resource",
-        "resource": "wood",
-        "amount": 1
-      }
-    ]
+    "orders": [ ]
   },
   "achievements": {
     "models": {
