@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9209555602295748971}
   - component: {fileID: 7194554740882999641}
   - component: {fileID: 856994199522728835}
+  - component: {fileID: 8303529650292642463}
   m_Layer: 0
   m_Name: Latern
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiDocument: {fileID: 0}
   _preview: {fileID: 1762044938223773884}
-  _outline: {fileID: 7194554740882999641}
+  _outline: {fileID: 8303529650292642463}
 --- !u!208 &9209555602295748971
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -80,8 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Outline
   outlineMode: 0
-  outlineColor: {r: 0.93710685, g: 0.49125847, b: 0.01473429, a: 1}
-  outlineWidth: 2
+  outlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  outlineWidth: 5
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 4300000, guid: 3706b4a885e520045a1cba01acab4511, type: 3}
@@ -2408,6 +2409,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1824028, y: 10.074532, z: 1.0456009}
   m_Center: {x: 2.5080366, y: 4.1268597, z: 2.4852357}
+--- !u!114 &8303529650292642463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389820821820916020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc2c1a7f5944648bc96df38915d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
+  _outline: {fileID: 7194554740882999641}
 --- !u!1001 &280047462245302889
 PrefabInstance:
   m_ObjectHideFlags: 0

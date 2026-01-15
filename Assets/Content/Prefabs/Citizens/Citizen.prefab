@@ -3756,6 +3756,8 @@ GameObject:
   - component: {fileID: 2471815352150209781}
   - component: {fileID: 435995761914541629}
   - component: {fileID: 5940598178733067503}
+  - component: {fileID: 2257423503570003781}
+  - component: {fileID: 2835468381680769915}
   m_Layer: 0
   m_Name: Citizen
   m_TagString: Untagged
@@ -3840,6 +3842,7 @@ MonoBehaviour:
   _citizenAnimatorView: {fileID: 5494046401035934219}
   _citizenDebugView: {fileID: 5940598178733067503}
   _statViewCollection: {fileID: 1499057064897330348}
+  _outline: {fileID: 2835468381680769915}
 --- !u!114 &4096018201992737936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3901,8 +3904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 4
-  outlineColor: {r: 0.18373275, g: 1, b: 0, a: 1}
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.5718803, b: 0, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
@@ -3920,6 +3923,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Citizens.Debugging.CitizenDebugView
   _active: 0
+--- !u!65 &2257423503570003781
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466327982858300868}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 4.205589, z: 1}
+  m_Center: {x: 0, y: 1.6027946, z: 0}
+--- !u!114 &2835468381680769915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466327982858300868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc2c1a7f5944648bc96df38915d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
+  _outline: {fileID: 435995761914541629}
 --- !u!1 &6334953567024714996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,7 +4957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c513f9e26e794f31a7009c6dd92bc12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Stats.Collections.StatViewCollection
-  _uiDocument: {fileID: 5672872852443594315}
+  UiDocument: {fileID: 5672872852443594315}
 --- !u!1 &8990039698318947449
 GameObject:
   m_ObjectHideFlags: 0
