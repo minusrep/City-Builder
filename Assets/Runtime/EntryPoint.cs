@@ -13,7 +13,6 @@ using Runtime.Input;
 using Runtime.LoadSteps;
 using Runtime.UI;
 using Runtime.UI.HUD;
-using Runtime.UI.InGameMenu;
 using Runtime.ViewDescriptions;
 using UnityEditor;
 using UnityEngine;
@@ -23,35 +22,27 @@ namespace Runtime
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        [Header("UI")] 
-        [SerializeField] private UIDocument _menuDocument;
+        [Header("UI")] [SerializeField] private UIDocument _menuDocument;
         [SerializeField] private UIDocument _popupDocument;
         [SerializeField] private UIDocument _hudDocument;
 
-        [Header("View")] 
-        [SerializeField] private BuildingCollectionView _buildingCollectionView;
+        [Header("View")] [SerializeField] private BuildingCollectionView _buildingCollectionView;
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
         [SerializeField] private CameraControlView _cameraControlView;
         [SerializeField] private BuildingConstructionView _buildingConstructionView;
         [SerializeField] private WorldGridView _worldGridView;
         [SerializeField] private HUDView _hudView;
 
-        private readonly WorldDescription _worldDescription = new();
-
-        private readonly WorldViewDescriptions _worldViewDescriptions = new();
-
-        private readonly World _world = new();
-
-        private readonly GameSystemCollection _gameSystems = new();
-
         private readonly AddressableModel _addressableModel = new();
-
+        private readonly WorldDescription _worldDescription = new();
+        private readonly WorldViewDescriptions _worldViewDescriptions = new();
+        private readonly World _world = new();
+        private readonly GameSystemCollection _gameSystems = new();
         private readonly List<IPresenter> _presenters = new();
 
         private MenuContent _menuContent;
-        
         private PlayerControls _playerControls;
-        
+
         private async void Start()
         {
             _menuContent = new MenuContent(_menuDocument, _popupDocument);
@@ -62,7 +53,7 @@ namespace Runtime
                 new AddressableLoadStep(_addressableModel, _presenters),
                 new DescriptionsLoadStep(_worldDescription, _addressableModel),
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
-                
+
                 new WorldLoadStep(_world, _worldDescription, _gameSystems, _playerControls),
                 new GameSystemsCollectionLoadStep(_world, _gameSystems),
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView, _worldViewDescriptions),
@@ -74,12 +65,12 @@ namespace Runtime
                 new CameraControlLoadStep(_world, _cameraControlView, _worldDescription),
                 new InGameMenuLoadStep(_world, _worldViewDescriptions, _menuContent)
             };
-            
+
             foreach (var step in loadSteps)
             {
                 await step.Run();
             }
-            
+
             Application.quitting += OnQuit;
 
 #if UNITY_EDITOR
@@ -113,11 +104,10 @@ namespace Runtime
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 #endif
             Application.quitting -= OnQuit;
-            
-            _presenters.Reverse();
-            foreach (var presenter in _presenters)
+
+            for (var i = _presenters.Count - 1; i >= 0; i--)
             {
-                presenter.Disable();
+                _presenters[i].Disable();
             }
         }
     }
