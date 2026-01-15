@@ -599,13 +599,11 @@ MonoBehaviour:
   _menuDocument: {fileID: 2126681101}
   _popupDocument: {fileID: 1261220359}
   _hudDocument: {fileID: 725573876}
-  _constructionMenuAsset: {fileID: 9197481963319205126, guid: 00b1984865fcfe64e8d5d798e54e58a3, type: 3}
   _buildingCollectionView: {fileID: 730573693}
   _citizenViewCollection: {fileID: 1822786099}
   _cameraControlView: {fileID: 330585549}
   _buildingConstructionView: {fileID: 2035574545}
   _worldGridView: {fileID: 157871637}
-  _hudView: {fileID: 725573875}
 --- !u!4 &469992741
 Transform:
   m_ObjectHideFlags: 0
@@ -716,8 +714,6 @@ GameObject:
   m_Component:
   - component: {fileID: 725573877}
   - component: {fileID: 725573876}
-  - component: {fileID: 725573875}
-  - component: {fileID: 725573874}
   m_Layer: 5
   m_Name: '[HUD]'
   m_TagString: Untagged
@@ -725,33 +721,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &725573874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725573873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6cb3c2027f4445b8091a0b366f81d67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.UI.HUD.BuildingSelectionView
-  _camera: {fileID: 330585545}
---- !u!114 &725573875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725573873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97dfe0092de54fa2bcd65e673b54ea0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.UI.HUD.HUDView
-  _uiDocument: {fileID: 725573876}
-  _buildingSelectionView: {fileID: 725573874}
 --- !u!114 &725573876
 MonoBehaviour:
   m_ObjectHideFlags: 0

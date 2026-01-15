@@ -12,7 +12,7 @@ using Runtime.GameSystems;
 using Runtime.Input;
 using Runtime.LoadSteps;
 using Runtime.UI;
-using Runtime.UI.HUD;
+using Runtime.UI.HUD.BuildingPanel;
 using Runtime.ViewDescriptions;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -30,7 +30,6 @@ namespace Runtime
         [SerializeField] private CameraControlView _cameraControlView;
         [SerializeField] private BuildingConstructionView _buildingConstructionView;
         [SerializeField] private WorldGridView _worldGridView;
-        [SerializeField] private HUDView _hudView;
 
         private readonly AddressableModel _addressableModel = new();
         private readonly WorldDescription _worldDescription = new();
@@ -60,7 +59,6 @@ namespace Runtime
                 new BuildingConstructionLoadStep(_presenters, _buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
-                new HUDLoadStep(_presenters, _world, _hudView),
                 new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent),
                 new CameraControlLoadStep(_presenters, _world, _cameraControlView, _worldDescription),
                 new InGameMenuLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent)
