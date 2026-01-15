@@ -4,6 +4,7 @@ using Runtime.Colony.Achievements.Collection;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Construction;
 using Runtime.Colony.Buildings.Construction.WorldGrid;
+using Runtime.Colony.Buildings.Selection;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.Orders;
 using Runtime.Descriptions;
@@ -26,9 +27,10 @@ namespace Runtime.Colony
         public Camera MainCamera { get; private set; }
         public CitizenModelCollection Citizens { get; private set; }
         public BuildingModelCollection Buildings { get; private set; }
+        public BuildingConstructionModel BuildingConstructionModel { get; private set; }
+        public BuildingSelectionModel BuildingSelectionModel { get; private set; }
         public AchievementModelCollection Achievements { get; private set; }
         public WorldGridModel Grid { get; private set; }
-        public BuildingConstructionModel BuildingConstructionModel { get; private set; }
         public PlayerControls PlayerControls { get; private set; }
         public WorldDescription WorldDescription { get; private set; }
         public GameSystemCollection GameSystems { get; private set; }
@@ -40,17 +42,19 @@ namespace Runtime.Colony
             GameSystemCollection gameSystems, PlayerControls playerControls)
         {
             MainCamera = Camera.main;
-
+            PlayerControls = playerControls;
             WorldDescription = worldDescription;
             GameSystems = gameSystems;
-
+            
             Citizens = new CitizenModelCollection(worldDescription);
+            
             Buildings = new BuildingModelCollection(worldDescription.BuildingCollection, factoryProvider.BuildingModelFactory);
+            BuildingConstructionModel = new BuildingConstructionModel(PlayerControls);
+            BuildingSelectionModel = new BuildingSelectionModel();
+            
             Achievements = new AchievementModelCollection(worldDescription.AchievementsCollection);
             Grid = new WorldGridModel(worldDescription.WorldGridDescription);
-            
-            PlayerControls = playerControls;
-            BuildingConstructionModel = new BuildingConstructionModel(PlayerControls);
+
             OrderManager = new OrderManager();
             MainCameraControl = new CameraControlModel(PlayerControls);
             InGameMenuModel = new InGameMenuModel(PlayerControls);

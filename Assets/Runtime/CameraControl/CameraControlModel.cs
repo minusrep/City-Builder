@@ -5,16 +5,16 @@ namespace Runtime.CameraControl
 {
     public class CameraControlModel
     {
-        public readonly PlayerControls playerControls;
+        public readonly PlayerControls PlayerControls;
 
         public CameraControlModel(PlayerControls model)
         {
-            playerControls = model;
+            PlayerControls = model;
         }
 
-        public Vector2 MoveValue => playerControls.Camera.Move.ReadValue<Vector2>();
-        public Vector2 LookValue => playerControls.Camera.Look.ReadValue<Vector2>();
-        public Vector2 ZoomValue => playerControls.Camera.Zoom.ReadValue<Vector2>();
-        public bool MiddleClickValue => playerControls.Camera.MiddleClick.IsPressed();
+        public Vector2 MoveValue => PlayerControls.Player.Move.ReadValue<Vector2>();
+        public Vector2 LookValue => PlayerControls.Player.Look.ReadValue<Vector2>();
+        public Vector2 ZoomValue => PlayerControls.Player.Zoom.ReadValue<Vector2>();
+        public bool MiddleClickValue => PlayerControls.Player.MiddleClick.IsPressed();
     }
 }

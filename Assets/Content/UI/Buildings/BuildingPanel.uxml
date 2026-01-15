@@ -1,5 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Content/UI/Styles/hud.uss?fileID=7433441132597879392&amp;guid=4d63c9d0436652d439aa9000b5caa88b&amp;type=3#hud"/>
+    <Style src="project://database/Assets/Content/UI/Buildings/Style/building-panel.uss?fileID=7433441132597879392&amp;guid=4d63c9d0436652d439aa9000b5caa88b&amp;type=3#building-panel"/>
     <ui:VisualElement name="building-panel" class="building-panel-disabled" style="flex-grow: 1; background-color: rgb(38, 38, 38); position: absolute; top: 180px; left: 0; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px; border-top-right-radius: 32px; border-bottom-right-radius: 32px;">
         <ui:Label text="Label" class="building-panel-title"/>
         <ui:Button text="Button" class="building-panel-upgrade-button"/>

@@ -1,6 +1,6 @@
 using System;
 
-namespace Runtime.UI.HUD.BuildingSelection
+namespace Runtime.Colony.Buildings.Selection
 {
     public class BuildingSelectionModel
     {
