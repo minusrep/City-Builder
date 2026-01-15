@@ -1,16 +1,20 @@
+using Runtime.ViewDescriptions.Inventory;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Inventory
 {
     public class InventoryView
     {
-        public VisualTreeAsset CellAsset { get; }
+        public VisualTreeAsset CellAsset => ViewDescription.CellViewAsset;
         public VisualElement Root { get; private set; }
 
-        public InventoryView(UIDocument document, VisualTreeAsset cellAsset)
+        public InventoryViewDescription ViewDescription { get; private set; }
+
+        public InventoryView(VisualElement root, InventoryViewDescription viewDescription)
         {
-            CellAsset = cellAsset;
-            Root = document.rootVisualElement.Q<VisualElement>("content");
+            ViewDescription =  viewDescription;
+            
+            Root = root.Q<VisualElement>("content");
         }
     }
 }

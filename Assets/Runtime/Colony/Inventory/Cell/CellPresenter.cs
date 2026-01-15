@@ -7,13 +7,11 @@ namespace Runtime.Colony.Inventory.Cell
     {
         private readonly CellModel _model;
         private readonly CellView _view;
-        private readonly InventoryViewDescription _viewDescription;
 
-        public CellPresenter(CellModel model, CellView view, InventoryViewDescription viewDescription)
+        public CellPresenter(CellModel model, CellView view)
         {
             _model = model;
             _view = view;
-            _viewDescription = viewDescription;
         }
 
         public void Enable()
@@ -40,7 +38,7 @@ namespace Runtime.Colony.Inventory.Cell
                 return;
             }
 
-            var itemViewDescription = _viewDescription.ItemViewDescriptions.Get(_model.Resource.ViewId);
+            var itemViewDescription = _view.Description.Get(_model.Resource.ViewId);
             
             _view.Image.style.backgroundImage = itemViewDescription.Image.texture;
         }

@@ -58,8 +58,9 @@ namespace Runtime.Colony.Citizens
             
             _citizenDebugPresenter = new CitizenDebugPresenter(_view.CitizenDebugView, _model);
 
-            _inventoryPresenter = new InventoryPresenter(_model.Inventory,
-                _view.CitizenHUDView.UIDocument, _viewDescriptions);
+            var inventoryView = new InventoryView(_view.CitizenHUDView.Root, _viewDescriptions.InventoryViewDescription);
+            
+            _inventoryPresenter = new InventoryPresenter(inventoryView, _model.Inventory);
             
             _citizenHUDPresenter.Enable();
             

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Colony;
+using Runtime.Colony.Inventory;
 using Runtime.Colony.Stats;
 using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
@@ -15,6 +16,7 @@ namespace Runtime.Selection.SelectedPanel
         private readonly World _world;
 
         private StatPresenterCollection _statPresenterCollection;
+        private InventoryPresenter _inventoryPresenter;
         
         public SelectedCitizenPanelPresenter(SelectedPanelView view, SelectionModel model, World world)
         {
@@ -50,7 +52,7 @@ namespace Runtime.Selection.SelectedPanel
             _statPresenterCollection?.Disable();
 
             var statViewCollection = new StatViewCollection(_view.Root);
-
+            
             _statPresenterCollection =
                 new StatPresenterCollection(statViewCollection, selectedCitizen.Stats, _view.StatViewDescriptions);
             
