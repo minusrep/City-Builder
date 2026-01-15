@@ -3,7 +3,7 @@
     "models": {
       "citizen_0": {
         "id": 0,
-        "name": null,
+        "name": "John",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -53.58895,
@@ -50,7 +50,7 @@
       },
       "citizen_1": {
         "id": 1,
-        "name": null,
+        "name": "Ben",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -43.93377,
@@ -96,7 +96,7 @@
       },
       "citizen_2": {
         "id": 2,
-        "name": null,
+        "name": "Jack",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -32.97297,
@@ -142,7 +142,7 @@
       },
       "citizen_3": {
         "id": 3,
-        "name": null,
+        "name": "Donald",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -26.21576,
@@ -188,7 +188,7 @@
       },
       "citizen_4": {
         "id": 4,
-        "name": null,
+        "name": "Tony",
         "spawned_from_building_id": "shelter_3",
         "position": [
           0,

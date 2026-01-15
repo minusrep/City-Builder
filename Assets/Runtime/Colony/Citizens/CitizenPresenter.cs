@@ -16,8 +16,8 @@ namespace Runtime.Colony.Citizens
         private CitizenAnimatorPresenter _citizenAnimatorPresenter;
         
         private CitizenDebugPresenter _citizenDebugPresenter;
-        
-        private StatPresenterCollection _statPresenterCollection;
+
+        private CitizenHUDPresenter _citizenHUDPresenter;
 
         private InventoryPresenter _inventoryPresenter;
         
@@ -49,6 +49,8 @@ namespace Runtime.Colony.Citizens
             _view.Id = _model.Id.ToString();
 
             _view.Outline.SetOutline(SelectionOutlineType.None);
+
+            _citizenHUDPresenter = new CitizenHUDPresenter(_view.CitizenHUDView, _model);
             
             _citizenMovementPresenter = new CitizenMovementPresenter(_model, _view.CitizenMovementView);
             
@@ -58,6 +60,8 @@ namespace Runtime.Colony.Citizens
 
             _inventoryPresenter = new InventoryPresenter(_model.Inventory,
                 _view.CitizenHUDView.UIDocument, _viewDescriptions);
+            
+            _citizenHUDPresenter.Enable();
             
             _citizenMovementPresenter.Enable();
             
@@ -72,6 +76,8 @@ namespace Runtime.Colony.Citizens
 
         public void Disable()
         {
+            _citizenHUDPresenter.Disable();
+            
             _inventoryPresenter.Disable();
             
             _citizenMovementPresenter.Disable();
@@ -105,10 +111,14 @@ namespace Runtime.Colony.Citizens
             if (visibility)
             {
                 _inventoryPresenter.Enable();
+                
+                _citizenHUDPresenter.Enable();
             }
             else
             {
                 _inventoryPresenter.Disable();
+                
+                _citizenHUDPresenter.Disable();
             }
         }
     }
