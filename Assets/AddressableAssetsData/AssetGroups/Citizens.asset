@@ -26,32 +26,32 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2115cf0e19abe1f4dae8706ab4fd56ab
-    m_Address: Citizen_6
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_6.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 350049e460522a24894dc79fef6838ba
-    m_Address: Citizen_1
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3bbfd388a02d7f14bbea2e6baf4a4cdc
-    m_Address: Citizen_7
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_7.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 822a523981e52c44d9e6ab622253e10b
-    m_Address: Citizen_4
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_4.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9794cdef99766a344a601425b2bcde08
-    m_Address: Citizen_3
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_3.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ada80731b2ffe864e9d40c92d29559f0
-    m_Address: Citizen_2
+    m_Address: Assets/Content/Prefabs/Citizens/Citizen_2.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
