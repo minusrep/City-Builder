@@ -29,19 +29,22 @@ namespace Runtime.Colony.Buildings.Construction
                 {
                     var worldPosition = ray.GetPoint(distance);
                     var gridPosition = _world.Grid.WorldToGrid(worldPosition);
+                    
+                    if (_world.Grid.IsInsideGrid(gridPosition, _model.SelectedBuilding.Size))
+                    {
+                        var canPlace = _world.Grid.CanPlaceBuilding(
+                            _model.SelectedBuilding,
+                            gridPosition);
 
-                    var canPlace = _world.Grid.CanPlaceBuilding(
-                        _model.SelectedBuilding,
-                        gridPosition);
+                        var previewWorldPosition = _world.Grid.GridToWorld(
+                            gridPosition);
 
-                    var previewWorldPosition = _world.Grid.GridToWorld(
-                        gridPosition);
+                        _model.CurrentGridPosition = gridPosition;
+                        _model.CanPlace = canPlace;
 
-                    _model.CurrentGridPosition = gridPosition;
-                    _model.CanPlace = canPlace;
-
-                    _view.Transform.position = previewWorldPosition;
-                    _view.SetValid(canPlace);
+                        _view.Transform.position = previewWorldPosition;
+                        _view.SetValid(canPlace);
+                    }
                 }
             }
         }

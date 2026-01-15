@@ -39,7 +39,7 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
                 {
                     Cells[x, y] = new GridCellModel();
                 }
-            }
+            }   
         }
 
         public bool CanPlaceBuilding(BuildingDescription description, Vector2Int position)
@@ -88,6 +88,20 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             var x = Mathf.FloorToInt(local.x / WorldGridDescription.CellSize);
             var y = Mathf.FloorToInt(local.z / WorldGridDescription.CellSize);
             return new Vector2Int(x, y);
+        }
+        
+        public bool IsInsideGrid(Vector2Int position, Vector2Int size)
+        {
+            if (position.x < 0 || position.y < 0)
+                return false;
+
+            if (position.x + size.x > Description.Width)
+                return false;
+
+            if (position.y + size.y > Description.Height)  
+                return false;
+
+            return true;
         }
         
         public void RebuildFromBuildings(IEnumerable<BuildingModel> buildings)
