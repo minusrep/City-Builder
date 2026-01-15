@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.CameraControl;
 using Runtime.Colony.Achievements.Collection;
 using Runtime.Colony.Buildings.Collection;
 using Runtime.Colony.Buildings.Construction;
@@ -10,6 +11,7 @@ using Runtime.Extensions;
 using Runtime.GameSystems;
 using Runtime.Input;
 using Runtime.ModelCollections;
+using Runtime.UI.InGameMenu;
 using UnityEngine;
 
 namespace Runtime.Colony
@@ -31,6 +33,8 @@ namespace Runtime.Colony
         public WorldDescription WorldDescription { get; private set; }
         public GameSystemCollection GameSystems { get; private set; }
         public OrderManager OrderManager { get; private set; }
+        public CameraControlModel MainCameraControl { get; private set; }
+        public InGameMenuModel InGameMenuModel { get; private set; }
 
         public void SetData(WorldDescription worldDescription, FactoryProvider factoryProvider,
             GameSystemCollection gameSystems, PlayerControls playerControls)
@@ -48,6 +52,8 @@ namespace Runtime.Colony
             PlayerControls = playerControls;
             BuildingConstructionModel = new BuildingConstructionModel(PlayerControls);
             OrderManager = new OrderManager();
+            MainCameraControl = new CameraControlModel(PlayerControls);
+            InGameMenuModel = new InGameMenuModel(PlayerControls);
         }
 
         public Dictionary<string, object> Serialize()

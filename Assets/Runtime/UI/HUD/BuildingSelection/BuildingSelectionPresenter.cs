@@ -1,6 +1,6 @@
+using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Common;
-using Runtime.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,28 +9,26 @@ namespace Runtime.UI.HUD.BuildingSelection
     public class BuildingSelectionPresenter : IPresenter
     {
         private readonly BuildingSelectionView _view;
-        
         private readonly BuildingSelectionModel _model;
-        
-        private readonly PlayerControls _playerControls;
+        private readonly World _world;
 
         private BuildingView _cachedBuildingView;
         
-        public BuildingSelectionPresenter(BuildingSelectionView view, BuildingSelectionModel model, PlayerControls playerControls)
+        public BuildingSelectionPresenter(BuildingSelectionView view, BuildingSelectionModel model, World world)
         {
-            _playerControls = playerControls;
             _model = model;
+            _world = world;
             _view = view;
         }
 
         public void Enable()
         {
-            _playerControls.Player.Click.performed += OnClick;
+            _world.PlayerControls.Player.Click.performed += OnClick;
         }
 
         public void Disable()
         {
-            _playerControls.Player.Click.performed -= OnClick;
+            _world.PlayerControls.Player.Click.performed -= OnClick;
         }
 
         private void OnClick(InputAction.CallbackContext context)
@@ -40,7 +38,7 @@ namespace Runtime.UI.HUD.BuildingSelection
                 return;
             }
             
-            var ray = _view.Camera.ScreenPointToRay(_playerControls.Player.PointerPosition.ReadValue<Vector2>());
+            var ray = _view.Camera.ScreenPointToRay(_world.PlayerControls.Player.PointerPosition.ReadValue<Vector2>());
             
             var success = Physics.Raycast(ray, out var hitInfo);
 

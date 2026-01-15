@@ -10,7 +10,6 @@ namespace Runtime.LoadSteps
     public class BuildingCollectionLoadStep : IStep
     {
         private readonly List<IPresenter> _presenters;
-
         private readonly World _world;
         private readonly BuildingCollectionView _buildingCollectionView;
         private readonly WorldViewDescriptions _worldViewDescriptions;
@@ -24,8 +23,7 @@ namespace Runtime.LoadSteps
             _buildingCollectionView = buildingCollectionView;
             _worldViewDescriptions = worldViewDescriptions;
         }
-
-
+        
         public async Task Run()
         {
             var buildingCollectionPresenter = new BuildingCollectionPresenter(_world,

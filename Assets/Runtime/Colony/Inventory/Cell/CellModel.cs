@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Descriptions.Items;
 using Runtime.ModelCollections;
 
