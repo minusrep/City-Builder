@@ -40,7 +40,7 @@ namespace Runtime.Colony.Citizens
         public event Action<bool> OnVisibilityChanged;
         
         public int Id { get; set; }
-
+        
         public Vector3 Position { get; set; }
 
         public CitizensDescription Description { get; }
@@ -61,7 +61,7 @@ namespace Runtime.Colony.Citizens
         
         private readonly WorldDescription _description;
 
-        private string Name { get; set; }
+        public string Name { get; private set; }
         
         public CitizenModel(int id, WorldDescription description)
         {

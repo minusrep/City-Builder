@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Colony;
 using Runtime.Colony.Stats;
+using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
 
 namespace Runtime.Selection.SelectedPanel
@@ -13,8 +14,8 @@ namespace Runtime.Selection.SelectedPanel
         private readonly SelectionModel _model;
         private readonly World _world;
 
-        private List<StatPresenter> _statPresenters = new List<StatPresenter>();
-
+        private StatPresenterCollection _statPresenterCollection;
+        
         public SelectedCitizenPanelPresenter(SelectedPanelView view, SelectionModel model, World world)
         {
             _view = view;
@@ -45,31 +46,19 @@ namespace Runtime.Selection.SelectedPanel
             }
             
             SelectionPanelUtility.SetupPanel(_view.Root);
+            
+            _statPresenterCollection?.Disable();
 
-            foreach (var presenters in _statPresenters)
-            {
-                presenters.Disable();
-            }
+            var statViewCollection = new StatViewCollection(_view.Root);
 
-            _statPresenters = new List<StatPresenter>();
+            _statPresenterCollection =
+                new StatPresenterCollection(statViewCollection, selectedCitizen.Stats, _view.StatViewDescriptions);
             
             _view.Root.Clear();
             
             _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedCitizen.Id.ToString()));
 
-            foreach (var stat in selectedCitizen.Stats)
-            {
-                var statView = new StatView(_view.StatViewDescriptions[stat.Stat.ViewId]);
-                
-                var statPresenter = new StatPresenter(stat, statView);
-                
-                _statPresenters.Add(statPresenter);
-
-                statPresenter.Enable();
-
-                _view.Root.Add(statView.Root);
-            }
+            _statPresenterCollection.Enable();
         }
-
     }
 }

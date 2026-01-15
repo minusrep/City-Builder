@@ -28,7 +28,7 @@ namespace Runtime.Colony.Citizens
         private readonly WorldViewDescriptions _viewDescriptions;
         
         private readonly CitizenView _view;
-        
+                
         public CitizenPresenter(CitizenView view,  CitizenModel model, World world, WorldViewDescriptions viewDescriptions)
         {
             _view =  view;
@@ -56,19 +56,14 @@ namespace Runtime.Colony.Citizens
             
             _citizenDebugPresenter = new CitizenDebugPresenter(_view.CitizenDebugView, _model);
 
-            _statPresenterCollection = new StatPresenterCollection(_model.Stats, _view.StatViewCollection,
-                _viewDescriptions.StatViewDescriptions);
-
             _inventoryPresenter = new InventoryPresenter(_model.Inventory,
-                _view.StatViewCollection.UiDocument, _viewDescriptions);
+                _view.CitizenHUDView.UIDocument, _viewDescriptions);
             
             _citizenMovementPresenter.Enable();
             
             _citizenAnimatorPresenter.Enable();
             
             _citizenDebugPresenter.Enable();
-            
-            _statPresenterCollection.Enable();
             
             _inventoryPresenter.Enable();
             
@@ -78,8 +73,6 @@ namespace Runtime.Colony.Citizens
         public void Disable()
         {
             _inventoryPresenter.Disable();
-            
-            _statPresenterCollection.Disable();
             
             _citizenMovementPresenter.Disable();
 
@@ -111,13 +104,11 @@ namespace Runtime.Colony.Citizens
             
             if (visibility)
             {
-                _statPresenterCollection.Enable();
                 _inventoryPresenter.Enable();
             }
             else
             {
                 _inventoryPresenter.Disable();
-                _statPresenterCollection.Disable();
             }
         }
     }

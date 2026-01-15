@@ -4,10 +4,13 @@ using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Stats.Collections
 {
-    public class StatViewCollection : MonoBehaviour
+    public class StatViewCollection 
     {
-        [FormerlySerializedAs("_uiDocument")] public UIDocument UiDocument;
-        
-        public VisualElement Root => UiDocument.rootVisualElement;
+        public VisualElement Root { get; private set; }
+
+        public StatViewCollection(VisualElement root)
+        {
+            Root = root;
+        }
     }
 }
