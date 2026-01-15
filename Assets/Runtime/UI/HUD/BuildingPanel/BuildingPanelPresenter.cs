@@ -1,6 +1,6 @@
 using Runtime.Colony;
-using Runtime.Colony.Buildings.BuildingSelection;
 using Runtime.Colony.Buildings.Production;
+using Runtime.Colony.Buildings.Selection;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Common;
 using UnityEngine.UIElements;
@@ -23,7 +23,7 @@ namespace Runtime.UI.HUD.BuildingPanel
 
         private readonly World _world;
         
-        public BuildingPanelPresenter(BuildingPanelView view, BuildingSelectionModel model, World world)
+        public BuildingPanelPresenter(BuildingSelectionModel model, BuildingPanelView view, World world)
         {
             _model = model;
             _view = view;
