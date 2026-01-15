@@ -105,14 +105,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 return;
             }
 
-            var order = new OrderModel($"{targetBuilding.Id}_{resource.Id}", targetBuilding.Id)
-            {
-                Type = "put_resource",
-                ResourceId = resource.Id,
-                Amount = 1
-            };
-            
-            world.OrderManager.AddOrder(order);
+            var order = world.OrderManager[$"{targetBuilding.Id}_{resource.Id}"];
+            order.Unreserve(1);
             model.Inventory.Models.Values.First().TryReduce(0);
         }
     }
