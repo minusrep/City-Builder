@@ -7,6 +7,7 @@ using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Colony.Orders;
 using Runtime.Descriptions;
+using Runtime.Environment;
 using Runtime.Extensions;
 using Runtime.GameSystems;
 using Runtime.Input;
@@ -23,8 +24,12 @@ namespace Runtime.Colony
         private const string BuildingsKey = "buildings";
         private const string OrderManagerKey = "order_manager";
         private const string AchievementsKey = "achievements";
+        private const string EnvironmentKey = "environment";
 
         public Camera MainCamera { get; private set; }
+        
+        public EnvironmentModel Environment { get; private set; }
+        
         public CitizenModelCollection Citizens { get; private set; }
         public BuildingModelCollection Buildings { get; private set; }
         public BuildingConstructionModel BuildingConstructionModel { get; private set; }
@@ -45,6 +50,8 @@ namespace Runtime.Colony
             PlayerControls = playerControls;
             WorldDescription = worldDescription;
             GameSystems = gameSystems;
+
+            Environment = new EnvironmentModel(worldDescription.Environment);
             
             Citizens = new CitizenModelCollection(worldDescription);
             
@@ -67,7 +74,8 @@ namespace Runtime.Colony
                 [CitizensKey] = Citizens.Serialize(),
                 [BuildingsKey] = Buildings.Serialize(),
                 [OrderManagerKey] = OrderManager.Serialize(),
-                [AchievementsKey] = Achievements.Serialize()
+                [AchievementsKey] = Achievements.Serialize(),
+                [EnvironmentKey] = Environment.Serialize(),
             };
 
             return dictionary;
@@ -75,6 +83,7 @@ namespace Runtime.Colony
 
         public void Deserialize(Dictionary<string, object> data)
         {
+            Environment.Deserialize(data.GetNode(EnvironmentKey));
             Buildings.Deserialize(data.GetNode(BuildingsKey));
             Citizens.Deserialize(data.GetNode(CitizensKey));
             Achievements.Deserialize(data.GetNode(AchievementsKey));
