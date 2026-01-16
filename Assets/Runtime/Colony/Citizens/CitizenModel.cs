@@ -34,6 +34,8 @@ namespace Runtime.Colony.Citizens
         private const string InventoryKey = "inventory";
 
         private const string ViewDescriptionKey = "view_description";
+
+        private const string DefaultViewDescription = "citizen_1"; 
         
         public event Action<string> OnStartMove;
 
@@ -63,7 +65,7 @@ namespace Runtime.Colony.Citizens
         
         private readonly WorldDescription _description;
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public string ViewDescription { get; set; }
 
         public CitizenModel(int id, WorldDescription description)
@@ -71,6 +73,7 @@ namespace Runtime.Colony.Citizens
             _description = description;
             
             Id = id;
+            ViewDescription = DefaultViewDescription;
             Description = description.Citizens;
             Position = new Vector2(0, 0);
             PointsOfInterest = new PointOfInterestCollection();
