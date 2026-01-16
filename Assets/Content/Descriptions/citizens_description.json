@@ -257,7 +257,7 @@
       "transitions": {
         "talk_start": {
           "type": "citizen_distance_with_flag",
-          "distance_value": 4.0,
+          "distance_value": 8.0,
           "flag_name": "is_sad",
           "flag_value": "true"
         }

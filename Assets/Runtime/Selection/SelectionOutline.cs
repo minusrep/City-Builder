@@ -26,8 +26,11 @@ namespace Runtime.Selection
                     break;
                 
                 default:
-                    
-                    _outline.enabled = false;
+
+                    if (_outline != null)
+                    {
+                        _outline.enabled = false;
+                    }
                     
                     break;
 
