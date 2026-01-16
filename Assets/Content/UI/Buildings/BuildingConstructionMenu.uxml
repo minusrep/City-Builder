@@ -1,12 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Content/UI/Buildings/Style/building-construction-menu.uss?fileID=7433441132597879392&amp;guid=5287839f7950c5846adcb1e9155ac9cf&amp;type=3#building-construction-menu"/>
+    <Style src="project://database/Assets/Content/UI/Styles/slider-style.uss?fileID=7433441132597879392&amp;guid=d8ca339e57bb8704db73d79b8b29f06a&amp;type=3#slider-style"/>
     <ui:VisualElement name="construction-content" class="construction-content">
-        <ui:VisualElement name="construction-panel" class="construction-panel" style="width: auto;">
-            <ui:VisualElement name="construction-header" class="construction-header" style="flex-direction: row-reverse;">
-                <ui:Label name="construction-title" text="&#1042;&#1099;&#1073;&#1086;&#1088; &#1087;&#1086;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1080;" class="construction-title"/>
+        <ui:VisualElement name="construction-panel" class="construction-panel" style="width: 220px; background-color: rgb(55, 55, 63); max-height: 650px; min-height: 650px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; min-width: 220px; max-width: 209px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+            <ui:VisualElement name="construction-header" class="construction-header" style="flex-direction: row-reverse; margin-bottom: 20px; justify-content: center; background-image: none;">
+                <ui:Label name="construction-title" text="&#1057;&#1090;&#1088;&#1086;&#1080;&#1090;&#1077;&#1083;&#1100;&#1089;&#1090;&#1074;&#1086;" enable-rich-text="true" class="construction-title" style="font-size: 24px; -unity-font-definition: url(&quot;project://database/Assets/Content/Fonts/Onest-Bold.ttf?fileID=12800000&amp;guid=739e3c8cb2824ed43b983e0f7077a4a1&amp;type=3#Onest-Bold&quot;); -unity-font-style: normal; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(232, 177, 31);"/>
             </ui:VisualElement>
-            <ui:ScrollView name="building-scroll" horizontal-scrolling-enabled="true" vertical-scrolling-enabled="false" class="construction-scroll">
-                <ui:VisualElement name="building-list" class="building-list"/>
+            <ui:ScrollView name="building-scroll" horizontal-scrolling-enabled="true" vertical-scrolling-enabled="false" vertical-scroller-visibility="Auto" horizontal-scroller-visibility="Hidden" mode="Vertical" class="construction-scroll" style="align-items: flex-start; align-self: center; justify-content: flex-start; margin-right: 0; min-width: 205px; max-width: 205px;">
+                <ui:VisualElement name="building-list" class="building-list" style="flex-direction: column; height: auto; width: auto; margin-right: 0; flex-grow: 0; flex-shrink: 1;"/>
             </ui:ScrollView>
         </ui:VisualElement>
     </ui:VisualElement>

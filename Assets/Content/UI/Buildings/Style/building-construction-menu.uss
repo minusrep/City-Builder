@@ -9,21 +9,21 @@
 }
 
 .construction-toggle-button {
-    background-color: #2d2d2d;
+    background-color: rgb(45, 45, 45);
     color: white;
     font-size: 13px;
     -unity-font-style: bold;
     padding: 4px 8px;
     border-radius: 8px;
     border-width: 1px;
-    border-color: #ffffff20;
+    border-color: rgba(255, 255, 255, 0.13);
 }
 
 .construction-panel {
     width: 520px;
     min-height: 140px;
     margin-top: 8px;
-    background-color: #141414e6;
+    background-color: rgba(20, 20, 20, 0.9);
     border-radius: 14px;
     padding: 12px;
     flex-direction: column;
@@ -45,14 +45,14 @@
 .construction-close-button {
     width: 28px;
     height: 28px;
-    background-color: #3c3c3c;
+    background-color: rgb(60, 60, 60);
     border-radius: 6px;
     color: white;
     font-size: 14px;
     -unity-font-style: bold;
     padding: 0;
     border-width: 1px;
-    border-color: #ffffff20;
+    border-color: rgba(255, 255, 255, 0.13);
 }
 
 .construction-scroll {
@@ -68,27 +68,71 @@
 }
 
 .building-button {
-    width: 88px;
-    height: 88px;
-    background-color: #2d2d2d;
+    width: 150px;
+    height: 150px;
+    background-color: rgb(55, 55, 63);
     border-radius: 12px;
     border-width: 1px;
-    border-color: #ffffff14;
-    color: #dcdcdc;
-    font-size: 11px;
-    -unity-font-style: bold;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    -unity-font-style: normal;
     justify-content: flex-end;
     align-items: center;
-    padding-bottom: 6px;
+    padding-bottom: 3px;
+    border-left-color: rgb(185, 185, 185);
+    border-right-color: rgb(185, 185, 185);
+    border-top-color: rgb(185, 185, 185);
+    border-bottom-color: rgb(185, 185, 185);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    -unity-font-definition: url("project://database/Assets/Content/Fonts/Onest-Bold.ttf?fileID=12800000&guid=739e3c8cb2824ed43b983e0f7077a4a1&type=3#Onest-Bold");
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    -unity-text-align: lower-center;
+    background-size: 100% 100%;
+    -unity-text-outline-width: 0.5px;
+    -unity-text-outline-color: rgb(0, 0, 0);
 }
 
 .building-button--selected {
-    background-color: #6e96ff59;
-    border-color: #b4d2ff;
+    background-color: rgba(255, 237, 110, 0.35);
+    border-color: rgb(180, 210, 255);
     color: white;
+    border-left-color: rgb(255, 199, 49);
+    border-right-color: rgb(255, 199, 49);
+    border-top-color: rgb(255, 199, 49);
+    border-bottom-color: rgb(255, 199, 49);
+    -unity-background-image-tint-color: rgb(255, 238, 171);
 }
 
 .building-button:disabled {
-    background-color: #1e1e1e;
-    color: #b4b4b480;
+    background-color: rgb(30, 30, 30);
+    color: rgba(180, 180, 180, 0.5);
+}
+
+
+
+
+
+.building-button:hover {
+    background-color: rgba(255, 237, 110, 0.35);
+    border-color: rgb(180, 210, 255);
+    color: white;
+    border-left-color: rgb(255, 199, 49);
+    border-right-color: rgb(255, 199, 49);
+    border-top-color: rgb(255, 199, 49);
+    border-bottom-color: rgb(255, 199, 49);
+    -unity-background-image-tint-color: rgb(255, 238, 171);
 }

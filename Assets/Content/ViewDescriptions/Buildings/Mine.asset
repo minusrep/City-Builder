@@ -19,3 +19,5 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   VisualSizeInCells: {x: 2, y: 2}
+  Icon: {fileID: 21300000, guid: 46aeecc699abec44d83a43a0053060a4, type: 3}
+  Title: "\u0428\u0430\u0445\u0442\u0430"
