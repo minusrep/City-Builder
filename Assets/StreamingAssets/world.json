@@ -556,7 +556,7 @@
   "achievements": {
     "models": {
       "get_ten_wood": {
-        "is_active": false,
+        "is_active": true,
         "is_completed": false,
         "progress": 0
       },
@@ -566,9 +566,9 @@
         "progress": 0
       },
       "build_three_shelters": {
-        "is_active": false,
+        "is_active": true,
         "is_completed": false,
-        "progress": 0
+        "progress": 1
       },
       "build_five_shelters": {
         "is_active": false,

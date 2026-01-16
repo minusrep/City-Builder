@@ -39,7 +39,7 @@
         "building": "shelter"
       }
     ],
-    "target": 5,
+    "target": 2,
     "unlocks": [
       "build_ten_shelters"
     ]
@@ -51,6 +51,6 @@
         "building": "shelter"
       }
     ],
-    "target": 10
+    "target": 5
   }
 }
