@@ -8,16 +8,18 @@ namespace Runtime.Selection
     public class SelectionPresenter : IPresenter
     {
         private readonly SelectionModel _model;
-        
+        private readonly SelectionView _view;
+
         private readonly World _world;
 
         private ISelectableUnit _cachedSelectable;
 
         private ISelectableUnit _cachedSelected;
         
-        public SelectionPresenter(SelectionModel model, World world)
+        public SelectionPresenter(SelectionModel model, SelectionView view, World world)
         {
             _model = model;
+            _view = view;
             _world = world;
         }
 
@@ -84,12 +86,32 @@ namespace Runtime.Selection
             {
                 _cachedSelected = null;
                 _model.ClearSelected();
+                RenderIcon();
                 return;
             }
 
             _cachedSelected = _cachedSelectable;
             _cachedSelected.Outline.SetOutline(SelectionOutlineType.Selected);
             _model.Select(_cachedSelected.Id);
+            RenderIcon();
+        }
+
+        private void RenderIcon()
+        {
+            if (_cachedSelected == null)
+            {
+                _view.UnitCamera.enabled = false;
+
+                return;
+            }
+            
+            _view.UnitCamera.enabled = true;
+            
+            _view.UnitCameraTransform.parent = _cachedSelected.RenderPoint;
+            
+            _view.UnitCameraTransform.transform.position = _cachedSelected.RenderPoint.transform.position;
+            
+            _view.UnitCameraTransform.transform.rotation = _cachedSelected.RenderPoint.transform.rotation;
         }
     }
 }

@@ -9,7 +9,23 @@ namespace Runtime.Selection.SelectedPanel
         private const string SelectionPanelFieldStyleKey = "selection-panel-field";
         private const string SelectionTextTitleStyleKey = "selection-panel-title";
         private const string SelectionPanelEnabledStyleKey = "selection-panel-enabled";
+        private const string SelectionPanelIconStyleKey = "selection-panel-icon";
+        
+        
+        public static VisualElement CreateIcon()
+        {
+            return CreateVisualElement(SelectionPanelIconStyleKey);
+        }
+        
+        public static VisualElement CreateVisualElement(string style)
+        {
+            var visualElement = new VisualElement();
 
+            visualElement.AddToClassList(style);
+
+            return visualElement;
+        }
+        
         public static TextElement CreateTitle(string value)
         {
             var title = CreateTextElement(SelectionTextTitleStyleKey);

@@ -12,7 +12,7 @@ namespace Runtime.Selection.SelectedPanel
         private readonly SelectionModel _model;
         private readonly World _world;
 
-        public SelectedBuildingPanelPresenter(SelectedPanelView view, SelectionModel model, World world)
+        public SelectedBuildingPanelPresenter(SelectionModel model, SelectedPanelView view, World world)
         {
             _view = view;
             _model = model;

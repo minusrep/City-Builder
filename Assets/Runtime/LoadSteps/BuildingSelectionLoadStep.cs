@@ -16,19 +16,21 @@ namespace Runtime.LoadSteps
         private readonly World _world;
         private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly MenuContent _menuContent;
+        private readonly SelectionView _selectionView;
 
         public BuildingSelectionLoadStep(List<IPresenter> presenters, World world,
-            WorldViewDescriptions worldViewDescriptions, MenuContent menuContent)
+            WorldViewDescriptions worldViewDescriptions, MenuContent menuContent, SelectionView selectionView)
         {
             _presenters = presenters;
             _world = world;
             _worldViewDescriptions = worldViewDescriptions;
             _menuContent = menuContent;
+            _selectionView = selectionView;
         }
 
         public Task Run()
         {
-            var buildingSelectionPresenter = new SelectionPresenter(_world.SelectionModel, _world);
+            var buildingSelectionPresenter = new SelectionPresenter(_world.SelectionModel, _selectionView, _world);
             buildingSelectionPresenter.Enable();
             _presenters.Add(buildingSelectionPresenter);
 
