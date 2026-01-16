@@ -32,6 +32,8 @@ namespace Runtime.Selection
 
         public void Disable()
         {
+            _view.UnitCameraTransform.parent = _view.transform;
+            
             _world.PlayerControls.Player.Click.performed -= OnClick;
             
             _world.PlayerControls.Player.PointerPosition.performed -= OnChangePointerPosition;

@@ -49,6 +49,7 @@ namespace Runtime
         private readonly List<IPresenter> _presenters = new();
 
         private MenuContent _menuContent;
+        
         private InGameMenuPresenter _inGameMenuPresenter;
         
         private PlayerControls _playerControls;
