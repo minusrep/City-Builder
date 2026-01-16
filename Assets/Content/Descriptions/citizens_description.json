@@ -45,7 +45,7 @@
     },
     "comfort": {
       "stat": "happiness",
-      "change_speed": 50
+      "change_speed": 10
     }
   },
   "states": {
@@ -237,21 +237,26 @@
         }
       ],
       "transitions": {
+        "wait_to_talk": {
+          "type": "distance",
+          "value": 4.0,
+          "point_of_interest": "lantern"
+        }
+      }
+    },
+    "wait_to_talk": {
+      "actions": [
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
         "talk_start": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "citizen_distance_with_flag",
-              "distance_value": 1.0,
-              "flag_name": "is_sad",
-              "flag_value": "true"
-            },
-            {
-              "type": "distance",
-              "value": 1.0,
-              "point_of_interest": "lantern"
-            }
-          ]
+          "type": "citizen_distance_with_flag",
+          "distance_value": 4.0,
+          "flag_name": "is_sad",
+          "flag_value": "true"
         }
       }
     },
@@ -263,7 +268,7 @@
         },
         {
           "type": "invoke_animation",
-          "animation": "idle"
+          "animation": "talk"
         }
       ],
       "transitions": {
