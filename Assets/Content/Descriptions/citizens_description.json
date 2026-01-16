@@ -1,8 +1,30 @@
 {
   "names": [
-    "Bob",
-    "Joe",
-    "Tom"
+    "Jack",
+    "Sam",
+    "Mike",
+    "Alex",
+    "Ben",
+    "Will",
+    "Dan",
+    "Leo",
+    "Max",
+    "Nick",
+    "Luke",
+    "Chris",
+    "Paul",
+    "Adam",
+    "Ryan",
+    "Mark",
+    "Evan",
+    "Josh",
+    "Tim",
+    "Owen"
+  ],
+  "view_descriptions": [
+    "citizen_8",
+    "citizen_9",
+    "citizen_10"
   ],
   "stats": {
     "satiety": {

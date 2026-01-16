@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Colony;
+using Runtime.Colony.Citizens;
 using Runtime.Colony.StateMachine.Conditions;
 using Runtime.Extensions;
 using UnityEngine;
@@ -28,6 +29,8 @@ namespace Runtime.Descriptions.StateMachine.Conditions
             {
                 return false;
             }
+
+            var citizen = user as CitizenModel;
             
             var to = movementModel.PointsOfInterest[PointOfInterest];
 

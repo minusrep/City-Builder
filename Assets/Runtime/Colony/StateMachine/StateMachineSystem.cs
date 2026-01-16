@@ -1,31 +1,32 @@
+using System.Collections.Generic;
+using Runtime.Colony.Citizens;
 using Runtime.GameSystems;
+using UnityEngine;
 
 namespace Runtime.Colony.StateMachine
 {
-    public class StateMachineSystem : IGameSystem
+    public class StateMachineSystem : RegisterGameSystem<CitizenModel>
     {
-        public string Id => "state_machine";
-        
         private readonly World _world;
-        
-        public StateMachineSystem(World world)
+
+        public StateMachineSystem(World world) : base("state_machine")
         {
             _world = world;
         }
 
-        public void Update(float deltaTime)
+        protected override void Update(CitizenModel item, float deltaTime)
         {
-            foreach (var citizen in _world.Citizens.Models.Values)
+            foreach (var transition in item.StateMachine.CurrentState.Transitions)
             {
-                foreach (var transition in citizen.StateMachine.CurrentState.Transitions)
+                if (!transition.Condition.Check(_world, item))
                 {
-                    if (!transition.Condition.Check(_world, citizen)) continue;
-                
-                    citizen.StateMachine.Enter(transition.ToState);
-                    
-                    break;
+                    continue;
                 }
-            }
+                    
+                item.StateMachine.Enter(transition.ToState);
+                    
+                break;
+            }     
         }
     }
 }
