@@ -22,6 +22,7 @@ namespace Runtime.Colony.Buildings.Common
         [SerializeField] private BuildingFootprintView _footprint;
 
         private BuildingViewState _state;
+        private VisualElement _uiRoot;
 
         public void OnEnable()
         {
@@ -32,8 +33,8 @@ namespace Runtime.Colony.Buildings.Common
 
             if (_uiDocument)
             {
-                var root = _uiDocument.rootVisualElement;
-                ProgressBar = root.Q<ProgressBar>("production-progress");
+                _uiRoot = _uiDocument.rootVisualElement;
+                ProgressBar = _uiRoot.Q<ProgressBar>("production-progress");
             }
         }
 
@@ -67,7 +68,7 @@ namespace Runtime.Colony.Buildings.Common
         private void ApplyPlacedState()
         {
             if (_uiDocument)
-                _uiDocument.enabled = true;
+                _uiRoot.style.opacity = 1.0f;
 
             _footprint.GameObject.SetActive(false);
 
@@ -77,8 +78,8 @@ namespace Runtime.Colony.Buildings.Common
         private void ApplyPreviewState()
         {
             if (_uiDocument)
-                _uiDocument.enabled = false;
-
+                _uiRoot.style.opacity = 0.0f;
+            
             _footprint.GameObject.SetActive(true);
             _footprint.Renderer.material.color = Color.green;
 
@@ -88,7 +89,7 @@ namespace Runtime.Colony.Buildings.Common
         private void ApplyConstructionState()
         {
             if (_uiDocument)
-                _uiDocument.enabled = false;
+                _uiRoot.style.opacity = 0.0f;
 
             _footprint.GameObject.SetActive(true);
             _footprint.Renderer.material.color = Color.blue;
