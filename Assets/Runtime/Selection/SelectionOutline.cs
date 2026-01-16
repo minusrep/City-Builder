@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace Runtime.Selection
 {
-    [RequireComponent(typeof(Outline))]
     public class SelectionOutline : MonoBehaviour
     {
+        [SerializeField] private Outline _outline;
+        
         public void SetOutline(SelectionOutlineType type)
         {
             switch (type)
@@ -36,7 +37,5 @@ namespace Runtime.Selection
 
             }
         }
-
-        [SerializeField] private Outline _outline;
     }
 }
