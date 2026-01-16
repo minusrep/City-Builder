@@ -63,6 +63,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
         private void StartConstruction(BuildingDescription description)
         {
+            _world.SelectionModel.CanSelect = false;
             _world.PlayerControls.UI.Disable();
             _world.PlayerControls.Construction.Enable();
 
@@ -110,6 +111,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
         private void HandleCancelConstruction(InputAction.CallbackContext obj)
         {
+            _world.SelectionModel.CanSelect = true;
             _world.PlayerControls.UI.Enable();
             _world.PlayerControls.Construction.Disable();
             _world.BuildingConstructionModel.SelectedBuilding = null;

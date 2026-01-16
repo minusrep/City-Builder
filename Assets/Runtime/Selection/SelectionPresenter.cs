@@ -37,33 +37,36 @@ namespace Runtime.Selection
 
         private void OnChangePointerPosition(InputAction.CallbackContext context)
         {
-            var ray = _world.MainCamera.ScreenPointToRay(context.ReadValue<Vector2>());
-
-            if (!Physics.Raycast(ray, out var hitInfo) ||
-                !hitInfo.collider.TryGetComponent(out ISelectableUnit selectable))
+            if (_model.CanSelect)
             {
+                var ray = _world.MainCamera.ScreenPointToRay(context.ReadValue<Vector2>());
+
+                if (!Physics.Raycast(ray, out var hitInfo) ||
+                    !hitInfo.collider.TryGetComponent(out ISelectableUnit selectable))
+                {
+                    if (_cachedSelectable != null && _cachedSelectable != _cachedSelected)
+                    {
+                        _cachedSelectable.Outline.SetOutline(SelectionOutlineType.None);
+                    }
+
+                    _cachedSelectable = null;
+                    return;
+                }
+
+                if (selectable == _cachedSelectable)
+                    return;
+
                 if (_cachedSelectable != null && _cachedSelectable != _cachedSelected)
                 {
                     _cachedSelectable.Outline.SetOutline(SelectionOutlineType.None);
                 }
 
-                _cachedSelectable = null;
-                return;
-            }
+                _cachedSelectable = selectable;
 
-            if (selectable == _cachedSelectable)
-                return;
-
-            if (_cachedSelectable != null && _cachedSelectable != _cachedSelected)
-            {
-                _cachedSelectable.Outline.SetOutline(SelectionOutlineType.None);
-            }
-
-            _cachedSelectable = selectable;
-
-            if (_cachedSelectable != _cachedSelected)
-            {
-                _cachedSelectable.Outline.SetOutline(SelectionOutlineType.Hover);
+                if (_cachedSelectable != _cachedSelected)
+                {
+                    _cachedSelectable.Outline.SetOutline(SelectionOutlineType.Hover);
+                }
             }
         }
 
