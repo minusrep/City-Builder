@@ -3,8 +3,8 @@
     "models": {
       "citizen_0": {
         "id": 0,
-        "name": "John",
-        "view_description": "citizen_6",
+        "name": "Sergey",
+        "view_description": "citizen_1",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -53.58895,
@@ -51,8 +51,8 @@
       },
       "citizen_1": {
         "id": 1,
-        "name": "Ben",
-        "view_description": "citizen_1",
+        "name": "Dmitry",
+        "view_description": "citizen_2",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -43.93377,
@@ -98,8 +98,8 @@
       },
       "citizen_2": {
         "id": 2,
-        "view_description": "citizen_2",
-        "name": "Jack",
+        "view_description": "citizen_3",
+        "name": "Pavel",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -32.97297,
@@ -145,8 +145,8 @@
       },
       "citizen_3": {
         "id": 3,
-        "name": "Donald",
-        "view_description": "citizen_3",
+        "name": "Klim",
+        "view_description": "citizen_4",
         "spawned_from_building_id": "shelter_3",
         "position": [
           -26.21576,
@@ -192,8 +192,8 @@
       },
       "citizen_4": {
         "id": 4,
-        "name": "Tony",
-        "view_description": "citizen_4",
+        "name": "Alexander",
+        "view_description": "citizen_5",
         "spawned_from_building_id": "shelter_3",
         "position": [
           0,
@@ -227,6 +227,110 @@
           "happiness": {
             "stat": "happiness",
             "value": 78.17281
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "citizen_5": {
+        "id": 5,
+        "name": "Maxim",
+        "view_description": "citizen_6",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          4,
+          0.2519829,
+          30
+        ],
+        "points_of_interest": {
+          "resource_source": {
+            "x": 0,
+            "y": 0,
+            "z": 25
+          },
+          "resource_target": {
+            "x": -15,
+            "y": 0,
+            "z": -35
+          }
+        },
+        "flags": {
+          "is_carrying": false
+        },
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 10
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "citizen_6": {
+        "id": 6,
+        "name": "Alexey",
+        "view_description": "citizen_7",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          4,
+          0.2519829,
+          30
+        ],
+        "points_of_interest": {
+          "resource_source": {
+            "x": 0,
+            "y": 0,
+            "z": 25
+          },
+          "resource_target": {
+            "x": 20,
+            "y": 0,
+            "z": -550
+          }
+        },
+        "flags": {
+          "is_carrying": false
+        },
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 10
           }
         },
         "timers": {},
