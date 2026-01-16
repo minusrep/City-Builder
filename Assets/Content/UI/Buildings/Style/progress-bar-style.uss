@@ -6,11 +6,11 @@
 }
 
 .unity-progress-bar__background {
-    background-color: rgb(36, 36, 36);
-    border-left-color: rgb(58, 58, 58);
-    border-right-color: rgb(58, 58, 58);
-    border-top-color: rgb(58, 58, 58);
-    border-bottom-color: rgb(58, 58, 58);
+    background-color: rgb(55, 55, 63);
+    border-left-color: rgb(185, 185, 185);
+    border-right-color: rgb(185, 185, 185);
+    border-top-color: rgb(185, 185, 185);
+    border-bottom-color: rgb(185, 185, 185);
     border-top-width: 5px;
     border-right-width: 5px;
     border-bottom-width: 5px;
@@ -24,7 +24,7 @@
 }
 
 .unity-progress-bar__progress {
-    background-color: rgb(255, 162, 0);
+    background-color: rgb(255, 199, 49);
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -37,5 +37,3 @@
 
 .image-tint {
 }
-
-
