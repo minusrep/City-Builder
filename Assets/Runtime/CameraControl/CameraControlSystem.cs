@@ -73,7 +73,6 @@ namespace Runtime.CameraControl
             horizontalAxis.Value += _currentOrbitSpeed.x;
             verticalAxis.Value -= _currentOrbitSpeed.y;
 
-            horizontalAxis.Value = Mathf.Clamp(horizontalAxis.Value, horizontalAxis.Range.x, horizontalAxis.Range.y);
             verticalAxis.Value = Mathf.Clamp(verticalAxis.Value, verticalAxis.Range.x, verticalAxis.Range.y);
 
             _cameraControlView.OrbitalFollow.HorizontalAxis = horizontalAxis;
