@@ -26,7 +26,6 @@ namespace Runtime.Descriptions.StateMachine.Actions
         {
             var buildings = world.Buildings.Models.Values;
             var pointOfInterest = model.PointsOfInterest[PointOfInterest];
-            Debug.Log($"Point of interest: {PointOfInterest}, Position: {pointOfInterest}");
             
             if (buildings.First(a => PointOfInterest == a.BaseDescription.Id && a.WorldPosition == new Vector2(pointOfInterest.x, pointOfInterest.z)) is ServiceBuildingModel targetBuilding)
             {

@@ -29,10 +29,9 @@ namespace Runtime.Colony.Buildings.Service
         
         private void OnCitizenAmountChanged(int value)
         {
-            Debug.Log(View.ServiceCitizensLabel);
             if (View.ServiceCitizensLabel == null)
                 return;
-            Debug.Log(1);
+            
             View.ServiceCitizensLabel.text = value.ToString();
             View.ServiceCitizensLabel.style.display = DisplayStyle.Flex;
         }
