@@ -66,6 +66,11 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _world.SelectionModel.CanSelect = false;
             _world.PlayerControls.UI.Disable();
             _world.PlayerControls.Construction.Enable();
+            
+            foreach (var buildingModel in _world.Buildings.Models.Values)
+            {
+                buildingModel.SetConstructionMode(true);
+            }
 
             UpdateSelection(description.Id);
             _world.BuildingConstructionModel.SelectedBuilding = description;
@@ -116,6 +121,12 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _world.PlayerControls.Construction.Disable();
             _world.BuildingConstructionModel.SelectedBuilding = null;
             _world.Grid.IsActive = false;
+            
+            foreach (var buildingModel in _world.Buildings.Models.Values)
+            {
+                buildingModel.SetConstructionMode(false);
+            }
+            
             ClearSelection();
         }
     }

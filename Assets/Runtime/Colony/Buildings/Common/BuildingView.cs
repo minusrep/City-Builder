@@ -91,8 +91,7 @@ namespace Runtime.Colony.Buildings.Common
                 _uiDocument.enabled = false;
 
             _footprint.GameObject.SetActive(true);
-
-            _outline.SetOutline(SelectionOutlineType.Selected);
+            _footprint.Renderer.material.color = Color.blue;
         }
     }
 }

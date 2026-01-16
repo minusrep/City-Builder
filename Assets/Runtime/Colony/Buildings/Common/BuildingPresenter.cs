@@ -32,6 +32,7 @@ namespace Runtime.Colony.Buildings.Common
 
             View.Id = Model.Id;
 
+            Model.OnConstructionModeChanged += HandleConstructionModeChanged;
             Model.OnPositionChanged += HandlePositionChanged;
         }
 
@@ -39,17 +40,23 @@ namespace Runtime.Colony.Buildings.Common
         {
             ViewPool.Release(View);
             View = null;
+            Model.OnConstructionModeChanged -= HandleConstructionModeChanged;
             Model.OnPositionChanged -= HandlePositionChanged;
-        }
-
-        private void HandlePositionChanged()
-        {
-            View.Transform.position = ModelPositionToVector3(Model);
         }
 
         private Vector3 ModelPositionToVector3(BuildingModel model)
         {
             return new Vector3(model.WorldPosition.x, 0f, model.WorldPosition.y);
+        }
+        
+        private void HandlePositionChanged()
+        {
+            View.Transform.position = ModelPositionToVector3(Model);
+        }
+        
+        private void HandleConstructionModeChanged(bool value)
+        {
+            View.SetState(value ? BuildingViewState.Construction : BuildingViewState.Placed);
         }
     }
 }
