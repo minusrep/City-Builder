@@ -22,6 +22,7 @@ namespace Runtime.Colony.Buildings.Construction
 
             if (IsReady)
             {
+                Preview.Footprint.Renderer.material.color = color;
                 foreach (var preview in Preview.Renderers)
                 {
                     foreach (var material in preview.materials)

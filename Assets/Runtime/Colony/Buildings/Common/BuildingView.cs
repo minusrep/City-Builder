@@ -13,28 +13,30 @@ namespace Runtime.Colony.Buildings.Common
         public ProgressBar ProgressBar { get; private set; }
         public UIDocument Document => _uiDocument;
         public IReadOnlyList<Renderer> Renderers => _renderers;
+        public BuildingFootprintView Footprint => _footprint;
         public SelectionOutline Outline => _outline;
 
         [SerializeField] private UIDocument _uiDocument;
         [SerializeField] private Renderer[] _renderers;
         [SerializeField] private SelectionOutline _outline;
-        
+        [SerializeField] private BuildingFootprintView _footprint;
+
         private BuildingViewState _state;
 
         public void OnEnable()
         {
             _outline.SetOutline(SelectionOutlineType.None);
-            
+
             Transform = transform;
-            GameObject =  gameObject;
-            
+            GameObject = gameObject;
+
             if (_uiDocument)
             {
                 var root = _uiDocument.rootVisualElement;
                 ProgressBar = root.Q<ProgressBar>("production-progress");
             }
         }
-        
+
         public void SetState(BuildingViewState state)
         {
             if (_state == state)
@@ -55,13 +57,19 @@ namespace Runtime.Colony.Buildings.Common
                 case BuildingViewState.Construction:
                     ApplyConstructionState();
                     break;
+                
+                default:
+                    ApplyPlacedState();
+                    break;
             }
         }
-        
+
         private void ApplyPlacedState()
         {
             if (_uiDocument)
                 _uiDocument.enabled = true;
+
+            _footprint.GameObject.SetActive(false);
 
             _outline.SetOutline(SelectionOutlineType.None);
         }
@@ -71,6 +79,9 @@ namespace Runtime.Colony.Buildings.Common
             if (_uiDocument)
                 _uiDocument.enabled = false;
 
+            _footprint.GameObject.SetActive(true);
+            _footprint.Renderer.material.color = Color.green;
+
             _outline.SetOutline(SelectionOutlineType.None);
         }
 
@@ -78,6 +89,8 @@ namespace Runtime.Colony.Buildings.Common
         {
             if (_uiDocument)
                 _uiDocument.enabled = false;
+
+            _footprint.GameObject.SetActive(true);
 
             _outline.SetOutline(SelectionOutlineType.Selected);
         }
