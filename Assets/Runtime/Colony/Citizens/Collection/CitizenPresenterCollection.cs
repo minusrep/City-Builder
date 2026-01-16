@@ -35,24 +35,18 @@ namespace Runtime.Colony.Citizens.Collection
 
         public async void Enable()
         {
+            foreach (var viewDescription in _viewDescriptions.CitizenViewDescriptionCollection.Descriptions)
+            {
+                var prefab = await viewDescription.Prefab.LoadAssetAsync().Task;
+                var citizenView = prefab.GetComponent<CitizenView>();
+                var viewPool = new ObjectPool<CitizenView>(citizenView, 1, _view.Transform);
+                _pools[viewDescription.Id] = viewPool;
+
+                viewDescription.Prefab.ReleaseAsset();
+            }
+            
             foreach (var model in _model.Models.Values)
             {
-                var poolExists = _pools.ContainsKey(model.ViewDescription);
-                
-                if (!poolExists)
-                {
-                    var prefab = 
-                        await _viewDescriptions.CitizenViewDescriptionCollection.Get(model.ViewDescription).Prefab.LoadAssetAsync().Task;
-                    
-                    var citizenView = prefab.GetComponent<CitizenView>();
-                    
-                    var viewPool = new ObjectPool<CitizenView>(citizenView, 10, _view.Transform);
-                    
-                    _pools[model.ViewDescription] = viewPool;
-                    
-                    _viewDescriptions.CitizenViewDescriptionCollection.Get(model.ViewDescription).Prefab.ReleaseAsset();
-                }
-
                 CreateCitizenPresenter(model);
             }
             
