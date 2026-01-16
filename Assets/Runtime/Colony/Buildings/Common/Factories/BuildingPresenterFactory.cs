@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Runtime.Colony.Buildings.Production;
+using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
@@ -29,6 +30,8 @@ namespace Runtime.Colony.Buildings.Common.Factories
             {
                 ProductionBuildingModel productionModel => new ProductionBuildingPresenter(productionModel, pool, _world, _worldViewDescriptions),
                 StorageBuildingModel storageModel => new StorageBuildingPresenter(storageModel, pool,
+                    _worldViewDescriptions),
+                ServiceBuildingModel serviceModel => new ServiceBuildingPresenter(serviceModel, pool,
                     _worldViewDescriptions),
                 _ => new BuildingPresenter(model, pool, _worldViewDescriptions)
             };
