@@ -253,6 +253,53 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &243947910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 243947911}
+  - component: {fileID: 243947912}
+  m_Layer: 0
+  m_Name: EnvironmentView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &243947911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243947910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1858668570}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &243947912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243947910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb284dcbe994aa5b9d5b9f43ac5710f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Environment.EnvironmentView
+  _directionalLight: {fileID: 410087040}
+  _nightLightIntensity: 0
+  _dayLightIntensity: 10
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +651,7 @@ MonoBehaviour:
   _buildingConstructionView: {fileID: 2035574545}
   _worldGridView: {fileID: 157871637}
   _selectionView: {fileID: 2059023945}
+  _environmentView: {fileID: 0}
 --- !u!4 &469992741
 Transform:
   m_ObjectHideFlags: 0
@@ -1347,6 +1395,7 @@ Transform:
   - {fileID: 2035574544}
   - {fileID: 157871636}
   - {fileID: 2059023943}
+  - {fileID: 243947911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1858668571

@@ -19,6 +19,11 @@ namespace Runtime.Environment
             Time = new EnvironmentTimeModel(Description.Time);
         }
 
+        public void Tick(float deltaTime)
+        {
+            Time.Tick(deltaTime);
+        }
+
         public Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>

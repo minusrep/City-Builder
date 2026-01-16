@@ -41,7 +41,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bafdf89d78ca4d2fa8d7a33616919fe6
-    m_Address: Assets/Content/Descriptions/environment_description.json
+    m_Address: environment_description
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
