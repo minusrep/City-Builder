@@ -1,4 +1,5 @@
 using Runtime.Colony;
+using Runtime.Colony.Achievements.Events.Types;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Common;
@@ -66,6 +67,8 @@ namespace Runtime.Selection.SelectedPanel
                 _view.Root.Add(SelectionPanelUtility.CreateButton($"Upgrade to ", selectedBuilding.Level + 2, () =>
                 {
                     selectedBuilding.Upgrade();
+                    
+                    MessageBroker.Instance.Publish(new BuildingUpdateEvent(selectedBuilding.BaseDescription, selectedBuilding.Level));
                     
                     TryDrawBuildingModel();
                 }));
