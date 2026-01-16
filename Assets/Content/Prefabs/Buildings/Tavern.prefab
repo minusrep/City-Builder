@@ -81,6 +81,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3646257755831387252}
   - {fileID: 5713808925992171876}
   - {fileID: 3879587966557687809}
   - {fileID: 3002035225934352470}
@@ -106,6 +107,7 @@ MonoBehaviour:
   - {fileID: 5697419982935923502}
   - {fileID: 3860239487205134589}
   _outline: {fileID: 6039640883050581564}
+  _footprint: {fileID: 3009162669401655565}
 --- !u!114 &845393757771583236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2638,4 +2640,53 @@ MeshRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4001837268414122, guid: c4acdd3f8bf9cfe4e8db56a2f52a57db, type: 3}
   m_PrefabInstance: {fileID: 5712166692510832590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6462512306483916241
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6030165305410528423}
+    m_Modifications:
+    - target: {fileID: 1240446350216426976, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_Name
+      value: Footprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+--- !u!114 &3009162669401655565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8101348126966490332, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+  m_PrefabInstance: {fileID: 6462512306483916241}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f360a5b09a344d4e9cb293064fb37811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Common.BuildingFootprintView
+--- !u!4 &3646257755831387252 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+  m_PrefabInstance: {fileID: 6462512306483916241}
   m_PrefabAsset: {fileID: 0}

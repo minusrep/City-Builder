@@ -129,6 +129,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8821291798509102566}
   - {fileID: 3486795676948269431}
   - {fileID: 3804258941802723017}
   - {fileID: 7315015697622805908}
@@ -154,6 +155,7 @@ MonoBehaviour:
   - {fileID: 3470013680624772705}
   - {fileID: 3468087765403300593}
   _outline: {fileID: 7562982305396718573}
+  _footprint: {fileID: 7003989924779731103}
 --- !u!114 &5135881691053956328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2508,6 +2510,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
   _outline: {fileID: 5135881691053956328}
+--- !u!1001 &1251700016644623427
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6030165305410528423}
+    m_Modifications:
+    - target: {fileID: 1240446350216426976, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_Name
+      value: Footprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+--- !u!114 &7003989924779731103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8101348126966490332, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+  m_PrefabInstance: {fileID: 1251700016644623427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f360a5b09a344d4e9cb293064fb37811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Common.BuildingFootprintView
+--- !u!4 &8821291798509102566 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+  m_PrefabInstance: {fileID: 1251700016644623427}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3491291869775354885
 PrefabInstance:
   m_ObjectHideFlags: 0
