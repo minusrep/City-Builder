@@ -10,6 +10,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
         private const string TimerKey = "set_timer";
         private const string SetPointOfInterestKey = "set_point_of_interest";
         private const string SetBuildingPointOfInterestKey = "set_point_of_interest_building";
+        private const string SetServiceCitizenAmountKey = "set_service_citizen_amount";
         private const string StartMoveKey = "start_move";
         private const string InvokeAnimationKey = "invoke_animation";
         private const string EnterBuildingKey = "enter_buidling";
@@ -40,6 +41,7 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 TakeOrderKey => new TakeOrderActionDescription(data),
                 ChangeVisibilityKey => new ChangeVisibilityActionDescription(data),
                 StopMoveKey => new StopMoveActionDescription(data),
+                SetServiceCitizenAmountKey => new SetServiceCitizenAmountDescription(data),
                 _ =>  throw new NotImplementedException()
             };
         }

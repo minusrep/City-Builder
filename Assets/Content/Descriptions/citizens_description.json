@@ -124,6 +124,11 @@
         {
           "type": "change_visibility",
           "visible": "false"
+        },
+        {
+          "type": "set_service_citizen_amount",
+          "point_of_interest": "tavern",
+          "increment": true
         }
       ],
       "transitions": {
@@ -144,6 +149,11 @@
         {
           "type": "change_visibility",
           "visible": "true"
+        },
+        {
+          "type": "set_service_citizen_amount",
+          "point_of_interest": "tavern",
+          "increment": false
         }
       ],
       "transitions": {
@@ -188,6 +198,11 @@
         {
           "type": "change_visibility",
           "visible": "false"
+        },
+        {
+          "type": "set_service_citizen_amount",
+          "point_of_interest": "shelter",
+          "increment": true
         }
       ],
       "transitions": {
@@ -208,6 +223,11 @@
         {
           "type": "change_visibility",
           "visible": "true"
+        },
+        {
+          "type": "set_service_citizen_amount",
+          "point_of_interest": "shelter",
+          "increment": false
         }
       ],
       "transitions": {
