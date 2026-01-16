@@ -47,7 +47,7 @@
     "type": "storage",
     "max_resource_amount": 100,
     "stored_resources": [
-      "wood", "iron"
+      "wood", "iron", "ore"
     ],
     "view_id": "Warehouse",
     "size": [

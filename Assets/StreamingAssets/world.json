@@ -377,6 +377,10 @@
             "1": {
               "amount": 0,
               "resource": "iron"
+            },
+            "2": {
+              "amount": 0,
+              "resource": "ore"
             }
           }
         }
