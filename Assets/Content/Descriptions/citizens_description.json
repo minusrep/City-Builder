@@ -249,6 +249,9 @@
         {
           "type": "invoke_animation",
           "animation": "idle"
+        },
+        {
+          "type": "stop_move"
         }
       ],
       "transitions": {
