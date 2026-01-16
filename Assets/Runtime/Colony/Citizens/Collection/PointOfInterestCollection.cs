@@ -10,7 +10,7 @@ namespace Runtime.Colony.Citizens.Collection
     {
         private readonly Dictionary<string, Vector3> _points = new Dictionary<string, Vector3>();
         
-            public Vector3 this[string key] { get => _points[key]; set => _points[key] = value; }
+        public Vector3 this[string key] { get => _points[key]; set => _points[key] = value; }
         
         public int Count => _points.Count;
 

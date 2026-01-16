@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: citizen_9
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Citizens.CitizenViewDescription
   Prefab:
-    m_AssetGUID: 3bbfd388a02d7f14bbea2e6baf4a4cdc
+    m_AssetGUID: ec9ecf3fe55870e4f8c0482360468d8a
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

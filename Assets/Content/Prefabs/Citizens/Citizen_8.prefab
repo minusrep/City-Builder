@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Citizen_8
       objectReference: {fileID: 0}
+    - target: {fileID: 5466327982858300868, guid: 185544215506d724288e301cb095cb6f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2213240592306217966, guid: 185544215506d724288e301cb095cb6f, type: 3}
