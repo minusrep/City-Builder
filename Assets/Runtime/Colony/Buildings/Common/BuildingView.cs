@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Runtime.Selection;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Buildings.Common
@@ -18,6 +19,7 @@ namespace Runtime.Colony.Buildings.Common
 
         [SerializeField] private UIDocument _uiDocument;
         [SerializeField] private Renderer[] _renderers;
+        [SerializeField] private NavMeshObstacle[] _navMeshObstacles;
         [SerializeField] private SelectionOutline _outline;
         [SerializeField] private BuildingFootprintView _footprint;
 
@@ -70,6 +72,11 @@ namespace Runtime.Colony.Buildings.Common
             if (_uiDocument)
                 _uiRoot.style.opacity = 1.0f;
 
+            foreach (var navMeshObstacle in _navMeshObstacles)
+            {
+                navMeshObstacle.enabled = true;
+            }
+
             _footprint.GameObject.SetActive(false);
 
             _outline.SetOutline(SelectionOutlineType.None);
@@ -79,6 +86,11 @@ namespace Runtime.Colony.Buildings.Common
         {
             if (_uiDocument)
                 _uiRoot.style.opacity = 0.0f;
+            
+            foreach (var navMeshObstacle in _navMeshObstacles)
+            {
+                navMeshObstacle.enabled = false;
+            } 
             
             _footprint.GameObject.SetActive(true);
             _footprint.Renderer.material.color = Color.green;
@@ -90,6 +102,11 @@ namespace Runtime.Colony.Buildings.Common
         {
             if (_uiDocument)
                 _uiRoot.style.opacity = 0.0f;
+            
+            foreach (var navMeshObstacle in _navMeshObstacles)
+            {
+                navMeshObstacle.enabled = true;
+            }
 
             _footprint.GameObject.SetActive(true);
             _footprint.Renderer.material.color = Color.blue;

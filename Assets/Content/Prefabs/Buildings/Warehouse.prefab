@@ -57,6 +57,8 @@ MonoBehaviour:
   - {fileID: 4044993963682168045}
   - {fileID: 4045139757454294719}
   - {fileID: 4045896646507049045}
+  _navMeshObstacles:
+  - {fileID: 4750278192565065074}
   _outline: {fileID: 3811280682995311116}
   _footprint: {fileID: 4414397665010980932}
 --- !u!114 &5501538418256578026

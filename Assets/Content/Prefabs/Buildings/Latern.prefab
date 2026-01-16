@@ -53,6 +53,8 @@ MonoBehaviour:
   _uiDocument: {fileID: 0}
   _renderers:
   - {fileID: 266564362170598707}
+  _navMeshObstacles:
+  - {fileID: 9209555602295748971}
   _outline: {fileID: 8303529650292642463}
   _footprint: {fileID: 7140447919557635314}
 --- !u!208 &9209555602295748971

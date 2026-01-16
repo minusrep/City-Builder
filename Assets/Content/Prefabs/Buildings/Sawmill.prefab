@@ -123,6 +123,8 @@ MonoBehaviour:
   _renderers:
   - {fileID: 5931209006313124249}
   - {fileID: 5929004030138092509}
+  _navMeshObstacles:
+  - {fileID: 8626137100672758959}
   _outline: {fileID: -4168397002077777610}
   _footprint: {fileID: 3682558528489973358}
 --- !u!114 &1992148758193611027
