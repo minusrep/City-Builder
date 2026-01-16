@@ -45,6 +45,8 @@ namespace Runtime.Selection.SelectedPanel
 
             _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedBuilding.BaseDescription.ViewDescriptionId));
 
+            _view.Root.Add(SelectionPanelUtility.CreateIcon());
+            
             _view.Root.Add(SelectionPanelUtility.CreateField("Type: ", selectedBuilding.BaseDescription.Type));
             _view.Root.Add(SelectionPanelUtility.CreateField("Level: ", selectedBuilding.Level + 1));
 

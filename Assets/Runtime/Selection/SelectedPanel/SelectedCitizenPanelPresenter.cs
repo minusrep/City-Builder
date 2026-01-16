@@ -67,9 +67,10 @@ namespace Runtime.Selection.SelectedPanel
             
             _inventoryPresenter = new InventoryPresenter(inventoryView, selectedCitizen.Inventory);
 
-            _view.Root.Add(SelectionPanelUtility.CreateIcon());
 
             _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedCitizen.Name));
+            
+            _view.Root.Add(SelectionPanelUtility.CreateIcon());
 
             _statPresenterCollection.Enable();
             

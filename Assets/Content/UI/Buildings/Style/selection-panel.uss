@@ -8,6 +8,7 @@
     color: rgb(255, 255, 255);
     font-size: 32px;
     -unity-font-style: bold;
+    -unity-text-align: upper-center;
 }
 
 .selection-panel-disabled {
@@ -55,4 +56,17 @@
     width: 240px;
     height: 240px;
     align-self: center;
+    overflow: hidden;
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+    border-left-color: rgb(19, 19, 19);
+    border-right-color: rgb(19, 19, 19);
+    border-top-color: rgb(19, 19, 19);
+    border-bottom-color: rgb(19, 19, 19);
 }
