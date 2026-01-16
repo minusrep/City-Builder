@@ -10,5 +10,8 @@ namespace Runtime.ViewDescriptions.Buildings
         public AssetReferenceT<GameObject> Prefab;
         
         public Vector2Int VisualSizeInCells = Vector2Int.one;
+
+        public Sprite Icon;
+        public string Title;
     }
 }

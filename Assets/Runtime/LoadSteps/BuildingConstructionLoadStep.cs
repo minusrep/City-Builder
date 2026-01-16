@@ -49,7 +49,7 @@ namespace Runtime.LoadSteps
             var buildingConstructionMenuView =
                 new BuildingConstructionMenuView(_worldViewDescriptions.SelectionViewDescription.ConstructionMenuAsset);
             var buildingConstructionMenuPresenter = new BuildingConstructionMenuPresenter(buildingConstructionMenuView, _world,
-                _worldDescription, _menuContent);
+                _worldDescription, _menuContent, _worldViewDescriptions);
             buildingConstructionMenuPresenter.Enable();
             _presenters.Add(buildingConstructionMenuPresenter);
             

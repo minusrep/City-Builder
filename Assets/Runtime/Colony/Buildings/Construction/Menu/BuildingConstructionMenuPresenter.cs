@@ -3,6 +3,8 @@ using Runtime.Common;
 using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.UI;
+using Runtime.ViewDescriptions;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -14,16 +16,18 @@ namespace Runtime.Colony.Buildings.Construction.Menu
         private readonly WorldDescription _descriptions;
         private readonly World _world;
         private readonly MenuContent _menuContent;
+        private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly Dictionary<string, Button> _buttons = new();
 
         public BuildingConstructionMenuPresenter(BuildingConstructionMenuView view,
             World world,
             WorldDescription descriptions,
-            MenuContent menuContent)
+            MenuContent menuContent, WorldViewDescriptions worldViewDescriptions)
         {
             _descriptions = descriptions;
             _world = world;
             _menuContent = menuContent;
+            _worldViewDescriptions = worldViewDescriptions;
             _view = view;
         }
 
@@ -95,11 +99,14 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
         private Button CreateBuildingButton(string id, string title)
         {
+            var viewDescription = _worldViewDescriptions.BuildingViewDescriptions.Get(title);
+            
             var button = new Button
             {
-                text = title,
-                name = id,
-                focusable = false
+                text = viewDescription.Title,
+                name = title,
+                focusable = false,
+                style = { backgroundImage = viewDescription.Icon.texture}
             };
 
             button.AddToClassList("building-button");
