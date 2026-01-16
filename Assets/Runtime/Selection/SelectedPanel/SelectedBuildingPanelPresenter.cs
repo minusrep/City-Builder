@@ -8,7 +8,6 @@ namespace Runtime.Selection.SelectedPanel
 {
     public class SelectedBuildingPanelPresenter : IPresenter
     {
-        
         private readonly SelectedPanelView _view;
         private readonly SelectionModel _model;
         private readonly World _world;
@@ -19,7 +18,7 @@ namespace Runtime.Selection.SelectedPanel
             _model = model;
             _world = world;
         }
-        
+
         public void Enable()
         {
             _model.OnChange += OnChange;
@@ -41,24 +40,27 @@ namespace Runtime.Selection.SelectedPanel
             {
                 return;
             }
-            
+
             SelectionPanelUtility.SetupPanel(_view.Root);
 
             _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedBuilding.BaseDescription.ViewDescriptionId));
 
             _view.Root.Add(SelectionPanelUtility.CreateIcon());
-            
+
             _view.Root.Add(SelectionPanelUtility.CreateField("Type: ", selectedBuilding.BaseDescription.Type));
             _view.Root.Add(SelectionPanelUtility.CreateField("Level: ", selectedBuilding.Level + 1));
 
             switch (selectedBuilding)
             {
                 case ServiceBuildingModel service:
-                    _view.Root.Add(SelectionPanelUtility.CreateField("Resource: ", service.Description.ServiceResource));
+                    _view.Root.Add(
+                        SelectionPanelUtility.CreateField("Resource: ", service.Description.ServiceResource));
                     break;
                 case ProductionBuildingModel production:
-                    _view.Root.Add(SelectionPanelUtility.CreateField("Time: ", $"{production.ProductionTime / 1000f}s"));
-                    _view.Root.Add(SelectionPanelUtility.CreateField("Resource: ", production.Description.ProductionResource));
+                    _view.Root.Add(
+                        SelectionPanelUtility.CreateField("Time: ", $"{production.ProductionTime / 1000f}s"));
+                    _view.Root.Add(SelectionPanelUtility.CreateField("Resource: ",
+                        production.Description.ProductionResource));
                     break;
             }
 
@@ -67,9 +69,10 @@ namespace Runtime.Selection.SelectedPanel
                 _view.Root.Add(SelectionPanelUtility.CreateButton($"Upgrade to ", selectedBuilding.Level + 2, () =>
                 {
                     selectedBuilding.Upgrade();
-                    
-                    MessageBroker.Instance.Publish(new BuildingUpdateEvent(selectedBuilding.BaseDescription, selectedBuilding.Level));
-                    
+
+                    MessageBroker.Instance.Publish(new BuildingUpdateEvent(selectedBuilding.BaseDescription,
+                        selectedBuilding.Level, selectedBuilding.Id));
+
                     TryDrawBuildingModel();
                 }));
             }

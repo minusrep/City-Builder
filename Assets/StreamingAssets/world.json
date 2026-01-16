@@ -507,7 +507,12 @@
         "is_completed": false,
         "progress": 0
       },
-      "build_ten_shelters": {
+      "upgrade_building_first_time": {
+        "is_active": true,
+        "is_completed": false,
+        "progress": 0
+      },
+      "upgrade_five_buildings_to_max": {
         "is_active": false,
         "is_completed": false,
         "progress": 0

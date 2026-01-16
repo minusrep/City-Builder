@@ -39,16 +39,25 @@
         "building": "shelter"
       }
     ],
-    "target": 2,
-    "unlocks": [
-      "build_ten_shelters"
-    ]
+    "target": 2
   },
-  "build_ten_shelters": {
-    "type": "buildings_count_counter",
+  "upgrade_building_first_time": {
+    "type": "building_level_updated",
     "triggers": [
       {
-        "building": "shelter"
+        "building_upgrade": "production"
+      }
+    ],
+    "target": 1,
+    "unlocks": [
+      "upgrade_five_buildings_to_max"
+    ]
+  },
+  "upgrade_five_buildings_to_max": {
+    "type": "building_max_level_count",
+    "triggers": [
+      {
+        "building_max_level_count": "production"
       }
     ],
     "target": 5

@@ -12,6 +12,8 @@ namespace Runtime.Colony.Achievements.Triggers
             {
                 "resource" => new ResourceTriggerModel(description, model),
                 "building" => new BuildingTriggerModel(description, model),
+                "building_upgrade" => new BuildingUpdateTriggerModel(description, model),
+                "building_max_level_count" => new BuildingMaxLevelCountTriggerModel(description, model),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

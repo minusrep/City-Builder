@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 019bacb98bf14cac8fa1a72fcfbc7f8e, type: 3}
-  m_Name: get_hundred_wood
+  m_Name: upgrade_five_buildings_to_max
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Achievements.AchievementViewDescription
-  Icon: {fileID: 21300000, guid: c9f0cc0739579d541a08ac2c78d3e605, type: 3}
-  Title: "\u041A\u043E\u0440\u043E\u043B\u0435\u0432\u0441\u043A\u0438\u0439 \u0437\u0430\u043F\u0430\u0441!"
-  Description: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C 100 \u0434\u0435\u0440\u0435\u0432\u0430"
+  Icon: {fileID: 21300000, guid: 8c6c5cadf2600cc43b004355565fb20c, type: 3}
+  Title: "\u041F\u0440\u0435\u0434\u0435\u043B \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u044F!"
+  Description: "\u0423\u043B\u0443\u0447\u0448\u0438\u0442\u044C 5 \u043F\u043E\u0441\u0442\u0440\u043E\u0435\u043A
+    \u0434\u043E \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0433\u043E
+    \u0443\u0440\u043E\u0432\u043D\u044F"

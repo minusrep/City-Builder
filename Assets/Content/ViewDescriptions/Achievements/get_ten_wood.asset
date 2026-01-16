@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: get_ten_wood
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Achievements.AchievementViewDescription
   Icon: {fileID: 21300000, guid: 7a03b217e483eab45a24fbec7e301ee1, type: 3}
-  Title: "\u041F\u0435\u0440\u0432\u044B\u0435 \u043F\u0440\u0438\u043F\u0430\u0441\u044B"
+  Title: "\u041F\u0440\u0438\u043F\u0430\u0441\u044B \u043D\u0430 \u0437\u0438\u043C\u0443"
   Description: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C 10 \u0434\u0435\u0440\u0435\u0432\u0430"
