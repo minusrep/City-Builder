@@ -79,6 +79,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6030165305410528423}
   m_LocalEulerAnglesHint: {x: 53.987, y: -22.42, z: 5.034}
+--- !u!1 &2438436881870128957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8177803377842477315}
+  - component: {fileID: 4219715035119822196}
+  - component: {fileID: 3725703488338293789}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8177803377842477315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438436881870128957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
+  m_LocalPosition: {x: 2.5, y: 4.22, z: 2.5}
+  m_LocalScale: {x: 0.29, y: 0.29, z: 0.29}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6030165305410528423}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4219715035119822196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438436881870128957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: eb6b3772b6096f040bfa520c91f0c2c6, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 4f0947076dcd33444ac2169b4a3b522f, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 0
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 1
+  m_Pivot: 2
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &3725703488338293789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438436881870128957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edebef0775b54db791e84cbba83dfd26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.UI.UIBillboard
 --- !u!1 &2759441362726970765
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +231,7 @@ Transform:
   - {fileID: 426325874037592141}
   - {fileID: 8821291798509102566}
   - {fileID: 3486795676948269431}
+  - {fileID: 8177803377842477315}
   - {fileID: 3804258941802723017}
   - {fileID: 7315015697622805908}
   m_Father: {fileID: 0}
@@ -179,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdc2d5e87e34c538184856218c0a9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Service.ServiceBuildingView
-  _uiDocument: {fileID: 0}
+  _uiDocument: {fileID: 4219715035119822196}
   _renderers:
   - {fileID: 3468042477678047849}
   - {fileID: 3467817467183017907}
