@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6676703472487503828}
   - component: {fileID: 1338904815707915831}
   - component: {fileID: 6073924109686525283}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 2919548378432336666}
   - {fileID: 5856878537287928188}
   - {fileID: 2910998111677427861}
   - {fileID: 6676703472487503828}
@@ -126,6 +127,7 @@ MonoBehaviour:
   - {fileID: 7594656391335068514}
   _outline: {fileID: -4516913881714134514}
   _footprint: {fileID: 5341095859242304517}
+  _renderPoint: {fileID: 2919548378432336666}
 --- !u!114 &8686346696335662861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2528,6 +2530,37 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 2.55, y: 1, z: 2.58}
   m_TimeToStationary: 0.5
+--- !u!1 &7163462702943232894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2919548378432336666}
+  m_Layer: 0
+  m_Name: RenderPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2919548378432336666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7163462702943232894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.43719196, y: -0.19261426, z: 0.12653665, w: 0.8693397}
+  m_LocalPosition: {x: 4.68, y: 6.9, z: -1.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6030165305410528423}
+  m_LocalEulerAnglesHint: {x: 53.987, y: -22.42, z: 5.034}
 --- !u!1001 &2915430062829305783
 PrefabInstance:
   m_ObjectHideFlags: 0

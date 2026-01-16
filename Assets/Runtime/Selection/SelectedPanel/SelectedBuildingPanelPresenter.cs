@@ -12,7 +12,7 @@ namespace Runtime.Selection.SelectedPanel
         private readonly SelectionModel _model;
         private readonly World _world;
 
-        public SelectedBuildingPanelPresenter(SelectedPanelView view, SelectionModel model, World world)
+        public SelectedBuildingPanelPresenter(SelectionModel model, SelectedPanelView view, World world)
         {
             _view = view;
             _model = model;
@@ -45,6 +45,8 @@ namespace Runtime.Selection.SelectedPanel
 
             _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedBuilding.BaseDescription.ViewDescriptionId));
 
+            _view.Root.Add(SelectionPanelUtility.CreateIcon());
+            
             _view.Root.Add(SelectionPanelUtility.CreateField("Type: ", selectedBuilding.BaseDescription.Type));
             _view.Root.Add(SelectionPanelUtility.CreateField("Level: ", selectedBuilding.Level + 1));
 

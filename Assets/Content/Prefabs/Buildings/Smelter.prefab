@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6676703472487503828}
   - component: {fileID: 1338904815707915831}
   - component: {fileID: 6073924109686525283}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,6 +68,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edebef0775b54db791e84cbba83dfd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.UI.UIBillboard
+--- !u!1 &2101802900049017617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 669786076694327767}
+  m_Layer: 0
+  m_Name: RenderPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &669786076694327767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101802900049017617}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.43719196, y: -0.19261426, z: 0.12653665, w: 0.8693397}
+  m_LocalPosition: {x: 5.2, y: 6.9, z: -1.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6030165305410528423}
+  m_LocalEulerAnglesHint: {x: 53.987, y: -22.42, z: 5.034}
 --- !u!1 &5389820821820916020
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +132,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 669786076694327767}
   - {fileID: 5595188955908955868}
   - {fileID: 4467939274669919875}
   - {fileID: 6676703472487503828}
@@ -126,6 +158,7 @@ MonoBehaviour:
   - {fileID: 3153219674810093216}
   _outline: {fileID: 8685598275242740271}
   _footprint: {fileID: 6268649117581235109}
+  _renderPoint: {fileID: 669786076694327767}
 --- !u!114 &5739859068566134591
 MonoBehaviour:
   m_ObjectHideFlags: 0

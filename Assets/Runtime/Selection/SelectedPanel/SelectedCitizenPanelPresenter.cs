@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using Runtime.Colony;
 using Runtime.Colony.Inventory;
-using Runtime.Colony.Stats;
 using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Runtime.Selection.SelectedPanel
 {
@@ -12,13 +12,14 @@ namespace Runtime.Selection.SelectedPanel
         private const string CitizenPrefixId = "citizen_";
         
         private readonly SelectedPanelView _view;
+        private readonly SelectionView _selectionView;
         private readonly SelectionModel _model;
         private readonly World _world;
 
         private StatPresenterCollection _statPresenterCollection;
         private InventoryPresenter _inventoryPresenter;
         
-        public SelectedCitizenPanelPresenter(SelectedPanelView view, SelectionModel model, World world)
+        public SelectedCitizenPanelPresenter(SelectionModel model, SelectedPanelView view, World world)
         {
             _view = view;
             _model = model;
@@ -65,8 +66,11 @@ namespace Runtime.Selection.SelectedPanel
             var inventoryView = new InventoryView(inventoryRoot, _view.InventoryViewDescription);
             
             _inventoryPresenter = new InventoryPresenter(inventoryView, selectedCitizen.Inventory);
-            
+
+
             _view.Root.Add(SelectionPanelUtility.CreateTitle(selectedCitizen.Name));
+            
+            _view.Root.Add(SelectionPanelUtility.CreateIcon());
 
             _statPresenterCollection.Enable();
             
@@ -74,5 +78,6 @@ namespace Runtime.Selection.SelectedPanel
             
             _view.Root.Add(inventoryRoot);
         }
+
     }
 }

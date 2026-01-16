@@ -1,6 +1,6 @@
 namespace Runtime.Selection
 {
-    public interface ISelectableUnit
+    public interface ISelectableUnit : IRenderableIcon
     {
         public string Id { get; }
         

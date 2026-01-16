@@ -2,6 +2,7 @@
 using Runtime.Selection;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Buildings.Common
@@ -17,11 +18,14 @@ namespace Runtime.Colony.Buildings.Common
         public BuildingFootprintView Footprint => _footprint;
         public SelectionOutline Outline => _outline;
 
+        public Transform RenderPoint => _renderPoint;
+        
         [SerializeField] private UIDocument _uiDocument;
         [SerializeField] private Renderer[] _renderers;
         [SerializeField] private NavMeshObstacle[] _navMeshObstacles;
         [SerializeField] private SelectionOutline _outline;
         [SerializeField] private BuildingFootprintView _footprint;
+        [SerializeField] private Transform _renderPoint;
 
         private BuildingViewState _state;
         private VisualElement _uiRoot;

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Runtime.Selection
 {
@@ -9,7 +10,7 @@ namespace Runtime.Selection
         public string SelectedId { get; private set; }
 
         public bool CanSelect { get; set; } = true;
-
+        
         public void Select(string id)
         {
             SelectedId = id;

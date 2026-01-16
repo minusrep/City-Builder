@@ -19,6 +19,8 @@ namespace Runtime.Colony.Citizens
         public string Id { get; set; }
 
         public SelectionOutline Outline => _outline;
+
+        public Transform RenderPoint => _rendererPoint;
         
         [SerializeField] private CitizenMovementView _citizenMovementView;
 
@@ -30,5 +32,6 @@ namespace Runtime.Colony.Citizens
         
         [SerializeField] private SelectionOutline _outline;
 
+        [SerializeField] private Transform _rendererPoint;
     }
 }

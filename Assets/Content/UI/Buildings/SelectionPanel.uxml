@@ -1,4 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Content/UI/Buildings/Style/selection-panel.uss?fileID=7433441132597879392&amp;guid=4d63c9d0436652d439aa9000b5caa88b&amp;type=3#selection-panel"/>
-    <ui:VisualElement name="selection-panel" class="selection-panel-disabled" style="flex-grow: 1; background-color: rgb(38, 38, 38); position: absolute; top: 180px; left: 0; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px; border-top-right-radius: 32px; border-bottom-right-radius: 32px;"/>
+    <ui:VisualElement name="selection-panel" class="selection-panel-disabled" style="flex-grow: 1; background-color: rgb(38, 38, 38); position: absolute; top: 180px; left: 0; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px; border-top-right-radius: 32px; border-bottom-right-radius: 32px;">
+        <ui:VisualElement name="icon" class="test selection-panel-icon"/>
+    </ui:VisualElement>
 </ui:UXML>

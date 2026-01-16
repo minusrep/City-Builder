@@ -26,9 +26,9 @@ namespace Runtime.Selection.SelectedPanel
 
         public void Enable()
         {
-            _selectedBuildingPanelPresenter = new SelectedBuildingPanelPresenter(_view, _model, _world);
+            _selectedBuildingPanelPresenter = new SelectedBuildingPanelPresenter(_model, _view, _world);
             
-            _selectedCitizenPanelPresenter = new  SelectedCitizenPanelPresenter(_view, _model, _world);
+            _selectedCitizenPanelPresenter = new SelectedCitizenPanelPresenter(_model, _view, _world);
             
             _selectedBuildingPanelPresenter.Enable();
             
