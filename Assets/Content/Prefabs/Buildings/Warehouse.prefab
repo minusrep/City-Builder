@@ -51,7 +51,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Storage.StorageBuildingView
   _uiDocument: {fileID: 912060516600702519}
-  _preview: {fileID: 5690381119704124738}
+  _renderers:
+  - {fileID: 4045495954904008579}
+  - {fileID: 4044993963682168045}
+  - {fileID: 4045139757454294719}
+  - {fileID: 4045896646507049045}
   _outline: {fileID: 3811280682995311116}
 --- !u!114 &5501538418256578026
 MonoBehaviour:
@@ -2595,10 +2599,7 @@ PrefabInstance:
     - {fileID: 64709986120796606, guid: 84097ddad6d7241409e382738aae22bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1956703399958220, guid: 84097ddad6d7241409e382738aae22bb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5690381119704124738}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84097ddad6d7241409e382738aae22bb, type: 3}
 --- !u!23 &4044993963682168045 stripped
 MeshRenderer:
@@ -2620,28 +2621,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 23637232440348568, guid: 84097ddad6d7241409e382738aae22bb, type: 3}
   m_PrefabInstance: {fileID: 4068457319353794509}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4067001138560264449 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1956703399958220, guid: 84097ddad6d7241409e382738aae22bb, type: 3}
-  m_PrefabInstance: {fileID: 4068457319353794509}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5690381119704124738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4067001138560264449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ab1e4f65ae41fb88d3b15b39e7a8d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Construction.BuildingPreview
-  _renderers:
-  - {fileID: 4044993963682168045}
-  - {fileID: 4045139757454294719}
-  - {fileID: 4045896646507049045}
-  - {fileID: 4045495954904008579}
 --- !u!4 &4069468494179662409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4424883678430596, guid: 84097ddad6d7241409e382738aae22bb, type: 3}

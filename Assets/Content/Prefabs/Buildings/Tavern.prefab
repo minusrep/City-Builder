@@ -99,7 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Service.ServiceBuildingView
   _uiDocument: {fileID: 0}
-  _preview: {fileID: 8375665066298431493}
+  _renderers:
+  - {fileID: 5697611860228214178}
+  - {fileID: 5697368502433421986}
+  - {fileID: 5698841442608295568}
+  - {fileID: 5697419982935923502}
+  - {fileID: 3860239487205134589}
   _outline: {fileID: 6039640883050581564}
 --- !u!114 &845393757771583236
 MonoBehaviour:
@@ -2525,6 +2530,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cec3e36c100660409a207648fb52105, type: 3}
+--- !u!23 &3860239487205134589 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23679297291878786, guid: 2cec3e36c100660409a207648fb52105, type: 3}
+  m_PrefabInstance: {fileID: 3874911447583641983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3879587966557687809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4894876195635582, guid: 2cec3e36c100660409a207648fb52105, type: 3}
@@ -2602,10 +2612,7 @@ PrefabInstance:
     - {fileID: 64905481549383620, guid: c4acdd3f8bf9cfe4e8db56a2f52a57db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1405846119302248, guid: c4acdd3f8bf9cfe4e8db56a2f52a57db, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8375665066298431493}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4acdd3f8bf9cfe4e8db56a2f52a57db, type: 3}
 --- !u!23 &5697368502433421986 stripped
 MeshRenderer:
@@ -2627,28 +2634,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 23621145540180318, guid: c4acdd3f8bf9cfe4e8db56a2f52a57db, type: 3}
   m_PrefabInstance: {fileID: 5712166692510832590}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5710933538503775142 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1405846119302248, guid: c4acdd3f8bf9cfe4e8db56a2f52a57db, type: 3}
-  m_PrefabInstance: {fileID: 5712166692510832590}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8375665066298431493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5710933538503775142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ab1e4f65ae41fb88d3b15b39e7a8d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Construction.BuildingPreview
-  _renderers:
-  - {fileID: 5697611860228214178}
-  - {fileID: 5697368502433421986}
-  - {fileID: 5698841442608295568}
-  - {fileID: 5697419982935923502}
 --- !u!4 &5713808925992171876 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4001837268414122, guid: c4acdd3f8bf9cfe4e8db56a2f52a57db, type: 3}

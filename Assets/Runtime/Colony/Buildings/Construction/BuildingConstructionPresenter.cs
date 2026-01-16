@@ -56,7 +56,7 @@ namespace Runtime.Colony.Buildings.Construction
 
                 var prefab = await viewDescription.Prefab.LoadAssetAsync().Task;
                 var buildingView = prefab.GetComponent<BuildingView>();
-                var previews = await Object.InstantiateAsync(buildingView.Preview, _view.Transform);
+                var previews = await Object.InstantiateAsync(buildingView, _view.Transform);
                 viewDescription.Prefab.ReleaseAsset();
                 _view.Preview = previews[0];
                 _view.IsReady = true;

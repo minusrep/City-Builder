@@ -119,7 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Production.ProductionBuildingView
   _uiDocument: {fileID: 1338904815707915831}
-  _preview: {fileID: 3057335552210900068}
+  _renderers:
+  - {fileID: 4493504092325467665}
   _outline: {fileID: 8685598275242740271}
 --- !u!114 &5739859068566134591
 MonoBehaviour:
@@ -2595,35 +2596,13 @@ PrefabInstance:
     - {fileID: 64147117404104502, guid: 3416a1f8a57501f41b39470697272c5e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1743051142854260, guid: 3416a1f8a57501f41b39470697272c5e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3057335552210900068}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3416a1f8a57501f41b39470697272c5e, type: 3}
 --- !u!4 &4467939274669919875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4161967746259036, guid: 3416a1f8a57501f41b39470697272c5e, type: 3}
   m_PrefabInstance: {fileID: 4471940635332613855}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4470305432699887787 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1743051142854260, guid: 3416a1f8a57501f41b39470697272c5e, type: 3}
-  m_PrefabInstance: {fileID: 4471940635332613855}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3057335552210900068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4470305432699887787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ab1e4f65ae41fb88d3b15b39e7a8d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Construction.BuildingPreview
-  _renderers:
-  - {fileID: 4493504092325467665}
 --- !u!23 &4493504092325467665 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 23543269416779982, guid: 3416a1f8a57501f41b39470697272c5e, type: 3}

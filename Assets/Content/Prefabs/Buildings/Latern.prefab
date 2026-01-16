@@ -50,7 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiDocument: {fileID: 0}
-  _preview: {fileID: 1762044938223773884}
+  _renderers:
+  - {fileID: 266564362170598707}
   _outline: {fileID: 8303529650292642463}
 --- !u!208 &9209555602295748971
 NavMeshObstacle:
@@ -2452,7 +2453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4671726007428194, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4671726007428194, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2492,37 +2493,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65512488528229684, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4617094403848159956, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1346391149651154, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1762044938223773884}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
 --- !u!23 &266564362170598707 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 23058197238810458, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
   m_PrefabInstance: {fileID: 280047462245302889}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &280952880441435835 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1346391149651154, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
-  m_PrefabInstance: {fileID: 280047462245302889}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1762044938223773884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 280952880441435835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ab1e4f65ae41fb88d3b15b39e7a8d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Construction.BuildingPreview
-  _renderers:
-  - {fileID: 266564362170598707}
 --- !u!4 &284418670426891787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671726007428194, guid: 08fbd81b18b8c4949b0f5b250596657a, type: 3}
