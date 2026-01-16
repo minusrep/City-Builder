@@ -7,7 +7,7 @@ namespace Runtime.Colony.Buildings.Construction
     {
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
-        public BuildingPreview Preview { get; set; }
+        public BuildingView Preview { get; set; }
         public bool IsReady;
 
         private void Awake()
@@ -22,6 +22,7 @@ namespace Runtime.Colony.Buildings.Construction
 
             if (IsReady)
             {
+                Preview.Footprint.Renderer.material.color = color;
                 foreach (var preview in Preview.Renderers)
                 {
                     foreach (var material in preview.materials)

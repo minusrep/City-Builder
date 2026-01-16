@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 157871639}
   - component: {fileID: 157871637}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: WorldGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 157871635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -200, y: 1, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34997825c236425f8ec53052015a8b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Construction.WorldGridView
-  _filter: {fileID: 157871638}
 --- !u!33 &157871638
 MeshFilter:
   m_ObjectHideFlags: 0

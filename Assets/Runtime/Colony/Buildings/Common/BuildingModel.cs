@@ -14,6 +14,7 @@ namespace Runtime.Colony.Buildings.Common
         private const string DescriptionKey = "description";
         
         public event Action OnPositionChanged;
+        public event Action<bool> OnConstructionModeChanged;
         
         public string Id { get; }
 
@@ -53,6 +54,11 @@ namespace Runtime.Colony.Buildings.Common
             }
 
             Level++;
+        }
+        
+        public void SetConstructionMode(bool enabled)
+        {
+            OnConstructionModeChanged?.Invoke(enabled);
         }
         
         public virtual Dictionary<string, object> Serialize()

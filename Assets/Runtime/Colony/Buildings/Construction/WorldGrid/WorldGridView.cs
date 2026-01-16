@@ -8,20 +8,10 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
 
-        [SerializeField] private MeshFilter _filter;
-
         private void Awake()
         {
             Transform = transform;
             GameObject = gameObject;
-        }
-
-        public void Clear()
-        {
-            if (_filter != null && _filter.mesh != null)
-            {
-                _filter.mesh.Clear();
-            }
         }
     }
 }

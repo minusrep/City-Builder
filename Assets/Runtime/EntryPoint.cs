@@ -184,7 +184,6 @@ namespace Runtime
             
             _buildingCollectionView.Clear();
             _citizenViewCollection.Clear();
-            _worldGridView.Clear();
         }
     }
 }

@@ -101,6 +101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 5856878537287928188}
   - {fileID: 2910998111677427861}
   - {fileID: 6676703472487503828}
   - {fileID: 6307456771564223192}
@@ -119,8 +120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Production.ProductionBuildingView
   _uiDocument: {fileID: 1338904815707915831}
-  _preview: {fileID: 261454053503555047}
+  _renderers:
+  - {fileID: 2893180280868322669}
   _outline: {fileID: -4516913881714134514}
+  _footprint: {fileID: 5341095859242304517}
 --- !u!114 &8686346696335662861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2595,10 +2598,7 @@ PrefabInstance:
     - {fileID: 64075838365118106, guid: d78597ae17d16174487573108082e2d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1289217802491638, guid: d78597ae17d16174487573108082e2d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 261454053503555047}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d78597ae17d16174487573108082e2d9, type: 3}
 --- !u!23 &2893180280868322669 stripped
 MeshRenderer:
@@ -2610,22 +2610,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4575540500680482, guid: d78597ae17d16174487573108082e2d9, type: 3}
   m_PrefabInstance: {fileID: 2915430062829305783}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2914150821195721025 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1289217802491638, guid: d78597ae17d16174487573108082e2d9, type: 3}
-  m_PrefabInstance: {fileID: 2915430062829305783}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &261454053503555047
-MonoBehaviour:
+--- !u!1001 &4211612565277483225
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6030165305410528423}
+    m_Modifications:
+    - target: {fileID: 1240446350216426976, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_Name
+      value: Footprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+--- !u!114 &5341095859242304517 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8101348126966490332, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+  m_PrefabInstance: {fileID: 4211612565277483225}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2914150821195721025}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ab1e4f65ae41fb88d3b15b39e7a8d0, type: 3}
+  m_Script: {fileID: 11500000, guid: f360a5b09a344d4e9cb293064fb37811, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Construction.BuildingPreview
-  _renderers:
-  - {fileID: 2893180280868322669}
+  m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Common.BuildingFootprintView
+--- !u!4 &5856878537287928188 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7725195839995881893, guid: 84be333469b020843b25e6c1afb50f8a, type: 3}
+  m_PrefabInstance: {fileID: 4211612565277483225}
+  m_PrefabAsset: {fileID: 0}

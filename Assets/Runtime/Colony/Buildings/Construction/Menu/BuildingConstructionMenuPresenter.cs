@@ -63,8 +63,14 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
         private void StartConstruction(BuildingDescription description)
         {
+            _world.SelectionModel.CanSelect = false;
             _world.PlayerControls.UI.Disable();
             _world.PlayerControls.Construction.Enable();
+            
+            foreach (var buildingModel in _world.Buildings.Models.Values)
+            {
+                buildingModel.SetConstructionMode(true);
+            }
 
             UpdateSelection(description.Id);
             _world.BuildingConstructionModel.SelectedBuilding = description;
@@ -110,10 +116,17 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
         private void HandleCancelConstruction(InputAction.CallbackContext obj)
         {
+            _world.SelectionModel.CanSelect = true;
             _world.PlayerControls.UI.Enable();
             _world.PlayerControls.Construction.Disable();
             _world.BuildingConstructionModel.SelectedBuilding = null;
             _world.Grid.IsActive = false;
+            
+            foreach (var buildingModel in _world.Buildings.Models.Values)
+            {
+                buildingModel.SetConstructionMode(false);
+            }
+            
             ClearSelection();
         }
     }
