@@ -11,40 +11,31 @@
           0.2519829,
           -19.74258
         ],
-        "points_of_interest": {
-          "resource_target": {
-            "x": -55,
-            "y": 0,
-            "z": -20
-          }
-        },
-        "flags": {
-          "is_carrying": false,
-          "is_working": true
-        },
+        "points_of_interest": {},
+        "flags": {},
         "stats": {
           "satiety": {
             "stat": "satiety",
-            "value": 78.17281
+            "value": 100
           },
           "energy": {
             "stat": "energy",
-            "value": 89.08661
+            "value": 100
           },
           "happiness": {
             "stat": "happiness",
-            "value": 78.17281
+            "value": 100
           }
         },
         "timers": {},
         "state_machine": {
-          "current_state": "working"
+          "current_state": "idle"
         },
         "inventory": {
           "models": {
             "0": {
               "amount": 0,
-              "resource": "worker"
+              "resource": null
             }
           }
         }
@@ -59,39 +50,31 @@
           0.2519829,
           -31.28212
         ],
-        "points_of_interest": {
-          "resource_target": {
-            "x": -55,
-            "y": 0,
-            "z": -35
-          }
-        },
-        "flags": {
-          "is_carrying": true
-        },
+        "points_of_interest": { },
+        "flags": { },
         "stats": {
           "satiety": {
             "stat": "satiety",
-            "value": 78.17281
+            "value": 100
           },
           "energy": {
             "stat": "energy",
-            "value": 89.08661
+            "value": 100
           },
           "happiness": {
             "stat": "happiness",
-            "value": 78.17281
+            "value": 100
           }
         },
         "timers": {},
         "state_machine": {
-          "current_state": "walk_to_put_resource"
+          "current_state": "idle"
         },
         "inventory": {
           "models": {
             "0": {
-              "amount": 1,
-              "resource": "worker"
+              "amount": 0,
+              "resource": null
             }
           }
         }
@@ -106,39 +89,31 @@
           0.2519829,
           -19.58517
         ],
-        "points_of_interest": {
-          "resource_target": {
-            "x": -35,
-            "y": 0,
-            "z": -20
-          }
-        },
-        "flags": {
-          "is_carrying": true
-        },
+        "points_of_interest": {},
+        "flags": {},
         "stats": {
           "satiety": {
             "stat": "satiety",
-            "value": 78.17281
+            "value": 100
           },
           "energy": {
             "stat": "energy",
-            "value": 89.08661
+            "value": 100
           },
           "happiness": {
             "stat": "happiness",
-            "value": 78.17281
+            "value": 100
           }
         },
         "timers": {},
         "state_machine": {
-          "current_state": "walk_to_put_resource"
+          "current_state": "idle"
         },
         "inventory": {
           "models": {
             "0": {
-              "amount": 1,
-              "resource": "worker"
+              "amount": 0,
+              "resource": null
             }
           }
         }
@@ -153,39 +128,31 @@
           0.2519829,
           -24.81244
         ],
-        "points_of_interest": {
-          "resource_target": {
-            "x": -35,
-            "y": 0,
-            "z": -35
-          }
-        },
-        "flags": {
-          "is_carrying": true
-        },
+        "points_of_interest": {},
+        "flags": {},
         "stats": {
           "satiety": {
             "stat": "satiety",
-            "value": 78.17281
+            "value": 100
           },
           "energy": {
             "stat": "energy",
-            "value": 89.08661
+            "value": 100
           },
           "happiness": {
             "stat": "happiness",
-            "value": 78.17281
+            "value": 100
           }
         },
         "timers": {},
         "state_machine": {
-          "current_state": "walk_to_put_resource"
+          "current_state": "idle"
         },
         "inventory": {
           "models": {
             "0": {
-              "amount": 1,
-              "resource": "worker"
+              "amount": 0,
+              "resource": null
             }
           }
         }
@@ -200,33 +167,20 @@
           0.2519829,
           25
         ],
-        "points_of_interest": {
-          "resource_source": {
-            "x": 0,
-            "y": 0,
-            "z": 25
-          },
-          "resource_target": {
-            "x": -15,
-            "y": 0,
-            "z": -35
-          }
-        },
-        "flags": {
-          "is_carrying": false
-        },
+        "points_of_interest": {},
+        "flags": {},
         "stats": {
           "satiety": {
             "stat": "satiety",
-            "value": 78.17281
+            "value": 100
           },
           "energy": {
             "stat": "energy",
-            "value": 89.08661
+            "value": 100
           },
           "happiness": {
             "stat": "happiness",
-            "value": 78.17281
+            "value": 100
           }
         },
         "timers": {},
@@ -252,21 +206,8 @@
           0.2519829,
           30
         ],
-        "points_of_interest": {
-          "resource_source": {
-            "x": 0,
-            "y": 0,
-            "z": 25
-          },
-          "resource_target": {
-            "x": -15,
-            "y": 0,
-            "z": -35
-          }
-        },
-        "flags": {
-          "is_carrying": false
-        },
+        "points_of_interest": {},
+        "flags": {},
         "stats": {
           "satiety": {
             "stat": "satiety",
@@ -278,7 +219,7 @@
           },
           "happiness": {
             "stat": "happiness",
-            "value": 10
+            "value": 100
           }
         },
         "timers": {},
@@ -304,21 +245,8 @@
           0.2519829,
           30
         ],
-        "points_of_interest": {
-          "resource_source": {
-            "x": 0,
-            "y": 0,
-            "z": 25
-          },
-          "resource_target": {
-            "x": 20,
-            "y": 0,
-            "z": -550
-          }
-        },
-        "flags": {
-          "is_carrying": false
-        },
+        "points_of_interest": {},
+        "flags": {},
         "stats": {
           "satiety": {
             "stat": "satiety",
@@ -330,7 +258,7 @@
           },
           "happiness": {
             "stat": "happiness",
-            "value": 10
+            "value": 100
           }
         },
         "timers": {},
