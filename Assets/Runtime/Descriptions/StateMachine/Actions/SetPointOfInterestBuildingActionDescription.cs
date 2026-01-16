@@ -11,7 +11,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
     {
         private const string BuildingPointOfInterestKey = "point_of_interest";
         
-        public string BuildingPointOfInterest { get; private set; }
+        public string BuildingPointOfInterest { get; }
 
         public SetPointOfInterestBuildingActionDescription(Dictionary<string, object> data) : base(data)
         {

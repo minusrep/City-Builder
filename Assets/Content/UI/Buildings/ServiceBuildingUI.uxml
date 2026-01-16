@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="content" style="flex-direction: row; align-items: center; padding: 4px 6px; background-color: rgba(0, 0, 0, 0.6); border-radius: 6px;">
+        <ui:Image name="icon" source="project://database/Assets/Imports/Clean%20Vector%20Icons/T_8_silhouette_.png?fileID=21300000&amp;guid=bbb4535f644f8044094049feb73cf442&amp;type=3#T_8_silhouette_" style="margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; width: 32px; height: 32px;"/>
+        <ui:Label name="citizens-label" text="0" style="color: white; unity-font-style: bold; font-size: 14px;"/>
+    </ui:VisualElement>
+</ui:UXML>

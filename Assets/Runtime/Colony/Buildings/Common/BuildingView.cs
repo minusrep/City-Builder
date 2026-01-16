@@ -2,7 +2,6 @@
 using Runtime.Selection;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Buildings.Common
@@ -13,6 +12,7 @@ namespace Runtime.Colony.Buildings.Common
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
         public ProgressBar ProgressBar { get; private set; }
+        public Label ServiceCitizensLabel { get; private set; }
         public UIDocument Document => _uiDocument;
         public IReadOnlyList<Renderer> Renderers => _renderers;
         public BuildingFootprintView Footprint => _footprint;
@@ -41,6 +41,7 @@ namespace Runtime.Colony.Buildings.Common
             {
                 _uiRoot = _uiDocument.rootVisualElement;
                 ProgressBar = _uiRoot.Q<ProgressBar>("production-progress");
+                ServiceCitizensLabel = _uiRoot.Q<Label>("citizens-label");
             }
         }
 
