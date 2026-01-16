@@ -26,6 +26,8 @@ namespace Runtime.Colony.Citizens.Movement
             
             _model.OnStartMove += StartMove;
             
+            _model.OnStopMove += StopMove;
+            
             _view.NavMeshAgent.isStopped = false;
         }
 
@@ -34,6 +36,8 @@ namespace Runtime.Colony.Citizens.Movement
             _view.OnUpdate -= UpdatePosition;
             
             _model.OnStartMove -= StartMove;
+            
+            _model.OnStopMove -= StopMove;
 
             _view.NavMeshAgent.isStopped = true;
         }
@@ -45,7 +49,14 @@ namespace Runtime.Colony.Citizens.Movement
 
         private void StartMove(string pointOfInterest)
         {
+            _view.NavMeshAgent.isStopped = false;
+            
             _view.NavMeshAgent.SetDestination(_model.PointsOfInterest[pointOfInterest]);
+        }
+
+        private void StopMove()
+        {
+            _view.NavMeshAgent.isStopped = true;
         }
     }
 }

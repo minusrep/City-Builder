@@ -34,8 +34,12 @@ namespace Runtime.Colony.Citizens
         private const string InventoryKey = "inventory";
 
         private const string ViewDescriptionKey = "view_description";
+
+        private const string DefaultViewDescription = "citizen_1"; 
         
         public event Action<string> OnStartMove;
+        
+        public event Action OnStopMove;
 
         public event Action<string> OnInvokeAnimation;
         
@@ -63,7 +67,7 @@ namespace Runtime.Colony.Citizens
         
         private readonly WorldDescription _description;
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public string ViewDescription { get; set; }
 
         public CitizenModel(int id, WorldDescription description)
@@ -71,6 +75,7 @@ namespace Runtime.Colony.Citizens
             _description = description;
             
             Id = id;
+            ViewDescription = DefaultViewDescription;
             Description = description.Citizens;
             Position = new Vector2(0, 0);
             PointsOfInterest = new PointOfInterestCollection();
@@ -126,6 +131,11 @@ namespace Runtime.Colony.Citizens
         public void StartMove(string pointOfInterest)
         {
             OnStartMove?.Invoke(pointOfInterest);
+        }
+
+        public void StopMove()
+        {
+            OnStopMove?.Invoke();
         }
 
         public void InvokeAnimation(string animation)
