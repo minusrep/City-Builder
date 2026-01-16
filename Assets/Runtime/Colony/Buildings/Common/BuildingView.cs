@@ -18,7 +18,8 @@ namespace Runtime.Colony.Buildings.Common
         [SerializeField] private UIDocument _uiDocument;
         [SerializeField] private Renderer[] _renderers;
         [SerializeField] private SelectionOutline _outline;
-
+        
+        private BuildingViewState _state;
 
         public void OnEnable()
         {
@@ -32,6 +33,53 @@ namespace Runtime.Colony.Buildings.Common
                 var root = _uiDocument.rootVisualElement;
                 ProgressBar = root.Q<ProgressBar>("production-progress");
             }
+        }
+        
+        public void SetState(BuildingViewState state)
+        {
+            if (_state == state)
+                return;
+
+            _state = state;
+
+            switch (state)
+            {
+                case BuildingViewState.Placed:
+                    ApplyPlacedState();
+                    break;
+
+                case BuildingViewState.Preview:
+                    ApplyPreviewState();
+                    break;
+
+                case BuildingViewState.Construction:
+                    ApplyConstructionState();
+                    break;
+            }
+        }
+        
+        private void ApplyPlacedState()
+        {
+            if (_uiDocument)
+                _uiDocument.enabled = true;
+
+            _outline.SetOutline(SelectionOutlineType.None);
+        }
+
+        private void ApplyPreviewState()
+        {
+            if (_uiDocument)
+                _uiDocument.enabled = false;
+
+            _outline.SetOutline(SelectionOutlineType.None);
+        }
+
+        private void ApplyConstructionState()
+        {
+            if (_uiDocument)
+                _uiDocument.enabled = false;
+
+            _outline.SetOutline(SelectionOutlineType.Selected);
         }
     }
 }

@@ -59,6 +59,7 @@ namespace Runtime.Colony.Buildings.Construction
                 var previews = await Object.InstantiateAsync(buildingView, _view.Transform);
                 viewDescription.Prefab.ReleaseAsset();
                 _view.Preview = previews[0];
+                _view.Preview.SetState(BuildingViewState.Preview);
                 _view.IsReady = true;
 
                 _view.Transform.localScale = BuildingVisualLayoutHelper.GetScale(viewDescription);
