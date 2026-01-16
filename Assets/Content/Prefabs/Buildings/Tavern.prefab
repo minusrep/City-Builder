@@ -81,6 +81,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8268911497046646896}
   - {fileID: 3646257755831387252}
   - {fileID: 5713808925992171876}
   - {fileID: 3879587966557687809}
@@ -110,6 +111,7 @@ MonoBehaviour:
   - {fileID: 4758503311666321440}
   _outline: {fileID: 6039640883050581564}
   _footprint: {fileID: 3009162669401655565}
+  _renderPoint: {fileID: 8268911497046646896}
 --- !u!114 &845393757771583236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2464,6 +2466,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Colony.Buildings.Selection.SelectionOutline
   _outline: {fileID: 845393757771583236}
+--- !u!1 &8456819864439396745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8268911497046646896}
+  m_Layer: 0
+  m_Name: RenderPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8268911497046646896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456819864439396745}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.43719196, y: -0.19261426, z: 0.12653665, w: 0.8693397}
+  m_LocalPosition: {x: 5.2, y: 6.9, z: -1.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6030165305410528423}
+  m_LocalEulerAnglesHint: {x: 53.987, y: -22.42, z: 5.034}
 --- !u!1001 &3874911447583641983
 PrefabInstance:
   m_ObjectHideFlags: 0
