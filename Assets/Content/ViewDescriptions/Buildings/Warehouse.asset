@@ -18,4 +18,4 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  VisualSizeInCells: {x: 6, y: 6}
+  VisualSizeInCells: {x: 5, y: 6}
