@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Colony.Citizens.Systems;
+using Runtime.Colony.StateMachine;
 using Runtime.Common;
 using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
@@ -39,20 +40,20 @@ namespace Runtime.Colony.Citizens.Collection
             {
                 var prefab = await viewDescription.Prefab.LoadAssetAsync().Task;
                 var citizenView = prefab.GetComponent<CitizenView>();
-                var viewPool = new ObjectPool<CitizenView>(citizenView, 1, _view.Transform);
+                var viewPool = new ObjectPool<CitizenView>(citizenView, 2, _view.Transform);
                 _pools[viewDescription.Id] = viewPool;
 
                 viewDescription.Prefab.ReleaseAsset();
             }
             
+            _model.OnAdded += OnAdded;
+
+            _model.OnRemoved += OnRemoved;
+            
             foreach (var model in _model.Models.Values)
             {
                 CreateCitizenPresenter(model);
             }
-            
-            _model.OnAdded += OnAdded;
-
-            _model.OnRemoved += OnRemoved;
         }
 
         public void Disable()
@@ -74,10 +75,13 @@ namespace Runtime.Colony.Citizens.Collection
             var hungrySystem = _world.GameSystems.Get("hungry") as CitizenStatSystem;
             var fatigueSystem = _world.GameSystems.Get("fatigue") as CitizenStatSystem;
             var stressSystem = _world.GameSystems.Get("stress") as CitizenStatSystem;
-                        
+            var stateMachineSystem = _world.GameSystems.Get("state_machine") as StateMachineSystem;
+            
+            
             hungrySystem?.Unregister(citizenModel);
             fatigueSystem?.Unregister(citizenModel);
             stressSystem?.Unregister(citizenModel);
+            stateMachineSystem?.Unregister(citizenModel);
             
             citizenPresenter.Disable();
             
@@ -92,9 +96,12 @@ namespace Runtime.Colony.Citizens.Collection
             
             _presenters[citizenModel.Id] = citizenPresenter;
 
+            var stateMachineSystem = _world.GameSystems.Get("state_machine") as StateMachineSystem;
             var hungrySystem = _world.GameSystems.Get("hungry") as CitizenStatSystem;
             var fatigueSystem = _world.GameSystems.Get("fatigue") as CitizenStatSystem;
             var stressSystem = _world.GameSystems.Get("stress") as CitizenStatSystem;
+            
+            stateMachineSystem?.Register(citizenModel);
             
             hungrySystem?.Register(citizenModel);
             
