@@ -1,6 +1,5 @@
 using Runtime.Colony;
 using Runtime.Common;
-using Runtime.UI;
 using UnityEngine.UIElements;
 
 namespace Runtime.Selection.SelectedPanel
@@ -10,18 +9,16 @@ namespace Runtime.Selection.SelectedPanel
         private readonly SelectedPanelView _view;
         private readonly SelectionModel _model;
         private readonly World _world;
-        private readonly MenuContent _menuContent;
 
         private SelectedBuildingPanelPresenter _selectedBuildingPanelPresenter;
         
         private SelectedCitizenPanelPresenter _selectedCitizenPanelPresenter;
         
-        public SelectedPanelPresenter(SelectedPanelView view, SelectionModel model, World world, MenuContent menuContent)
+        public SelectedPanelPresenter(SelectedPanelView view, SelectionModel model, World world)
         {
             _model = model;
             _view = view;
             _world = world;
-            _menuContent = menuContent;
         }
 
         public void Enable()
