@@ -518,5 +518,10 @@
         "progress": 0
       }
     }
+  },
+  "environment": {
+    "time": {
+      "current_time": 0
+    }
   }
 }
