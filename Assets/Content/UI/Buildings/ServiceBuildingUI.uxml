@@ -1,0 +1,7 @@
+﻿<ui:UXML
+    xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement name="content"
+                      style="flex-direction: row;align-items: center;padding: 4px 6px;background-color: rgba(0,0,0,0.6);border-radius: 6px; ">
+        <ui:Label name="citizens-label" text="0" style="color: white;unity-font-style: bold;font-size: 14px;" />
+    </ui:VisualElement>
+</ui:UXML>
