@@ -38,6 +38,8 @@ namespace Runtime.Colony.Citizens
         private const string DefaultViewDescription = "citizen_1"; 
         
         public event Action<string> OnStartMove;
+        
+        public event Action OnStopMove;
 
         public event Action<string> OnInvokeAnimation;
         
@@ -129,6 +131,11 @@ namespace Runtime.Colony.Citizens
         public void StartMove(string pointOfInterest)
         {
             OnStartMove?.Invoke(pointOfInterest);
+        }
+
+        public void StopMove()
+        {
+            OnStopMove?.Invoke();
         }
 
         public void InvokeAnimation(string animation)
