@@ -60,6 +60,11 @@ namespace Runtime.Colony.Buildings.Common
             OnConstructionModeChanged?.Invoke(enabled);
         }
 
+        public Vector3 GetWorldPosition()
+        {
+            return WorldPosition + BaseDescription.InteractionPoints[0];
+        }
+
         public virtual Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>

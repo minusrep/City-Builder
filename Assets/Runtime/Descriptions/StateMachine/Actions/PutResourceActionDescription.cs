@@ -13,7 +13,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private string PointOfInterest { get; }
         
-        public PutResourceActionDescription(Dictionary<string, object> data) : base(data)
+        public PutResourceActionDescription(Dictionary<string, object> data)
         {
             PointOfInterest = data.GetString(PointOfInterestKey);
         }
@@ -24,9 +24,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             model.Flags["has_order"] = true;
             
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
-            var inventoryBuilding = (IInventoryBuilding)world.Buildings.Models.Values.First(b =>
-                b.WorldPosition == buildingPosition
-            );
+            var inventoryBuilding = (IInventoryBuilding)world.Grid.GetBuilding(buildingPosition);
 
             var resource = model.Inventory.Models.First().Value.Resource;
             inventoryBuilding.TryAddItem(resource, 1);

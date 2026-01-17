@@ -27,14 +27,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             }
 
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
-            var inventoryBuildingPair = world.Buildings.Models.FirstOrDefault(b =>
-                b.Value.WorldPosition == buildingPosition
-            );
-
-            if (inventoryBuildingPair.Value is not IInventoryBuilding inventoryBuilding)
-            {
-                return;
-            }
+            var inventoryBuilding = (IInventoryBuilding)world.Grid.GetBuilding(buildingPosition);
 
             if (model.Inventory.Models.Values.Count == 0)
             {
@@ -73,15 +66,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
             }
 
             var buildingPosition = model.PointsOfInterest["resource_target"];
-            var (_, targetBuilding) = world.Buildings.Models.FirstOrDefault(b =>
-                b.Value.WorldPosition == buildingPosition
-            );
-
-            if (targetBuilding == null)
-            {
-                return;
-            }
-
+            var targetBuilding = world.Grid.GetBuilding(buildingPosition);
+            
             if (model.Inventory.Models.Values.Count == 0)
             {
                 return;

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Citizens;
@@ -22,9 +21,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
             var model = (CitizenModel)user;
             
             var buildingPosition = model.PointsOfInterest["resource_target"];
-            var building = world.Buildings.Models.Values.First(b => 
-                b.WorldPosition == buildingPosition
-            ) as ProductionBuildingModel;
+            var building = (ProductionBuildingModel)world.Grid.GetBuilding(buildingPosition);
 
             return building != null && building.IsActive == _isWorking;
         }
