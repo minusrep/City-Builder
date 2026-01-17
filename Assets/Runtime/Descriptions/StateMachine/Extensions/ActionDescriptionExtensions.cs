@@ -38,9 +38,9 @@ namespace Runtime.Descriptions.StateMachine.Extensions
                 TakeResourceKey => new TakeResourceActionDescription(data),
                 PutResourceKey => new PutResourceActionDescription(data),
                 SetFlagKey => new SetFlagActionDescription(data),
-                TakeOrderKey => new TakeOrderActionDescription(data),
+                TakeOrderKey => new TakeOrderActionDescription(),
                 ChangeVisibilityKey => new ChangeVisibilityActionDescription(data),
-                StopMoveKey => new StopMoveActionDescription(data),
+                StopMoveKey => new StopMoveActionDescription(),
                 SetServiceCitizenAmountKey => new SetServiceCitizenAmountDescription(data),
                 _ =>  throw new NotImplementedException()
             };

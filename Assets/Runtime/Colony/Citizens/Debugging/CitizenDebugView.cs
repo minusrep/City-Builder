@@ -7,7 +7,7 @@ namespace Runtime.Colony.Citizens.Debugging
     {
         public event Action OnGui;
 
-        [SerializeField] private bool _active = false;
+        [SerializeField] private bool _active;
 
         private void OnGUI()
         {

@@ -23,7 +23,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         public override void Execute(World world, CitizenModel model)
         {
             var pointOfInterest = model.PointsOfInterest[PointOfInterest];
-            
+
             if (world.Grid.GetBuilding(pointOfInterest) is ServiceBuildingModel targetBuilding)
             {
                 if (IsIncrement)

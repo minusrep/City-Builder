@@ -9,19 +9,19 @@ namespace Runtime.Descriptions.StateMachine.Actions
 {
     public class TakeResourceActionDescription : ActionDescription
     {
-        private const string PointOfInterestKey= "point_of_interest";
+        private const string PointOfInterestKey = "point_of_interest";
 
         private string PointOfInterest { get; }
-        
+
         public TakeResourceActionDescription(Dictionary<string, object> data)
         {
-            PointOfInterest =  data[PointOfInterestKey] as string;   
+            PointOfInterest = data[PointOfInterestKey] as string;
         }
 
         public override void Execute(World world, CitizenModel model)
         {
             model.Flags["is_carrying"] = false;
-            
+
             if (!model.PointsOfInterest.ContainsKey(PointOfInterest))
             {
                 return;
@@ -36,14 +36,14 @@ namespace Runtime.Descriptions.StateMachine.Actions
             {
                 return;
             }
-            
+
             if (model.Inventory.Models.Values.Count == 0)
             {
                 return;
             }
 
             var resource = model.Inventory.Models.Values.First().Resource;
-            
+
             if (resource == null)
             {
                 return;
@@ -54,7 +54,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 RestoreOrder(world, model);
                 return;
             }
-            
+
             model.Inventory.TryAddItem(resource, 1);
             model.Flags["is_carrying"] = true;
 
@@ -74,24 +74,22 @@ namespace Runtime.Descriptions.StateMachine.Actions
             }
 
             var buildingPosition = model.PointsOfInterest["resource_target"];
-            var targetBuildingPair = world.Buildings.Models.FirstOrDefault(b =>
+            var (_, targetBuilding) = world.Buildings.Models.FirstOrDefault(b =>
                 b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
             );
-            
-            if (targetBuildingPair.Value == null)
+
+            if (targetBuilding == null)
             {
                 return;
             }
 
-            var targetBuilding = targetBuildingPair.Value;
-            
             if (model.Inventory.Models.Values.Count == 0)
             {
                 return;
             }
 
             var resource = model.Inventory.Models.Values.First().Resource;
-            
+
             if (resource == null)
             {
                 return;

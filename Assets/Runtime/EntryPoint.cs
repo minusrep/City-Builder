@@ -20,24 +20,26 @@ using Runtime.ViewDescriptions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Runtime
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        [Header("UI")] 
-        [SerializeField] private UIDocument _menuDocument;
+        [Header("UI")] [SerializeField] private UIDocument _menuDocument;
         [SerializeField] private UIDocument _popupDocument;
         [SerializeField] private UIDocument _hudDocument;
 
-        [Header("View")] 
-        [SerializeField] private BuildingCollectionView _buildingCollectionView;
+        [Header("View")] [SerializeField] private BuildingCollectionView _buildingCollectionView;
         [SerializeField] private CitizenViewCollection _citizenViewCollection;
         [SerializeField] private CameraControlView _cameraControlView;
         [SerializeField] private BuildingConstructionView _buildingConstructionView;
         [SerializeField] private WorldGridView _worldGridView;
         [SerializeField] private SelectionView _selectionView;
         [SerializeField] private EnvironmentView _environmentView;
-        
+
         private readonly WorldDescription _worldDescription = new();
 
         private readonly WorldViewDescriptions _worldViewDescriptions = new();
@@ -51,13 +53,13 @@ namespace Runtime
         private readonly List<IPresenter> _presenters = new();
 
         private MenuContent _menuContent;
-        
+
         private InGameMenuPresenter _inGameMenuPresenter;
-        
+
         private PlayerControls _playerControls;
 
         private bool _isReloadingSession;
-        
+
         private async void Start()
         {
             _menuContent = new MenuContent(_menuDocument, _popupDocument);
@@ -69,21 +71,21 @@ namespace Runtime
                 new DescriptionsLoadStep(_worldDescription, _addressableModel),
                 new ViewDescriptionsLoadStep(_worldViewDescriptions, _addressableModel),
             };
-            
+
             _playerControls.Enable();
-            
+
             foreach (var step in persistentLoadStep)
             {
                 await step.Run();
             }
-            
+
             await LoadSession();
 
             InitializeInGameMenu();
-    
+
             Application.quitting += OnQuit;
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
 #endif
         }
 
@@ -96,7 +98,8 @@ namespace Runtime
                 new BuildingCollectionLoadStep(_presenters, _world, _buildingCollectionView, _worldViewDescriptions),
                 new BuildingConstructionLoadStep(_presenters, _buildingConstructionView, _worldGridView,
                     _worldDescription, _world, _worldViewDescriptions, _menuContent),
-                new BuildingSelectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent, _selectionView),
+                new BuildingSelectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent,
+                    _selectionView),
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
                 new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent),
                 new CameraControlLoadStep(_presenters, _world, _cameraControlView, _worldDescription),
@@ -127,9 +130,9 @@ namespace Runtime
         }
 
 #if UNITY_EDITOR
-        private void OnPlayModeStateChanged(UnityEditor.PlayModeStateChange state)
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
         {
-            if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+            if (state == PlayModeStateChange.ExitingPlayMode)
             {
                 Dispose();
             }
@@ -144,7 +147,7 @@ namespace Runtime
         private void Dispose()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 #endif
             Application.quitting -= OnQuit;
 
@@ -155,13 +158,13 @@ namespace Runtime
 
             _inGameMenuPresenter.Disable();
         }
-        
+
         public async Task ReloadSessionWithSave(string saveName)
         {
             _isReloadingSession = true;
 
             DisposeSessionPresenters();
-            
+
             ClearSessionData();
 
             await LoadSession(saveName);
@@ -176,7 +179,7 @@ namespace Runtime
                 var presenter = _presenters[i];
                 presenter.Disable();
             }
-            
+
             _presenters.Clear();
         }
 
@@ -185,9 +188,9 @@ namespace Runtime
             _world.Citizens.Clear();
             _world.Buildings.Clear();
             _world.Achievements.Clear();
-            
+
             _gameSystems.Clear();
-            
+
             _buildingCollectionView.Clear();
             _citizenViewCollection.Clear();
         }

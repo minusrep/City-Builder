@@ -1,7 +1,7 @@
-﻿using Runtime.Colony;
+﻿using System.Collections.Generic;
+using Runtime.Colony;
 using Runtime.Colony.Citizens;
 using Runtime.Extensions;
-using System.Collections.Generic;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {

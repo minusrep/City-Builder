@@ -20,7 +20,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         public override void Execute(World world, CitizenModel model)
         {
             var registerSystem = (RegisterGameSystem<CitizenModel>)world.GameSystems.Get(System);
-            
+
             registerSystem.Unregister(model);
         }
     }

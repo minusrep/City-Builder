@@ -10,7 +10,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         private const string AnimationKey = "animation";
 
         private string Animation { get; }
-        
+
         public InvokeAnimationDescription(Dictionary<string, object> data)
         {
             Animation = data.GetString(AnimationKey);

@@ -50,7 +50,7 @@ namespace Runtime.Colony.Achievements
 
         public Dictionary<string, object> Serialize()
         {
-            return new Dictionary<string, object>()
+            return new Dictionary<string, object>
             {
                 { "is_active", IsActive },
                 { "is_completed", IsCompleted },

@@ -29,7 +29,7 @@ namespace Runtime.Colony.Stats
         
         public Dictionary<string, object> Serialize()
         {
-            return new Dictionary<string, object>()
+            return new Dictionary<string, object>
             {
                 { "stat", Stat.Id },
                 { "value", Value }

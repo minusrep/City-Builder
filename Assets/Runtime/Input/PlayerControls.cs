@@ -12,8 +12,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
+using Object = UnityEngine.Object;
 
 namespace Runtime.Input
 {
@@ -381,9 +383,9 @@ namespace Runtime.Input
 
         ~@PlayerControls()
         {
-            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_Construction.enabled, "This will cause a leak and performance issues, PlayerControls.Construction.Disable() has not been called.");
+            Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
+            Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
+            Debug.Assert(!m_Construction.enabled, "This will cause a leak and performance issues, PlayerControls.Construction.Disable() has not been called.");
         }
 
         /// <summary>
@@ -391,7 +393,7 @@ namespace Runtime.Input
         /// </summary>
         public void Dispose()
         {
-            UnityEngine.Object.Destroy(asset);
+            Object.Destroy(asset);
         }
 
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionAsset.bindingMask" />

@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Colony.Citizens;
+using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
     public class TakeOrderActionDescription : ActionDescription
-
     {
-        public TakeOrderActionDescription(Dictionary<string, object> data)
+        public TakeOrderActionDescription(Dictionary<string, object> data) : base(data)
         {
         }
 
@@ -22,11 +21,13 @@ namespace Runtime.Descriptions.StateMachine.Actions
             
             var order = world.OrderManager.TakeOrder();
 
-            var productionBuilding = world.Buildings.Get(order.FromBuildingId) as ProductionBuildingModel;
+            var productionBuilding = (ProductionBuildingModel)world.Buildings.Get(order.FromBuildingId);
+
+            var resource = world.WorldDescription.ResourceCollection.Descriptions[order.ResourceId];
+            
             BuildingModel targetBuilding = null;
             BuildingModel sourceBuilding = null;
-            
-            var resource = world.WorldDescription.ResourceCollection.Descriptions[order.ResourceId];
+
             if (order.Type == "put_resource")
             {
                 if (order.ResourceId == "worker")
@@ -64,9 +65,9 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
             model.Inventory.TryAddItem(resource, 0);
             model.SetPointOfInterest("resource_source",
-                new Vector3(sourceBuilding.WorldPosition.x, 0, sourceBuilding.WorldPosition.y));
+                new Vector3(sourceBuilding!.WorldPosition.x, 0, sourceBuilding.WorldPosition.y));
             model.SetPointOfInterest("resource_target",
-                new Vector3(targetBuilding.WorldPosition.x, 0, targetBuilding.WorldPosition.y));
+                new Vector3(targetBuilding!.WorldPosition.x, 0, targetBuilding.WorldPosition.y));
 
             order.Reserve(1);
             model.Flags["has_order"] = true;

@@ -1,7 +1,7 @@
- using System.Threading.Tasks;
- using UnityEngine;
- 
- namespace Runtime.Common
+using System.Threading.Tasks;
+using UnityEngine;
+
+namespace Runtime.Common
  {
      public static class UnityAwaiter
      {

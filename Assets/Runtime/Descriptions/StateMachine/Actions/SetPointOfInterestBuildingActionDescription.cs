@@ -10,12 +10,12 @@ namespace Runtime.Descriptions.StateMachine.Actions
     public class SetPointOfInterestBuildingActionDescription : ActionDescription
     {
         private const string BuildingPointOfInterestKey = "point_of_interest";
-        
-        public string BuildingPointOfInterest { get; }
+
+        private string BuildingPointOfInterest { get; }
 
         public SetPointOfInterestBuildingActionDescription(Dictionary<string, object> data)
         {
-            BuildingPointOfInterest =  data.GetString(BuildingPointOfInterestKey);
+            BuildingPointOfInterest = data.GetString(BuildingPointOfInterestKey);
         }
 
         public override void Execute(World world, CitizenModel model)
@@ -25,22 +25,24 @@ namespace Runtime.Descriptions.StateMachine.Actions
             var targetBuildings = buildings.Where(a => BuildingPointOfInterest == a.BaseDescription.Id).ToList();
 
             var targetBuilding = targetBuildings[0];
-                
+
             var minDistance = Vector3.Distance(targetBuilding.WorldPosition, model.Position);
-                
+
             foreach (var building in targetBuildings)
             {
                 var distance = Vector3.Distance(model.Position, building.WorldPosition);
-                    
+
                 if (distance < minDistance)
                 {
                     targetBuilding = building;
-                        
+
                     minDistance = distance;
                 }
             }
-                
-            model.SetPointOfInterest(BuildingPointOfInterest, new Vector3(targetBuilding.WorldPosition.x, 0, targetBuilding.WorldPosition.y) + targetBuilding.BaseDescription.InteractionPoints[0]);
+
+            model.SetPointOfInterest(BuildingPointOfInterest,
+                new Vector3(targetBuilding.WorldPosition.x, 0, targetBuilding.WorldPosition.y) +
+                targetBuilding.BaseDescription.InteractionPoints[0]);
         }
     }
 }
