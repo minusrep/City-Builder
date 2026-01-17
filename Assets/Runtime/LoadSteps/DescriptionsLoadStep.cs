@@ -21,7 +21,8 @@ namespace Runtime.LoadSteps
             { "achievements", "achievements_description" },
             { "points_of_interest", "points_of_interest_description" },
             { "camera_control", "camera_control" },
-            { "world_grid", "world_grid_description" }
+            { "world_grid", "world_grid_description" },
+            { "environment", "environment_description" },
         };
 
         public DescriptionsLoadStep(WorldDescription worldDescription, AddressableModel addressableModel)

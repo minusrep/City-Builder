@@ -9,6 +9,7 @@ using Runtime.Colony.Buildings.Construction.WorldGrid;
 using Runtime.Colony.Citizens.Collection;
 using Runtime.Common;
 using Runtime.Descriptions;
+using Runtime.Environment;
 using Runtime.GameSystems;
 using Runtime.Input;
 using Runtime.LoadSteps;
@@ -35,6 +36,7 @@ namespace Runtime
         [SerializeField] private BuildingConstructionView _buildingConstructionView;
         [SerializeField] private WorldGridView _worldGridView;
         [SerializeField] private SelectionView _selectionView;
+        [SerializeField] private EnvironmentView _environmentView;
         
         private readonly WorldDescription _worldDescription = new();
 
@@ -98,6 +100,7 @@ namespace Runtime
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
                 new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent),
                 new CameraControlLoadStep(_presenters, _world, _cameraControlView, _worldDescription),
+                new EnvironmentLoadStep(_presenters, _world, _environmentView)
             };
 
             foreach (var step in sessionLoadSteps)

@@ -4,6 +4,7 @@ using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Citizens.Systems;
 using Runtime.Colony.StateMachine;
 using Runtime.Descriptions.Citizens;
+using Runtime.Environment;
 using Runtime.GameSystems;
 
 namespace Runtime.LoadSteps
@@ -29,6 +30,10 @@ namespace Runtime.LoadSteps
             {
                 _gameSystems.Add(new CitizenStatSystem(system.Key, system.Value.Stat, system.Value.ChangeSpeed));
             }
+
+            var environmentSystem = new EnvironmentSystem("environment");
+            
+            _gameSystems.Add(environmentSystem);
             
             var stateMachineSystem = new StateMachineSystem(_world);
             

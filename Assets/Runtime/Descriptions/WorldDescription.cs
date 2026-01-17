@@ -5,6 +5,7 @@ using Runtime.Descriptions.Items;
 using Runtime.Extensions;
 using System.Collections.Generic;
 using Runtime.Descriptions.Achievements;
+using Runtime.Environment;
 
 namespace Runtime.Descriptions
 {
@@ -24,6 +25,8 @@ namespace Runtime.Descriptions
 
         public PointOfInterestDescriptionCollection PointOfInterestCollection { get; private set; }
         
+        public EnvironmentDescription Environment { get; private set; }
+        
         private DescriptionFactory Factory { get; set; }
 
         public void SetData(Dictionary<string, object> data)
@@ -41,6 +44,7 @@ namespace Runtime.Descriptions
             Citizens = new CitizensDescription(data.GetNode("citizens"));
             CameraControlDescription = new CameraControlDescription(data.GetNode("camera_control"));
             PointOfInterestCollection = new PointOfInterestDescriptionCollection(data.GetNode("points_of_interest"));
+            Environment = new EnvironmentDescription(data.GetNode("environment"));
         }
     }
 }
