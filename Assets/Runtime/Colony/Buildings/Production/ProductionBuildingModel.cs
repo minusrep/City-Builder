@@ -14,7 +14,7 @@ namespace Runtime.Colony.Buildings.Production
     public class ProductionBuildingModel : BuildingModel, IInventoryBuilding
     {
         public Action<float> OnProgressChanged;
-        
+
         public ProductionBuildingDescription Description { get; }
         public InventoryModel Inventory { get; private set; }
         public bool IsActive { get; private set; }
@@ -23,6 +23,7 @@ namespace Runtime.Colony.Buildings.Production
         private WorldDescription WorldDescription { get; }
 
         private float _progress;
+
         public float Progress
         {
             get => _progress;
@@ -32,7 +33,7 @@ namespace Runtime.Colony.Buildings.Production
                 OnProgressChanged?.Invoke(_progress);
             }
         }
-        
+
         public long ProductionTime
         {
             get => Description.ProductionTimeByLevel[Level];
@@ -50,7 +51,7 @@ namespace Runtime.Colony.Buildings.Production
             IsActive = false;
 
             ResourceDescription = WorldDescription.ResourceCollection.Descriptions[Description.ProductionResource];
-            Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
+            Inventory = new InventoryModel(100, WorldDescription.ResourceCollection);
             for (var i = 0; i < Description.ResourcesForProduction.Count + Description.ResourcesForWork.Count + 1; i++)
             {
                 Inventory.Create();
@@ -82,26 +83,26 @@ namespace Runtime.Colony.Buildings.Production
             {
                 return false;
             }
-            
+
             Inventory.TryAddItem(resourceDescription, amount);
             CloseOrder(resourceDescription, amount);
             StartProduction();
             return true;
         }
-        
+
         public bool TryRemoveItem(ResourceDescription resourceDescription, int amount)
         {
             if (!Inventory.CanExtract(resourceDescription, amount, out _))
             {
                 return false;
             }
-            
+
             Inventory.TryRemoveItem(resourceDescription, amount);
             CloseOrder(resourceDescription, amount);
             StartProduction();
             return true;
         }
-        
+
         public override Dictionary<string, object> Serialize()
         {
             var dictionary = new Dictionary<string, object>(base.Serialize())
@@ -117,11 +118,11 @@ namespace Runtime.Colony.Buildings.Production
         public override void Deserialize(Dictionary<string, object> data)
         {
             base.Deserialize(data);
-            
+
             IsActive = data.GetBool("is_active");
             Progress = data.GetFloat("progress");
-            
-            Inventory = new InventoryModel(Description.MaxResource, WorldDescription.ResourceCollection);
+
+            Inventory = new InventoryModel(100, WorldDescription.ResourceCollection);
             Inventory.Deserialize(data.GetNode("inventory"));
         }
 
@@ -134,16 +135,24 @@ namespace Runtime.Colony.Buildings.Production
                     Inventory.TryRemoveItem(WorldDescription.ResourceCollection.Descriptions[resource.Key],
                         resource.Value);
                 }
-                
+
                 Inventory.TryAddItem(ResourceDescription, Description.ProductionAmount);
-                
-                var order = new OrderModel($"{Id}_{ResourceDescription.Id}", Id)
+
+                if (!CapacityLeft())
                 {
-                    Type = "take_resource",
-                    ResourceId = ResourceDescription.Id,
-                    Amount = Description.ProductionAmount
-                };
-                World.OrderManager.AddOrder(order);
+                    var order = new OrderModel($"{Id}_{ResourceDescription.Id}", Id)
+                    {
+                        Type = "take_resource",
+                        ResourceId = ResourceDescription.Id,
+                        Amount = Description.MaxResource
+                    };
+
+                    if (!World.OrderManager.Contains(order.Id))
+                    {
+                        World.OrderManager.AddOrder(order);
+                    }
+                }
+
                 return true;
             }
 
@@ -152,28 +161,30 @@ namespace Runtime.Colony.Buildings.Production
 
         private bool CapacityLeft()
         {
-            return Inventory.CanFit(ResourceDescription, Description.ProductionAmount, out _);
+            return !Inventory.CanExtract(ResourceDescription, Description.MaxResource, out _);
         }
 
         private bool HasResources()
         {
-            return HasResources(Description.ResourcesForProduction) && HasResources(Description.ResourcesForWork) ;
+            return HasResources(Description.ResourcesForProduction, true)
+                   && HasResources(Description.ResourcesForWork, false);
         }
-        
-        private bool HasResources(Dictionary<string, int> resources)
+
+        private bool HasResources(Dictionary<string, int> resources, bool isConsumable)
         {
             var hasEnough = true;
-            
+
             foreach (var resource in resources)
             {
-                if (!Inventory.CanExtract(WorldDescription.ResourceCollection.Descriptions[resource.Key], resource.Value, out _))
+                if (!Inventory.CanExtract(WorldDescription.ResourceCollection.Descriptions[resource.Key],
+                        resource.Value, out _))
                 {
                     hasEnough = false;
                     var order = new OrderModel($"{Id}_{resource.Key}", Id)
                     {
                         Type = "put_resource",
                         ResourceId = resource.Key,
-                        Amount = resource.Value
+                        Amount = resource.Value * (isConsumable ? Description.MaxResource : 1)
                     };
                     if (!World.OrderManager.Contains(order.Id))
                     {

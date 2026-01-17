@@ -92,7 +92,7 @@
       "worker": 1
     },
     "resources_for_production": { 
-      "wood": 1,
+      "wood": 2,
       "ore": 1
     },
     "view_id": "Smelter",
