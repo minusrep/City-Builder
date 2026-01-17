@@ -368,6 +368,11 @@
           "value": "true"
         },
         "walk_to_take_resource": {
+          "type": "flag",
+          "flag": "has_order",
+          "value": "true"
+        },
+        "idle": {
           "type": "true"
         }
       }
