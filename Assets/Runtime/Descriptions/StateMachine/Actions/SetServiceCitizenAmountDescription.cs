@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Service;
 using Runtime.Colony.Citizens;
 using Runtime.Extensions;
-using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
@@ -16,7 +14,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         private string PointOfInterest { get; }
         private bool IsIncrement { get; }
 
-        public SetServiceCitizenAmountDescription(Dictionary<string, object> data) : base(data)
+        public SetServiceCitizenAmountDescription(Dictionary<string, object> data)
         {
             PointOfInterest = data.GetString(PointOfInterestKey);
             IsIncrement = data.GetBool(IncrementKey);
@@ -24,10 +22,9 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         public override void Execute(World world, CitizenModel model)
         {
-            var buildings = world.Buildings.Models.Values;
             var pointOfInterest = model.PointsOfInterest[PointOfInterest];
-            
-            if (buildings.First(a => PointOfInterest == a.BaseDescription.Id && a.WorldPosition == new Vector2(pointOfInterest.x, pointOfInterest.z)) is ServiceBuildingModel targetBuilding)
+
+            if (world.Grid.GetBuilding(pointOfInterest) is ServiceBuildingModel targetBuilding)
             {
                 if (IsIncrement)
                     targetBuilding.CurrentCitizenAmount++;

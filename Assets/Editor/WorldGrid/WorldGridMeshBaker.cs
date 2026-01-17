@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using fastJSON;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Editor.WorldGrid
         public static void Bake()
         {
             var text = Resources.Load<TextAsset>(ConfigPath).text;
-            var data = (Dictionary<string, object>)fastJSON.JSON.Parse(text);
+            var data = (Dictionary<string, object>)JSON.Parse(text);
             var width = Convert.ToInt32(data["width"]);
             var height = Convert.ToInt32(data["height"]);
             var mesh = WorldGridMeshGenerator.Generate(width, height, CellSize);

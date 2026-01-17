@@ -55,7 +55,7 @@ namespace Runtime.Selection.SelectedPanel
 
         public static Button CreateButton<T>(string name, T value, Action onClick)
         {
-            var upgradeButton = new Button()
+            var upgradeButton = new Button
             {
                 enableRichText = true,
                 text = $"{name}<color=#FFD700>{value.ToString()}"

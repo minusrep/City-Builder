@@ -2,7 +2,6 @@
 using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
 using Runtime.ViewDescriptions.Buildings;
-using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Common
 {
@@ -43,15 +42,10 @@ namespace Runtime.Colony.Buildings.Common
             Model.OnConstructionModeChanged -= HandleConstructionModeChanged;
             Model.OnPositionChanged -= HandlePositionChanged;
         }
-
-        private Vector3 ModelPositionToVector3(BuildingModel model)
-        {
-            return new Vector3(model.WorldPosition.x, 0f, model.WorldPosition.y);
-        }
         
         private void HandlePositionChanged()
         {
-            View.Transform.position = ModelPositionToVector3(Model);
+            View.Transform.position = Model.WorldPosition;
         }
         
         private void HandleConstructionModeChanged(bool value)

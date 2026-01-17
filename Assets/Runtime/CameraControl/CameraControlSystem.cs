@@ -1,6 +1,6 @@
-﻿using Runtime.Descriptions.CameraControl;
+﻿using System;
+using Runtime.Descriptions.CameraControl;
 using Runtime.GameSystems;
-using System;
 using UnityEngine;
 
 namespace Runtime.CameraControl

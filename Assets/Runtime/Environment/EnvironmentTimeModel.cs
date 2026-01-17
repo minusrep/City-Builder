@@ -31,7 +31,7 @@ namespace Runtime.Environment
 
         public Dictionary<string, object> Serialize()
         {
-            return new Dictionary<string, object>()
+            return new Dictionary<string, object>
             {
                 {CurrentTimeKey, CurrentTime}
             };

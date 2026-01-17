@@ -8,17 +8,17 @@ namespace Runtime.Descriptions.StateMachine.Actions
     public class TimerActionDescription : ActionDescription
     {
         private const string TimerKey = "timer";
-        
+
         private const string DurationKey = "duration";
 
         private string Timer { get; }
 
         private float Duration { get; }
 
-        public TimerActionDescription(Dictionary<string, object> data) : base(data)
+        public TimerActionDescription(Dictionary<string, object> data)
         {
             Timer = data[TimerKey] as string;
-            
+
             Duration = Convert.ToSingle(data[DurationKey]);
         }
 

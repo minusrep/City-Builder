@@ -1,9 +1,9 @@
-using Runtime.Descriptions.Buildings;
-using System.Collections.Generic;
-using Runtime.ModelCollections;
-using Runtime.Extensions;
-using UnityEngine;
 using System;
+using System.Collections.Generic;
+using Runtime.Descriptions.Buildings;
+using Runtime.Extensions;
+using Runtime.ModelCollections;
+using UnityEngine;
 
 namespace Runtime.Colony.Buildings.Common
 {
@@ -12,15 +12,15 @@ namespace Runtime.Colony.Buildings.Common
         private const string LevelKey = "level";
         private const string PositionKey = "position";
         private const string DescriptionKey = "description";
-        
+
         public event Action OnPositionChanged;
         public event Action<bool> OnConstructionModeChanged;
-        
+
         public string Id { get; }
 
         public Vector2Int GridPosition { get; set; }
-        
-        public Vector2 WorldPosition
+
+        public Vector3 WorldPosition
         {
             get => _worldPosition;
             set
@@ -29,19 +29,18 @@ namespace Runtime.Colony.Buildings.Common
                 OnPositionChanged?.Invoke();
             }
         }
-        
-        
+
         public bool CanUpgrade => Level < BaseDescription.MaxLevel;
-        
+
         public int Level { get; private set; }
 
         public BuildingDescription BaseDescription { get; }
-        
-        private Vector2 _worldPosition;
-        
+
+        private Vector3 _worldPosition;
+
         protected BuildingModel(string id, Vector2Int gridPosition, BuildingDescription baseDescription)
         {
-            Id = id;    
+            Id = id;
             GridPosition = gridPosition;
             BaseDescription = baseDescription;
         }
@@ -55,19 +54,24 @@ namespace Runtime.Colony.Buildings.Common
 
             Level++;
         }
-        
+
         public void SetConstructionMode(bool enabled)
         {
             OnConstructionModeChanged?.Invoke(enabled);
         }
-        
+
+        public Vector3 GetInteractionPoint()
+        {
+            return WorldPosition + BaseDescription.InteractionPoints[0];
+        }
+
         public virtual Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>
             {
                 { DescriptionKey, BaseDescription.Id },
-                { PositionKey, GridPosition.ToList()},
-                { LevelKey, Level}
+                { PositionKey, GridPosition.ToList() },
+                { LevelKey, Level }
             };
         }
 

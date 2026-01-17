@@ -36,7 +36,7 @@ namespace Runtime.Colony.StateMachine
         
         public Dictionary<string, object> Serialize()
         {
-            return new Dictionary<string, object>()
+            return new Dictionary<string, object>
             {
                 { CurrentStateKey, CurrentStateName }
             };

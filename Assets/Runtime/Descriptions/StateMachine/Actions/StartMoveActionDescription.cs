@@ -7,11 +7,11 @@ namespace Runtime.Descriptions.StateMachine.Actions
 {
     public class StartMoveActionDescription : ActionDescription
     {
-        private const string PointOfInterestKey= "point_of_interest";
+        private const string PointOfInterestKey = "point_of_interest";
 
         private string PointOfInterest { get; }
-        
-        public StartMoveActionDescription(Dictionary<string, object> data) : base(data)
+
+        public StartMoveActionDescription(Dictionary<string, object> data)
         {
             PointOfInterest = data.GetString(PointOfInterestKey);
         }
