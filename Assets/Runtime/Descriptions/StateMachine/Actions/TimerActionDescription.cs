@@ -15,7 +15,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private float Duration { get; }
 
-        public TimerActionDescription(Dictionary<string, object> data) : base(data)
+        public TimerActionDescription(Dictionary<string, object> data)
         {
             Timer = data[TimerKey] as string;
             

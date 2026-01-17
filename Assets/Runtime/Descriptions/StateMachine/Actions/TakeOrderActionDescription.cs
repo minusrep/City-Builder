@@ -12,7 +12,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
     public class TakeOrderActionDescription : ActionDescription
 
     {
-        public TakeOrderActionDescription(Dictionary<string, object> data) : base(data)
+        public TakeOrderActionDescription(Dictionary<string, object> data)
         {
         }
 

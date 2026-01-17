@@ -11,7 +11,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         
         public string Building { get; private set; }
         
-        public EnterBuildingActionDescription(Dictionary<string, object> data) : base(data)
+        public EnterBuildingActionDescription(Dictionary<string, object> data)
         {
             Building = data.GetString(BuildingKey);
         }

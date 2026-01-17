@@ -11,7 +11,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private string Animation { get; }
         
-        public InvokeAnimationDescription(Dictionary<string, object> data) : base(data)
+        public InvokeAnimationDescription(Dictionary<string, object> data)
         {
             Animation = data.GetString(AnimationKey);
         }

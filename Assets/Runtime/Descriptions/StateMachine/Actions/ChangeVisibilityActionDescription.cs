@@ -9,7 +9,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
     {
         private readonly bool _isVisible;
         
-        public ChangeVisibilityActionDescription(Dictionary<string, object> data) : base(data)
+        public ChangeVisibilityActionDescription(Dictionary<string, object> data)
         {
             _isVisible = Convert.ToBoolean(data["visible"]);
         }

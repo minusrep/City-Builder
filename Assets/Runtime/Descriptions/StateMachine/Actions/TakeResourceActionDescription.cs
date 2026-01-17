@@ -13,7 +13,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private string PointOfInterest { get; }
         
-        public TakeResourceActionDescription(Dictionary<string, object> data) : base(data)
+        public TakeResourceActionDescription(Dictionary<string, object> data)
         {
             PointOfInterest =  data[PointOfInterestKey] as string;   
         }

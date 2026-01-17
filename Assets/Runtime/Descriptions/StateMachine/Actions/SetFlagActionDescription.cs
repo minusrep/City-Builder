@@ -13,7 +13,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         private readonly string _flagName;
         private readonly bool _flagValue;
 
-        public SetFlagActionDescription(Dictionary<string, object> data) : base(data)
+        public SetFlagActionDescription(Dictionary<string, object> data)
         {
             _flagName = data.GetString(FlagNameKey);
             _flagValue = data.GetBool(FlagValueKey);

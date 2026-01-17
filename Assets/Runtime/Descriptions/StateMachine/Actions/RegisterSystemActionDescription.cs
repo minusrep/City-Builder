@@ -12,7 +12,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private string System { get; }
 
-        public RegisterSystemActionDescription(Dictionary<string, object> data) : base(data)
+        public RegisterSystemActionDescription(Dictionary<string, object> data)
         {
             System = data.GetString(SystemKey);
         }

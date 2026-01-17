@@ -6,7 +6,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 {
     public class StopMoveActionDescription : ActionDescription
     {
-        public StopMoveActionDescription(Dictionary<string, object> data) : base(data)
+        public StopMoveActionDescription(Dictionary<string, object> data)
         {
             
         }

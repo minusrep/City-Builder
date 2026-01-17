@@ -11,7 +11,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private string PointOfInterest { get; }
         
-        public StartMoveActionDescription(Dictionary<string, object> data) : base(data)
+        public StartMoveActionDescription(Dictionary<string, object> data)
         {
             PointOfInterest = data.GetString(PointOfInterestKey);
         }
