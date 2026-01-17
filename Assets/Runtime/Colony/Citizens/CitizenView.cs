@@ -4,7 +4,6 @@ using Runtime.Colony.Citizens.HUD;
 using Runtime.Colony.Citizens.Movement;
 using Runtime.Selection;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Runtime.Colony.Citizens
 {

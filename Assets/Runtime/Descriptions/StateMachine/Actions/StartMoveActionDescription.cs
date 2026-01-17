@@ -8,8 +8,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
     public class StartMoveActionDescription : ActionDescription
     {
         private const string PointOfInterestKey= "point_of_interest";
-        
-        public string PointOfInterest { get; private set; }
+
+        private string PointOfInterest { get; }
         
         public StartMoveActionDescription(Dictionary<string, object> data) : base(data)
         {

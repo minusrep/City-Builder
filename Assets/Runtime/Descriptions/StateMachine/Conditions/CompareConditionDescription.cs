@@ -29,11 +29,11 @@ namespace Runtime.Descriptions.StateMachine.Conditions
             Value = Convert.ToSingle(data[ValueKey]);
         }
 
-        private string Counter { get; set; }
+        private string Counter { get; }
 
-        private string Operation { get; set; }
+        private string Operation { get; }
 
-        private float Value { get; set; }
+        private float Value { get; }
 
         public override bool Check(World world, IUserConditionModel user)
         {

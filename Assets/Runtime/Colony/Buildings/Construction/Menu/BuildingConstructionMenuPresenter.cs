@@ -4,7 +4,6 @@ using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -54,9 +53,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
         {
             foreach (var description in _descriptions.BuildingCollection.Descriptions.Values)
             {
-                var button = CreateBuildingButton(
-                    description.Id,
-                    description.ViewDescriptionId);
+                var button = CreateBuildingButton(description.ViewDescriptionId);
 
                 button.clicked += () => StartConstruction(description);
 
@@ -97,7 +94,7 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             }
         }
 
-        private Button CreateBuildingButton(string id, string title)
+        private Button CreateBuildingButton(string title)
         {
             var viewDescription = _worldViewDescriptions.BuildingViewDescriptions.Get(title);
             

@@ -11,9 +11,9 @@ namespace Runtime.Descriptions.StateMachine.Conditions
 
         private const string ValueKey = "value";
         
-        private string Flag { get; set; }
+        private string Flag { get; }
 
-        private bool Value { get; set; }
+        private bool Value { get; }
         
         public FlagConditionDescription(Dictionary<string, object> data) : base(data)
         {

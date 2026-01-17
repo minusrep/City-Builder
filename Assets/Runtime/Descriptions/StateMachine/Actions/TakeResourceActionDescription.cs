@@ -3,7 +3,6 @@ using System.Linq;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Citizens;
-using Runtime.Colony.Orders;
 using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Actions
@@ -11,8 +10,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
     public class TakeResourceActionDescription : ActionDescription
     {
         private const string PointOfInterestKey= "point_of_interest";
-        
-        public string PointOfInterest { get; private set; }
+
+        private string PointOfInterest { get; }
         
         public TakeResourceActionDescription(Dictionary<string, object> data) : base(data)
         {
@@ -32,15 +31,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
             var inventoryBuildingPair = world.Buildings.Models.FirstOrDefault(b =>
                 b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
             );
-            
-            if (inventoryBuildingPair.Value == null)
-            {
-                return;
-            }
 
-            var inventoryBuilding = inventoryBuildingPair.Value as IInventoryBuilding;
-            
-            if (inventoryBuilding == null)
+            if (inventoryBuildingPair.Value is not IInventoryBuilding inventoryBuilding)
             {
                 return;
             }

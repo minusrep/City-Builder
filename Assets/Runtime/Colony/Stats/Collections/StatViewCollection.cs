@@ -1,5 +1,3 @@
-using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Stats.Collections

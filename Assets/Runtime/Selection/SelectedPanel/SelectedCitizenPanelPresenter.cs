@@ -2,8 +2,6 @@ using Runtime.Colony;
 using Runtime.Colony.Inventory;
 using Runtime.Colony.Stats.Collections;
 using Runtime.Common;
-using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Runtime.Selection.SelectedPanel
 {

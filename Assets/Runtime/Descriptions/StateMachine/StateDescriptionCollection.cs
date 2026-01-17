@@ -4,7 +4,7 @@ namespace Runtime.Descriptions.StateMachine
 {
     public class StateDescriptionCollection
     {
-        public Dictionary<string, StateDescription> States { get; private set; }
+        public Dictionary<string, StateDescription> States { get; }
 
         public StateDescriptionCollection(Dictionary<string, object> data)
         {

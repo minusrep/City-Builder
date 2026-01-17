@@ -1,8 +1,5 @@
 using System.Collections.Generic;
 using Runtime.Colony.Inventory.Cell;
-using Runtime.ViewDescriptions;
-using Runtime.ViewDescriptions.Inventory;
-using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Inventory
 {

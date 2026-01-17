@@ -8,7 +8,7 @@ namespace Runtime.Colony.Citizens.Collection
 {
     public class PointOfInterestCollection : ISerializeModel, IDeserializeModel, IEnumerable<KeyValuePair<string, Vector3>>
     {
-        private readonly Dictionary<string, Vector3> _points = new Dictionary<string, Vector3>();
+        private readonly Dictionary<string, Vector3> _points = new();
         
         public Vector3 this[string key] { get => _points[key]; set => _points[key] = value; }
         

@@ -4,7 +4,7 @@ namespace Runtime.Descriptions.Citizens
 {
     public class CitizenStatSystemDescriptionCollection
     {
-        public Dictionary<string, CitizenStatSystemDescription> Descriptions { get; private set; }
+        public Dictionary<string, CitizenStatSystemDescription> Descriptions { get; }
 
         public CitizenStatSystemDescriptionCollection(Dictionary<string, object> data)
         {

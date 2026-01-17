@@ -1,4 +1,3 @@
-using Runtime.ViewDescriptions.Inventory;
 using UnityEngine.UIElements;
 
 namespace Runtime.Colony.Inventory.Cell

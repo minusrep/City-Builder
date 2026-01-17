@@ -11,9 +11,9 @@ namespace Runtime.Descriptions.StateMachine.Actions
         
         private const string DurationKey = "duration";
 
-        public string Timer { get; private set; }
+        private string Timer { get; }
 
-        public float Duration { get; private set; }
+        private float Duration { get; }
 
         public TimerActionDescription(Dictionary<string, object> data) : base(data)
         {

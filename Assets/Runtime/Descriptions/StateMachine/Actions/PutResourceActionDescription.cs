@@ -10,8 +10,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
     public class PutResourceActionDescription : ActionDescription
     {
         private const string PointOfInterestKey= "point_of_interest";
-        
-        public string PointOfInterest { get; private set; }
+
+        private string PointOfInterest { get; }
         
         public PutResourceActionDescription(Dictionary<string, object> data) : base(data)
         {
@@ -23,9 +23,9 @@ namespace Runtime.Descriptions.StateMachine.Actions
             model.Flags["is_carrying"] = true;
             
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
-            var inventoryBuilding = world.Buildings.Models.First(b => 
-                b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
-            ).Value as IInventoryBuilding;
+            var inventoryBuilding = (IInventoryBuilding)world.Buildings.Models.Values.First(b => 
+                b.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
+            );
 
             var resource = model.Inventory.Models.First().Value.Resource;
             inventoryBuilding.TryAddItem(resource, 1);

@@ -8,7 +8,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
     {
         private const string PointOfInterestKey = "point_of_interest";
 
-        public string PointOfInterest { get; private set; }
+        private string PointOfInterest { get; }
 
         public SetPointOfInterestActionDescription(Dictionary<string, object> data) : base(data)
         {

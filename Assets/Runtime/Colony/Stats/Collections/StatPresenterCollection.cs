@@ -12,7 +12,7 @@ namespace Runtime.Colony.Stats.Collections
         
         private readonly StatViewDescriptionCollection _statViewDescriptions;
 
-        private readonly List<StatPresenter> _presenters = new List<StatPresenter>() ;
+        private readonly List<StatPresenter> _presenters = new() ;
         
         public StatPresenterCollection(StatViewCollection view, StatModelCollection model,
             StatViewDescriptionCollection statViewDescriptions)

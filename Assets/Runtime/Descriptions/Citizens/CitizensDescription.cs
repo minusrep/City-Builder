@@ -15,23 +15,18 @@ namespace Runtime.Descriptions.Citizens
         private const string StatsKey = "stats";
         private const string SystemsKey = "systems";
         
-        public List<string> Names { get; }
-
-        public List<string> ViewDescriptions { get; }
-        
-        public float StartMoveSpeed { get; }
-        
         public StateDescriptionCollection States { get; }
-        
         public StatDescriptionCollection Stats { get; }
-        
         public CitizenStatSystemDescriptionCollection Systems { get; }
+        
+        private List<string> Names { get; }
+        private List<string> ViewDescriptions { get; }
 
         public CitizensDescription(Dictionary<string, object> data)
         {
             Names = data.GetList<string>(NamesKey);
             ViewDescriptions = data.GetList<string>(ViewDescriptionKey);
-            StartMoveSpeed = data.GetFloat(StartMoveSpeedKey);
+            data.GetFloat(StartMoveSpeedKey);
             States = new StateDescriptionCollection(data.GetNode(StatesKey));
             Stats = new StatDescriptionCollection(data.GetNode(StatsKey));
             Systems = new CitizenStatSystemDescriptionCollection(data.GetNode(SystemsKey));

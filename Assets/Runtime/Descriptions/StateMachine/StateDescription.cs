@@ -11,16 +11,16 @@ namespace Runtime.Descriptions.StateMachine
         
         private const string ActionsKey = "actions";
 
-        public List<TransitionDescription> Transitions { get; private set; }
+        public List<TransitionDescription> Transitions { get; }
 
-        public List<ActionDescription> Actions { get; private set; }
+        public List<ActionDescription> Actions { get; }
 
         public StateDescription(Dictionary<string, object> data)
         {
             Actions = new List<ActionDescription>();
             Transitions = new List<TransitionDescription>();
 
-            var actionList = data[ActionsKey] as List<object>;
+            var actionList = (List<object>)data[ActionsKey];
             
             foreach (var action in actionList)
             {

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Runtime.Colony;
-using Runtime.Colony.Citizens;
 using Runtime.Colony.StateMachine.Conditions;
 using Runtime.Extensions;
 using UnityEngine;
@@ -12,13 +11,13 @@ namespace Runtime.Descriptions.StateMachine.Conditions
         private const string ValueKey = "value";
         
         private const string PointOfInterestKey = "point_of_interest";
-        public string PointOfInterest { get; private set; }
-
-        private readonly float _value;
+        
+        private string PointOfInterest { get; }
+        private float Value { get; }
 
         public DistanceConditionDescription(Dictionary<string, object> data) : base(data)
         {
-            _value = data.GetFloat(ValueKey);
+            Value = data.GetFloat(ValueKey);
 
             PointOfInterest = data.GetString(PointOfInterestKey);
         }
@@ -29,14 +28,12 @@ namespace Runtime.Descriptions.StateMachine.Conditions
             {
                 return false;
             }
-
-            var citizen = user as CitizenModel;
             
             var to = movementModel.PointsOfInterest[PointOfInterest];
 
             var from = movementModel.Position;
             
-            return Vector3.Distance(from, to) <= _value;
+            return Vector3.Distance(from, to) <= Value;
         }
     }
 }

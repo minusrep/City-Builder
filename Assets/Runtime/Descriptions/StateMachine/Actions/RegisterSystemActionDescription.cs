@@ -9,8 +9,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
     public class RegisterSystemActionDescription : ActionDescription
     {
         private const string SystemKey = "system";
-        
-        public string System { get; private set; }
+
+        private string System { get; }
 
         public RegisterSystemActionDescription(Dictionary<string, object> data) : base(data)
         {
@@ -19,7 +19,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         public override void Execute(World world, CitizenModel model)
         {
-            var registerSystem = world.GameSystems.Get(System) as RegisterGameSystem<CitizenModel>;
+            var registerSystem = (RegisterGameSystem<CitizenModel>)world.GameSystems.Get(System);
             
             registerSystem.Register(model);
         }

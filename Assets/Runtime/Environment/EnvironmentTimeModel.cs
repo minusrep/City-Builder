@@ -11,7 +11,7 @@ namespace Runtime.Environment
 
         public event Action<float> OnTick;
 
-        public EnvironmentTimeDescription Description { get; private set; }
+        public EnvironmentTimeDescription Description { get; }
         
         private float CurrentTime { get; set; }
 

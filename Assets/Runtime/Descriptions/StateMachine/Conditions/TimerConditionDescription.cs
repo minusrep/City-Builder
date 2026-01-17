@@ -9,7 +9,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
     {
         private const string NameKey = "name";
 
-        private string Name { get; set; }
+        private string Name { get; }
 
         public TimerConditionDescription(Dictionary<string, object> data) : base(data)
         {
@@ -28,7 +28,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
                 return true;
             }
 
-            return DateTimeOffset.UtcNow.ToUnixTimeSeconds() >= (long)endUnixSeconds;
+            return DateTimeOffset.UtcNow.ToUnixTimeSeconds() >= endUnixSeconds;
         }
     }
 }

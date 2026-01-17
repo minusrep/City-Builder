@@ -8,8 +8,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
     public class InvokeAnimationDescription : ActionDescription
     {
         private const string AnimationKey = "animation";
-        
-        public string Animation { get; private set; }
+
+        private string Animation { get; }
         
         public InvokeAnimationDescription(Dictionary<string, object> data) : base(data)
         {

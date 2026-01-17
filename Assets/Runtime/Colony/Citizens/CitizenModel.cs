@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Runtime.Colony.Inventory;
 using Runtime.Colony.Citizens.Collection;
+using Runtime.Colony.Inventory;
 using Runtime.Colony.StateMachine;
 using Runtime.Colony.Stats.Collections;
 using Runtime.Descriptions;
-using Runtime.Descriptions.Citizens;
 using Runtime.Extensions;
 using UnityEngine;
 
@@ -43,11 +42,9 @@ namespace Runtime.Colony.Citizens
         
         public event Action<bool> OnVisibilityChanged;
         
-        public int Id { get; set; }
+        public int Id { get; }
         
         public Vector3 Position { get; set; }
-
-        public CitizensDescription Description { get; }
 
         public Dictionary<string, long> Timers { get; private set; }
 
@@ -55,7 +52,7 @@ namespace Runtime.Colony.Citizens
         
         public Dictionary<string, bool> Flags { get; private set; }
 
-        public StatModelCollection Stats { get; private set; }
+        public StatModelCollection Stats { get; }
 
         public StateMachineModel StateMachine { get; }
         
@@ -75,7 +72,6 @@ namespace Runtime.Colony.Citizens
             Id = id;
             Name = _description.Citizens.GetRandomName();
             ViewDescription = _description.Citizens.GetRandomViewDescription();
-            Description = description.Citizens;
             Position = new Vector2(0, 0);
             PointsOfInterest = new PointOfInterestCollection();
             Flags = new Dictionary<string, bool>();

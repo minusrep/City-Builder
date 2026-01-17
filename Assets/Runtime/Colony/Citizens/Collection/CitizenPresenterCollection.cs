@@ -4,7 +4,6 @@ using Runtime.Colony.StateMachine;
 using Runtime.Common;
 using Runtime.Common.ObjectPool;
 using Runtime.ViewDescriptions;
-using UnityEngine;
 
 namespace Runtime.Colony.Citizens.Collection
 {

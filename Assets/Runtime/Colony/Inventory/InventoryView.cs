@@ -8,7 +8,7 @@ namespace Runtime.Colony.Inventory
         public VisualTreeAsset CellAsset => ViewDescription.CellViewAsset;
         public VisualElement Root { get; private set; }
 
-        public InventoryViewDescription ViewDescription { get; private set; }
+        public InventoryViewDescription ViewDescription { get; }
 
         public InventoryView(VisualElement root, InventoryViewDescription viewDescription)
         {
