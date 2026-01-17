@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f65465e44e2144c687ffde33e53f7f57, type: 3}
-  m_Name: AchievementViewDescriptionCollection
+  m_Name: AchievementCollection
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Achievements.AchievementViewDescriptionCollection
   AchievementAsset: {fileID: 9197481963319205126, guid: f1b562803d5d9ae4f88ed0e8ab7d6969, type: 3}
   Duration: 3000

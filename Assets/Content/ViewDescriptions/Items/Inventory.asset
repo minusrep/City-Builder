@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a8da905f338467186d27ce3ab56da8c, type: 3}
-  m_Name: InventoryViewDescription
+  m_Name: Inventory
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Descriptions.InventoryViewDescription
   CellViewAsset: {fileID: 9197481963319205126, guid: 57c17321542a92440a3e09d059419dca, type: 3}
   InventoryAsset: {fileID: 9197481963319205126, guid: 859fd50035fd8854ba7eb3b8f959a1a3, type: 3}

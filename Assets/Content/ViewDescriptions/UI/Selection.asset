@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc8e1b4e88aa4565a6e37928c7a2eae0, type: 3}
-  m_Name: SelectionViewDescription
+  m_Name: Selection
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.UI.BuildingConstruction.BuildingConstructionMenuViewDescription
   BuildingPanelAsset: {fileID: 9197481963319205126, guid: 0491f96fe670d524b8e5093ab7d488d1, type: 3}
   SelectionPanelAsset: {fileID: 9197481963319205126, guid: 0491f96fe670d524b8e5093ab7d488d1, type: 3}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f17bdf0d34d64d639390eb9c5e8cd581, type: 3}
-  m_Name: MenuViewDescription
+  m_Name: Menu
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Load.LoadViewDescription
   InGameMenuAsset: {fileID: 9197481963319205126, guid: ca62dc2c731d58e4cbe04165d3ff0ce4, type: 3}
   LoadAsset: {fileID: 9197481963319205126, guid: 33043ae5f0504f04885c0572e51c278b, type: 3}

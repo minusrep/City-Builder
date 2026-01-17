@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bab1bda30db544abac0e23fd6b2871ed, type: 3}
-  m_Name: CitizenViewDescriptionCollection
+  m_Name: CitizenCollection
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.ViewDescriptions.Citizens.CitizenViewDescriptionCollection
   _descriptions:
   - {fileID: 11400000, guid: a3d1f2f0c44be3349b76b10d8ac0bf39, type: 2}
