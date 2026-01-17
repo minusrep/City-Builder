@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Runtime.Extensions;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace Runtime.Descriptions.Buildings
         public int MaxLevel { get; }
         public Vector2Int Size { get; }
         public List<Vector2Int> Cells { get; } = new();
+        public List<Vector3> InteractionPoints { get; } = new();
 
         protected BuildingDescription(string id, Dictionary<string, object> data)
         {
@@ -24,6 +26,15 @@ namespace Runtime.Descriptions.Buildings
             ViewDescriptionId = data.GetString(ViewId);
             MaxLevel = data.GetInt(MaxLevelId);
             Size = data.GetVector2Int("size");
+            
+            foreach (var list in data.GetList<List<object>>("interaction_points"))
+            {
+                InteractionPoints.Add(new Vector3(
+                    Convert.ToSingle(list[0]),
+                    Convert.ToSingle(list[1]),
+                    Convert.ToSingle(list[2])
+                ) * WorldGridDescription.CellSize);
+            }
 
             for (var x = 0; x < Size.x; x++)
             {
