@@ -49,13 +49,14 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 return;
             }
 
-            if (!inventoryBuilding.TryRemoveItem(resource, 1))
+            var amount = model.Inventory.Models.Values.First().Amount * -1;
+            if (!inventoryBuilding.TryRemoveItem(resource, amount))
             {
                 RestoreOrder(world, model);
                 return;
             }
             
-            model.Inventory.TryAddItem(resource, 1);
+            model.Inventory.TryAddItem(resource, amount * 2);
             model.Flags["is_carrying"] = true;
 
             if (resource.Id == "worker")
@@ -98,8 +99,9 @@ namespace Runtime.Descriptions.StateMachine.Actions
             }
 
             var order = world.OrderManager[$"{targetBuilding.Id}_{resource.Id}"];
-            order.Unreserve(1);
-            model.Inventory.Models.Values.First().TryReduce(0);
+            var amount = model.Inventory.Models.Values.First().Amount * -1;
+            order.Unreserve(amount);
+            model.Inventory.Models.Values.First().TryReduce(-amount);
         }
     }
 }

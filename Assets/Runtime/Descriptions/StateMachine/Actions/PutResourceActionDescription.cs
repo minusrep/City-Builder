@@ -29,15 +29,16 @@ namespace Runtime.Descriptions.StateMachine.Actions
             );
 
             var resource = model.Inventory.Models.First().Value.Resource;
-            inventoryBuilding.TryAddItem(resource, 1);
-            model.Inventory.TryRemoveItem(resource, 1);
+            var amount = model.Inventory.Models.First().Value.Amount;
+            inventoryBuilding.TryAddItem(resource, amount);
+            model.Inventory.TryRemoveItem(resource, amount);
             model.Flags["is_carrying"] = false;
             model.Flags["has_order"] = false;
 
             if (resource.Id == "worker")
             {
                 model.Flags["is_working"] = true;
-                model.Inventory.TryAddItem(resource, 0);
+                model.Inventory.Models.Values.First().TryAdd(resource, -1, 100);
             }
         }
     }
