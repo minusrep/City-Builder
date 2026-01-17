@@ -27,11 +27,11 @@ namespace Runtime.Colony.Inventory.Cell
 
         private void UpdateView()
         {
-            _view.Amount.text = _model.Amount.ToString();
+            _view.Amount.text = _model.Amount > 0 ? _model.Amount.ToString() : "";
             
             _view.Amount.style.display = DisplayStyle.Flex;
 
-            if (_model.Resource == null)
+            if (_model.Resource == null || _model.Amount <= 0)
             {
                 _view.Image.style.backgroundImage = null;
                 return;
