@@ -30,10 +30,10 @@ namespace Runtime.Descriptions.Buildings
             foreach (var list in data.GetList<List<object>>("interaction_points"))
             {
                 InteractionPoints.Add(new Vector3(
-                    Convert.ToSingle(list[0]),
+                    Convert.ToSingle(list[0]) * Size.x,
                     Convert.ToSingle(list[1]),
-                    Convert.ToSingle(list[2])
-                ) * WorldGridDescription.CellSize);
+                    Convert.ToSingle(list[2]) * Size.y
+                ));
             }
 
             for (var x = 0; x < Size.x; x++)
