@@ -21,6 +21,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         public override void Execute(World world, CitizenModel model)
         {
             model.Flags["is_carrying"] = true;
+            model.Flags["has_order"] = true;
             
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
             var inventoryBuilding = (IInventoryBuilding)world.Buildings.Models.Values.First(b => 
@@ -31,6 +32,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             inventoryBuilding.TryAddItem(resource, 1);
             model.Inventory.TryRemoveItem(resource, 1);
             model.Flags["is_carrying"] = false;
+            model.Flags["has_order"] = false;
 
             if (resource.Id == "worker")
             {

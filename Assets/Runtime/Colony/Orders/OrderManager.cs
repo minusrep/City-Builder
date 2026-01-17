@@ -39,6 +39,16 @@ namespace Runtime.Colony.Orders
         {
             return _orders.Any(o => o.Id == id);
         }
+
+        public void ToBack(string id)
+        {
+            var order = this[id];
+            if (order != null)
+            {
+                _orders.Remove(order);
+                _orders.Add(order);
+            }
+        }
         
         public Dictionary<string, object> Serialize()
         {

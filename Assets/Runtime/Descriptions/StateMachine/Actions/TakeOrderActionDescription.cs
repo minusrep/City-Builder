@@ -18,15 +18,15 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         public override void Execute(World world, CitizenModel model)
         {
-            var order = world.OrderManager.TakeOrder();
+            model.Flags["has_order"] = false;
             
+            var order = world.OrderManager.TakeOrder();
+
             var productionBuilding = world.Buildings.Get(order.FromBuildingId) as ProductionBuildingModel;
-            var wareHouse = world.Buildings.Models.Values.First(b => b is StorageBuildingModel) as StorageBuildingModel;
-
+            BuildingModel targetBuilding = null;
+            BuildingModel sourceBuilding = null;
+            
             var resource = world.WorldDescription.ResourceCollection.Descriptions[order.ResourceId];
-            BuildingModel targetbuilding = wareHouse;
-            BuildingModel sourcebuilding = productionBuilding;
-
             if (order.Type == "put_resource")
             {
                 if (order.ResourceId == "worker")
@@ -39,17 +39,37 @@ namespace Runtime.Descriptions.StateMachine.Actions
                     return;
                 }
 
-                targetbuilding = productionBuilding;
-                sourcebuilding = wareHouse;
+                targetBuilding = productionBuilding;
+                sourceBuilding = world.Buildings.Models.Values.FirstOrDefault(b => b is StorageBuildingModel storage
+                    && storage.Inventory.CanExtract(resource, 1, out _));
+
+                if (sourceBuilding == null)
+                {
+                    world.OrderManager.ToBack(order.Id);
+                    return;
+                }
+            }
+            else if (order.Type == "take_resource")
+            {
+                sourceBuilding = productionBuilding;
+                targetBuilding = world.Buildings.Models.Values.FirstOrDefault(b => b is StorageBuildingModel storage
+                    && storage.Inventory.CanFit(resource, 1, out _));
+
+                if (targetBuilding == null)
+                {
+                    world.OrderManager.ToBack(order.Id);
+                    return;
+                }
             }
 
             model.Inventory.TryAddItem(resource, 0);
             model.SetPointOfInterest("resource_source",
-                new Vector3(sourcebuilding.WorldPosition.x, 0, sourcebuilding.WorldPosition.y));
+                new Vector3(sourceBuilding.WorldPosition.x, 0, sourceBuilding.WorldPosition.y));
             model.SetPointOfInterest("resource_target",
-                new Vector3(targetbuilding.WorldPosition.x, 0, targetbuilding.WorldPosition.y));
+                new Vector3(targetBuilding.WorldPosition.x, 0, targetBuilding.WorldPosition.y));
 
             order.Reserve(1);
+            model.Flags["has_order"] = true;
         }
     }
 }
