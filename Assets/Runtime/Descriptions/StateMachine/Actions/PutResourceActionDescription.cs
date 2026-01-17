@@ -4,7 +4,6 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Citizens;
 using Runtime.Extensions;
-using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
@@ -26,7 +25,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
             var inventoryBuilding = (IInventoryBuilding)world.Buildings.Models.Values.First(b =>
-                b.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
+                b.WorldPosition == buildingPosition
             );
 
             var resource = model.Inventory.Models.First().Value.Resource;

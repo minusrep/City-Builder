@@ -3,7 +3,6 @@ using System.Linq;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Citizens;
-using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
@@ -29,7 +28,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
             var inventoryBuildingPair = world.Buildings.Models.FirstOrDefault(b =>
-                b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
+                b.Value.WorldPosition == buildingPosition
             );
 
             if (inventoryBuildingPair.Value is not IInventoryBuilding inventoryBuilding)
@@ -75,7 +74,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
             var buildingPosition = model.PointsOfInterest["resource_target"];
             var (_, targetBuilding) = world.Buildings.Models.FirstOrDefault(b =>
-                b.Value.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
+                b.Value.WorldPosition == buildingPosition
             );
 
             if (targetBuilding == null)

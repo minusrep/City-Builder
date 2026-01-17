@@ -41,7 +41,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             }
 
             model.SetPointOfInterest(BuildingPointOfInterest,
-                new Vector3(targetBuilding.WorldPosition.x, 0, targetBuilding.WorldPosition.y) +
+                targetBuilding.WorldPosition +
                 targetBuilding.BaseDescription.InteractionPoints[0]);
         }
     }

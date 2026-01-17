@@ -5,7 +5,6 @@ using Runtime.Colony;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Citizens;
 using Runtime.Colony.StateMachine.Conditions;
-using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Conditions
 {
@@ -24,7 +23,7 @@ namespace Runtime.Descriptions.StateMachine.Conditions
             
             var buildingPosition = model.PointsOfInterest["resource_target"];
             var building = world.Buildings.Models.Values.First(b => 
-                b.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
+                b.WorldPosition == buildingPosition
             ) as ProductionBuildingModel;
 
             return building != null && building.IsActive == _isWorking;

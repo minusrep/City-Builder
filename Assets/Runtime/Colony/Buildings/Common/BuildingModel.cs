@@ -20,7 +20,7 @@ namespace Runtime.Colony.Buildings.Common
 
         public Vector2Int GridPosition { get; set; }
 
-        public Vector2 WorldPosition
+        public Vector3 WorldPosition
         {
             get => _worldPosition;
             set
@@ -36,7 +36,7 @@ namespace Runtime.Colony.Buildings.Common
 
         public BuildingDescription BaseDescription { get; }
 
-        private Vector2 _worldPosition;
+        private Vector3 _worldPosition;
 
         protected BuildingModel(string id, Vector2Int gridPosition, BuildingDescription baseDescription)
         {

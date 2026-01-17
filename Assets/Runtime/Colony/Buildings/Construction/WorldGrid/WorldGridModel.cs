@@ -66,7 +66,7 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
 
             building.GridPosition = position;
             var worldPosition = GridToWorld(position);
-            building.WorldPosition =  new Vector2(worldPosition.x, worldPosition.z);
+            building.WorldPosition =  worldPosition;
         }
 
         public BuildingModel GetBuilding(Vector3 worldPosition)
