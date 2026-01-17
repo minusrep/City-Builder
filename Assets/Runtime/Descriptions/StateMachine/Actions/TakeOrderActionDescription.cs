@@ -1,20 +1,14 @@
-using System.Collections.Generic;
 using System.Linq;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Buildings.Production;
 using Runtime.Colony.Buildings.Storage;
 using Runtime.Colony.Citizens;
-using UnityEngine;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
     public class TakeOrderActionDescription : ActionDescription
     {
-        public TakeOrderActionDescription(Dictionary<string, object> data) : base(data)
-        {
-        }
-
         public override void Execute(World world, CitizenModel model)
         {
             model.Flags["has_order"] = false;
@@ -34,8 +28,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 {
                     model.Inventory.TryAddItem(resource, 1);
                     model.Flags["is_carrying"] = true;
-                    model.SetPointOfInterest("resource_target",
-                        new Vector3(productionBuilding.WorldPosition.x, 0, productionBuilding.WorldPosition.y));
+                    model.SetPointOfInterest("resource_target", productionBuilding.GetInteractionPoint());
                     order.Reserve(1);
                     return;
                 }
@@ -64,10 +57,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
             }
 
             model.Inventory.TryAddItem(resource, 0);
-            model.SetPointOfInterest("resource_source",
-                new Vector3(sourceBuilding!.WorldPosition.x, 0, sourceBuilding.WorldPosition.y));
-            model.SetPointOfInterest("resource_target",
-                new Vector3(targetBuilding!.WorldPosition.x, 0, targetBuilding.WorldPosition.y));
+            model.SetPointOfInterest("resource_source", sourceBuilding.GetInteractionPoint());
+            model.SetPointOfInterest("resource_target", targetBuilding.GetInteractionPoint());
 
             order.Reserve(1);
             model.Flags["has_order"] = true;

@@ -54,7 +54,7 @@ namespace Runtime.Colony.ShelterCitizenSpawn
 
         private void SpawnCitizen(ServiceBuildingModel shelter)
         {
-            var position = GetSpawnPosition(shelter.GetWorldPosition());
+            var position = GetSpawnPosition(shelter.GetInteractionPoint());
             _citizens.Create();
             var citizenModel = _citizens.Models.Last().Value;
             citizenModel.Position = position;

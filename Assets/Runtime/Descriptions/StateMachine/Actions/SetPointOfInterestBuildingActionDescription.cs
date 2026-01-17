@@ -40,7 +40,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 }
             }
 
-            model.SetPointOfInterest(BuildingPointOfInterest, targetBuilding.GetWorldPosition());
+            model.SetPointOfInterest(BuildingPointOfInterest, targetBuilding.GetInteractionPoint());
         }
     }
 }
