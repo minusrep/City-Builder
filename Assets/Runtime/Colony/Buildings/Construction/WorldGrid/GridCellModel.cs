@@ -6,7 +6,7 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
     {
         public bool IsFree => OccupiedBy == null;
         
-        private BuildingModel OccupiedBy { get; set; }
+        public BuildingModel OccupiedBy { get; set; }
 
         public void Occupy(BuildingModel building)
         {

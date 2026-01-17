@@ -17,15 +17,8 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
 
         public bool IsActive
         {
-            get => _isActive;
-            set
-            {
-                _isActive = value;
-                OnActiveChanged?.Invoke(value);
-            }
+            set => OnActiveChanged?.Invoke(value);
         }
-
-        private bool _isActive;
 
         public WorldGridModel(WorldGridDescription description)
         {
@@ -74,6 +67,17 @@ namespace Runtime.Colony.Buildings.Construction.WorldGrid
             building.GridPosition = position;
             var worldPosition = GridToWorld(position);
             building.WorldPosition =  new Vector2(worldPosition.x, worldPosition.z);
+        }
+
+        public BuildingModel GetBuilding(Vector3 worldPosition)
+        {
+            var gridPosition = WorldToGrid(worldPosition);
+            return Cells[gridPosition.x, gridPosition.y].OccupiedBy;
+        }
+        
+        public BuildingModel GetBuilding(Vector2Int gridPosition)
+        {
+            return Cells[gridPosition.x, gridPosition.y].OccupiedBy;
         }
         
         public Vector3 GridToWorld(Vector2Int gridPosition)
