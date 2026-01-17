@@ -4,8 +4,7 @@
     "production_time": [10000, 9000, 8000, 7000],
     "max_level": 3,
     "interaction_points": [
-      [0.5, 0.5, 0],
-      [1.5, 0.5, 0]
+      [0, 0, 0]
     ],
     "production_resource": "wood",
     "production_amount": 1,
@@ -23,8 +22,7 @@
   "shelter": {
     "max_level": 0,
     "interaction_points": [
-      [0.5, 0.5, 0],
-      [1.5, 0.5, 0]
+      [0, 0, 0]
     ],
     "type": "service",
     "max_time_service": 10000,
@@ -40,7 +38,7 @@
   "tavern": {
     "max_level": 0,
     "interaction_points": [
-      [2.8, 0, 2]
+      [0, 0, 0]
     ],
     "type": "service",
     "max_time_service": 10000,
@@ -56,8 +54,7 @@
   "warehouse": {
     "max_level": 0,
     "interaction_points": [
-      [0.5, 0.5, 0],
-      [1.5, 0.5, 0]
+      [0, 0, 0]
     ],
     "type": "storage",
     "max_resource_amount": 100,
@@ -73,8 +70,7 @@
   "lantern": {
     "max_level": 0,
     "interaction_points": [
-      [0.5, 0.5, 0],
-      [1.5, 0.5, 0]
+      [0, 0, 0]
     ],
     "type": "decor",
     "view_id": "Lantern",
@@ -86,8 +82,7 @@
   "mine": {
     "type": "production",
     "interaction_points": [
-      [0.5, 0.5, 0],
-      [1.5, 0.5, 0]
+      [0, 0, 0]
     ],
     "production_time": [10000, 9000, 8000, 7000],
     "max_level": 3,
@@ -107,8 +102,7 @@
   "smelter": {
     "type": "production",
     "interaction_points": [
-      [0.5, 0.5, 0],
-      [1.5, 0.5, 0]
+      [0, 0, 0]
     ],
     "production_time": [20000, 18000, 16000, 14000],
     "max_level": 3,
