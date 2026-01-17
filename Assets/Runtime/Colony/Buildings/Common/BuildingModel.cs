@@ -12,14 +12,14 @@ namespace Runtime.Colony.Buildings.Common
         private const string LevelKey = "level";
         private const string PositionKey = "position";
         private const string DescriptionKey = "description";
-        
+
         public event Action OnPositionChanged;
         public event Action<bool> OnConstructionModeChanged;
-        
+
         public string Id { get; }
 
         public Vector2Int GridPosition { get; set; }
-        
+
         public Vector2 WorldPosition
         {
             get => _worldPosition;
@@ -29,19 +29,18 @@ namespace Runtime.Colony.Buildings.Common
                 OnPositionChanged?.Invoke();
             }
         }
-        
-        
+
         public bool CanUpgrade => Level < BaseDescription.MaxLevel;
-        
+
         public int Level { get; private set; }
 
         public BuildingDescription BaseDescription { get; }
-        
+
         private Vector2 _worldPosition;
-        
+
         protected BuildingModel(string id, Vector2Int gridPosition, BuildingDescription baseDescription)
         {
-            Id = id;    
+            Id = id;
             GridPosition = gridPosition;
             BaseDescription = baseDescription;
         }
@@ -55,19 +54,19 @@ namespace Runtime.Colony.Buildings.Common
 
             Level++;
         }
-        
+
         public void SetConstructionMode(bool enabled)
         {
             OnConstructionModeChanged?.Invoke(enabled);
         }
-        
+
         public virtual Dictionary<string, object> Serialize()
         {
             return new Dictionary<string, object>
             {
                 { DescriptionKey, BaseDescription.Id },
-                { PositionKey, GridPosition.ToList()},
-                { LevelKey, Level}
+                { PositionKey, GridPosition.ToList() },
+                { LevelKey, Level }
             };
         }
 
