@@ -298,8 +298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pivo.CityBuilder.Runtime::Runtime.Environment.EnvironmentView
   _directionalLight: {fileID: 410087040}
-  _nightLightIntensity: 0
-  _dayLightIntensity: 10
+  _directionalLightTransform: {fileID: 410087041}
+  _dayLightIntensity: 4
+  _maxRotationX: 180
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +516,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -577,13 +578,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1858668570}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +652,7 @@ MonoBehaviour:
   _buildingConstructionView: {fileID: 2035574545}
   _worldGridView: {fileID: 157871637}
   _selectionView: {fileID: 2059023945}
-  _environmentView: {fileID: 0}
+  _environmentView: {fileID: 243947912}
 --- !u!4 &469992741
 Transform:
   m_ObjectHideFlags: 0

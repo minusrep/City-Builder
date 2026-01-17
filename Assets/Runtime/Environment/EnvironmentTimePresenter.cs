@@ -31,6 +31,10 @@ namespace Runtime.Environment
             var currentIntensity = _view.DayLightIntensity * Mathf.Sin(Mathf.PI * currentTime/cycleLength);
             
             _view.DirectionalLight.intensity = currentIntensity;
+
+            var currentX = (currentTime / cycleLength) * _view.MaxRotationX;
+            
+            _view.DirectionalLightTransform.rotation = Quaternion.Euler(currentX, 0f, 0f);
         }
     }
 }

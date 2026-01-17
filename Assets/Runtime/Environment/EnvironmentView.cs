@@ -5,15 +5,18 @@ namespace Runtime.Environment
     public class EnvironmentView : MonoBehaviour
     {
         public Light DirectionalLight => _directionalLight;
-
-        public float NightLightIntensity => _nightLightIntensity;
+        public Transform DirectionalLightTransform => _directionalLightTransform;
         
         public float DayLightIntensity => _dayLightIntensity;
         
-        [SerializeField] private Light _directionalLight;
+        public float MaxRotationX => _maxRotationX;
 
-        [SerializeField] private float _nightLightIntensity;
+        [SerializeField] private Light _directionalLight;
+        
+        [SerializeField] private Transform _directionalLightTransform;
 
         [SerializeField] private float _dayLightIntensity;
+
+        [SerializeField] private float _maxRotationX;
     }
 }
