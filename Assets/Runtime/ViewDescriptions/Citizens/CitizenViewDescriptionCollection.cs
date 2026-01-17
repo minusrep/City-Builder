@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Citizens
 {
-    [CreateAssetMenu(fileName = "CitizenViewDescriptionCollection", menuName = "ViewDescription/CitizenViewDescriptionCollection")]
+    [CreateAssetMenu(fileName = "CitizenCollection", menuName = "City Builder/View Descriptions/Citizens/Citizen Collection")]
     public class CitizenViewDescriptionCollection : ScriptableObject
     {
         public IReadOnlyList<CitizenViewDescription> Descriptions => _descriptions;

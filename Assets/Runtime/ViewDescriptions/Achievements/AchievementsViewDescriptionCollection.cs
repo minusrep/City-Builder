@@ -4,8 +4,8 @@ using UnityEngine.UIElements;
 
 namespace Runtime.ViewDescriptions.Achievements
 {
-    [CreateAssetMenu(fileName = "AchievementViewDescriptionCollection",
-        menuName = "ViewDescription/Achievements/AchievementViewDescriptionCollection")]
+    [CreateAssetMenu(fileName = "AchievementCollection",
+        menuName = "City Builder/View Descriptions/Achievements/Achievement Collection")]
     public class AchievementViewDescriptionCollection : ScriptableObject
     {
         public VisualTreeAsset AchievementAsset;

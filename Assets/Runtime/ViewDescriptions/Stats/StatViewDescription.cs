@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace Runtime.ViewDescriptions.Stats
 {
-    [CreateAssetMenu(fileName = "StatViewDescription", menuName = "ViewDescription/Stats/Stat")]
+    [CreateAssetMenu(fileName = "Stat", menuName = "City Builder/View Descriptions/Stats/Stat")]
     public class StatViewDescription : ScriptableObject
     {
         public VisualTreeAsset StatViewAsset;

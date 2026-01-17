@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace Runtime.ViewDescriptions.Inventory
 {
-    [CreateAssetMenu(fileName = "InventoryViewDescription", menuName = "ViewDescription/Inventory/Inventory")]
+    [CreateAssetMenu(fileName = "Inventory", menuName = "City Builder/View Descriptions/Inventory/Inventory")]
     public class InventoryViewDescription : ScriptableObject
     {
         public VisualTreeAsset CellViewAsset;

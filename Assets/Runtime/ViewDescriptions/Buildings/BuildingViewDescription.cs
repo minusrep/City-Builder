@@ -3,6 +3,7 @@ using UnityEngine.AddressableAssets;
 
 namespace Runtime.ViewDescriptions.Buildings
 {
+    [CreateAssetMenu(fileName = "Building", menuName = "City Builder/View Descriptions/Buildings/Building")]
     public class BuildingViewDescription : ScriptableObject
     {
         public string Id => name;

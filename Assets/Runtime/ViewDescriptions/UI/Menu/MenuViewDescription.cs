@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace Runtime.ViewDescriptions.UI.Menu
 {
-    [CreateAssetMenu(fileName = "MenuViewDescription", menuName = "ViewDescription/Load/MenuViewDescription")]
+    [CreateAssetMenu(fileName = "Menu", menuName = "City Builder/View Descriptions/UI/Menu")]
     public class MenuViewDescription : ScriptableObject
     {
         public VisualTreeAsset InGameMenuAsset;

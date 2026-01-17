@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Achievements
 {
-    [CreateAssetMenu(fileName = "AchievementViewDescription", menuName = "ViewDescription/Achievements/AchievementViewDescription")]
+    [CreateAssetMenu(fileName = "Achievement", menuName = "City Builder/View Descriptions/Achievements/Achievement")]
     public class AchievementViewDescription : ScriptableObject
     {
         public string Id => name;

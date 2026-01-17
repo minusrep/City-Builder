@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runtime.ViewDescriptions.Stats
 {
-    [CreateAssetMenu(fileName = "StatViewDescription", menuName = "ViewDescription/Stats/Collection")]
+    [CreateAssetMenu(fileName = "Stat", menuName = "City Builder/View Descriptions/Stats/Stat Collection")]
     public class StatViewDescriptionCollection : ScriptableObject
     {
         [SerializeField] private List<StatViewDescription> _descriptions;
