@@ -10,7 +10,7 @@ namespace Runtime.Descriptions.Buildings
         private const string TypeKey = "type";
         private const string ViewId = "view_id";
         private const string MaxLevelId = "max_level";
-        
+
         public string Id { get; }
         public string Type { get; }
         public string ViewDescriptionId { get; }
@@ -26,14 +26,17 @@ namespace Runtime.Descriptions.Buildings
             ViewDescriptionId = data.GetString(ViewId);
             MaxLevel = data.GetInt(MaxLevelId);
             Size = data.GetVector2Int("size");
-            
-            foreach (var list in data.GetList<List<object>>("interaction_points"))
+
+            if (data.ContainsKey("interaction_points"))
             {
-                InteractionPoints.Add(new Vector3(
-                    Convert.ToSingle(list[0]) * Size.x,
-                    Convert.ToSingle(list[1]),
-                    Convert.ToSingle(list[2]) * Size.y
-                ));
+                foreach (var list in data.GetList<List<object>>("interaction_points"))
+                {
+                    InteractionPoints.Add(new Vector3(
+                        Convert.ToSingle(list[0]) * Size.x,
+                        Convert.ToSingle(list[1]),
+                        Convert.ToSingle(list[2]) * Size.y
+                    ));
+                }
             }
 
             for (var x = 0; x < Size.x; x++)
