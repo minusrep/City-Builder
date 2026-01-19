@@ -29,7 +29,11 @@ namespace Runtime.CameraControl
         {
             if (_cameraControlModel.IsActive)
             {
-                UpdateZoom(deltaTime);
+                if (_cameraControlModel.IsZooming)
+                {
+                    UpdateZoom(deltaTime);
+                }
+
                 UpdateOrbit(deltaTime);
                 UpdateMovement(deltaTime);
             }

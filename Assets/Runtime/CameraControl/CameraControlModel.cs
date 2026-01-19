@@ -6,6 +6,8 @@ namespace Runtime.CameraControl
     public class CameraControlModel
     {
         public bool IsActive { get; set; } = true;
+        public bool IsZooming { get; set; } = true;
+        
         public readonly PlayerControls PlayerControls;
 
         public CameraControlModel(PlayerControls model)
