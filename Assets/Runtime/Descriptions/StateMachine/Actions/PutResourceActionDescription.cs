@@ -38,7 +38,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             if (resource.Id == "worker")
             {
                 model.Flags["is_working"] = true;
-                model.Inventory.Models.Values.First().TryAdd(resource, -1, 100);
+                model.Inventory.TryAddItem(resource, -1);
             }
         }
     }

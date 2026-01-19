@@ -62,7 +62,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 }
             }
 
-            model.Inventory.Models.First().Value.TryAdd(resource, order.Amount * -1, 100);
+            model.Inventory.TryAddItem(resource, order.Amount * -1);
             model.SetPointOfInterest("resource_source",
                 new Vector3(sourceBuilding.WorldPosition.x, 0, sourceBuilding.WorldPosition.y));
             model.SetPointOfInterest("resource_target",

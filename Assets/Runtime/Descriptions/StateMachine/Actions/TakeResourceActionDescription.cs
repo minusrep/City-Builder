@@ -101,7 +101,8 @@ namespace Runtime.Descriptions.StateMachine.Actions
             var order = world.OrderManager[$"{targetBuilding.Id}_{resource.Id}"];
             var amount = model.Inventory.Models.Values.First().Amount * -1;
             order.Unreserve(amount);
-            model.Inventory.Models.Values.First().TryReduce(-amount);
+            model.Inventory.TryAddItem(resource, 2 * amount);
+            model.Inventory.TryRemoveItem(resource, amount);
         }
     }
 }
