@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Content/UI/DayNightIndicator/day-night-indicator.uss?fileID=7433441132597879392&amp;guid=00478465668e71b489365db7cdc65754&amp;type=3#day-night-indicator"/>
-    <ui:VisualElement name="day-night-indicator" class="day-night-indicator">
+    <ui:VisualElement name="day-night-indicator" class="day-night-indicator" style="align-self: center; width: 128px; height: 129px; left: auto; top: -64px;">
         <ui:Image name="indicator-border" source="project://database/Assets/Content/Sprites/Spr_DayNightIndicatorBackground.png?fileID=21300000&amp;guid=bf10c2a5408e6a94aafd8a7485712682&amp;type=3#Spr_DayNightIndicatorBackground" class="indicator-border" style="rotate: 180deg;">
-            <ui:Image name="indicator-inner" source="project://database/Assets/Content/Sprites/Spr_DayNightIndicator.png?fileID=21300000&amp;guid=216955191a09e824bbb394a8b14e2c11&amp;type=3#Spr_DayNightIndicator" class="indicator-inner"/>
+            <ui:Image name="indicator-inner" source="project://database/Assets/Content/Sprites/Spr_DayNightIndicator.png?fileID=21300000&amp;guid=216955191a09e824bbb394a8b14e2c11&amp;type=3#Spr_DayNightIndicator" class="indicator-inner" style="rotate: -90deg; transform-origin: center;"/>
         </ui:Image>
     </ui:VisualElement>
 </ui:UXML>
