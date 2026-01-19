@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style
+        src="project://database/Assets/Content/UI/DayNightIndicator/DayNightIndicator.uss?fileID=7433441132597879392&amp;guid=00478465668e71b489365db7cdc65754&amp;type=3#DayNightIndicator" />
+    <ui:VisualElement class="day-night-indicator">
+        <ui:Image class="indicator-border">
+            <ui:Image class="indicator-inner" />
+        </ui:Image>
+    </ui:VisualElement>
+</ui:UXML>
