@@ -1,0 +1,21 @@
+.day-night-indicator {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    translate: -50% 0;
+    width: 100px;
+    height: 100px;
+}
+
+.indicator-border {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.indicator-inner {
+    width: 100%;
+    height: 100%;
+}

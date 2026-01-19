@@ -8,7 +8,7 @@ namespace Runtime.Environment
     {
         private const string TimeKey = "time";
 
-        private EnvironmentDescription Description { get; }
+        public EnvironmentDescription Description { get; }
 
         public EnvironmentTimeModel Time { get; }
 

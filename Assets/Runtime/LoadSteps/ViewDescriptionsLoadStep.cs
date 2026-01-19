@@ -9,7 +9,7 @@ using Runtime.ViewDescriptions.Buildings;
 using Runtime.ViewDescriptions.Citizens;
 using Runtime.ViewDescriptions.Inventory;
 using Runtime.ViewDescriptions.Stats;
-using Runtime.ViewDescriptions.UI.Building;
+using Runtime.ViewDescriptions.UI;
 using Runtime.ViewDescriptions.UI.Menu;
 
 namespace Runtime.LoadSteps
@@ -52,8 +52,8 @@ namespace Runtime.LoadSteps
                     obj => worldViewDescriptions.MenuViewDescription = obj as MenuViewDescription
                 },
                 {
-                    "SelectionViewDescription",
-                    obj => worldViewDescriptions.SelectionViewDescription = obj as SelectionViewDescription
+                    "HudViewDescription",
+                    obj => worldViewDescriptions.HudViewDescription = obj as HudViewDescription
                 }
             };
         }
