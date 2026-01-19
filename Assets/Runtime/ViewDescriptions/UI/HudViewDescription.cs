@@ -10,5 +10,7 @@ namespace Runtime.ViewDescriptions.UI
         public VisualTreeAsset SelectionPanelAsset;
 
         public VisualTreeAsset ConstructionMenuAsset;
+        
+        public VisualTreeAsset DayNightIndicatorAsset;
     }
 }
