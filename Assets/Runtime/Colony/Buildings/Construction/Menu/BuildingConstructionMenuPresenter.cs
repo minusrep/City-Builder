@@ -4,6 +4,7 @@ using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -35,6 +36,9 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _world.PlayerControls.Construction.Cancel.performed += HandleCancelConstruction;
 
             _menuContent.HudLayer.Add(_view.Root);
+            
+            _view.Root.RegisterCallback<PointerEnterEvent>(OnPointerEnter);
+            _view.Root.RegisterCallback<PointerLeaveEvent>(OnPointerLeave);
 
             BuildButtons();
         }
@@ -44,6 +48,9 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _world.PlayerControls.Construction.Cancel.performed -= HandleCancelConstruction;
 
             _menuContent.HudLayer.Remove(_view.Root);
+            
+            _view.Root.UnregisterCallback<PointerEnterEvent>(OnPointerEnter);
+            _view.Root.UnregisterCallback<PointerLeaveEvent>(OnPointerLeave);
 
             ClearSelection();
             _buttons.Clear();
@@ -132,6 +139,16 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             }
             
             ClearSelection();
+        }
+
+        private void OnPointerEnter(PointerEnterEvent evt)
+        {
+            _world.MainCameraControl.IsZooming = false;
+        }
+
+        private void OnPointerLeave(PointerLeaveEvent evt)
+        {
+            _world.MainCameraControl.IsZooming = true;
         }
     }
 }
