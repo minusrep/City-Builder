@@ -114,9 +114,8 @@ namespace Runtime
 
         private void InitializeInGameMenu()
         {
-            var pauseMenuModel = new InGameMenuModel(_world.PlayerControls);
             var pauseMenuView = new InGameMenuView(_worldViewDescriptions.MenuViewDescription.InGameMenuAsset);
-            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuModel, pauseMenuView, _menuContent, _world,
+            _inGameMenuPresenter = new InGameMenuPresenter(pauseMenuView, _menuContent, _world,
                 _worldViewDescriptions, ReloadSessionWithSave);
             _inGameMenuPresenter.Enable();
         }

@@ -41,7 +41,6 @@ namespace Runtime.Colony
         public GameSystemCollection GameSystems { get; private set; }
         public OrderManager OrderManager { get; private set; }
         public CameraControlModel MainCameraControl { get; private set; }
-        public InGameMenuModel InGameMenuModel { get; private set; }
 
         public void SetData(WorldDescription worldDescription,
             GameSystemCollection gameSystems, PlayerControls playerControls)
@@ -64,7 +63,6 @@ namespace Runtime.Colony
 
             OrderManager = new OrderManager();
             MainCameraControl = new CameraControlModel(PlayerControls);
-            InGameMenuModel = new InGameMenuModel(PlayerControls);
         }
 
         public Dictionary<string, object> Serialize()

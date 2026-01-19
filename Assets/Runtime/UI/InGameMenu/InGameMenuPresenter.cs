@@ -15,7 +15,6 @@ namespace Runtime.UI.InGameMenu
     public class InGameMenuPresenter : IPresenter
     {
         private readonly InGameMenuView _view;
-        private readonly InGameMenuModel _model;
         private readonly MenuContent _menuContent;
         private readonly World _world;
         private readonly WorldViewDescriptions _viewDescriptions;
@@ -23,10 +22,9 @@ namespace Runtime.UI.InGameMenu
         
         private IPresenter _currentMenuPresenter;
 
-        public InGameMenuPresenter(InGameMenuModel model, InGameMenuView view, MenuContent menuContent, World world,
+        public InGameMenuPresenter(InGameMenuView view, MenuContent menuContent, World world,
             WorldViewDescriptions viewDescriptions, Func<string, Task> reloadSessionCallback)
         {
-            _model = model;
             _view = view;
             _menuContent = menuContent;
             _world = world;
@@ -36,9 +34,9 @@ namespace Runtime.UI.InGameMenu
 
         public void Enable()
         {
-            _model.playerControls.UI.Enable();
+            _world.PlayerControls.UI.Enable();
 
-            _model.playerControls.UI.Pause.performed += OnPerformed;
+            _world.PlayerControls.UI.Pause.performed += OnPerformed;
             _view.ResumeButton.clicked += OnResumeClicked;
             _view.SaveButton.clicked += OnSaveClicked;
             _view.LoadButton.clicked += OnLoadClicked;
@@ -48,14 +46,14 @@ namespace Runtime.UI.InGameMenu
 
         public void Disable()
         {
-            _model.playerControls.UI.Pause.performed -= OnPerformed;
+            _world.PlayerControls.UI.Pause.performed -= OnPerformed;
             _view.ResumeButton.clicked -= OnResumeClicked;
             _view.SaveButton.clicked -= OnSaveClicked;
             _view.LoadButton.clicked -= OnLoadClicked;
             _view.AchievementsButton.clicked -= OnAchievementsClicked;
             _view.ExitButton.clicked -= OnExitClicked;
 
-            _model.playerControls.UI.Disable();
+            _world.PlayerControls.UI.Disable();
         }
 
         private void OnPerformed(InputAction.CallbackContext context)

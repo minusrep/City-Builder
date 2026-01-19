@@ -27,7 +27,7 @@ namespace Runtime.LoadSteps
         public Task Run()
         {
             var inGameMenuView = new InGameMenuView(_worldViewDescriptions.MenuViewDescription.InGameMenuAsset);
-            var inGameMenuPresenter = new InGameMenuPresenter(_world.InGameMenuModel, inGameMenuView, _menuContent, _world,
+            var inGameMenuPresenter = new InGameMenuPresenter(inGameMenuView, _menuContent, _world,
                 _worldViewDescriptions, null);
             inGameMenuPresenter.Enable();
             _presenters.Add(inGameMenuPresenter);
