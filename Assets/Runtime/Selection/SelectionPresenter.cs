@@ -32,8 +32,6 @@ namespace Runtime.Selection
 
         public void Disable()
         {
-            _view.UnitCameraTransform.parent = _view.transform;
-            
             _world.PlayerControls.Player.Click.performed -= OnClick;
             
             _world.PlayerControls.Player.PointerPosition.performed -= OnChangePointerPosition;
@@ -109,7 +107,8 @@ namespace Runtime.Selection
             
             _view.UnitCamera.enabled = true;
             
-            _view.UnitCameraTransform.parent = _cachedSelected.RenderPoint;
+            _view.VirtualCamera.Follow = _cachedSelected.RenderPoint;
+            _view.VirtualCamera.LookAt = _cachedSelected.RenderPoint;
             
             _view.UnitCameraTransform.transform.position = _cachedSelected.RenderPoint.transform.position;
             
