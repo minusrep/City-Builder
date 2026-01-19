@@ -34,7 +34,7 @@ namespace Runtime.LoadSteps
             buildingSelectionPresenter.Enable();
             _presenters.Add(buildingSelectionPresenter);
 
-            var selectionPanel = _worldViewDescriptions.SelectionViewDescription.SelectionPanelAsset.CloneTree().Q<VisualElement>("selection-panel");
+            var selectionPanel = _worldViewDescriptions.HudViewDescription.SelectionPanelAsset.CloneTree().Q<VisualElement>("selection-panel");
             
             _menuContent.HudLayer.Add(selectionPanel);
             
