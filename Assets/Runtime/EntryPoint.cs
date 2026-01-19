@@ -103,7 +103,8 @@ namespace Runtime
                 new CitizenCollectionLoadStep(_presenters, _world, _citizenViewCollection, _worldViewDescriptions),
                 new AchievementCollectionLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent),
                 new CameraControlLoadStep(_presenters, _world, _cameraControlView, _worldDescription),
-                new EnvironmentLoadStep(_presenters, _world, _environmentView)
+                new EnvironmentLoadStep(_presenters, _world, _environmentView),
+                new DayNightIndicatorLoadStep(_presenters, _world, _worldViewDescriptions, _menuContent)
             };
 
             foreach (var step in sessionLoadSteps)
