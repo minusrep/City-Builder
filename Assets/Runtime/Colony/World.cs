@@ -47,6 +47,7 @@ namespace Runtime.Colony
         {
             MainCamera = Camera.main;
             PlayerControls = playerControls;
+            PlayerControls.Disable();
             WorldDescription = worldDescription;
             GameSystems = gameSystems;
 

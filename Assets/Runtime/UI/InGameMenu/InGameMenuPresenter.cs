@@ -58,14 +58,26 @@ namespace Runtime.UI.InGameMenu
 
         private void OnPerformed(InputAction.CallbackContext context)
         {
+            ToggleMenu();
+        }
+        
+        private void OnResumeClicked()
+        {
+            ToggleMenu();
+        }
+
+        private void ToggleMenu()
+        {
             if (!_menuContent.MenuRoot.Contains(_view.Root))
             {
+                _world.SelectionModel.CanSelect = false;
                 _world.MainCameraControl.IsActive = false;
                 _menuContent.MenuRoot.Add(_view.Root);
                 CloseMenu();
             }
             else
             {
+                _world.SelectionModel.CanSelect = true;
                 _world.MainCameraControl.IsActive = true;
                 _view.Root.RemoveFromHierarchy();
             }
@@ -94,11 +106,6 @@ namespace Runtime.UI.InGameMenu
 
             _view.PageContent.Clear();
             _currentMenuPresenter = null;
-        }
-
-        private void OnResumeClicked()
-        {
-            _view.Root.RemoveFromHierarchy();
         }
         
         private void OnSaveClicked()
