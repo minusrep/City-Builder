@@ -60,7 +60,7 @@ namespace Runtime.Colony.Buildings.Common
             OnConstructionModeChanged?.Invoke(enabled);
         }
 
-        public Vector3 GetInteractionPoint()
+        public virtual Vector3 GetInteractionPoint()
         {
             return WorldPosition + BaseDescription.InteractionPoints[0];
         }
