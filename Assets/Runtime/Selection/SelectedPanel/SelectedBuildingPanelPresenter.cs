@@ -66,7 +66,7 @@ namespace Runtime.Selection.SelectedPanel
 
             if (selectedBuilding.CanUpgrade)
             {
-                _view.Root.Add(SelectionPanelUtility.CreateButton($"Upgrade to ", selectedBuilding.Level + 2, () =>
+                _view.Root.Add(SelectionPanelUtility.CreateButton("Upgrade to ", selectedBuilding.Level + 2, () =>
                 {
                     selectedBuilding.Upgrade();
 

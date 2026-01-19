@@ -5,11 +5,11 @@ using Runtime.Colony.Citizens;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
-    public class ChangeVisibilityActionDescription: ActionDescription
+    public class ChangeVisibilityActionDescription : ActionDescription
     {
         private readonly bool _isVisible;
-        
-        public ChangeVisibilityActionDescription(Dictionary<string, object> data) : base(data)
+
+        public ChangeVisibilityActionDescription(Dictionary<string, object> data)
         {
             _isVisible = Convert.ToBoolean(data["visible"]);
         }

@@ -22,7 +22,7 @@ namespace Runtime.Colony.Achievements.Triggers.Types
 
         protected override void OnEventReceived(GameEvent gameEvent)
         {
-            if (Model.IsActive == false)
+            if (!Model.IsActive)
             {
                 return;
             }

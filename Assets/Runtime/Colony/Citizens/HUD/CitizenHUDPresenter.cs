@@ -19,7 +19,7 @@ namespace Runtime.Colony.Citizens.HUD
         
         public void Enable()
         {
-            var nameTextElement = new TextElement()
+            var nameTextElement = new TextElement
             {
                 text = _model.Name,
             };

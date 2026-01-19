@@ -85,7 +85,7 @@ namespace Runtime.Colony.Citizens
 
         public Dictionary<string, object> Serialize()
         {
-            return new Dictionary<string, object>()
+            return new Dictionary<string, object>
             {
                 { IdKey, Id},
                 { NameKey, Name },

@@ -12,7 +12,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private string System { get; }
 
-        public RegisterSystemActionDescription(Dictionary<string, object> data) : base(data)
+        public RegisterSystemActionDescription(Dictionary<string, object> data)
         {
             System = data.GetString(SystemKey);
         }
@@ -20,7 +20,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         public override void Execute(World world, CitizenModel model)
         {
             var registerSystem = (RegisterGameSystem<CitizenModel>)world.GameSystems.Get(System);
-            
+
             registerSystem.Register(model);
         }
     }

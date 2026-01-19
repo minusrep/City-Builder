@@ -1,7 +1,7 @@
-﻿using Runtime.Colony;
+﻿using System.Collections.Generic;
+using Runtime.Colony;
 using Runtime.Colony.Citizens;
 using Runtime.Extensions;
-using System.Collections.Generic;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
@@ -13,7 +13,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
         private readonly string _flagName;
         private readonly bool _flagValue;
 
-        public SetFlagActionDescription(Dictionary<string, object> data) : base(data)
+        public SetFlagActionDescription(Dictionary<string, object> data)
         {
             _flagName = data.GetString(FlagNameKey);
             _flagValue = data.GetBool(FlagValueKey);

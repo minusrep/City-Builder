@@ -3,7 +3,7 @@ using System.Linq;
 using Runtime.Colony;
 using Runtime.Colony.Buildings.Common;
 using Runtime.Colony.Citizens;
-using UnityEngine;
+using Runtime.Extensions;
 
 namespace Runtime.Descriptions.StateMachine.Actions
 {
@@ -13,9 +13,9 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
         private string PointOfInterest { get; }
         
-        public PutResourceActionDescription(Dictionary<string, object> data) : base(data)
+        public PutResourceActionDescription(Dictionary<string, object> data)
         {
-            PointOfInterest =  data[PointOfInterestKey] as string;   
+            PointOfInterest = data.GetString(PointOfInterestKey);
         }
 
         public override void Execute(World world, CitizenModel model)
@@ -24,9 +24,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             model.Flags["has_order"] = true;
             
             var buildingPosition = model.PointsOfInterest[PointOfInterest];
-            var inventoryBuilding = (IInventoryBuilding)world.Buildings.Models.Values.First(b => 
-                b.WorldPosition == new Vector2(buildingPosition.x, buildingPosition.z)
-            );
+            var inventoryBuilding = (IInventoryBuilding)world.Grid.GetBuilding(buildingPosition);
 
             var resource = model.Inventory.Models.First().Value.Resource;
             var amount = model.Inventory.Models.First().Value.Amount;

@@ -281,7 +281,7 @@
       "transitions": {
         "wait_to_talk": {
           "type": "distance",
-          "value": 4.0,
+          "value": 0.5,
           "point_of_interest": "lantern"
         }
       }

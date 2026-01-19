@@ -54,7 +54,7 @@ namespace Runtime.Colony.Orders
         {
             var orders = _orders.Select(order => order.Serialize()).Cast<object>().ToList();
 
-            return new Dictionary<string, object>()
+            return new Dictionary<string, object>
             {
                 { "orders", orders }
             };
