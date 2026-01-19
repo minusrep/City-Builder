@@ -60,11 +60,13 @@ namespace Runtime.UI.InGameMenu
         {
             if (!_menuContent.MenuRoot.Contains(_view.Root))
             {
+                _world.MainCameraControl.IsActive = false;
                 _menuContent.MenuRoot.Add(_view.Root);
                 CloseMenu();
             }
             else
             {
+                _world.MainCameraControl.IsActive = true;
                 _view.Root.RemoveFromHierarchy();
             }
         }
@@ -72,7 +74,6 @@ namespace Runtime.UI.InGameMenu
         private void OpenMenu(VisualElement root, IPresenter loadMenuPresenter)
         {
             CloseMenu();
-
             _view.PageContent.style.display = DisplayStyle.Flex;
             _view.PageContent.Add(root);
 
