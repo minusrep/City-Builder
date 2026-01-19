@@ -11,13 +11,14 @@ namespace Runtime.CameraControl
 
         private float _currentZoomSpeed;
         private Vector2 _currentOrbitSpeed;
-        private Vector3 _currentMoovSpeed;
+        private Vector3 _currentMoveSpeed;
 
-        private CameraControlModel _cameraControlModel;
-        private CameraControlView _cameraControlView;
-        private CameraControlDescription _cameraControlDescription;
+        private readonly CameraControlModel _cameraControlModel;
+        private readonly CameraControlView _cameraControlView;
+        private readonly CameraControlDescription _cameraControlDescription;
 
-        public CameraControlSystem(CameraControlModel cameraControlModel, CameraControlView cameraControlView, CameraControlDescription cameraControlDescription)
+        public CameraControlSystem(CameraControlModel cameraControlModel, CameraControlView cameraControlView,
+            CameraControlDescription cameraControlDescription)
         {
             _cameraControlModel = cameraControlModel;
             _cameraControlView = cameraControlView;
@@ -26,9 +27,12 @@ namespace Runtime.CameraControl
 
         public void Update(float deltaTime)
         {
-            UpdateZoom(deltaTime);
-            UpdateOrbit(deltaTime);
-            UpdateMovement(deltaTime);
+            if (_cameraControlModel.IsActive)
+            {
+                UpdateZoom(deltaTime);
+                UpdateOrbit(deltaTime);
+                UpdateMovement(deltaTime);
+            }
         }
 
         private void UpdateZoom(float deltaTime)
@@ -42,7 +46,8 @@ namespace Runtime.CameraControl
                 targetZoomSpeed = _cameraControlDescription.ZoomSpeed * _cameraControlModel.ZoomValue.y;
             }
 
-            _currentZoomSpeed = Mathf.Lerp(_currentZoomSpeed, targetZoomSpeed, _cameraControlDescription.ZoomSmoothihg * deltaTime);
+            _currentZoomSpeed = Mathf.Lerp(_currentZoomSpeed, targetZoomSpeed,
+                _cameraControlDescription.ZoomSmoothihg * deltaTime);
 
             axis.Value -= _currentZoomSpeed;
             axis.Value = Mathf.Clamp(axis.Value, axis.Range.x, axis.Range.y);
@@ -52,7 +57,7 @@ namespace Runtime.CameraControl
 
         private void UpdateOrbit(float deltaTime)
         {
-            var targetOrbitSpeed = Vector2.zero;
+            Vector2 targetOrbitSpeed;
 
             if (_cameraControlModel.MiddleClickValue)
             {
@@ -64,8 +69,10 @@ namespace Runtime.CameraControl
                 targetOrbitSpeed = Vector2.zero;
             }
 
-            _currentOrbitSpeed.x = Mathf.Lerp(_currentOrbitSpeed.x, targetOrbitSpeed.x, _cameraControlDescription.LookSmoothihg * deltaTime);
-            _currentOrbitSpeed.y = Mathf.Lerp(_currentOrbitSpeed.y, targetOrbitSpeed.y, _cameraControlDescription.LookSmoothihg * deltaTime);
+            _currentOrbitSpeed.x = Mathf.Lerp(_currentOrbitSpeed.x, targetOrbitSpeed.x,
+                _cameraControlDescription.LookSmoothihg * deltaTime);
+            _currentOrbitSpeed.y = Mathf.Lerp(_currentOrbitSpeed.y, targetOrbitSpeed.y,
+                _cameraControlDescription.LookSmoothihg * deltaTime);
 
             var horizontalAxis = _cameraControlView.OrbitalFollow.HorizontalAxis;
             var verticalAxis = _cameraControlView.OrbitalFollow.VerticalAxis;
@@ -90,18 +97,13 @@ namespace Runtime.CameraControl
             right.y = 0f;
             right.Normalize();
 
-            var targetMoovSpeed = (forward * moveValue.y + right * moveValue.x) * _cameraControlDescription.MoveSpeed;
+            var targetMoveSpeed = (forward * moveValue.y + right * moveValue.x) * _cameraControlDescription.MoveSpeed;
 
-            if (moveValue.sqrMagnitude > 0.01f)
-            {
-                _currentMoovSpeed = Vector3.Lerp(_currentMoovSpeed, targetMoovSpeed, _cameraControlDescription.MoveSmoothihg * deltaTime);
-            }
-            else
-            {
-                _currentMoovSpeed = Vector3.Lerp(_currentMoovSpeed, Vector3.zero, _cameraControlDescription.MoveSmoothihg * deltaTime);
-            }
+            _currentMoveSpeed = Vector3.Lerp(_currentMoveSpeed,
+                moveValue.sqrMagnitude > 0.01f ? targetMoveSpeed : Vector3.zero,
+                _cameraControlDescription.MoveSmoothihg * deltaTime);
 
-            var motion = _currentMoovSpeed * deltaTime;
+            var motion = _currentMoveSpeed * deltaTime;
 
             _cameraControlView.Transform.position += motion;
         }
