@@ -35,7 +35,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
 
                 targetBuilding = productionBuilding;
                 sourceBuilding = world.Buildings.Models.Values.FirstOrDefault(b => b is StorageBuildingModel storage
-                    && storage.Inventory.CanExtract(resource, 1, out _));
+                    && storage.Inventory.CanExtract(resource, order.Amount, out _));
 
                 if (sourceBuilding == null)
                 {
@@ -47,7 +47,7 @@ namespace Runtime.Descriptions.StateMachine.Actions
             {
                 sourceBuilding = productionBuilding;
                 targetBuilding = world.Buildings.Models.Values.FirstOrDefault(b => b is StorageBuildingModel storage
-                    && storage.Inventory.CanFit(resource, 1, out _));
+                    && storage.Inventory.CanFit(resource, order.Amount, out _));
 
                 if (targetBuilding == null)
                 {
@@ -56,11 +56,11 @@ namespace Runtime.Descriptions.StateMachine.Actions
                 }
             }
 
-            model.Inventory.TryAddItem(resource, 0);
+            model.Inventory.TryAddItem(resource, order.Amount * -1);
             model.SetPointOfInterest("resource_source", sourceBuilding.GetInteractionPoint());
             model.SetPointOfInterest("resource_target", targetBuilding.GetInteractionPoint());
 
-            order.Reserve(1);
+            order.Reserve(order.Amount);
             model.Flags["has_order"] = true;
         }
     }
