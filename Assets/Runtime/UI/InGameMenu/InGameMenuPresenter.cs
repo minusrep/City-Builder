@@ -127,15 +127,16 @@ namespace Runtime.UI.InGameMenu
         private async void OnLoadSaveSelected(string saveName)
         {
             CloseMenu();
-
+            
             await _reloadSessionCallback(saveName);
+            
+            _world.PlayerControls.UI.Enable();
         }
 
         private void OnAchievementsClicked()
         {
             var achievementsMenuView = new AchievementsMenuView(_viewDescriptions.MenuViewDescription.AchievementsMenuAsset);
-            var achievementsMenuPresenter =
-                new AchievementsMenuPresenter(achievementsMenuView, _world, _viewDescriptions);
+            var achievementsMenuPresenter = new AchievementsMenuPresenter(achievementsMenuView, _world, _viewDescriptions);
 
             OpenMenu(achievementsMenuView.Root, achievementsMenuPresenter);
         }

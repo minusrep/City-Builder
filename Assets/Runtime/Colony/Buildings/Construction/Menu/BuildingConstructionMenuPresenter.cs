@@ -146,7 +146,6 @@ namespace Runtime.Colony.Buildings.Construction.Menu
         {
             _isConstructionModeEnabled = !_isConstructionModeEnabled;
             _view.ConstructionPanel.style.display = _isConstructionModeEnabled ? DisplayStyle.Flex : DisplayStyle.None;
-            _view.ToggleButton.text = _isConstructionModeEnabled ? ">" : "<";
             _world.Grid.IsActive = _isConstructionModeEnabled;
             
             if (!_isConstructionModeEnabled)
