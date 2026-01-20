@@ -148,6 +148,9 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _view.ConstructionPanel.style.display = _isConstructionModeEnabled ? DisplayStyle.Flex : DisplayStyle.None;
             _view.ToggleButton.text = _isConstructionModeEnabled ? ">" : "<";
             _world.Grid.IsActive = _isConstructionModeEnabled;
+            
+            if (!_isConstructionModeEnabled)
+                _world.BuildingConstructionModel.SelectedBuilding = null;
         }
 
         private void OnPointerEnter(PointerEnterEvent evt)
