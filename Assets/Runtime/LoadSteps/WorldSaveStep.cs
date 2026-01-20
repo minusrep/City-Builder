@@ -10,6 +10,7 @@ namespace Runtime.LoadSteps
     public class WorldSaveStep : IStep
     {
         private static string WorldDataPath => Path.Combine(Application.streamingAssetsPath, "world.json");
+        private const string ScreenshotKey = "screenshot";
 
         private readonly World _world;
         private readonly string _saveName;
@@ -22,7 +23,16 @@ namespace Runtime.LoadSteps
 
         public async Task Run()
         {
-            var json = JSON.ToJSON(_world.Serialize(), new JSONParameters { UseExtensions = false });
+            var saveData = _world.Serialize();
+
+            var screenshot = ScreenshotUtility.CaptureScreenshotFromMainCameraWithoutUI();
+            
+            if (!string.IsNullOrEmpty(screenshot))
+            {
+                saveData[ScreenshotKey] = screenshot;
+            }
+
+            var json = JSON.ToJSON(saveData, new JSONParameters { UseExtensions = false });
 
             if (!string.IsNullOrEmpty(_saveName))
             {

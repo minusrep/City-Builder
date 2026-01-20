@@ -125,7 +125,21 @@ namespace Runtime.Extensions
         {
             return new List<object> { vector.x, vector.y, vector.z };
         }
-        
+
+        public static string GetScreenshot(this Dictionary<string, object> dictionary, string key)
+        {
+            if (dictionary.ContainsKey(key))
+            {
+                return (string)dictionary[key];
+            }
+            return string.Empty;
+        }
+
+        public static bool HasScreenshot(this Dictionary<string, object> dictionary, string key)
+        {
+            return dictionary.ContainsKey(key) && !string.IsNullOrEmpty(dictionary[key] as string);
+        }
+
         private static List<object> GetList(this Dictionary<string, object> dictionary, string key)
         {
             return (List<object>)dictionary[key];

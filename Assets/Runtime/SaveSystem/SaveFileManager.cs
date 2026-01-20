@@ -16,6 +16,7 @@ namespace Runtime.SaveSystem
             public string DisplayName { get; set; }
             public DateTime LastModified { get; set; }
             public string FullPath { get; set; }
+            public string ScreenshotBase64 { get; set; }
         }
         
         public static void Initialize()
@@ -57,16 +58,45 @@ namespace Runtime.SaveSystem
                 var fileInfo = new FileInfo(filePath);
                 var fileName = Path.GetFileNameWithoutExtension(filePath);
 
-                saveFiles.Add(new SaveFileInfo
+                var saveFileInfo = new SaveFileInfo
                 {
                     FileName = fileName,
                     DisplayName = fileName,
                     LastModified = fileInfo.LastWriteTime,
                     FullPath = filePath
-                });
+                };
+                
+                saveFileInfo.ScreenshotBase64 = LoadScreenshotFromSave(filePath);
+
+                saveFiles.Add(saveFileInfo);
             }
             
             return saveFiles.OrderByDescending(s => s.LastModified).ToList();
+        }
+
+        public static string LoadScreenshotFromSave(string filePath)
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    return string.Empty;
+                }
+
+                var json = File.ReadAllText(filePath);
+                var data = fastJSON.JSON.ToObject<Dictionary<string, object>>(json);
+
+                if (data != null && data.ContainsKey("screenshot"))
+                {
+                    return data["screenshot"] as string ?? string.Empty;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"Не удалось загрузить скриншот из {filePath}: {e.Message}");
+            }
+
+            return string.Empty;
         }
         
         public static void DeleteSave(string saveName)

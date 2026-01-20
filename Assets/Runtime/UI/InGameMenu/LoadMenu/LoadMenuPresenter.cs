@@ -53,6 +53,13 @@ namespace Runtime.UI.InGameMenu.LoadMenu
                         text = save.LastModified.ToString("HH:mm")
                     }
                 };
+                
+                if (!string.IsNullOrEmpty(save.ScreenshotBase64))
+                {
+                    var texture = ScreenshotUtility.Base64ToTexture(save.ScreenshotBase64);
+                    
+                    loadPanel.Image.style.backgroundImage = texture;
+                }
 
                 loadPanel.LoadButton.clicked += () => OnLoadClicked(save.FileName);
                 loadPanel.DeleteButton.clicked += () => OnDeleteClicked(save.FileName);
