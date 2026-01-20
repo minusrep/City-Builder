@@ -89,7 +89,7 @@
     border-bottom-width: 5px;
     border-left-width: 5px;
     margin-top: 0;
-    margin-right: 0;
+    margin-right: 10px;
     margin-bottom: 10px;
     margin-left: 0;
     padding-top: 3px;
@@ -107,14 +107,14 @@
 }
 
 .building-button--selected {
-    background-color: rgba(255, 237, 110, 0.35);
+    background-color: rgb(190, 232, 255);
     border-color: rgb(180, 210, 255);
     color: white;
-    border-left-color: rgb(255, 199, 49);
-    border-right-color: rgb(255, 199, 49);
-    border-top-color: rgb(255, 199, 49);
-    border-bottom-color: rgb(255, 199, 49);
-    -unity-background-image-tint-color: rgb(255, 238, 171);
+    border-left-color: rgb(0, 151, 236);
+    border-right-color: rgb(0, 151, 236);
+    border-top-color: rgb(0, 151, 236);
+    border-bottom-color: rgb(0, 151, 236);
+    -unity-background-image-tint-color: rgb(190, 232, 255);
 }
 
 .building-button:disabled {
@@ -122,17 +122,13 @@
     color: rgba(180, 180, 180, 0.5);
 }
 
-
-
-
-
 .building-button:hover {
-    background-color: rgba(255, 237, 110, 0.35);
     border-color: rgb(180, 210, 255);
     color: white;
-    border-left-color: rgb(255, 199, 49);
-    border-right-color: rgb(255, 199, 49);
-    border-top-color: rgb(255, 199, 49);
-    border-bottom-color: rgb(255, 199, 49);
-    -unity-background-image-tint-color: rgb(255, 238, 171);
+    border-left-color: rgb(0, 151, 236);
+    border-right-color: rgb(0, 151, 236);
+    border-top-color: rgb(0, 151, 236);
+    border-bottom-color: rgb(0, 151, 236);
+    -unity-background-image-tint-color: rgb(190, 232, 255);
+    background-color: rgb(191, 233, 255);
 }

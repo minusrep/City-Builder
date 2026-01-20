@@ -14,10 +14,10 @@
     border-top-right-radius: 60px;
     border-bottom-right-radius: 60px;
     border-bottom-left-radius: 60px;
-    border-left-color: rgb(255, 199, 49);
-    border-right-color: rgb(255, 199, 49);
-    border-top-color: rgb(255, 199, 49);
-    border-bottom-color: rgb(255, 199, 49);
+    border-left-color: rgb(0, 151, 236);
+    border-right-color: rgb(0, 151, 236);
+    border-top-color: rgb(0, 151, 236);
+    border-bottom-color: rgb(0, 151, 236);
     -unity-background-image-tint-color: rgb(209, 209, 209);
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out-sine;
@@ -43,7 +43,7 @@
     border-right-color: rgb(185, 185, 185);
     border-top-color: rgb(185, 185, 185);
     border-bottom-color: rgb(185, 185, 185);
-    -unity-background-image-tint-color: rgb(188, 188, 188);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 .achievement {
