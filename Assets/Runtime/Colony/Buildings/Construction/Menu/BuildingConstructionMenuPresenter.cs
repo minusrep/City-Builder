@@ -4,7 +4,6 @@ using Runtime.Descriptions;
 using Runtime.Descriptions.Buildings;
 using Runtime.UI;
 using Runtime.ViewDescriptions;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -18,6 +17,8 @@ namespace Runtime.Colony.Buildings.Construction.Menu
         private readonly MenuContent _menuContent;
         private readonly WorldViewDescriptions _worldViewDescriptions;
         private readonly Dictionary<string, Button> _buttons = new();
+        
+        private bool _isConstructionModeEnabled;
 
         public BuildingConstructionMenuPresenter(BuildingConstructionMenuView view,
             World world,
@@ -39,6 +40,8 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             
             _view.Root.RegisterCallback<PointerEnterEvent>(OnPointerEnter);
             _view.Root.RegisterCallback<PointerLeaveEvent>(OnPointerLeave);
+            
+            _view.ToggleButton.clicked += HandleToggleConstructionMode;
 
             BuildButtons();
         }
@@ -82,7 +85,6 @@ namespace Runtime.Colony.Buildings.Construction.Menu
 
             UpdateSelection(description.Id);
             _world.BuildingConstructionModel.SelectedBuilding = description;
-            _world.Grid.IsActive = true;
         }
 
         private void UpdateSelection(string selectedId)
@@ -131,7 +133,6 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             _world.PlayerControls.UI.Enable();
             _world.PlayerControls.Construction.Disable();
             _world.BuildingConstructionModel.SelectedBuilding = null;
-            _world.Grid.IsActive = false;
             
             foreach (var buildingModel in _world.Buildings.Models.Values)
             {
@@ -139,6 +140,14 @@ namespace Runtime.Colony.Buildings.Construction.Menu
             }
             
             ClearSelection();
+        }
+        
+        private void HandleToggleConstructionMode()
+        {
+            _isConstructionModeEnabled = !_isConstructionModeEnabled;
+            _view.ConstructionPanel.style.display = _isConstructionModeEnabled ? DisplayStyle.Flex : DisplayStyle.None;
+            _view.ToggleButton.text = _isConstructionModeEnabled ? "Закрыть" : "Строительство";
+            _world.Grid.IsActive = _isConstructionModeEnabled;
         }
 
         private void OnPointerEnter(PointerEnterEvent evt)

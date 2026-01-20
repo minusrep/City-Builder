@@ -10,5 +10,6 @@
                 <ui:VisualElement name="building-list" class="building-list" style="flex-direction: row; height: auto; width: auto; margin-right: 0; flex-grow: 1; flex-shrink: 1; flex-wrap: wrap; align-items: flex-start; justify-content: flex-start;"/>
             </ui:ScrollView>
         </ui:VisualElement>
+        <ui:Button name="construction-toggle-button" text="&#1057;&#1090;&#1088;&#1086;&#1080;&#1090;&#1077;&#1083;&#1100;&#1089;&#1090;&#1074;&#1086;" class="construction-toggle-button" style="width: 220px; margin-top: 5px; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
     </ui:VisualElement>
 </ui:UXML>
