@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Descriptions
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Descriptions
-  m_GUID: 2412a7597fd3de941aaa13c36838fbf9
+  m_GUID: 324e04bd7c828cb488d0e265fe877b99
   m_SerializeEntries:
   - m_GUID: 4a0ea41e48e641728ab08e4015285682
     m_Address: points_of_interest_description
@@ -58,4 +58,6 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5870ca5a51afee640ada8608be70eb1d, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: eaae1f8a7aa5733419ebce48cb089ba1, type: 2}
+    - {fileID: 11400000, guid: 7496c33584c33e94fa7d86d4d0109a98, type: 2}
