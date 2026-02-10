@@ -1,0 +1,560 @@
+{
+  "names": [
+    "Jack",
+    "Sam",
+    "Mike",
+    "Alex",
+    "Ben",
+    "Will",
+    "Dan",
+    "Leo",
+    "Max",
+    "Nick",
+    "Luke",
+    "Chris",
+    "Paul",
+    "Adam",
+    "Ryan",
+    "Mark",
+    "Evan",
+    "Josh",
+    "Tim",
+    "Owen"
+  ],
+  "view_descriptions": [
+    "citizen_8",
+    "citizen_9",
+    "citizen_10"
+  ],
+  "stats": {
+    "satiety": {
+      "min": 0,
+      "max": 100,
+      "view_id": "Satiety"
+    },
+    "energy": {
+      "min": 0,
+      "max": 100,
+      "view_id": "Energy"
+    },
+    "happiness": {
+      "min": 0,
+      "max": 100,
+      "view_id": "Happiness"
+    }
+  },
+  "start_move_speed": 1,
+  "systems": {
+    "sleep": {
+      "stat": "energy",
+      "change_speed": 50
+    },
+    "fatigue": {
+      "stat": "energy",
+      "change_speed": -0.5
+    },
+    "hungry": {
+      "stat": "satiety",
+      "change_speed": -1
+    },
+    "feed": {
+      "stat": "satiety",
+      "change_speed": 50
+    },
+    "stress": {
+      "stat": "happiness",
+      "change_speed": -1
+    },
+    "comfort": {
+      "stat": "happiness",
+      "change_speed": 10
+    }
+  },
+  "states": {
+    "idle": {
+      "actions": [
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
+        "walk_to_tavern": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "satiety",
+          "value": 20
+        },
+        "walk_to_shelter": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "energy",
+          "value": 10
+        },
+        "walk_to_talk": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "happiness",
+          "value": 10
+        },
+        "walk_to_put_resource": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "true"
+        },
+        "select_order": {
+          "type": "order_exists"
+        },
+        "idle": {
+          "type": "true"
+        }
+      }
+    },
+    "walk_to_tavern": {
+      "actions": [
+        {
+          "type": "set_point_of_interest_building",
+          "point_of_interest": "tavern"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "tavern"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "eat_start": {
+          "type": "distance",
+          "value": 0.5,
+          "point_of_interest": "tavern"
+        }
+      }
+    },
+    "eat_start": {
+      "actions": [
+        {
+          "type": "register_system",
+          "system": "feed"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        },
+        {
+          "type": "change_visibility",
+          "visible": "false"
+        },
+        {
+          "type": "set_service_citizen_amount",
+          "point_of_interest": "tavern",
+          "increment": true
+        }
+      ],
+      "transitions": {
+        "eat_end": {
+          "type": "compare",
+          "counter": "satiety",
+          "operation": "greater",
+          "value": 95
+        }
+      }
+    },
+    "eat_end": {
+      "actions": [
+        {
+          "type": "unregister_system",
+          "system": "feed"
+        },
+        {
+          "type": "change_visibility",
+          "visible": "true"
+        },
+        {
+          "type": "set_service_citizen_amount",
+          "point_of_interest": "tavern",
+          "increment": false
+        }
+      ],
+      "transitions": {
+        "idle": {
+          "type": "true"
+        }
+      }
+    },
+    "walk_to_shelter": {
+      "actions": [
+        {
+          "type": "set_point_of_interest_building",
+          "point_of_interest": "shelter"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "shelter"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "sleep_start": {
+          "type": "distance",
+          "value": 1.5,
+          "point_of_interest": "shelter"
+        }
+      }
+    },
+    "sleep_start": {
+      "actions": [
+        {
+          "type": "register_system",
+          "system": "sleep"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        },
+        {
+          "type": "change_visibility",
+          "visible": "false"
+        },
+        {
+          "type": "set_service_citizen_amount",
+          "point_of_interest": "shelter",
+          "increment": true
+        }
+      ],
+      "transitions": {
+        "sleep_end": {
+          "type": "compare",
+          "counter": "energy",
+          "operation": "greater",
+          "value": 95
+        }
+      }
+    },
+    "sleep_end": {
+      "actions": [
+        {
+          "type": "unregister_system",
+          "system": "sleep"
+        },
+        {
+          "type": "change_visibility",
+          "visible": "true"
+        },
+        {
+          "type": "set_service_citizen_amount",
+          "point_of_interest": "shelter",
+          "increment": false
+        }
+      ],
+      "transitions": {
+        "idle": {
+          "type": "true"
+        }
+      }
+    },
+    "walk_to_talk": {
+      "actions": [
+        {
+          "type": "set_point_of_interest_building",
+          "point_of_interest": "lantern"
+        },
+        {
+          "type": "set_flag",
+          "flag_name": "is_sad",
+          "flag_value": "true"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "lantern"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "wait_to_talk": {
+          "type": "distance",
+          "value": 0.5,
+          "point_of_interest": "lantern"
+        }
+      }
+    },
+    "wait_to_talk": {
+      "actions": [
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        },
+        {
+          "type": "stop_move"
+        }
+      ],
+      "transitions": {
+        "talk_start": {
+          "type": "citizen_distance_with_flag",
+          "distance_value": 8.0,
+          "flag_name": "is_sad",
+          "flag_value": "true"
+        }
+      }
+    },
+    "talk_start": {
+      "actions": [
+        {
+          "type": "register_system",
+          "system": "comfort"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "talk"
+        }
+      ],
+      "transitions": {
+        "talk_end": {
+          "type": "compare",
+          "counter": "happiness",
+          "operation": "greater",
+          "value": 95
+        }
+      }
+    },
+    "talk_end": {
+      "actions": [
+        {
+          "type": "unregister_system",
+          "system": "comfort"
+        },
+        {
+          "type": "set_flag",
+          "flag_name": "is_sad",
+          "flag_value": "false"
+        },
+        {
+          "type": "set_point_of_interest",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "start_move",
+          "point_of_interest": "spawn"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "idle": {
+          "type": "true"
+        }
+      }
+    },
+    "select_order": {
+      "actions": [
+        {
+          "type": "take_order"
+        }
+      ],
+      "transitions": {
+        "walk_to_put_resource": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "true"
+        },
+        "walk_to_take_resource": {
+          "type": "flag",
+          "flag": "has_order",
+          "value": "true"
+        },
+        "idle": {
+          "type": "true"
+        }
+      }
+    },
+    "walk_to_take_resource": {
+      "actions": [
+        {
+          "type": "start_move",
+          "point_of_interest": "resource_source"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "start_take_resource": {
+          "type": "distance",
+          "value": 1.5,
+          "point_of_interest": "resource_source"
+        }
+      }
+    },
+    "start_take_resource": {
+      "actions": [
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
+        "try_take_resource": {
+          "type": "true"
+        }
+      }
+    },
+    "try_take_resource": {
+      "actions": [
+        {
+          "type": "take_resource",
+          "point_of_interest": "resource_source"
+        }
+      ],
+      "transitions": {
+        "walk_to_tavern": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "satiety",
+          "value": 20
+        },
+        "walk_to_shelter": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "energy",
+          "value": 10
+        },
+        "walk_to_put_resource": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "true"
+        },
+        "idle": {
+          "type": "true"
+        }
+      }
+    },
+    "walk_to_put_resource": {
+      "actions": [
+        {
+          "type": "start_move",
+          "point_of_interest": "resource_target"
+        },
+        {
+          "type": "invoke_animation",
+          "animation": "walk"
+        }
+      ],
+      "transitions": {
+        "start_put_resource": {
+          "type": "distance",
+          "value": 1.5,
+          "point_of_interest": "resource_target"
+        }
+      }
+    },
+    "start_put_resource": {
+      "actions": [
+        {
+          "type": "invoke_animation",
+          "animation": "idle"
+        }
+      ],
+      "transitions": {
+        "try_put_resource": {
+          "type": "true"
+        }
+      }
+    },
+    "try_put_resource": {
+      "actions": [
+        {
+          "type": "put_resource",
+          "point_of_interest": "resource_target"
+        }
+      ],
+      "transitions": {
+        "working": {
+          "type": "flag",
+          "flag": "is_working",
+          "value": "true"
+        },
+        "walk_to_tavern": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "satiety",
+          "value": 20
+        },
+        "walk_to_shelter": {
+          "type": "compare",
+          "operation": "lesser",
+          "counter": "energy",
+          "value": 10
+        },
+        "idle": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "false"
+        },
+        "try_put_resource": {
+          "type": "flag",
+          "flag": "is_carrying",
+          "value": "true"
+        }
+      }
+    },
+    "working": {
+      "actions": [
+        {
+          "type": "change_visibility",
+          "visible": "false"
+        }
+      ],
+      "transitions": {
+        "work_end": {
+          "type": "or",
+          "conditions": [
+            {
+              "type": "compare",
+              "operation": "lesser",
+              "counter": "satiety",
+              "value": 20
+            },
+            {
+              "type": "compare",
+              "operation": "lesser",
+              "counter": "energy",
+              "value": 10
+            },
+            {
+              "type": "building_working",
+              "value": "false"
+            }
+          ]
+        }
+      }
+    },
+    "work_end": {
+      "actions": [
+        {
+          "type": "take_resource",
+          "point_of_interest": "resource_target"
+        },
+        {
+          "type": "change_visibility",
+          "visible": "true"
+        }
+      ],
+      "transitions": {
+        "idle": {
+          "type": "true"
+        }
+      }
+    }
+  }
+}

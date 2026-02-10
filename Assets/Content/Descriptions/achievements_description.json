@@ -1,0 +1,65 @@
+{
+  "get_ten_wood": {
+    "type": "resource_count_counter",
+    "triggers": [
+      {
+        "resource": "wood"
+      }
+    ],
+    "target": 10,
+    "unlocks": [
+      "get_hundred_wood"
+    ]
+  },
+  "get_hundred_wood": {
+    "type": "resource_count_counter",
+    "triggers": [
+      {
+        "resource": "wood"
+      }
+    ],
+    "target": 100
+  },
+  "build_three_shelters": {
+    "type": "buildings_count_counter",
+    "triggers": [
+      {
+        "building": "shelter"
+      }
+    ],
+    "target": 3,
+    "unlocks": [
+      "build_five_shelters"
+    ]
+  },
+  "build_five_shelters": {
+    "type": "buildings_count_counter",
+    "triggers": [
+      {
+        "building": "shelter"
+      }
+    ],
+    "target": 2
+  },
+  "upgrade_building_first_time": {
+    "type": "building_level_updated",
+    "triggers": [
+      {
+        "building_upgrade": "production"
+      }
+    ],
+    "target": 1,
+    "unlocks": [
+      "upgrade_five_buildings_to_max"
+    ]
+  },
+  "upgrade_five_buildings_to_max": {
+    "type": "building_max_level_count",
+    "triggers": [
+      {
+        "building_max_level_count": "production"
+      }
+    ],
+    "target": 5
+  }
+}

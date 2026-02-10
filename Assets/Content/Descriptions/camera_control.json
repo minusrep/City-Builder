@@ -1,0 +1,8 @@
+{
+  "move_speed": 30,
+  "move_smoothihg": 5,
+  "zoom_speed": 0.05,
+  "zoom_smoothihg": 5,
+  "look_speed": 0.05,
+  "look_smoothing": 20
+}

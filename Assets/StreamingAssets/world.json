@@ -1,0 +1,527 @@
+{
+  "citizens": {
+    "models": {
+      "citizen_0": {
+        "id": 0,
+        "name": "Sergey",
+        "view_description": "citizen_1",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          -53.58895,
+          0.2519829,
+          -19.74258
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 100
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "citizen_1": {
+        "id": 1,
+        "name": "Dmitry",
+        "view_description": "citizen_2",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          -43.93377,
+          0.2519829,
+          -31.28212
+        ],
+        "points_of_interest": { },
+        "flags": { },
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 100
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "citizen_2": {
+        "id": 2,
+        "view_description": "citizen_3",
+        "name": "Pavel",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          -32.97297,
+          0.2519829,
+          -19.58517
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 100
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "citizen_3": {
+        "id": 3,
+        "name": "Klim",
+        "view_description": "citizen_4",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          -26.21576,
+          0.2519829,
+          -24.81244
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 100
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "citizen_4": {
+        "id": 4,
+        "name": "Alexander",
+        "view_description": "citizen_5",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          0,
+          0.2519829,
+          25
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 100
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "citizen_5": {
+        "id": 5,
+        "name": "Maxim",
+        "view_description": "citizen_6",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          4,
+          0.2519829,
+          30
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 100
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "citizen_6": {
+        "id": 6,
+        "name": "Alexey",
+        "view_description": "citizen_7",
+        "spawned_from_building_id": "shelter_3",
+        "position": [
+          4,
+          0.2519829,
+          30
+        ],
+        "points_of_interest": {},
+        "flags": {},
+        "stats": {
+          "satiety": {
+            "stat": "satiety",
+            "value": 100
+          },
+          "energy": {
+            "stat": "energy",
+            "value": 100
+          },
+          "happiness": {
+            "stat": "happiness",
+            "value": 100
+          }
+        },
+        "timers": {},
+        "state_machine": {
+          "current_state": "idle"
+        },
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "buildings": {
+    "models": {
+      "tavern_0": {
+        "description": "tavern",
+        "position": [
+          34,
+          45
+        ],
+        "level": 0,
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "warehouse_1": {
+        "description": "warehouse",
+        "position": [
+          40,
+          45
+        ],
+        "level": 0,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": "wood"
+            },
+            "1": {
+              "amount": 0,
+              "resource": "iron"
+            },
+            "2": {
+              "amount": 0,
+              "resource": "ore"
+            }
+          }
+        }
+      },
+      "lantern_2": {
+        "description": "lantern",
+        "position": [
+          40,
+          42
+        ],
+        "level": 0
+      },
+      "shelter_3": {
+        "description": "shelter",
+        "position": [
+          28,
+          45
+        ],
+        "level": 0,
+        "is_active": false,
+        "in_service": {},
+        "waiting_queue": []
+      },
+      "sawmill_4": {
+        "description": "sawmill",
+        "position": [
+          29,
+          36
+        ],
+        "level": 0,
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            },
+            "1": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "sawmill_5": {
+        "description": "sawmill",
+        "position": [
+          29,
+          33
+        ],
+        "level": 0,
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            },
+            "1": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "mine_6": {
+        "description": "mine",
+        "position": [
+          33,
+          36
+        ],
+        "level": 0,
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            },
+            "1": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "mine_7": {
+        "description": "mine",
+        "position": [
+          33,
+          33
+        ],
+        "level": 0,
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            },
+            "1": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "smelter_8": {
+        "description": "smelter",
+        "position": [
+          37,
+          36
+        ],
+        "level": 0,
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            },
+            "1": {
+              "amount": 0,
+              "resource": null
+            },
+            "2": {
+              "amount": 0,
+              "resource": null
+            },
+            "3": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      },
+      "smelter_9": {
+        "description": "smelter",
+        "position": [
+          37,
+          33
+        ],
+        "level": 0,
+        "is_active": false,
+        "progress": 0,
+        "inventory": {
+          "models": {
+            "0": {
+              "amount": 0,
+              "resource": null
+            },
+            "1": {
+              "amount": 0,
+              "resource": null
+            },
+            "2": {
+              "amount": 0,
+              "resource": null
+            },
+            "3": {
+              "amount": 0,
+              "resource": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "order_manager": {
+    "orders": [ ]
+  },
+  "achievements": {
+    "models": {
+      "get_ten_wood": {
+        "is_active": true,
+        "is_completed": false,
+        "progress": 0
+      },
+      "get_hundred_wood": {
+        "is_active": false,
+        "is_completed": false,
+        "progress": 0
+      },
+      "build_three_shelters": {
+        "is_active": true,
+        "is_completed": false,
+        "progress": 1
+      },
+      "build_five_shelters": {
+        "is_active": false,
+        "is_completed": false,
+        "progress": 0
+      },
+      "upgrade_building_first_time": {
+        "is_active": true,
+        "is_completed": false,
+        "progress": 0
+      },
+      "upgrade_five_buildings_to_max": {
+        "is_active": false,
+        "is_completed": false,
+        "progress": 0
+      }
+    }
+  },
+  "environment": {
+    "time": {
+      "current_time": 0
+    }
+  }
+}

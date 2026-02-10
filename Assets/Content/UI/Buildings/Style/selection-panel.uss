@@ -1,0 +1,72 @@
+.selection-panel-field {
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    -unity-font-style: normal;
+}
+
+.selection-panel-title {
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+}
+
+.selection-panel-disabled {
+    translate: -100% 0;
+    transition-duration: 0.2s;
+}
+
+.selection-panel-enabled {
+    translate: 0% 0;
+    transition-duration: 0.2s;
+}
+
+.selection-panel-upgrade-button {
+    -unity-font-style: bold;
+    background-color: rgb(16, 16, 16);
+    font-size: 24px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-left-color: rgb(26, 25, 25);
+    border-right-color: rgb(26, 25, 25);
+    border-top-color: rgb(26, 25, 25);
+    border-bottom-color: rgb(26, 25, 25);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    color: rgb(226, 226, 226);
+    flex-grow: 1;
+    justify-content: center;
+    padding-top: 4px;
+    padding-right: 0;
+    padding-bottom: 4px;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    width: 100%;
+}
+
+.selection-panel-icon {
+    background-image: url("project://database/Assets/Content/Textures/selection_icon.renderTexture?fileID=8400000&guid=53ebe9d19174f8a43b900ad0340859eb&type=2#selection_icon");
+    width: 240px;
+    height: 240px;
+    align-self: center;
+    overflow: hidden;
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+    border-left-color: rgb(19, 19, 19);
+    border-right-color: rgb(19, 19, 19);
+    border-top-color: rgb(19, 19, 19);
+    border-bottom-color: rgb(19, 19, 19);
+}

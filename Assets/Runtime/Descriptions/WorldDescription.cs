@@ -1,0 +1,50 @@
+﻿using System.Collections.Generic;
+using Runtime.Descriptions.Achievements;
+using Runtime.Descriptions.Buildings;
+using Runtime.Descriptions.CameraControl;
+using Runtime.Descriptions.Citizens;
+using Runtime.Descriptions.Items;
+using Runtime.Environment;
+using Runtime.Extensions;
+
+namespace Runtime.Descriptions
+{
+    public sealed class WorldDescription
+    {
+        public WorldGridDescription WorldGridDescription { get; private set; }
+        
+        public BuildingsDescriptionCollection BuildingCollection { get; private set; }
+        
+        public ResourceDescriptionCollection ResourceCollection { get; private set; }
+        
+        public AchievementDescriptionCollection AchievementsCollection { get; private set; }
+        
+        public CitizensDescription Citizens { get; private set; }
+
+        public CameraControlDescription CameraControlDescription { get; private set; }
+
+        public PointOfInterestDescriptionCollection PointOfInterestCollection { get; private set; }
+        
+        public EnvironmentDescription Environment { get; private set; }
+        
+        private DescriptionFactory Factory { get; set; }
+
+        public void SetData(Dictionary<string, object> data)
+        {
+            Factory = new DescriptionFactory();
+            Factory.Register<ProductionBuildingDescription>("production");
+            Factory.Register<ServiceBuildingDescription>("service");
+            Factory.Register<DecorBuildingDescription>("decor");
+            Factory.Register<StorageBuildingDescription>("storage");
+            
+            WorldGridDescription = new WorldGridDescription(data.GetNode("world_grid"));
+            BuildingCollection = new BuildingsDescriptionCollection(data.GetNode("buildings"), Factory);
+            ResourceCollection = new ResourceDescriptionCollection(data.GetNode("resources"));
+            AchievementsCollection = new AchievementDescriptionCollection(data.GetNode("achievements"));
+            Citizens = new CitizensDescription(data.GetNode("citizens"));
+            CameraControlDescription = new CameraControlDescription(data.GetNode("camera_control"));
+            PointOfInterestCollection = new PointOfInterestDescriptionCollection(data.GetNode("points_of_interest"));
+            Environment = new EnvironmentDescription(data.GetNode("environment"));
+        }
+    }
+}

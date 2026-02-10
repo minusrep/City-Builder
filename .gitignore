@@ -100,3 +100,27 @@ InitTestScene*.unity*
 
 /.idea
 *.DotSettings
+
+# Build directories
+bin/
+obj/
+
+# VS cache
+.vs/
+
+# NuGet packages (restore automatically)
+packages/
+
+# Test results
+TestResults/
+
+# Temporary files
+*.user
+*.suo
+*.cache
+*.pdb
+*.aps
+*.ncb
+*.res
+*.exe
+*.dll

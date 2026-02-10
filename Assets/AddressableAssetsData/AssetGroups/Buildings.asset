@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Buildings
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Buildings
+  m_GUID: 7cde52294261c1d4ca5b85a6c20be3cc
+  m_SerializeEntries:
+  - m_GUID: 29c360f540bb3514382bb935bbb9c7f4
+    m_Address: Tavern
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 436d6bceca5bd464aa7470befbb7c8c2
+    m_Address: Sawmill
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a457251ccf9a884681614b9178892ba
+    m_Address: BuildingViewDescriptionCollection
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d3d64af25b15b843a2c7015b2b2378b
+    m_Address: Warehouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72aae8735852d5c4081313db4a53fce0
+    m_Address: Mine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d25b5131c1d4414c892fed21d89d29b
+    m_Address: Latern
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb95363bf246e774094abd04c42eb708
+    m_Address: Shelter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c657e3fa35e3dad47b62d20969bf8ba5
+    m_Address: Smelter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5870ca5a51afee640ada8608be70eb1d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fe6b6cd41ecdcd240928af544a58a673, type: 2}
+    - {fileID: 11400000, guid: b5546c24f10979c418ca0738a9c7a548, type: 2}

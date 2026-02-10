@@ -1,0 +1,149 @@
+using System;
+using System.Threading.Tasks;
+using Runtime.Colony;
+using Runtime.Common;
+using Runtime.UI.InGameMenu.AchievementsMenu;
+using Runtime.UI.InGameMenu.LoadMenu;
+using Runtime.UI.InGameMenu.SaveMenu;
+using Runtime.ViewDescriptions;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+
+namespace Runtime.UI.InGameMenu
+{
+    public class InGameMenuPresenter : IPresenter
+    {
+        private readonly InGameMenuView _view;
+        private readonly MenuContent _menuContent;
+        private readonly World _world;
+        private readonly WorldViewDescriptions _viewDescriptions;
+        private readonly Func<string, Task> _reloadSessionCallback;
+        
+        private IPresenter _currentMenuPresenter;
+
+        public InGameMenuPresenter(InGameMenuView view, MenuContent menuContent, World world,
+            WorldViewDescriptions viewDescriptions, Func<string, Task> reloadSessionCallback)
+        {
+            _view = view;
+            _menuContent = menuContent;
+            _world = world;
+            _viewDescriptions = viewDescriptions;
+            _reloadSessionCallback = reloadSessionCallback;
+        }
+
+        public void Enable()
+        {
+            _world.PlayerControls.UI.Enable();
+
+            _world.PlayerControls.UI.Pause.performed += OnPerformed;
+            _view.ResumeButton.clicked += OnResumeClicked;
+            _view.SaveButton.clicked += OnSaveClicked;
+            _view.LoadButton.clicked += OnLoadClicked;
+            _view.AchievementsButton.clicked += OnAchievementsClicked;
+            _view.ExitButton.clicked += OnExitClicked;
+        }
+
+        public void Disable()
+        {
+            _world.PlayerControls.UI.Pause.performed -= OnPerformed;
+            _view.ResumeButton.clicked -= OnResumeClicked;
+            _view.SaveButton.clicked -= OnSaveClicked;
+            _view.LoadButton.clicked -= OnLoadClicked;
+            _view.AchievementsButton.clicked -= OnAchievementsClicked;
+            _view.ExitButton.clicked -= OnExitClicked;
+
+            _world.PlayerControls.UI.Disable();
+        }
+
+        private void OnPerformed(InputAction.CallbackContext context)
+        {
+            ToggleMenu();
+        }
+        
+        private void OnResumeClicked()
+        {
+            ToggleMenu();
+        }
+
+        private void ToggleMenu()
+        {
+            if (!_menuContent.MenuRoot.Contains(_view.Root))
+            {
+                _world.SelectionModel.CanSelect = false;
+                _world.MainCameraControl.IsActive = false;
+                _menuContent.MenuRoot.Add(_view.Root);
+                CloseMenu();
+            }
+            else
+            {
+                _world.SelectionModel.CanSelect = true;
+                _world.MainCameraControl.IsActive = true;
+                _view.Root.RemoveFromHierarchy();
+            }
+        }
+
+        private void OpenMenu(VisualElement root, IPresenter loadMenuPresenter)
+        {
+            CloseMenu();
+            _view.PageContent.style.display = DisplayStyle.Flex;
+            _view.PageContent.Add(root);
+
+            _currentMenuPresenter = loadMenuPresenter;
+            _currentMenuPresenter.Enable();
+        }
+
+        private void CloseMenu()
+        {
+            _view.PageContent.style.display = DisplayStyle.None;
+
+            if (_currentMenuPresenter == null)
+            {
+                return;
+            }
+
+            _currentMenuPresenter.Disable();
+
+            _view.PageContent.Clear();
+            _currentMenuPresenter = null;
+        }
+        
+        private void OnSaveClicked()
+        {
+            var saveMenuView = new SaveMenuView(_viewDescriptions.MenuViewDescription.SaveAsset);
+            var saveMenuPresenter = new SaveMenuPresenter(saveMenuView, _world, CloseMenu);
+
+            OpenMenu(saveMenuView.Root, saveMenuPresenter);
+        }
+
+        private void OnLoadClicked()
+        {
+            var loadMenuView = new LoadMenuView(_viewDescriptions.MenuViewDescription.LoadAsset);
+            var loadMenuPresenter = new LoadMenuPresenter(loadMenuView, OnLoadSaveSelected, _viewDescriptions);
+
+            OpenMenu(loadMenuView.Root, loadMenuPresenter);
+        }
+
+        private async void OnLoadSaveSelected(string saveName)
+        {
+            CloseMenu();
+            
+            await _reloadSessionCallback(saveName);
+            
+            _world.PlayerControls.UI.Enable();
+        }
+
+        private void OnAchievementsClicked()
+        {
+            var achievementsMenuView = new AchievementsMenuView(_viewDescriptions.MenuViewDescription.AchievementsMenuAsset);
+            var achievementsMenuPresenter = new AchievementsMenuPresenter(achievementsMenuView, _world, _viewDescriptions);
+
+            OpenMenu(achievementsMenuView.Root, achievementsMenuPresenter);
+        }
+
+        private void OnExitClicked()
+        {
+            Application.Quit();
+        }
+    }
+}

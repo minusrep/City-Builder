@@ -1,0 +1,171 @@
+.construction-content {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    flex-direction: column;
+    align-items: flex-end;
+    width: auto;
+    height: auto;
+}
+
+.construction-toggle-button {
+    background-color: rgb(45, 45, 45);
+    color: white;
+    font-size: 14px;
+    -unity-font-style: bold;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.13);
+    margin-bottom: 8px;
+    min-height: 100px;
+    max-height: 100px;
+    transition-duration: 0.1s;
+}
+
+.construction-panel {
+    display: none;
+    width: 520px;
+    min-height: 140px;
+    margin-top: 8px;
+    background-color: rgba(20, 20, 20, 0.9);
+    border-radius: 14px;
+    padding: 12px;
+    flex-direction: column;
+}
+
+.construction-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.construction-title {
+    font-size: 14px;
+    color: white;
+    -unity-font-style: bold;
+}
+
+.construction-close-button {
+    width: 28px;
+    height: 28px;
+    background-color: rgb(60, 60, 60);
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    -unity-font-style: bold;
+    padding: 0;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.13);
+}
+
+.construction-scroll {
+    flex-grow: 1;
+    height: 96px;
+}
+
+.building-list {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.building-button {
+    width: 150px;
+    height: 150px;
+    background-color: rgb(55, 55, 63);
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    -unity-font-style: normal;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 3px;
+    border-left-color: rgb(185, 185, 185);
+    border-right-color: rgb(185, 185, 185);
+    border-top-color: rgb(185, 185, 185);
+    border-bottom-color: rgb(185, 185, 185);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    margin-top: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    -unity-font-definition: url("project://database/Assets/Content/Fonts/Onest-Bold.ttf?fileID=12800000&guid=739e3c8cb2824ed43b983e0f7077a4a1&type=3#Onest-Bold");
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    -unity-text-align: lower-center;
+    background-size: 100% 100%;
+    -unity-text-outline-width: 0.5px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
+
+.building-button--selected {
+    background-color: rgb(190, 232, 255);
+    border-color: rgb(180, 210, 255);
+    color: white;
+    border-left-color: rgb(0, 151, 236);
+    border-right-color: rgb(0, 151, 236);
+    border-top-color: rgb(0, 151, 236);
+    border-bottom-color: rgb(0, 151, 236);
+    -unity-background-image-tint-color: rgb(190, 232, 255);
+}
+
+.building-button:disabled {
+    background-color: rgb(30, 30, 30);
+    color: rgba(180, 180, 180, 0.5);
+}
+
+.building-button:hover {
+    border-color: rgb(180, 210, 255);
+    color: white;
+    border-left-color: rgb(0, 151, 236);
+    border-right-color: rgb(0, 151, 236);
+    border-top-color: rgb(0, 151, 236);
+    border-bottom-color: rgb(0, 151, 236);
+    -unity-background-image-tint-color: rgb(190, 232, 255);
+    background-color: rgb(191, 233, 255);
+}
+
+.construction-toggle-button:hover {
+    background-color: rgb(45, 45, 45);
+    color: white;
+    font-size: 14px;
+    -unity-font-style: bold;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.13);
+    margin-bottom: 8px;
+    -unity-background-image-tint-color: rgb(0, 163, 255);
+    min-height: 100px;
+    max-height: 100px;
+    transition-duration: 0.1s;
+}
+
+.construction-toggle-button:active {
+    background-color: rgb(45, 45, 45);
+    color: white;
+    font-size: 14px;
+    -unity-font-style: bold;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.13);
+    margin-bottom: 8px;
+    -unity-background-image-tint-color: rgb(0, 163, 255);
+    min-height: 110px;
+    max-height: 110px;
+    transition-duration: 0.1s;
+}

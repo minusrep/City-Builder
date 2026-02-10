@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Citizens
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Citizens
+  m_GUID: ff8e1cc306349834eb30d2a6bc019d43
+  m_SerializeEntries:
+  - m_GUID: 1030d864ed34d5540a397e53bdb53300
+    m_Address: CitizenViewDescriptionCollection
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 185544215506d724288e301cb095cb6f
+    m_Address: Citizen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2115cf0e19abe1f4dae8706ab4fd56ab
+    m_Address: Citizen_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 350049e460522a24894dc79fef6838ba
+    m_Address: Citizen_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bbfd388a02d7f14bbea2e6baf4a4cdc
+    m_Address: Citizen_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b60426e11da68e4095bb83749576a39
+    m_Address: Citizen_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 579df2926c6e5af4684a4d9a11753485
+    m_Address: Citizen_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 822a523981e52c44d9e6ab622253e10b
+    m_Address: Citizen_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9794cdef99766a344a601425b2bcde08
+    m_Address: Citizen_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ada80731b2ffe864e9d40c92d29559f0
+    m_Address: Citizen_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c63075807cf1c3248940e5664ad3c394
+    m_Address: Citizen_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec9ecf3fe55870e4f8c0482360468d8a
+    m_Address: Citizen_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5870ca5a51afee640ada8608be70eb1d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fac4f2c9093d7f64f919febfcd38de36, type: 2}
+    - {fileID: 11400000, guid: 00c9336d6946f5048ba497edd94a7151, type: 2}
